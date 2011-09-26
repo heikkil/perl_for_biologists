@@ -202,7 +202,7 @@ use strict;
 print " Give a number ";
 my $num = <STDIN>;
 my $num2 = '0.5';
-my $float = $num + 0.5;
+my $float = $num + $num2;
 my $res = 'Sum';
 
 # print the sum
@@ -245,8 +245,8 @@ print "$res is $float\n ";
     :END:
 #+BEGIN_SRC perl
 #!/usr/bin/perl
-# print_sum.pl
-use Modern::Perl;
+# print_num.pl
+use warnings; use strict;
 
 my $num;
 # print 
@@ -525,7 +525,7 @@ until ($x < 0) {
     :END:
 
 #+BEGIN_SRC perl
-sub version;
+sub version; #sum_sub.pl
 say 'version;
 
 sub add1 {
@@ -552,7 +552,7 @@ sub version {'1.0'};
   hashes to pass arguments to subroutines
 
 #+BEGIN_SRC perl
-sub add2 {
+sub add2 { # sub_sub2.pl
     my %args = @_;
     my $one = $args{one} || 0;
     my $two = $args{two} || 0;
@@ -630,7 +630,7 @@ ref \%a; #returns HASH
     :END:
 
 #+BEGIN_SRC perl
-sub first_is_longer {
+sub first_is_longer { #longer.pl
     my ($lref1, $lref2) = @_;
 
     $first = @$lref1; #length
@@ -693,7 +693,7 @@ while (<>) {
     :BEAMER_col: 0.6
     :END:
 #+BEGIN_SRC perl
-print "Hello\n";
+print "Hello\n"; # file1.pl
 print STDOUT "Hello\n"; # identical
 my $file = 'seq.embl';
 die "Not exist" unless $file -e;
@@ -727,7 +727,7 @@ close FH;
     :BEAMER_col: 0.5
     :END:
 #+BEGIN_SRC perl
-
+# file2.pl
 die "Not writable" unless $file -w;
 open my $LOG, '>>', $file or die $!;
 print STDERR "log: $params\n";
@@ -765,8 +765,8 @@ while (<$SEQ>) {
     :END:
 #+BEGIN_SRC perl
 /even/; # literal
-/eve+n; # + means one or more
-/eve*n; # * means zero or more
+/eve+n/; # + means one or more
+/eve*n/; # * means zero or more
 /eve?n/; # ? means zero or one
 /e(ve)+n/ # group
 /0|1|2|3|4|5|6|7|8|9/ # alteration
@@ -792,8 +792,8 @@ while (<$SEQ>) {
 
 - Anchoring the match to a border
 - Regex works on $_
-- Regexp operators tell regexps  
-- To bind to other strings
+- Regexp operators tell regexps 
+  to bind to other strings
  - =~
  - !~
 *** list 					      :B_ignoreheading:BMCOL:
@@ -807,13 +807,12 @@ while (<$SEQ>) {
 /\d$/ # $ forces line end
 /\bword\b/ # word boundary
 
-if (/\w/) { # word char
+if (/\w/) { # word_char.pl
     my $line = $_;
-    # found the first digit
-    print "digit\n" 
-    if $line =~ /\d/;
-    # should have ID
-    print "error: $line\n"
+    # check for a  digit
+    say "digit" if $line =~ /\d/;
+    # should start with ID
+    say "ID error: $line"
         if $line !~ /ID/;
 }
 #+END_SRC
@@ -886,15 +885,21 @@ my $count = tr/[AT]/N/;
 
 #+END_SRC
 
+
+
 * Real world programming - errors and all
 
+
+
 ** Catching errors
-eval
-traps run time errors
-error message stored in special
-variable $@
-semicolon at the end of the 
-eval block is required
+
+- eval
+  + traps run time errors
+  + error message stored in special
+    variable $@
+  + semicolon at the end of the 
+    eval block is required
+- Try::Tiny is easier
 
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -966,7 +971,8 @@ man perldebug
     :END:
 
 #+BEGIN_SRC perl
-use constant PROGRAMME_NAME => 'testing.pl';
+use GetOpt::Long;
+use constant PROGRAMME_NAME => 'optlong.pl';
 use constant VERSION => '0.1';
 our $DEBUG = '';
 our $DIR = '.';
