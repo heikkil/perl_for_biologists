@@ -3,4 +3,4 @@
 use warnings;
 
 # print a message
-print "Hello world!\n ";
+print "Hello world!\n";

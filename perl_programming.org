@@ -150,7 +150,7 @@
 use warnings;
 
 # print a message
-print "Hello world!\n ";
+print "Hello world!\n";
 #+END_SRC
 
 #+BEGIN_SRC shell
@@ -526,7 +526,8 @@ until ($x < 0) {
 
 #+BEGIN_SRC perl
 sub version; #sum_sub.pl
-say 'version;
+say 'version';
+say version;
 
 sub add1 {
     my $one = shift;
@@ -633,8 +634,8 @@ ref \%a; #returns HASH
 sub first_is_longer { #longer.pl
     my ($lref1, $lref2) = @_;
 
-    $first = @$lref1; #length
-    $sec = @$lref2; # length
+    my $first = @$lref1; #length
+    my $sec = @$lref2; # length
     ($first > $sec) ? 1 : 0;
 }
 #+END_SRC
@@ -696,8 +697,8 @@ while (<>) {
 print "Hello\n"; # file1.pl
 print STDOUT "Hello\n"; # identical
 my $file = 'seq.embl';
-die "Not exist" unless $file -e;
-die "Not readable" unless $file -r;
+die "Not exist" unless -e $file;
+die "Not readable" unless -r $file;
 open FH, $file or die $!;
 while (<FH>) { chomp; print;}
 close FH;
@@ -728,7 +729,7 @@ close FH;
     :END:
 #+BEGIN_SRC perl
 # file2.pl
-die "Not writable" unless $file -w;
+die "Not writable" unless -w $file;
 open my $LOG, '>>', $file or die $!;
 print STDERR "log: $params\n";
 print $LOG "$params\n";
@@ -952,7 +953,7 @@ man perldebug
     and usually exports common functions
 
 
-** GetOpt::Long
+** Getopt::Long
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
@@ -971,7 +972,7 @@ man perldebug
     :END:
 
 #+BEGIN_SRC perl
-use GetOpt::Long;
+use Getopt::Long;
 use constant PROGRAMME_NAME => 'optlong.pl';
 use constant VERSION => '0.1';
 our $DEBUG = '';
@@ -1052,7 +1053,7 @@ Text in B<bold> I<italic>
 
 ** Some Modules (I)
 
-- *GetOpt::Long* for command line parsing
+- *Getopt::Long* for command line parsing
 - *Carp* provides more intelligent designs for error/warning messages
 - *Data::Dumper* for debugging
 - *CGI & CGI::Pretty* provide an interface to the CGI Environment

@@ -1,7 +1,8 @@
 #!/usr/bin/perl
 use Modern::Perl;
 sub version; #sum_sub.pl
-say 'version;
+say 'version';
+say version;
 
 sub add1 {
     my $one = shift;
@@ -16,4 +17,6 @@ sub add ($$) {
 
 my $sum = add1(2,3);
 $sum = add 2, 3;
+say $sum;
 sub version {'1.0'};
+

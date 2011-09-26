@@ -1,6 +1,6 @@
 #!/usr/bin/perl
 use Modern::Perl;
-use GetOpt::Long;
+use Getopt::Long;
 
 use constant PROGRAMME_NAME => 'optlong.pl';
 use constant VERSION => '0.1';

@@ -16,3 +16,4 @@ sub add ($$) {
 my $sum2 = add2(one => 2,
                 two => 3);
 my $sum = add(2,3);
+say "$sum equals $sum2";

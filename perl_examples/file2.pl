@@ -1,8 +1,10 @@
 #!/usr/bin/perl
 use Modern::Perl;
 # file2.pl
-die "Not writable" unless $file -w;
+my $file = '/tmp/a';
+die "Not writable" unless -w $file;
 open my $LOG, '>>', $file or die $!;
+my $params;
 print STDERR "log: $params\n";
 print $LOG "$params\n";
 
