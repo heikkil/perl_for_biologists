@@ -36,6 +36,26 @@
 
 #+latex_header: \logo{\includegraphics[width=1cm,height=1cm,keepaspectratio]{img/logo-kaust}}
 
+# original sugestion
+#\definecolor{keywords}{RGB}{255,0,90}
+#\definecolor{comments}{RGB}{60,179,113}
+#\definecolor{fore}{RGB}{249,242,215}
+#\definecolor{back}{RGB}{51,51,51}
+
+\definecolor{keywords}{RGB}{178,0,90}
+\definecolor{comments}{RGB}{0,60,0}
+\definecolor{fore}{RGB}{21,21,21}
+\definecolor{back}{RGB}{211,211,211}
+
+\lstset{
+  basicstyle=\small,
+  basicstyle=\color{fore},
+  keywordstyle=\color{keywords},
+  commentstyle=\color{comments},
+  backgroundcolor=\color{back}
+}
+
+
 * Perl
 
 ** What is Perl
@@ -51,7 +71,7 @@
 - Oldest scripting language 
   - No separate compilation step needed
 - The line noise of the programming languages.
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
   /^[^#]+\s*(?:\d+\w+\s*)[2,3]$/;
 #+END_SRC
 
@@ -63,7 +83,7 @@
 - Provides API to things that do not have API
 - Excellent documentation
 - Try
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
   man perl
 #+END_SRC
 
@@ -81,7 +101,7 @@
 - Downloadable at http://www.perl.org/books/beginning-perl/ and locally
 
 ** Perl Documentation
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
   perldoc perltoc
   perldoc CGI
   perldoc Bio::PrimarySeq
@@ -102,7 +122,7 @@
 
 - Install cpanm
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
   curl -L http://cpanmin.us | perl - App::cpanminus
 #+END_SRC
 
@@ -139,7 +159,7 @@
     :BEAMER_env: ignoreheading
     :END:
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
 > cat hello.pl
 #+END_SRC
 
@@ -153,7 +173,7 @@ use warnings;
 print "Hello world!\n";
 #+END_SRC
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
 > chmod 755 hello.pl
 > hello.pl
 Hello world!
@@ -892,6 +912,7 @@ my $count = tr/[AT]/N/;
 
 
 
+
 ** Catching errors
 
 - eval
@@ -900,20 +921,34 @@ my $count = tr/[AT]/N/;
     variable $@
   + semicolon at the end of the 
     eval block is required
-- Try::Tiny is easier
+- Try::Tiny is easier to remember
 
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.3
     :END:
 #+BEGIN_SRC perl
 $a = 0;
 eval {
     $b = 5/$a;
 };
-print $@ if $@; 
+warn $@ if $@; 
+#+END_SRC
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.3
+    :END:
+#+BEGIN_SRC perl
+use Try::Tiny;
+$a = 0;
+try {
+    $b = 5/$a;
+} catch {
+    warn $_;
+};
 #+END_SRC
 
 
@@ -1177,7 +1212,7 @@ while ( my $seq = $in->next_seq ) {
 #+END_SRC
 
 ** Simple example, output
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
 % perl ex1.pl 
 Sequence length is 2701 
 1st ATG is at 80 
@@ -1362,7 +1397,7 @@ print "translation is ", $seq->translate()->seq(), "\n";
 
 
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
 % perl ex2.pl
 seq length is 13
 translation is MGPS
@@ -1438,7 +1473,7 @@ foreach my $feature ( $seq->top_SeqFeatures ) {
 
 ** Parse a sequence from file, output
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
 % perl ex3.pl 
 Organism name: Fruit fly (Drosophila melanogaster)
 Hart A.C., Kraemer H., van Vactor D.L. Jr., Paidhungat M., Zipursky
@@ -1488,7 +1523,7 @@ while ( my $seq = $in->next_seq ) {
 ** Sequence Features: Bio::SeqFeatureI
 
 - Basic sequence features - have a location in sequence 
-- primary_tag, source_tag, score, frame 
+- primary\_tag, source\_tag, score, frame 
 - additional tag/value pairs 
 - Subclasses by numerous objects - power of the interface!
 
@@ -1537,7 +1572,7 @@ $out->write_seq($seq);
 #+END_SRC
 
 ** Create a sequence and a feature, output
-#+BEGIN_SRC shell
+#+BEGIN_SRC sh
 % perl ex5.pl
 LOCUS      BOSSfragment        34 aa         linear           UNK
 DEFINITION pep frag
@@ -1567,7 +1602,7 @@ ORIGIN
 
 ** Retrieve sequences from a database
 
-#+BEGIN_SRC shell
+#+BEGIN_SRC perl
 # ex6.pl
 use Bio::DB::GenBank;
 use Bio::DB::SwissProt;
