@@ -1,0 +1,337 @@
+ FASTA searches a protein or DNA sequence data bank
+ version 3.4t20 Sep 26, 2002
+Please cite:
+ W.R. Pearson & D.J. Lipman PNAS (1988) 85:2444-2448
+
+Query library BOSS_DROME.aa vs /blast/wormpep87 library
+searching /blast/wormpep87 library
+
+  1>>>BOSS_DROME Bride of sevenless protein precursor. - 896 aa
+ vs  /blast/wormpep87 library
+
+       opt      E()
+< 20     1     0:=
+  22     0     0:           one = represents 37 library sequences
+  24     0     0:
+  26     0     0:
+  28     0     5:*
+  30    13    29:*
+  32    62   111:==*
+  34   195   302:======  *
+  36   595   619:================*
+  38  1028  1024:===========================*
+  40  1617  1428:======================================*=====
+  42  1996  1746:===============================================*======
+  44  2165  1926:====================================================*======
+  46  2057  1961:====================================================*===
+  48  1996  1878:==================================================*===
+  50  1562  1713:===========================================   *
+  52  1432  1506:======================================= *
+  54  1132  1287:===============================   *
+  56   950  1075:==========================   *
+  58   774   882:=====================  *
+  60   676   715:===================*
+  62   545   573:===============*
+  64   421   456:============*
+  66   366   360:=========*
+  68   249   283:=======*
+  70   218   222:=====*
+  72   187   173:====*=
+  74   136   135:===*
+  76   106   105:==*
+  78    76    82:==*
+  80    67    64:=*
+  82    62    49:=*
+  84    48    39:=*
+  86    31    30:*
+  88    23    23:*          inset = represents 1 library sequences
+  90    16    18:*
+  92    15    14:*         :=============*=
+  94    21    11:*         :==========*==========
+  96     8     8:*         :=======*
+  98    11     6:*         :=====*=====
+ 100     6     5:*         :====*=
+ 102    10     4:*         :===*======
+ 104     1     3:*         := *
+ 106     2     2:*         :=*
+ 108     0     2:*         : *
+ 110     1     1:*         :*
+ 112     1     1:*         :*
+ 114     0     1:*         :*
+ 116     0     1:*         :*
+ 118     1     0:=         *=
+>120     2     0:=         *==
+9238759 residues in 20881 sequences
+  Expectation_n fit: rho(ln(x))= 5.6098+/-0.000519; mu= 12.8177+/- 0.030
+ mean_var=107.8223+/-22.869, 0's: 0 Z-trim: 2  B-trim: 0 in 0/62
+ Lambda= 0.123515
+ Kolmogorov-Smirnov  statistic: 0.0333 (N=29) at  48
+
+FASTA (3.45 Mar 2002) function [optimized, BL50 matrix (15:-5)] ktup: 2
+ join: 38, opt: 26, gap-pen: -12/-2, width:  16
+ Scan time:  9.680
+The best scores are:                                       opt bits E(20881)
+F35H10.10 CE24945    status:Partially_confirmed T  (1404)  207  48.5 6.8e-05
+T06E4.11 CE06377  locus:pqn-63  status:Predicted   ( 275)  122  32.6     0.8
+C33B4.3 CE01508   ankyrin and proline rich domain  (1110)  124  33.6     1.6
+Y48C3A.8 CE22141    status:Predicted TR:Q9NAG3 pr  ( 291)  110  30.5     3.7
+Y34D9A.2 CE30217    status:Partially_confirmed TR  ( 326)  108  30.2     5.1
+K06H7.3 CE26941   Isopentenyl-diphosphate delta i  ( 618)  107  30.3     8.9
+F44B9.8 CE29044   ARPA status:Partially_confirmed  ( 388)  104  29.5     9.4
+
+>>F35H10.10 CE24945    status:Partially_confirmed TR:Q20  (1404 aa)
+ initn:  94 init1:  94 opt: 207  Z-score: 197.9  bits: 48.5 E(): 6.8e-05
+Smith-Waterman score: 275;  22.527% identity (27.152% ungapped) in 728 aa overlap (207-847:640-1330)
+
+        180       190       200       210       220          230   
+BOSS_D RAISIDNASLAENLLIQEVQFLQQCTTYSMGIFVDWELYKQLESVIKD---LEYNIWPIP
+                                     : : . .   .: :: ..   :. ..  .:
+F35H10 NQAGRNITIVPKSVFGYASALHGDSQESLKGYFSSGDTDASLVSVDSEHSALQRSFTALP
+     610       620       630       640       650       660         
+
+           240       250        260       270       280            
+BOSS_D GTRAHLFPKVAHLLHQMPWGEKIASV-EIATETLEMYNEFMEAARQEHMCLM--------
+       ..: . .  . .::..: :    :.. :   :.: ..  : . : .. .::         
+F35H10 SSRNQALA-LLKLLNRMQWQFVTAALSEQDPESLSLFRAFERLALDRGVCLAEVLNIGGS
+     670        680       690       700       710       720        
+
+             290        300           310       320             330
+BOSS_D ---HFKSDDNVYIMFGN-KLASHF----KENGTLFSVPTDRTDDEFLAD------LPNRA
+          ...:  :: :.:.. . :. .    :  :.  .:   .. : .:        .:. .
+F35H10 RLDNIRSTTNVTIVFSTARDAADYLIASKIRGNHVNVMMGEAHDWYLHAPNNKELFPGTV
+      730       740       750       760       770       780        
+
+                340       350       360          370               
+BOSS_D FVLMENEI--DLSTAVELDATPTALDEILIGKSVLPSR---VLSFAGSII--------DL
+        :  .: .  :.   .:  .:: .: :.    : . ::   .::  ...:        .:
+F35H10 SVQPRNILYGDFREWLET-TTPLTLPELWYW-SYIESRYGCALSQKSKVIYGKMCTGDEL
+      790       800        810        820       830       840      
+
+       380          390       400       410       420       430    
+BOSS_D MNWLR-GSLSK--HCKRGEEHDLYVLESCFNFLNFIEDWRTSEYRQAHDTAEILSLLLMR
+       .:    : ..:  . .:: :. :....: .. :   ..    :. . .   .::. :  .
+F35H10 LNIESLGRMTKAGYLSRGVERFLFAMDSVYKSLCPAQNGLCLEFYE-QGRRQILTQL--K
+        850       860       870       880       890        900     
+
+          440       450       460       470       480       490    
+BOSS_D KLGTAMNFQMYQKKVLTLDKITGESRTELREIASQNFVTNVTTYYHYNRDNHTSLELKTK
+       : .:  . ..:.     :  :...   .:  ::. ...:..    .:   : .  : : .
+F35H10 KTSTEDDVEIYE----FLPDINNHFTYHL--IANWTLTTGLRMTNQYRNGNGVPTESKCQ
+           910           920         930       940       950       
+
+                           500            510       520            
+BOSS_D -----------FGQ------VFNCQYSAGDN-----RRYPFLFDGESV----MFWRIKMD
+                  : :      ::  .   :..     .: :  : .:..    .: .:   
+F35H10 PPMCKCFLDGDFFQRPLDSFVFRPDEPEGSDQSSYIKRQP-AFGSEKIEYQSVFEHITTG
+       960       970       980       990       1000      1010      
+
+      530       540            550       560       570       580   
+BOSS_D TWVATGLTAAILGLIATL-----AILVFIVVRISLGDVFEGNPTTSILLLLSLILVFCSF
+        :     . ..:.::..:     :.::...:.. :  : .:: . .: ::...:..    
+F35H10 HWRDHPHNYVLLALITVLVVVAIAVLVLVLVKLYL-RVVKGNQSLGISLLIGIIIL----
+       1020      1030      1040      1050       1060      1070     
+
+           590       600       610       620       630       640   
+BOSS_D VPYSIEYVGEQRNSHVTFEDAQTLNTLCAVRVFIMTLVYCFVFSLLLCRAVMLASIGSEG
+         ::  .         .:. .   ...: .::..  : : . :.... .:..: .  . :
+F35H10 --YSTAFF-------FVFDPT---DSVCRLRVILHGLGYTICFGVMIAKATQLRNAETLG
+                     1080         1090      1100      1110         
+
+            650       660       670            680       690       
+BOSS_D -GFLSHVNGYIQAVICAFSVVAQVGMSVQ-----LLVVMHVASETVSCENIYYGRWLWGL
+        :   :.. .   ..  : : .:...:..     .. .. : . .:.     .:.  . .
+F35H10 FGTAIHISFWNYWLLLFFIVGVQIALSISWFLEPFMSTIGVIDTNVQRMMCTMGKVEFVV
+    1120      1130      1140      1150      1160      1170         
+
+       700       710        720       730       740       750      
+BOSS_D LAYDFALLCCVGALIPSIYRS-QRNYREGILIVIGSVLIMVIWVAWIALSLFGD-EWRDA
+         .   .:  .. .:  . :. .:::.:   .. ..:: .  :::::.: :  : :.::.
+F35H10 SNFYVMILIFMALFISMLNRNIKRNYKETKWLLYSTVLCFFTWVAWITLYLVLDHEFRDT
+    1180      1190      1200      1210      1220      1230         
+
+         760       770        780       790          800       810 
+BOSS_D AIPLGLQASGWAVLVGILI-PRTFLIVRGIERSDIA---QALPSLTSLAFAQNNQYSSEQ
+       .: . : : . ..:.:.:. :. .... . :   .:   . .:. :.: : ....  :..
+F35H10 VIVVELVACA-TILLGFLFGPKIYILL-SYEPVVVAFKRDPFPNHTDL-FEKDDDLPSQR
+    1240       1250      1260       1270      1280       1290      
+
+             820       830       840         850       860         
+BOSS_D SVYECVNPAMRHCSQDEVNHQSPSEIPTL--PLRGGGPRRQQFFANLRQANANINPQRPP
+       .:    .::    :... . .. :   .   :. . ::                      
+F35H10 AV----SPASSTSSSSNRSSSGSSYTSSSKRPVNAVGPLPLNKNVEDQSPIFHTVMRKKT
+           1300      1310      1320      1330      1340      1350  
+
+     870       880       890                               
+BOSS_D PRPQQSPSRSSVSSLPPSPDHNKITRF                         
+                                                           
+F35H10 KVRRSNSEHDTIMNVGIPMTSVPIIRSPSARDEKVHRVAISPPIRDYNSINH
+           1360      1370      1380      1390      1400    
+
+>>T06E4.11 CE06377  locus:pqn-63  status:Predicted TR:Q2  (275 aa)
+ initn: 144 init1:  70 opt: 122  Z-score: 124.8  bits: 32.6 E():  0.8
+Smith-Waterman score: 122;  30.097% identity (34.831% ungapped) in 103 aa overlap (791-890:93-184)
+
+              770       780       790       800       810       820
+BOSS_D LQASGWAVLVGILIPRTFLIVRGIERSDIAQALPSLTSLAFAQNNQYSSEQSVYECVNPA
+                                     : : : .: .. ::  : ..: .    .: 
+T06E4. PQGYPQQPPQDPTQYAQPPQQQQPYPYPSQQQLQSQASQGYPQN--YPQQQPMPSQYSP-
+             70        80        90       100         110          
+
+              830       840       850       860          870       
+BOSS_D MRHCSQDEVNHQSPSEIPTLPLRGGGPRRQQFFANLRQANANIN---PQRPPPRPQQSPS
+            :.  ..  ::. :    .: :: .:::  .  :. :. .   ::. :   : ::.
+T06E4. -----QQAQQQLPPSQYPE---QGPGPIQQQFPQQYPQGPAQQQAPGPQQYPQGLQGSPQ
+          120       130          140       150       160       170 
+
+       880       890                                               
+BOSS_D RSSVSSLPPSPDHNKITRF                                         
+        :. ...::.:...                                              
+T06E4. GSQQQQMPPQPQQQMPSYNQPEALRQEIDQIQEGPMPTRGNRLQFGDEAQAVFSKAVYTS
+             180       190       200       210       220       230 
+
+>>C33B4.3 CE01508   ankyrin and proline rich domains sta  (1110 aa)
+ initn: 178 init1:  72 opt: 124  Z-score: 119.2  bits: 33.6 E():  1.6
+Smith-Waterman score: 124;  33.333% identity (37.097% ungapped) in 69 aa overlap (819-887:728-789)
+
+      790       800       810       820       830       840        
+BOSS_D IAQALPSLTSLAFAQNNQYSSEQSVYECVNPAMRHCSQDEVNHQSPSEIPTLPLRGGGPR
+                                     : :.:  :.. :::  .. :.::  .. :.
+C33B4. PDLQRDSSMQRSEYSRPFRPTSRPKTPPPPPPMQH--QNHQNHQYQQQHPSLPRSASTPQ
+       700       710       720       730         740       750     
+
+      850       860       870       880       890                  
+BOSS_D RQQFFANLRQANANINPQRPPPRPQQSPSRSSVSSLPPSPDHNKITRF            
+         :     .: ..   :  ::: :.  :.   :   :::                     
+C33B4. PIQ-----QQQSSIPPPPPPPPPPHCEPTMVHVEFTPPSTSSVPPPPPPLPPISSGAPPP
+              760       770       780       790       800       810
+
+C33B4. PPPPPPGGLMHVAASAPVLMSNSKGISADALKSVQLKKAEPRETSAASVSNNNNNNNNST
+              820       830       840       850       860       870
+
+>>Y48C3A.8 CE22141    status:Predicted TR:Q9NAG3 protein  (291 aa)
+ initn:  76 init1:  48 opt: 110  Z-score: 112.9  bits: 30.5 E():  3.7
+Smith-Waterman score: 110;  33.898% identity (35.714% ungapped) in 59 aa overlap (834-891:171-227)
+
+           810       820       830       840       850       860   
+BOSS_D NNQYSSEQSVYECVNPAMRHCSQDEVNHQSPSEIPTLPLRGGGPRRQQFFANLRQANANI
+                                     :.   .. . ::::      :.  ..: :.
+Y48C3A EITTNGEEIMKTEALTPTGGGGGGSVPPPPPAATAAVSMNGGGPGSAPGSAH--SVNNNV
+              150       160       170       180       190          
+
+           870        880       890                                
+BOSS_D NPQRPPPRPQQSP-SRSSVSSLPPSPDHNKITRF                          
+       ::  :   : ..: :   .:: :: :  :                               
+Y48C3A NPGTPGSNPLSNPMSNPPLSSGPPPPGSNDAFGKNLMIFFPKLTPKISQFFPQFSQIFTY
+      200       210       220       230       240       250        
+
+>>Y34D9A.2 CE30217    status:Partially_confirmed TR:Q9N4  (326 aa)
+ initn:  72 init1:  48 opt: 108  Z-score: 110.4  bits: 30.2 E():  5.1
+Smith-Waterman score: 108;  23.810% identity (26.471% ungapped) in 189 aa overlap (539-723:36-209)
+
+      510       520       530       540       550       560        
+BOSS_D RRYPFLFDGESVMFWRIKMDTWVATGLTAAILGLIATLAILVFIVVRISLGDVFEGNPTT
+                                     :.:.:.. ..::.: .. .: . : ..   
+Y34D9A NSSEIDEEYYNSTHTSAPSPILALIFTIICIIGVIGNASLLVYIFAK-KLYQNFISSRFI
+          10        20        30        40        50         60    
+
+      570       580       590       600       610       620        
+BOSS_D SILLLLSLILVFCSFVPYSIEYVGEQRNSHVTFEDAQTLNTLCAVRVFIMTLVYCFVFSL
+       . : . .:: ..  .::  :. :    :    ..:.   : :: ..: : . :.  .  .
+Y34D9A GHLCFTNLIALLV-LVPVIIHNVFTGVN---LLQDS---NMLCRIQVSITVTVWTVIAMM
+           70         80        90             100       110       
+
+      630           640       650       660       670       680    
+BOSS_D LLCRA----VMLASIGSEGGFLSHVNGYIQAVICAFSVVAQVGMSVQLLVVMHVASETVS
+        :: :    . .: :  :  :     :   . .: .: . .  .:.  :.  :::    .
+Y34D9A NLCIAGVHLLTFARIHYEQLF-----GLTPTKLCILSWIISWLLSLPSLTNGHVAIYGPA
+       120       130            140       150       160       170  
+
+          690       700       710       720       730       740    
+BOSS_D CENIYYGRWLWGLLAYDFALLCCVGALIPSIYRSQRNYREGILIVIGSVLIMVIWVAWIA
+        ..  ...   ::    ....   :..::... :   .:                     
+Y34D9A VRTCVFSHSDSGLKFLTYTMI--FGVFIPALFSSIAYFRILQTLFHSPIVFQSLGLYKSR
+            180       190         200       210       220       230
+
+          750       760       770       780       790       800    
+BOSS_D LSLFGDEWRDAAIPLGLQASGWAVLVGILIPRTFLIVRGIERSDIAQALPSLTSLAFAQN
+                                                                   
+Y34D9A FLVYFFLLGPLYALPFYILTALDPSDPVRMSQDTLWTIGCTMFAFVPCIIAPLLYGASIF
+              240       250       260       270       280       290
+
+>>K06H7.3 CE26941   Isopentenyl-diphosphate delta isomer  (618 aa)
+ initn:  81 init1:  57 opt: 107  Z-score: 106.0  bits: 30.3 E():  8.9
+Smith-Waterman score: 107;  23.333% identity (24.648% ungapped) in 150 aa overlap (171-316:9-154)
+
+              150       160       170       180       190       200
+BOSS_D GDVVLSVLTKDPDSALFVINRVNQANLIMADFEIGIRAISIDNASLAENLLIQEVQFLQQ
+                                     .:  :.. . ::.    :.   .:  ... 
+K06H7.                       MGFTLKSLEFLQGVEPFRIDENHENEGASEEEEVLISA
+                                     10        20        30        
+
+              210       220       230        240       250         
+BOSS_D CTTYSMGIFVDWELYKQLESVIKDLEYNIWPIP-GTRAHLFPKVAHLLHQMPWGEKIASV
+        :  .:.....:.. .  :.  .    :  :.  : :: :. .   :.:.    .:  ..
+K06H7. ETDAGMSLMLEWKM-RLSEDSDQCTTCNC-PVDFGDRAVLLEHYQSLFHRTNTLRKARNM
+       40        50         60         70        80        90      
+
+     260       270       280       290          300       310      
+BOSS_D EIATETLEMYNEFMEAARQEHMCLMHFKSDDNVY---IMFGNKLASHFKENGTLFSVPTD
+        . ::      :  :      .  . ..:::. .   .. .:.  : : .::..:::: .
+K06H7. TVYTEEDFEGIENSENDLTSSQTTIGLESDDEEFDALLLPANR--SFFIKNGSVFSVPRN
+        100       110       120       130         140       150    
+
+        320       330       340       350       360       370      
+BOSS_D RTDDEFLADLPNRAFVLMENEIDLSTAVELDATPTALDEILIGKSVLPSRVLSFAGSIID
+                                                                   
+K06H7. ILHVGERDVSSVTFLRPFDCAIFLWNGGHFAAAMFENDKMTVQKSFHRYVARAKQGGVQS
+          160       170       180       190       200       210    
+
+>>F44B9.8 CE29044   ARPA status:Partially_confirmed TR:Q  (388 aa)
+ initn:  39 init1:  39 opt: 104  Z-score: 105.6  bits: 29.5 E():  9.4
+Smith-Waterman score: 104;  24.066% identity (26.606% ungapped) in 241 aa overlap (115-342:122-352)
+
+           90       100       110       120       130       140    
+BOSS_D DGQLAPLISSTTEGPSSGTTASLVPEICLNGLQLTVNSADEGTVIRKQEEFVKILEGDVV
+                                     :::   .:.. :::  :   .: . :.:. 
+F44B9. MASMVLELNASDERGIDVVRNTIVNFAQTKGLQAFSTSSNTGTVPFK---LVILDEADA-
+             100       110       120       130          140        
+
+          150       160        170       180           190         
+BOSS_D LSVLTKDPDSALFVINRVN-QANLIMADFEIGIRAIS--IDNAS--LAENLLIQEVQFLQ
+          .::: ..::  ..... . :.:. . .: .:.:    ::.   .  : : . :  .:
+F44B9. ---MTKDAQNALRRLDKTDYEQNIIIHNVNIYFRVIEKYTDNVRFCIICNYLASIVPAIQ
+          150       160       170       180       190       200    
+
+      200       210       220       230       240       250        
+BOSS_D -QCTTYSMGIFVDWELYKQLESVIKDLEYNIWPIPGTRAHLFPKVAHLLHQMPWGEKIA-
+        .:: . .. . .  .  .:: ...  . .. :  :  : :. . . .   .   .. : 
+F44B9. SRCTRFRFAPLDQKLIVPRLEYIVETEQLKMTP-DGKDALLIVSKGDMRTVINTLQSTAM
+          210       220       230        240       250       260   
+
+       260       270       280       290       300        310      
+BOSS_D SVEIATETLEMYNEFMEAARQEHMCLMHFKSDDNVYIMFGNKLASHFKENG-TLFSVPTD
+       : . ..:.  .    . . .. .  .  . .: .   :  : . ... ::: .: .: : 
+F44B9. SFDTVSENTVYQCIGQPTPKEMKEVVKTLLNDPSKKCM--NTIQTKLFENGYALQDVITH
+           270       280       290       300         310       320 
+
+        320       330            340       350       360       370 
+BOSS_D RTDDEFLADLPNRAFV-----LMENEIDLSTAVELDATPTALDEILIGKSVLPSRVLSFA
+         :  :  :.:..:.      : : : .:::.                            
+F44B9. LHDFVFTLDIPDEAMSAIITGLGEVEENLSTGCSNETQLAAVVAAFFEAKRLCVKEMKNL
+             330       340       350       360       370       380 
+
+             380       390       400       410       420       430 
+BOSS_D GSIIDLMNWLRGSLSKHCKRGEEHDLYVLESCFNFLNFIEDWRTSEYRQAHDTAEILSLL
+                                                                   
+F44B9. EIEDMEF                                                     
+                                                                   
+
+
+
+1792 residues in 1 query   sequences
+9238759 residues in 20881 library sequences
+ Scomplib [34t20]
+ start: Mon Oct 21 15:01:54 2002 done: Mon Oct 21 15:02:05 2002
+ Total Scan time:  9.680 Total Display time:  0.310
+
+Function used was FASTA [version 3.4t20 Sep 26, 2002]

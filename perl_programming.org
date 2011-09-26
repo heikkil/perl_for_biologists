@@ -1,3 +1,4 @@
+
 #+TITLE: Perl Programming
 #+AUTHOR: Heikki Lehv\auml{}slaiho
 #+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
@@ -407,6 +408,7 @@ my @list = values %hash;
   - Outside of a subroutine, @ARGV is the default array, only used for
     command line input
 
+*  Flow control
 
 ** Control structures
 
@@ -567,6 +569,8 @@ my $sum2 = add2(one => 2,
 my $sum = add(2,3);
 #+END_SRC
 
+
+
 ** References
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -635,7 +639,7 @@ sub first_is_longer {
 }
 #+END_SRC
 
-
+* Working with files
 
 ** Reading and Writing a file
 - The easy way:
@@ -739,6 +743,7 @@ while (<$SEQ>) {
 #+END_SRC
 
 
+*  Regular expressions
 
 ** Regular expressions
 
@@ -881,6 +886,7 @@ my $count = tr/[AT]/N/;
 
 #+END_SRC
 
+* Real world programming - errors and all
 
 ** Catching errors
 eval
@@ -929,15 +935,16 @@ man perldebug
 
 
 ** Modules
-- logical organisation of code
-- code reuse
+- Logical organisation of code
+- Code reuse
 - @INC – paths where Perl looks for modules
 - (do) - call subroutines from an other file
 - require – runtime include of a file or module
   - allows testing and graceful failure
 - use
   - compile time include
-  - 'use'ing a perl module makes object oriented interface available and usually exports common functions  
+  - 'use'ing a perl module makes object oriented interface available
+    and usually exports common functions
 
 
 ** GetOpt::Long
@@ -945,39 +952,33 @@ man perldebug
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.25
     :END:
 - a standard library
-- used to set short or long options
-- from command line
+- used to set short or long options from command line
 - $0, name of the calling programme
 
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.8
     :END:
 
 #+BEGIN_SRC perl
 use constant PROGRAMME_NAME => 'testing.pl';
 use constant VERSION => '0.1';
-
 our $DEBUG = '';
 our $DIR = '.';
-our $WINDOW = 7;
-
 GetOptions
   ('v|version'  => 
-    sub{print PROGRAMME_NAME, ",
-        version ", VERSION, "\n";
-        exit 1; },
+    sub{print PROGRAMME_NAME, ", version ",
+        VERSION, "\n"; exit 1; },
    'd|directory:s'=> \$DIR,
    'g|debug'      => \$DEBUG,
    'h|help|?'     => 
-   sub{ 
-       exec('perldoc',$0); exit 0} 
-   );
+   sub{exec('perldoc',$0); exit 0} 
+  );
 #+END_SRC
 
 
@@ -1012,15 +1013,11 @@ GetOptions
 Text in B<bold> I<italic>
 
 =head2 Heading Text
-=head3 Heading Text
-=head4 Heading Text
 =over indentlevel
 =item stuff
 =back
 =begin format
 =end format
-=for format text...
-=encoding type
 =cut
 #+END_SRC
 
@@ -1035,6 +1032,7 @@ Text in B<bold> I<italic>
   - NAME, SYNOPSIS, DESCRIPTION (INSTALLING, RUNNING, OPTIONS), VERSION, TODO, BUGS, AUTHOR, CONTRIBUTORS, LICENSE, (SUBROUTINES)
 - Use inline documentation when you can
 
+* Code reuse and CPAN
 
 ** Code reuse
 - Try not to reinvent the wheel
@@ -1081,6 +1079,33 @@ http://search.cpan.org/
 
 ** cpanm - App:cpanminus
 
+
+** What is new in perl
+
+ - Modern::Perl
+ - Perl5i
+ - Mo, Moo, Moose
+ - Plack and Dancer, Mojolicious
+ - CPAN book draft: http://camelo.perl-hackers.net/~ambs/
+ - Task::Kensho - recommended modules
+
+** Best Practices
+
+- Code in paragraphs
+  + header is a comment line
+- Throw exceptions
+  + die()
+  + Try::Tiny
+- Avoid confusing idoms and cleverness
+- Perl::Critic
+  + Contains complete 'Perl Best Practices' book text
+- Perl::Tidy 
+- Write tests
+
+   http://www.slideshare.net/kaokun/introduction-to-writing-readable-and-maintainable-perl
+
+
+* BioPerl
 
 ** BioPerl
 

@@ -1,0 +1,1225 @@
+BLASTP 2.0MP-WashU [12-Feb-2001] [linux-i686 01:36:08 31-Jan-2001]
+
+Copyright (C) 1996-2000 Washington University, Saint Louis, Missouri USA.
+All Rights Reserved.
+
+Reference:  Gish, W. (1996-2000) http://blast.wustl.edu
+
+Query=  BOSS_DROME Bride of sevenless protein precursor.
+        (896 letters)
+
+Database:  wormpep87
+           20,881 sequences; 9,238,759 total letters.
+Searching....10....20....30....40....50....60....70....80....90....100% done
+
+                                                                     Smallest
+                                                                       Sum
+                                                              High  Probability
+Sequences producing High-scoring Segment Pairs:              Score  P(N)      N
+
+F35H10.10 CE24945    status:Partially_confirmed TR:Q20073...   182  4.9e-11   1
+M02H5.2 CE25951    status:Predicted TR:Q966H5 protein_id:...    86  0.15      1
+ZC506.4 CE01682  locus:mgl-1 metatrophic glutamate recept...    91  0.18      1
+F23D12.2 CE05700    status:Partially_confirmed TR:Q19761 ...    73  0.45      3
+F58A4.1 CE20889    status:Partially_confirmed SW:P34468 p...    79  0.46      1
+C01B10.6b CE31149    status:Partially_confirmed                 83  0.46      1
+C01B10.6a CE29552    status:Partially_confirmed protein_i...    83  0.46      1
+Y54G2A.13 CE25467    status:Predicted TR:Q9N3C0 protein_i...    84  0.48      1
+Y18D10A.1 CE21397    status:Partially_confirmed TR:Q9XW25...    88  0.50      1
+T23D5.3 CE16445    status:Predicted TR:O45804 protein_id:...    78  0.51      1
+C56E6.5 CE04277   ATP-binding status:Partially_confirmed ...    87  0.53      2
+C33B4.3 CE01508   ankyrin and proline rich domains status...    83  0.53      2
+Y73B6BL.11 CE26291    status:Predicted TR:Q9GUH0 protein_...    85  0.55      1
+Y48C3A.8 CE22141    status:Predicted TR:Q9NAG3 protein_id...    78  0.63      1
+F16F9.2 CE30956    status:Partially_confirmed TN:AAB07691...    85  0.66      1
+R07B1.5 CE01631    status:Predicted SW:Q09419 protein_id:...    73  0.67      1
+T06E4.11 CE06377  locus:pqn-63  status:Predicted TR:Q2226...    77  0.69      1
+Y51B11A.1 CE22326   reverse transcriptase status:Predicte...    91  0.74      2
+C12D12.1b CE29576    status:Partially_confirmed TR:Q95QX0...    81  0.75      1
+Y119D3B.3 CE26491    status:Predicted TR:Q9BLB2 protein_i...    76  0.78      1
+Y119D3B.5 CE26491    status:Predicted                           76  0.78      1
+F21F8.10 CE09544  locus:str-135  status:Predicted TR:O015...    77  0.81      1
+F56H9.1 CE05971    status:Predicted TR:Q20908 protein_id:...    80  0.89      1
+F26C11.3 CE01561   Sushi domain status:Partially_confirme...    82  0.90      1
+T13G4.7 CE25995    status:Predicted TR:Q966F2 protein_id:...    53  0.92      1
+K11D12.1 CE30382   zinc finger protein status:Partially_c...    73  0.92      2
+Y51A2D.16 CE19212    status:Partially_confirmed TR:Q9XXR0...    72  0.94      2
+ZK484.5 CE15345    status:Partially_confirmed TR:O44898 p...    63  0.94      1
+F15A4.8 CE15845   chitinase status:Partially_confirmed TR...    78  0.97      1
+Y105C5A.1 CE23184    status:Partially_confirmed TR:Q9NF71...    68  0.97      2
+C48E7.7 CE08822    status:Predicted protein_id:AAB52932.1       68  0.98      1
+T08B2.12 CE13441    status:Predicted TR:Q9GYS3 protein_id...    68  0.98      1
+Y73B3A.1 CE27324    status:Partially_confirmed TR:Q95XE2 ...    77  0.98      1
+Y56A3A.30 CE22595    status:Partially_confirmed TR:Q9U234...    70  0.99      2
+C08H9.8 CE02994   tyrosine-protein kinase (2 domains) sta...    74  0.99      1
+Y71F9AL.12 CE25551    status:Predicted TR:Q9N4I5 protein_...    72  0.992     1
+F14F9.2 CE09388    status:Predicted TR:Q9GUC5 protein_id:...    68  0.993     2
+R05D3.2 CE00281    status:Partially_confirmed SW:P34535 p...    76  0.996     1
+T11F9.12 CE18953    status:Partially_confirmed TR:Q22402 ...    71  0.996     2
+C09B8.8 CE30243    status:Predicted TR:Q8WQG3 protein_id:...    61  0.997     2
+F32A5.2a CE28288   Peroxidase status:Partially_confirmed ...    61  0.999     3
+T28C6.2 CE03747    status:Partially_confirmed TR:Q22844 p...    49  0.999     1
+T12B5.11 CE20068    status:Partially_confirmed TR:Q9TZ24 ...    71  0.999     1
+T19C3.3 CE30183    status:Partially_confirmed SW:Q10009 p...    59  0.999     1
+R12C12.5 CE29820    status:Partially_confirmed TR:Q21959 ...    69  0.9990    1
+Y67A10A.8 CE24569    status:Predicted TR:Q9U1V1 protein_i...    70  0.9992    1
+F20D1.10 CE23677    status:Partially_confirmed TR:Q9U3I4 ...    58  0.9997    1
+C44H4.3 CE08724  locus:sym-1 Drosophila chaoptin protein ...    74  0.9998    1
+C50E3.9 CE08902    status:Predicted TR:Q22929 protein_id:...    70  0.9999    1
+T19C9.1 CE16418    status:Predicted TR:O45789 protein_id:...    69  0.99991   1
+K04G2.9 CE06103    status:Predicted TR:Q21228 protein_id:...    67  0.99992   1
+C29E6.4 CE05335    status:Predicted TR:Q18298 protein_id:...    75  0.99992   1
+F59A6.3 CE01981   Glycoprotein status:Predicted TR:Q21027...    74  0.99995   1
+
+
+
+>F35H10.10 CE24945    status:Partially_confirmed TR:Q20073
+           protein_id:AAA81683.2
+        Length = 1404
+
+ Score = 182 (69.1 bits), Expect = 4.9e-11, P = 4.9e-11
+ Identities = 75/315 (23%), Positives = 149/315 (47%)
+
+Query:   511 YPFLFDGESVMFWRIKMDTWVATGLTAAILGLIATLAILVFIVVRISLGDVFEGNPTTSI 570
+             Y  +F+  +   WR     +V   L   ++  +  +A+LV ++V++ L  V +GN +  I
+Sbjct:  1006 YQSVFEHITTGHWRDHPHNYVLLALITVLV--VVAIAVLVLVLVKLYLR-VVKGNQSLGI 1062
+
+Query:   571 LLLLSLILVFCSFVPYSIEYVGEQRNSHVTFEDAQTLNTLCAVRVFIMTLVYCFVFSLLL 630
+              LL+ +I++      YS  +          F+     +++C +RV +  L Y   F +++
+Sbjct:  1063 SLLIGIIIL------YSTAFF-------FVFDPT---DSVCRLRVILHGLGYTICFGVMI 1106
+
+Query:   631 CRAVMLASIGSEG-GFLSHVNGYIQAVICAFSVVAQVGMSVQLLVVMHVASETVSCENIY 689
+              +A  L +  + G G   H++ +   ++  F V  Q+ +S+   +   +++  V   N+ 
+Sbjct:  1107 AKATQLRNAETLGFGTAIHISFWNYWLLLFFIVGVQIALSISWFLEPFMSTIGVIDTNVQ 1166
+
+Query:   690 YGRWLWGLLAY---DF--ALLCCVGALIPSIYRS-QRNYREGILIVIGSVLIMVIWVAWI 743
+                   G + +   +F   +L  +   I  + R+ +RNY+E   ++  +VL    WVAWI
+Sbjct:  1167 RMMCTMGKVEFVVSNFYVMILIFMALFISMLNRNIKRNYKETKWLLYSTVLCFFTWVAWI 1226
+
+Query:   744 ALSLFGD-EWRDAAIPLGLQASGWAVLVGILI-PRTFLIVRGIERSDIA---QALPSLTS 798
+              L L  D E+RD  I + L A    +L+G L  P+ ++++   E   +A      P+ T 
+Sbjct:  1227 TLYLVLDHEFRDTVIVVELVACA-TILLGFLFGPKIYILL-SYEPVVVAFKRDPFPNHTD 1284
+
+Query:   799 LAFAQNNQYSSEQSV 813
+             L F +++   S+++V
+Sbjct:  1285 L-FEKDDDLPSQRAV 1298
+
+ Score = 39 (18.8 bits), Expect = 1.4e-09, Sum P(2) = 1.4e-09
+ Identities = 9/28 (32%), Positives = 17/28 (60%)
+
+Query:   508 NRRYPFLFDGESVMFWRIKMDTWVATGL 535
+             N++ P  F GE + F+R   +  +A+G+
+Sbjct:   427 NKQDPPEFAGERLQFYRGTENILLASGM 454
+
+
+>M02H5.2 CE25951    status:Predicted TR:Q966H5 protein_id:AAK84552.1
+        Length = 326
+
+ Score = 86 (35.3 bits), Expect = 0.16, P = 0.15
+ Identities = 41/151 (27%), Positives = 70/151 (46%)
+
+Query:   525 IKMDTWVATGLTAAILGLIATLAILVFIVVRISLGDVFEGNPTTSILLLLSLI-LVFCSF 583
+             I +  W ++ L A +L    T  +L F   + +   +F+ N T  +L+L ++  L F  F
+Sbjct:   114 IGLGLWASSCLVAMLL---VTNRLLDF-TFKSAANFMFDKNRTFLVLILPTIYGLYFAIF 169
+
+Query:   584 VP---YSIEYVGEQRNSHV-TFEDAQTLNTLCAVRVFIMTLVYCFVFSLLLCR--AVML- 636
+              P   YS +Y+G   +  +   E A+  N        I+  V CF++ +  C   A M  
+Sbjct:   170 TPPLLYSSKYLGWFFDPFIFQGETAEYYNYPHLANNIIVVAVTCFLYIMFCCALGAEMKN 229
+
+Query:   637 ASIGSEGGFLSHVNGYIQAV-ICAFSVVAQV 666
+              + GSE  +      +IQ+V IC F++ A +
+Sbjct:   230 VNTGSES-YKRSKQIFIQSVLICGFNLTASL 259
+
+
+>ZC506.4 CE01682  locus:mgl-1 metatrophic glutamate receptor status:Predicted
+         SW:Q09630 protein_id:CAA87374.1
+        Length = 999
+
+ Score = 91 (37.1 bits), Expect = 0.19, P = 0.18
+ Identities = 61/279 (21%), Positives = 119/279 (42%)
+
+Query:   521 MFWRIKMDTWVATGLTAAILGLIATLAILVFIVVRISLGDVFEGNPTTSILLLLSLILVF 580
+             M WR  M + V T L  A+ G+IATL ++V  V+      V       S +LL+S+I+ +
+Sbjct:   675 MRWR-SMYSLVPTIL--AVFGIIATLFVIVVYVIYNETPVVKASGRELSYILLISMIMCY 731
+
+Query:   581 CSFVPYSIEYVGEQRNSHVTFEDAQTLNTLCAVRVFIMTLVYCFVFSLLLCRAVMLASIG 640
+             C      + +V   + S +          +CA++   +   +  ++S +  +   +  I 
+Sbjct:   732 C------MTFVLLSKPSAI----------VCAIKRTGIGFAFSCLYSAMFVKTNRIFRIF 775
+
+Query:   641 SEGG-----FLSHVNGYIQAVICAFSVVAQVGMSVQLLVVM-----HVASE---TVSCEN 687
+             S        F+S ++  +   + A   V  +G  + L VV      H  +     ++C N
+Sbjct:   776 STRSAQRPRFISPISQVVMTAMLAG--VQLIGSLIWLSVVPPGWRHHYPTRDQVVLTC-N 832
+
+Query:   688 IYYGRWLWGLLAYD-FALLCCVGALIPSIYRSQRNYREGILIVIGSVLIMVIWVAWIALS 746
+             +    +L+ L AYD F ++ C    + +  +   N+ E   I        V+W++WI   
+Sbjct:   833 VPDHHFLYSL-AYDGFLIVLCTTYAVKT-RKVPENFNETKFIGFSMYTTCVVWLSWIFF- 889
+
+Query:   747 LFGD----EWRDAAIPLGLQASGWAVLVGILIPRTFLIV 781
+              FG     + + +++ + +  S    L  I  P+ ++I+
+Sbjct:   890 FFGTGSDFQIQTSSLCISISMSANVALACIFSPKLWIIL 928
+
+ Score = 39 (18.8 bits), Expect = 1.8, Sum P(2) = 0.84
+ Identities = 7/10 (70%), Positives = 9/10 (90%)
+
+Query:   500 NCQYSAGDNR 509
+             N +Y+AGDNR
+Sbjct:   369 NDKYTAGDNR 378
+
+
+>F23D12.2 CE05700    status:Partially_confirmed TR:Q19761 protein_id:CAA94618.1
+        Length = 2287
+
+ Score = 73 (30.8 bits), Expect = 0.59, Sum P(3) = 0.45
+ Identities = 34/152 (22%), Positives = 62/152 (40%)
+
+Query:    50 TKPQPTSQQAKPIS--ITTRAPTTVASTTDDEVSSSVDGQLAPLISSTTEGPSSGTTASL 107
+             T P  T   A  +S  +   +   + +TT   V ++  G+   +I    E P   T+ + 
+Sbjct:  1381 TCPSSTVSMADNLSGILELHSSFDLTNTTSKSVPNTPFGEYPTMI---WEAPKLCTSDNN 1437
+
+Query:   108 VPEICLNGLQLTVNSADEGT--VIRKQEEFVKILEGDVVLSVLTKDPDSALFVINRVNQA 165
+                 C N  Q      D+ T  +I+K  +    + G    S +TK+ + A+  +    Q 
+Sbjct:  1438 NNNSCKND-QRNEEKVDDKTRSLIKKLSKIANYVFGPFFKSAITKNSNFAIKPLEINEQP 1496
+
+Query:   166 NLIMADFEIGIRAISIDNASLAENLLIQEVQF 197
+             ++I  +F +   A+S  N     N   Q++ F
+Sbjct:  1497 DIINCNFPVSKSAVSKTNLKNVSNNYKQKMHF 1528
+
+ Score = 72 (30.4 bits), Expect = 0.59, Sum P(3) = 0.45
+ Identities = 46/167 (27%), Positives = 75/167 (44%)
+
+Query:   332 VLMENEIDLSTAVELDATPTALDEILIGK-SVLPSRVLSFAGSIIDLMNWLR-GSLSKHC 389
+             +L+ N  +L TA E DA  +   E++  K S LPS+ L      I + N +   ++ ++ 
+Sbjct:  2091 ILVAN--NLCTA-ESDAKRSRFFELMDEKLSSLPSQ-LCVERLDIYVKNPIELETILQNM 2146
+
+Query:   390 KRGEEHDLYVLESCFNFLNFIEDWRTSEYRQAHDTAEILSLLL-MRKLGTAMNFQMYQKK 448
+             K G   +L VL S F   N + D    +       A I  LL+ +R+   ++   ++ KK
+Sbjct:  2147 KPGMLEELLVLTSYFPDTNDVHDM--DQIVVLPQWAHINKLLICLRRTNISLLNVVHMKK 2204
+
+Query:   449 VLTLDKITGESRTELREIASQNFVTNVTTYYHYNRDNHTSLELKTKF 495
+             V   DKI         + A QN + ++   YH    N +  +LK  F
+Sbjct:  2205 VSITDKIITLDEIVKYKTALQN-IHSMQKMYHQITCNLSQEDLKNAF 2250
+
+ Score = 45 (20.9 bits), Expect = 0.59, Sum P(3) = 0.45
+ Identities = 11/31 (35%), Positives = 15/31 (48%)
+
+Query:   283 LMHFKSDDNVYIMFGNKLASHFKENGTLFSV 313
+             +M   SDDN   M  N +A H K    + S+
+Sbjct:  1573 MMDMISDDNYIPMLQNNVAKHQKRKVEICSL 1603
+
+
+>F58A4.1 CE20889    status:Partially_confirmed SW:P34468 protein_id:CAA80169.1
+        Length = 254
+
+ Score = 79 (32.9 bits), Expect = 0.61, P = 0.46
+ Identities = 30/106 (28%), Positives = 50/106 (47%)
+
+Query:    37 LTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTT 96
+             +++ T  + P R+TKP   +    P   T  +P+T  ST+    +S+   +    ++ TT
+Sbjct:    68 ISTSTVSTTPERLTKPYEETDTPIP---THSSPSTSTSTSTSTSTSTSTSRSTSTVTPTT 124
+
+Query:    97 EGPSSGTTASLVP----EICLNGLQLT---VNSADEGTVIRKQEEF 135
+                S+ TTA+  P    +      Q+T   +  A  GTV+ K EEF
+Sbjct:   125 RS-STTTTATSTPTSSSKATTTSAQITQPEIPQAAPGTVL-KGEEF 168
+
+
+>C01B10.6b CE31149    status:Partially_confirmed
+        Length = 503
+
+ Score = 83 (34.3 bits), Expect = 0.61, P = 0.46
+ Identities = 28/83 (33%), Positives = 38/83 (45%)
+
+Query:    28 CVLECHGADLTSPTKKSAPLR-ITKPQPTSQQ-AKPISITTRA--PTTVASTTDDEVSSS 83
+             C  +C      SP  KS P +   KP PT      P++ T  +  PTTVA TT   + +S
+Sbjct:   379 CSDQCFSC-ACSPGAKSPPDQSCPKPSPTDPTPVPPVAPTPPSVCPTTVAPTTTPALLTS 437
+
+Query:    84 VDGQLAPLISSTTEGPSSGTTAS 106
+                  A + S+T    S+G T S
+Sbjct:   438 TIAPTADVTSATNAAGSTGATGS 460
+
+
+>C01B10.6a CE29552    status:Partially_confirmed protein_id:AAC47918.1
+        Length = 506
+
+ Score = 83 (34.3 bits), Expect = 0.62, P = 0.46
+ Identities = 28/83 (33%), Positives = 38/83 (45%)
+
+Query:    28 CVLECHGADLTSPTKKSAPLR-ITKPQPTSQQ-AKPISITTRA--PTTVASTTDDEVSSS 83
+             C  +C      SP  KS P +   KP PT      P++ T  +  PTTVA TT   + +S
+Sbjct:   382 CSDQCFSC-ACSPGAKSPPDQSCPKPSPTDPTPVPPVAPTPPSVCPTTVAPTTTPALLTS 440
+
+Query:    84 VDGQLAPLISSTTEGPSSGTTAS 106
+                  A + S+T    S+G T S
+Sbjct:   441 TIAPTADVTSATNAAGSTGATGS 463
+
+
+>Y54G2A.13 CE25467    status:Predicted TR:Q9N3C0 protein_id:AAF59585.1
+        Length = 652
+
+ Score = 84 (34.6 bits), Expect = 0.66, P = 0.48
+ Identities = 31/114 (27%), Positives = 47/114 (41%)
+
+Query:    38 TSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTV--ASTTDDEVSSSVDGQLAPLISST 95
+             TSP K  +    T P     Q+    + T+ PTT    + T DE +SS      P+ + T
+Sbjct:   275 TSPQKPDSTEEATSPS----QSTTTPVATQNPTTSNQKNETTDEATSSPQSAKTPVTNPT 330
+
+Query:    96 TEGPSSGTTASLVPEICLNGLQLTVNSADEGTVIRKQEEFVKILEGDVVLSVLT 149
+             T      TT + +P       + T  S      I + E+ + I E   +LS +T
+Sbjct:   331 TSPQKPDTTEAALPLTTATTTKATQTSHRPAESIIQPEQELPITETSEMLSNMT 384
+
+
+>Y18D10A.1 CE21397    status:Partially_confirmed TR:Q9XW25
+           protein_id:CAA22308.1
+        Length = 1634
+
+ Score = 88 (36.0 bits), Expect = 0.70, P = 0.50
+ Identities = 27/111 (24%), Positives = 49/111 (44%)
+
+Query:    34 GADLTSPTK-KSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLI 92
+             GA  T  TK K+ P R+ +   T   A+    +   P    +     +  S+D  L P  
+Sbjct:  1093 GAKTTKTTKPKAPPTRVAQTTRTKNLAQKRKASPPTPAGTTAPKRQYIKKSIDSVLPPSS 1152
+
+Query:    93 SSTTEGPSSGTTASLVPEICLNGLQLTVNSAD---EGTVIRKQEEFVKILE 140
+             SS+TE PS+  +AS    +   G  + + +      G  I+++++ + + E
+Sbjct:  1153 SSSTEPPSAPDSASTTSSMKKGGGAIMIEAVPCRPGGKAIKREQKPIGMKE 1203
+
+
+>T23D5.3 CE16445    status:Predicted TR:O45804 protein_id:CAB04816.1
+        Length = 237
+
+ Score = 78 (32.5 bits), Expect = 0.70, P = 0.51
+ Identities = 21/57 (36%), Positives = 30/57 (52%)
+
+Query:    52 PQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTTEGPSSGTTASLV 108
+             P+ T Q+ +P+  TT AP   A+T     S +  G      S+TT  PS+ TTA+ V
+Sbjct:    88 PKTTPQRVEPVMTTTVAPG--ATTVRSPGSVTTAGSATTAGSATTGSPSAATTAATV 142
+
+
+>C56E6.5 CE04277   ATP-binding status:Partially_confirmed TR:Q18900
+         protein_id:AAA81092.1
+        Length = 595
+
+ Score = 87 (35.7 bits), Expect = 0.75, Sum P(2) = 0.53
+ Identities = 54/223 (24%), Positives = 100/223 (44%)
+
+Query:   445 YQKKVLTLDKITGESRTELREIASQNFVTNVTTYYHYNRDNHTSLELKTKFGQVFNCQYS 504
+             Y   +LT+DK   ES  ++ E  +Q   T +  +     DN TS ++             
+Sbjct:   263 YYLSLLTIDK---ESMQKVME--TQEKATKLVAF---RTDNDTSSDISGSSATGTGVLLD 314
+
+Query:   505 AGDNRRYPFLFDGESVMFWRIKMDTWVATGLTAAILGLIA---TLAILVFIVVRISLGDV 561
+             +G  R+ P +    +++F R+   + + +  + ++ GLIA   T A+L F+        +
+Sbjct:   315 SG--RKNPSISTVAAILFRRVL--SLIGSTPSNSLAGLIAFPVTAAVLSFLRPTSLPSSL 370
+
+Query:   562 FEGNPTTSILLLLSLILVFCSFVPYSIEYVGEQRNSHVTFEDAQTLNTLCAVRVF-IMTL 620
+             F     T + LLL  I++F +   YS       + S ++F +        ++ +F I  L
+Sbjct:   371 FFWKLLTFLYLLLQTIVIFPN---YS-------KTSLLSFRECNLYCQTTSLTIFSIFFL 420
+
+Query:   621 VY-CFVFSLLLCRAVMLASIGSEGGFLSHVNGYIQAVICAFSV 662
+             VY C   SL +   ++L S  SE  F   +N ++ ++  +FS+
+Sbjct:   421 VYSCIQSSLFV--GIVLWSFKSEAMFQISLNLFLLSIF-SFSI 460
+
+ Score = 42 (19.8 bits), Expect = 0.75, Sum P(2) = 0.53
+ Identities = 11/32 (34%), Positives = 18/32 (56%)
+
+Query:   421 AHDTAEILSLLLMRKLGTAMNFQMYQKKVLTL 452
+             AHD  E LS    R++ T M  ++ +  +LT+
+Sbjct:   148 AHDKLEDLSFSARRRVMTVM--ELLKDPILTI 177
+
+
+>C33B4.3 CE01508   ankyrin and proline rich domains status:Partially_confirmed
+         TR:Q09493 protein_id:CAA88324.1
+        Length = 1110
+
+ Score = 83 (34.3 bits), Expect = 0.77, Sum P(2) = 0.53
+ Identities = 23/70 (32%), Positives = 33/70 (47%)
+
+Query:   819 PAMRHCSQDEVNHQSPSEIPTLPLRGGGPRRQQFFANLRQANANINPQRPPPRPQQ-SPS 877
+             P M+H  Q+  NHQ   + P+LP     P+       ++Q  ++I P  PPP P    P+
+Sbjct:   728 PPMQH--QNHQNHQYQQQHPSLPRSASTPQP------IQQQQSSIPPPPPPPPPPHCEPT 779
+
+Query:   878 RSSVSSLPPS 887
+                V   PPS
+Sbjct:   780 MVHVEFTPPS 789
+
+ Score = 52 (23.4 bits), Expect = 0.77, Sum P(2) = 0.53
+ Identities = 16/69 (23%), Positives = 33/69 (47%)
+
+Query:    42 KKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDG-QLAPLISSTTEGPS 100
+             K S P R T PQ ++++    +IT R   + +S    +V  +    +  P+ ++ +  PS
+Sbjct:   338 KSSVPYRGT-PQYSTRRRLSSTITRRRSMSQSSICSQDVYRTPQSVRKGPMSAAPSPSPS 396
+
+Query:   101 SGTTASLVP 109
+               +  ++ P
+Sbjct:   397 RSSRTTITP 405
+
+
+>Y73B6BL.11 CE26291    status:Predicted TR:Q9GUH0 protein_id:AAG23477.1
+        Length = 942
+
+ Score = 85 (35.0 bits), Expect = 0.79, P = 0.55
+ Identities = 52/247 (21%), Positives = 104/247 (42%)
+
+Query:   523 WRIKMDTWVATGLTAAILGLIATLAILVFIVVRISLGDVFEGNPTTSILLLLSLILVFCS 582
+             W++ +  W+   L + I+   + +     + + + +        TT  LL++S + +  S
+Sbjct:   434 WKVVLVYWILPLLLSVIVLKDSDMYFNDVVDMNVIIEKSITQRNTTMALLVVSFVCIISS 493
+
+Query:   583 FVPYSIEYVGEQRNSHVTFEDAQTLNTLCAVRVFIMTLVY--CFVFSLLL--C-RAVMLA 637
+             F  Y   +   ++N+ +     +    L A +VF++   +    +F  +L  C RA M A
+Sbjct:   494 FA-YGALFFFIRKNTRILSRSLRREVRL-AFQVFVLLFAFFAILIFYAILNYCSRAQMTA 551
+
+Query:   638 SI-------GSEGGFLSHVNGYIQAVICAFSVVAQVGMSVQLLVVMHVASETVSCEN--- 687
+              +           GFLS++N Y   ++    +  QV  SV      ++ S+++   N   
+Sbjct:   552 EMFYLRTIYPMLSGFLSYMNPYC-ILLLNHDLARQVVKSVSCKEYENM-SDSLESPNWGF 609
+
+Query:   688 -IYYGRWLWGLLAYDFALLC-----CVGALIPSIYRSQ--RNYREGILIVIGSVLIMVIW 739
+              ++YG  +  L  Y   L+C     CV     + + S   +++  GIL     +  +   
+Sbjct:   610 RVFYGMSIVTLPIYFTILICLIHLRCVSKTYKTTFYSLLLQHFNSGILNFFQCIADLFSM 669
+
+Query:   740 VAWIALS 746
+             + +IALS
+Sbjct:   670 LGYIALS 676
+
+
+>Y48C3A.8 CE22141    status:Predicted TR:Q9NAG3 protein_id:CAB55107.1
+        Length = 291
+
+ Score = 78 (32.5 bits), Expect = 0.99, P = 0.63
+ Identities = 20/59 (33%), Positives = 27/59 (45%)
+
+Query:   834 PSEIPTLPLRGGGPRRQQFFANLRQANANINPQRPPPRPQQSP-SRSSVSSLPPSPDHN 891
+             P+    + + GGGP      A+    N N+NP  P   P  +P S   +SS PP P  N
+Sbjct:   171 PAATAAVSMNGGGPGSAPGSAH--SVNNNVNPGTPGSNPLSNPMSNPPLSSGPPPPGSN 227
+
+
+>F16F9.2 CE30956    status:Partially_confirmed TN:AAB07691
+         protein_id:AAB07691.1
+        Length = 1254
+
+ Score = 85 (35.0 bits), Expect = 1.1, P = 0.66
+ Identities = 21/69 (30%), Positives = 36/69 (52%)
+
+Query:    38 TSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTTE 97
+             T+ T+K+   + T  +PT+ ++     TT  P+T  STT D  S++ +       ++TT 
+Sbjct:   827 TTTTEKTTS-KTTTEKPTTSESATTETTTSEPSTTESTTVDTSSATTEESSTAAETTTTS 885
+
+Query:    98 GPSSGTTAS 106
+               +S TT S
+Sbjct:   886 AETSETTTS 894
+
+
+>R07B1.5 CE01631    status:Predicted SW:Q09419 protein_id:CAA88542.1
+        Length = 160
+
+ Score = 73 (30.8 bits), Expect = 1.1, P = 0.67
+ Identities = 27/98 (27%), Positives = 44/98 (44%)
+
+Query:    20 LCILVTVFCVL-ECHGAD-LTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVAST-T 76
+             L IL + F V  +C     +TSPT  +    +T    TS     ++ TT   T   +T T
+Sbjct:     6 LAILSSFFAVANQCAATSPVTSPTTTTTEASVTTTIATSTSTTTVTTTTTVVTAACATCT 65
+
+Query:    77 DDEVS--SSVDGQLAPLISSTTEGPSSGTTASLVPEIC 112
+               ++   +  DG + P  + TT+  +SG   S++   C
+Sbjct:    66 TAQIGIITGNDGDMTPTSAITTD--ASG--CSVITYTC 99
+
+
+>T06E4.11 CE06377  locus:pqn-63  status:Predicted TR:Q22265
+          protein_id:CAA94797.1
+        Length = 275
+
+ Score = 77 (32.2 bits), Expect = 1.2, P = 0.69
+ Identities = 29/105 (27%), Positives = 46/105 (43%)
+
+Query:   791 QALPSLTSLAFAQN--------NQYSSEQSVYECVNPAMRHCSQDE--VNHQSPSEIPTL 840
+             Q L S  S  + QN        +QYS +Q+  +   P  ++  Q    +  Q P + P  
+Sbjct:    93 QQLQSQASQGYPQNYPQQQPMPSQYSPQQAQQQL--PPSQYPEQGPGPIQQQFPQQYPQG 150
+
+Query:   841 PLRGGGPRRQQFFANLRQANANINPQRPPPRPQQS-PSRSSVSSL 884
+             P +   P  QQ+   L+ +      Q+ PP+PQQ  PS +   +L
+Sbjct:   151 PAQQQAPGPQQYPQGLQGSPQGSQQQQMPPQPQQQMPSYNQPEAL 195
+
+
+>Y51B11A.1 CE22326   reverse transcriptase status:Predicted TR:Q9N4S7
+           protein_id:AAF60743.1
+        Length = 1079
+
+ Score = 91 (37.1 bits), Expect = 1.4, Sum P(2) = 0.74
+ Identities = 26/93 (27%), Positives = 44/93 (47%)
+
+Query:    38 TSPTKKSAPLR---ITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISS 94
+             ++PT  S P++    T P+ TS +  P S TT   TT  +  +   + +      P+ ++
+Sbjct:    64 STPTSSSTPIKETTTTAPETTSTEP-PSSSTTPVQTTTTTAPETTSTEAPSSSTTPVQTT 122
+
+Query:    95 TTEGPSSGTTASLVPEICLNGLQLTVNSADEGT 127
+             TT  P   TT++  P    + +Q T  +A E T
+Sbjct:   123 TTTAPE--TTSTEPPSSSTSPVQTTTTTAPETT 153
+
+ Score = 87 (35.7 bits), Expect = 3.4, Sum P(2) = 0.97
+ Identities = 26/91 (28%), Positives = 42/91 (46%)
+
+Query:    40 PTKKSAPLR---ITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTT 96
+             P+  + P++   IT P+ TS +  P S TT   TT  +  +   + S      P+ ++TT
+Sbjct:   480 PSSSTTPVQTTTITAPETTSTEP-PSSSTTPVQTTTTTAPETTSTESPSSSTTPVQTTTT 538
+
+Query:    97 EGPSSGTTASLVPEICLNGLQLTVNSADEGT 127
+               P   TT++  P      +Q T  +A E T
+Sbjct:   539 TAPE--TTSTEPPSSSTTPVQTTTTTAPETT 567
+
+ Score = 86 (35.3 bits), Expect = 4.3, Sum P(2) = 0.99
+ Identities = 28/87 (32%), Positives = 39/87 (44%)
+
+Query:    41 TKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTTEGPS 100
+             T  +AP   T  +P S    P+  TT   TT   TT  E  SS      P+ ++TT  P 
+Sbjct:   122 TTTTAP-ETTSTEPPSSSTSPVQTTT---TTAPETTSTEAPSS---STTPVQTTTTTAPE 174
+
+Query:   101 SGTTASLVPEICLNGLQLTVNSADEGT 127
+               TT++  P    + +Q T  +A E T
+Sbjct:   175 --TTSTEPPSSSTSPVQTTTTTAPETT 199
+
+ Score = 86 (35.3 bits), Expect = 4.3, Sum P(2) = 0.99
+ Identities = 31/93 (33%), Positives = 41/93 (44%)
+
+Query:    38 TSP---TKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISS 94
+             TSP   T  +AP   T  +P S    P+  TT   TT   TT  E  SS      P+ ++
+Sbjct:   185 TSPVQTTTTTAP-ETTSTEPPSSSTTPVQTTT---TTAPETTSTEPPSS---STTPVQTT 237
+
+Query:    95 TTEGPSSGTTASLVPEICLNGLQLTVNSADEGT 127
+             TT  P + +T S  P      +Q T  +A E T
+Sbjct:   238 TTTAPETTSTES--PSSSTTPVQTTTTTAPETT 268
+
+ Score = 85 (35.0 bits), Expect = 5.4, Sum P(2) = 1.00
+ Identities = 25/91 (27%), Positives = 42/91 (46%)
+
+Query:    40 PTKKSAPLRITK---PQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTT 96
+             P+  + P++ T    P+ TS +A P S TT   TT  +  +   +       +P+ ++TT
+Sbjct:    89 PSSSTTPVQTTTTTAPETTSTEA-PSSSTTPVQTTTTTAPETTSTEPPSSSTSPVQTTTT 147
+
+Query:    97 EGPSSGTTASLVPEICLNGLQLTVNSADEGT 127
+               P   TT++  P      +Q T  +A E T
+Sbjct:   148 TAPE--TTSTEAPSSSTTPVQTTTTTAPETT 176
+
+ Score = 84 (34.6 bits), Expect = 6.8, Sum P(2) = 1.00
+ Identities = 25/91 (27%), Positives = 43/91 (47%)
+
+Query:    40 PTKKSAPLRITK---PQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTT 96
+             P+  ++P++ T    P+ TS +A P S TT   TT  +  +   +       +P+ ++TT
+Sbjct:   135 PSSSTSPVQTTTTTAPETTSTEA-PSSSTTPVQTTTTTAPETTSTEPPSSSTSPVQTTTT 193
+
+Query:    97 EGPSSGTTASLVPEICLNGLQLTVNSADEGT 127
+               P   TT++  P      +Q T  +A E T
+Sbjct:   194 TAPE--TTSTEPPSSSTTPVQTTTTTAPETT 222
+
+ Score = 83 (34.3 bits), Expect = 8.5, Sum P(2) = 1.00
+ Identities = 28/87 (32%), Positives = 38/87 (43%)
+
+Query:    41 TKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTTEGPS 100
+             T  +AP   T  +P S    P+  TT   TT   TT  E  SS      P+ ++TT  P 
+Sbjct:   168 TTTTAP-ETTSTEPPSSSTSPVQTTT---TTAPETTSTEPPSS---STTPVQTTTTTAPE 220
+
+Query:   101 SGTTASLVPEICLNGLQLTVNSADEGT 127
+               TT++  P      +Q T  +A E T
+Sbjct:   221 --TTSTEPPSSSTTPVQTTTTTAPETT 245
+
+ Score = 83 (34.3 bits), Expect = 8.5, Sum P(2) = 1.00
+ Identities = 28/87 (32%), Positives = 40/87 (45%)
+
+Query:    41 TKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTTEGPS 100
+             T  +AP   T  +P S    P+  TT   TT   TT  E  SS +    P+ ++TT  P 
+Sbjct:   651 TTTTAP-ETTSTEPPSSSTTPVQTTT---TTAPETTSTEPPSSSN---TPVQTTTTTAPE 703
+
+Query:   101 SGTTASLVPEICLNGLQLTVNSADEGT 127
+               TT++  P    + +Q T  +A E T
+Sbjct:   704 --TTSTEPPSSSTSPVQTTTTTAPETT 728
+
+ Score = 41 (19.5 bits), Expect = 1.4, Sum P(2) = 0.74
+ Identities = 11/31 (35%), Positives = 18/31 (58%)
+
+Query:   622 YCFV--FSLLLCRAVMLASIGSEGGFLSHVN 650
+             + FV  F +  C A++     SEGG +S++N
+Sbjct:   994 FSFVSTFDIGTCTAILTCIYTSEGG-ISNLN 1023
+
+
+>C12D12.1b CE29576    status:Partially_confirmed TR:Q95QX0
+           protein_id:AAL00856.2
+        Length = 648
+
+ Score = 81 (33.6 bits), Expect = 1.4, P = 0.75
+ Identities = 28/84 (33%), Positives = 40/84 (47%)
+
+Query:    37 LTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVAS--TTDDEVSSSVDGQLAPL--I 92
+             ++ PT  + P   T P PT+    P + TT  PTTV +  T+    ++      AP+   
+Sbjct:   478 MSPPTTVTVPTTPT-PVPTTTNTPPANPTTATPTTVGTIGTSPTAPANLTTPTTAPVNPT 536
+
+Query:    93 SSTTE-----GPSSGTTASLVPEI 111
+             SSTT       P+S TTA  VP +
+Sbjct:   537 SSTTAPTAPVNPTSPTTAPTVPPV 560
+
+
+>Y119D3B.3 CE26491    status:Predicted TR:Q9BLB2 protein_id:AAK29723.1
+        Length = 276
+
+ Score = 76 (31.8 bits), Expect = 1.5, P = 0.78
+ Identities = 23/83 (27%), Positives = 40/83 (48%)
+
+Query:   535 LTAAILGLIATLAILVFIVVRISLGDVFEG-NPTTSILLLLSLILVFCSFVPYSIEYVGE 593
+             +T   L +     +LVF++  ++L   F G N      +LL +IL  C+     I++V  
+Sbjct:   126 VTEYTLKITTNCILLVFVLGFLALKSGFFGKNANIMAYVLLIVILPICALFQILIQFVSA 185
+
+Query:   594 QRNSHVTFEDAQTLNTLCAVRVF 616
+             QRN ++  +    L T C + +F
+Sbjct:   186 QRNKYILCQFI--LVTCCIMSLF 206
+
+
+>Y119D3B.5 CE26491    status:Predicted
+        Length = 276
+
+ Score = 76 (31.8 bits), Expect = 1.5, P = 0.78
+ Identities = 23/83 (27%), Positives = 40/83 (48%)
+
+Query:   535 LTAAILGLIATLAILVFIVVRISLGDVFEG-NPTTSILLLLSLILVFCSFVPYSIEYVGE 593
+             +T   L +     +LVF++  ++L   F G N      +LL +IL  C+     I++V  
+Sbjct:   126 VTEYTLKITTNCILLVFVLGFLALKSGFFGKNANIMAYVLLIVILPICALFQILIQFVSA 185
+
+Query:   594 QRNSHVTFEDAQTLNTLCAVRVF 616
+             QRN ++  +    L T C + +F
+Sbjct:   186 QRNKYILCQFI--LVTCCIMSLF 206
+
+
+>F21F8.10 CE09544  locus:str-135  status:Predicted TR:O01536
+          protein_id:AAC47998.1
+        Length = 345
+
+ Score = 77 (32.2 bits), Expect = 1.6, P = 0.81
+ Identities = 30/110 (27%), Positives = 51/110 (46%)
+
+Query:   547 AILVFIVVRISLGDVFEGNPTTSILLLLSLILVFCSFVPYSIEYVGEQRNS-HVTFEDAQ 605
+             A+LVF+++  S  +   GN   ++ +     +V+ S V   ++ VG  + S  V F  + 
+Sbjct:    27 AVLVFLIITKS--ENLLGNYRYAMFVFTLCSMVY-SMVEILVQPVGHMKGSMFVVFMHSS 83
+
+Query:   606 TLNTLCAVRVFIMTLVYC----FVFSLLLCRAVMLASIGSEGGFLSHVNG 651
+              LN    +  F+ T ++C    FV SLL C+ +          FL H+ G
+Sbjct:    84 ILNATNPLAEFL-TCLHCVLSGFVASLLACQFIFRYLAVCRTHFLVHLQG 132
+
+
+>F56H9.1 CE05971    status:Predicted TR:Q20908 protein_id:CAA98949.1
+        Length = 770
+
+ Score = 80 (33.2 bits), Expect = 2.2, P = 0.89
+ Identities = 21/70 (30%), Positives = 31/70 (44%)
+
+Query:    38 TSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTTE 97
+             TS T  + P   T   PT+  +   + TT  PTT  STT    +++      P  ++TT 
+Sbjct:   596 TSTTTTTTPTTTTTTTPTTTTSTTSTTTTTTPTTTTSTTTTTTTTTTTA--TPTTTTTTM 653
+
+Query:    98 GPSSGTTASL 107
+              P +    SL
+Sbjct:   654 PPCNPNAVSL 663
+
+
+>F26C11.3 CE01561   Sushi domain status:Partially_confirmed SW:Q09550
+          protein_id:CAA87369.1
+        Length = 1251
+
+ Score = 82 (33.9 bits), Expect = 2.3, P = 0.90
+ Identities = 27/74 (36%), Positives = 41/74 (55%)
+
+Query:    37 LTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTT 96
+             +T+P ++S+ +   +   TS+  KP S TT  PT+ AST++   SS     +A   SS+T
+Sbjct:   253 ITTPMEQSSTVSSVQKTRTSED-KPSSSTT-VPTS-ASTSESSTSSP----MAETSSSST 305
+
+Query:    97 EGPSSGTTASLVPE 110
+                SS  + S VPE
+Sbjct:   306 TSQSSPASTSTVPE 319
+
+
+>T13G4.7 CE25995    status:Predicted TR:Q966F2 protein_id:AAK84576.1
+        Length = 65
+
+ Score = 53 (23.7 bits), Expect = 2.5, P = 0.92
+ Identities = 15/54 (27%), Positives = 20/54 (37%)
+
+Query:   819 PAMRHCSQDEVNHQSPSEIPTLPLRGGGPRRQQFFANLRQANANINPQRPPPRP 872
+             PA + C+    N+ +PS   + P      R       L  AN     Q  PP P
+Sbjct:     4 PAKKPCAPANGNNMNPSMTSSQPANVERSREIPQTGRLTSANEASQQQNVPPHP 57
+
+
+>K11D12.1 CE30382   zinc finger protein status:Partially_confirmed TR:O44626
+          protein_id:AAM15587.1
+        Length = 402
+
+ Score = 73 (30.8 bits), Expect = 2.6, Sum P(2) = 0.92
+ Identities = 25/87 (28%), Positives = 38/87 (43%)
+
+Query:    38 TSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLA--PLISST 95
+             T+ T  +     T P  T+     I+ TT   TT   T +   +  ++G     P   +T
+Sbjct:   188 TTTTTTTTTTTTTSPMNTTTTTVLINGTT---TTTVPTNETTTTVPLNGTTTTVPTNETT 244
+
+Query:    96 TEGPSSGTTASLVPEICLNGLQLTVNS 122
+             T  P +GTT + VP   +NG   T+ S
+Sbjct:   245 TTSPLNGTTTTTVP---INGATTTIPS 268
+
+ Score = 47 (21.6 bits), Expect = 2.6, Sum P(2) = 0.92
+ Identities = 10/25 (40%), Positives = 15/25 (60%)
+
+Query:   864 NPQRPPPRPQQSPSRSSVS-SLPPS 887
+             +P   PP P ++PS +  +  LPPS
+Sbjct:   375 SPPELPPNPVEAPSITPFTVGLPPS 399
+
+
+>Y51A2D.16 CE19212    status:Partially_confirmed TR:Q9XXR0
+           protein_id:CAA16403.1
+        Length = 1166
+
+ Score = 72 (30.4 bits), Expect = 2.8, Sum P(2) = 0.94
+ Identities = 17/50 (34%), Positives = 25/50 (50%)
+
+Query:   844 GGGPRRQQFFANLRQANANINPQRPPPRP-QQSPSRSSVSSLPPSPDHNK 892
+             GG  R  + + N    +   +P  PP  P + SP  SS+ S PP P +N+
+Sbjct:  1030 GGSVRSPRRYGNDHDGHIYTSPFLPPRVPIRNSPMTSSLRSRPPPPPYNR 1079
+
+ Score = 58 (25.5 bits), Expect = 2.8, Sum P(2) = 0.94
+ Identities = 29/110 (26%), Positives = 47/110 (42%)
+
+Query:    38 TSPTKKSAPLRITKPQP-TSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISST- 95
+             T   KKS P R    QP   + AK +    RA +   STT+D    S D + +P ++   
+Sbjct:   923 TMENKKSTPER---KQPLVKRAAKALINRRRATSNGGSTTEDSSVYSADERSSPPLAVLH 979
+
+Query:    96 ----TEGPSSGTTASL--VPEICLNGLQLTVNSAD---EGTVIRKQEEFV 136
+                 T    +GT   +  +P  C +     V S D   +  ++R + +F+
+Sbjct:   980 LFIITNFTKTGTNEDVDHLPPTCSSSDDHDVISPDFSAKNPLLRSRNDFM 1029
+
+
+>ZK484.5 CE15345    status:Partially_confirmed TR:O44898 protein_id:AAK39387.1
+        Length = 99
+
+ Score = 63 (27.2 bits), Expect = 2.8, P = 0.94
+ Identities = 26/90 (28%), Positives = 36/90 (40%)
+
+Query:    20 LCILVTVFCVLECHGADLTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDE 79
+             L ++V++  V   HG       K +A   +  P P S+ A+P    T  P        DE
+Sbjct:     8 LLLIVSILAVFVHHGFAAAEEEKNTAS--VVSPAPDSEAAQPAGNGTETPK-------DE 58
+
+Query:    80 VSSSVDGQLAPLISSTTEG-PSSGTTASLV 108
+             V        AP   S TE  P + T  S+V
+Sbjct:    59 VKDE-----APKEGSETEASPEAKTKGSMV 83
+
+
+>F15A4.8 CE15845   chitinase status:Partially_confirmed TR:O17813
+         protein_id:CAB02942.1
+        Length = 755
+
+ Score = 78 (32.5 bits), Expect = 3.5, P = 0.97
+ Identities = 22/80 (27%), Positives = 40/80 (50%)
+
+Query:    38 TSPTKKSA---PLRITKPQPTSQQAK--PISITTRAPTTVASTTDDEVSSSVDGQL--AP 90
+             T+PT +S+   P+  T   P ++ +   P+  TT AP T+ STT+    +S       +P
+Sbjct:   390 TAPTTESSTTPPVESTTTAPVTKSSSTPPVKSTTIAPVTMPSTTEKTTFTSTSSSTTSSP 449
+
+Query:    91 LISSTTEGPSSGTTASLVPE 110
+             + S  T G  +G + + + +
+Sbjct:   450 VCSKRTVGFFTGNSTTSITQ 469
+
+
+>Y105C5A.1 CE23184    status:Partially_confirmed TR:Q9NF71
+           protein_id:CAB54981.1
+        Length = 767
+
+ Score = 68 (29.0 bits), Expect = 3.7, Sum P(2) = 0.97
+ Identities = 63/294 (21%), Positives = 119/294 (40%)
+
+Query:    49 ITKPQPTSQQAKPISITTRAPTTVASTTDD-EVSSSVDGQLAPLISSTTEGPSSGTTASL 107
+             +++P+P   +   ISI T +P T  ST+   E   SV   +A  ISS  E  S     S 
+Sbjct:   147 VSEPEPLPVEVLAISIPTTSPDTAPSTSSSVETVESVTEVVA--ISSA-EASSDAPARSP 203
+
+Query:   108 VPEICLNGLQLTVNSADEGTVIRKQEEFVKILEGDVVLSVLTKDPDSALFVINR--VNQA 165
+             + +   N ++  V  + + T  R +++  +I E + ++S      ++ + VI+R  +   
+Sbjct:   204 LKKKVANSVKPVVLPSRKST--RNKKDMNQIKEDEELVSNF----NNGIGVISRGTIVPR 257
+
+Query:   166 NLIMADFEIGIRAISIDNASLAENLLIQEVQFLQQCTTYSMGIFVDWELYKQLESVIKDL 225
+              L    F     A   D A   +++L  ++Q +     +S    +  +    LE    D 
+Sbjct:   258 GLSRTPFHFKKEATD-DKAGKVKDMLKIDMQPVFTPAGHSSKDLIKRKARNSLEPSTSDA 316
+
+Query:   226 EYNIWPIPGTRAHLFPKVAHLLHQMPWGEKIASV-------EIATETLEMYNEFMEAARQ 278
+             + +       +     K    +  +     +          EI  ETL+M  + +E +++
+Sbjct:   317 DISFMKNERGKIRTGEKFQATIPDIEPSSTLTEYMDQEDKEEIFWETLDMDKDNLEESKK 376
+
+Query:   279 EHMCL--MHFKS---DDNVYIMFGNKLASHFKENGTLFSVPTDRTDDEFLADLP 327
+              H  L  +++++       +I F   L  H  +N   F+   + T DE L  LP
+Sbjct:   377 FHETLRNVYWRAIWRQFQGHIPFETAL-QHLMKNNLDFAQSLE-TIDENLKSLP 428
+
+ Score = 57 (25.1 bits), Expect = 3.7, Sum P(2) = 0.97
+ Identities = 18/62 (29%), Positives = 29/62 (46%)
+
+Query:   450 LTLDKITGESRTELREIASQNFVTNVTTYYHYNRDNHTSLELKTKFGQVFNCQYSAGDNR 509
+             L  DK T  +R +L+E A +N+       YHY        + + K+G V NC     +N 
+Sbjct:   445 LLQDKKT--TRRQLQEKAMRNYHIAEVQQYHYRFRKF--FKYQEKYGVVCNCAEKLCNNL 500
+
+Query:   510 RY 511
+             ++
+Sbjct:   501 KF 502
+
+
+>C48E7.7 CE08822    status:Predicted protein_id:AAB52932.1
+        Length = 152
+
+ Score = 68 (29.0 bits), Expect = 3.7, P = 0.98
+ Identities = 28/93 (30%), Positives = 40/93 (43%)
+
+Query:    22 ILVTVFCVLECHGADLTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVAS--TTDDE 79
+             + VT   V E     L   T K+        +P  Q  + +  TT A    A+  T D E
+Sbjct:    25 VAVTATKVTEDATVALIETTAKAVAETEPATEPV-QTTEAVEETTEAVVVEATQETKDAE 83
+
+Query:    80 VSSSVDGQLAPLISSTTEGPSSGTTASLV-PEI 111
+              ++ VD   A  I +TTEG S  + +S V P +
+Sbjct:    84 TNAPVDTPAANNIEATTEGASRPSLSSTVAPNV 116
+
+
+>T08B2.12 CE13441    status:Predicted TR:Q9GYS3 protein_id:AAG00019.1
+        Length = 152
+
+ Score = 68 (29.0 bits), Expect = 3.7, P = 0.98
+ Identities = 28/93 (30%), Positives = 40/93 (43%)
+
+Query:    22 ILVTVFCVLECHGADLTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVAS--TTDDE 79
+             + VT   V E     L   T K+        +P  Q  + +  TT A    A+  T D E
+Sbjct:    25 VAVTATKVTEDATVALIETTAKAVAETEPATEPV-QTTEAVEETTEAVVVEATQETKDAE 83
+
+Query:    80 VSSSVDGQLAPLISSTTEGPSSGTTASLV-PEI 111
+              ++ VD   A  I +TTEG S  + +S V P +
+Sbjct:    84 TNAPVDTPAANNIEATTEGASRPSLSSTVAPNV 116
+
+
+>Y73B3A.1 CE27324    status:Partially_confirmed TR:Q95XE2 protein_id:AAK39359.1
+        Length = 659
+
+ Score = 77 (32.2 bits), Expect = 3.8, P = 0.98
+ Identities = 23/72 (31%), Positives = 33/72 (45%)
+
+Query:    38 TSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDD---EVSSSVDGQLAPLISS 94
+             T+PT   AP     P+PTS   K  S  +R     + + DD   E S S+ G++  +  S
+Sbjct:   573 TAPTTTIAPSVGGAPKPTSVVVKSPSTRSRTRGAASQSVDDAPAEHSMSLQGRVLTMFGS 632
+
+Query:    95 TTEGPSSGTTAS 106
+             T + P     AS
+Sbjct:   633 TVDAPPPPPPAS 644
+
+
+>Y56A3A.30 CE22595    status:Partially_confirmed TR:Q9U234
+           protein_id:CAB60506.1
+        Length = 767
+
+ Score = 70 (29.7 bits), Expect = 4.6, Sum P(2) = 0.99
+ Identities = 27/107 (25%), Positives = 44/107 (41%)
+
+Query:   787 SDIAQALPSLTSLAFAQNNQYSSEQSVYECVNPAMRHCSQDEVNHQSPSEIPTLPLRGGG 846
+             S +A+ L   T+ +  +  ++   + +Y  V P       DE  H  P  I   P +   
+Sbjct:   589 SSVAEPLEEATTTSVPEPTEFQLSRDIYSTVKPT------DEA-HSPP--IQAQPKKKAT 639
+
+Query:   847 PRRQQ---FFANLRQANANI-NPQRP-PPRPQQSPSRSSVSSLPPSP 888
+             PRR++       +    A I  P+R  PPR +  P  + V    P+P
+Sbjct:   640 PRRKKADDVETVVADGTATIPKPKRKRPPRKKPEPKPNIVFETTPNP 686
+
+ Score = 54 (24.1 bits), Expect = 4.6, Sum P(2) = 0.99
+ Identities = 25/84 (29%), Positives = 39/84 (46%)
+
+Query:    42 KKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVD-GQLAPLISSTTE-G- 98
+             +KS+     K QP   Q+ P    T +     S TD E+ S +D    +  + ST + G 
+Sbjct:   320 EKSSCAESLKEQP--DQSSPAVSNTVSEN---SNTDSEICSGIDQNPNSDNLESTIDVGE 374
+
+Query:    99 PSSGTTASLVPEICLNGLQLTVNS 122
+             P   T+    P+ C + +Q+ VNS
+Sbjct:   375 PLRNTSDQPSPDPC-SDVQIGVNS 397
+
+
+>C08H9.8 CE02994   tyrosine-protein kinase (2 domains) status:Predicted
+         TR:Q17842 protein_id:CAA90148.1
+        Length = 421
+
+ Score = 74 (31.1 bits), Expect = 4.6, P = 0.99
+ Identities = 35/138 (25%), Positives = 65/138 (47%)
+
+Query:   343 AVELDATPTALDEIL-IGKSVLPSRVLSFAGSIIDLMNWLRGSLSKHCKRGEEHDLYV-- 399
+             A E++ TP   D ++ +G  ++ S ++    SI+  + W+     K+C+  E   + V  
+Sbjct:    29 AEEVE-TPCETDPVISVGIGIVLSGIVLIM-SILTCLLWVLCKSKKNCRSSENRQVVVNP 86
+
+Query:   400 ---LESCFNFLNFIEDWRTSEYRQAHDTAEILSLLLMRKLGTAMNFQMYQKKVLTLDKIT 456
+                L+S    LN++ED  T+ Y    +  EI+S  L+     A++     K +L +   +
+Sbjct:    87 MLELQSVPIDLNYVEDLDTNCYEIKLENLEIVSGSLILSESVAVS-----KGLLHIRNPS 141
+
+Query:   457 GESRTELREIASQNFVTN 474
+             GE    L E+A ++   N
+Sbjct:   142 GEEHGCL-EVAVKSSAAN 158
+
+
+>Y71F9AL.12 CE25551    status:Predicted TR:Q9N4I5 protein_id:AAF36007.1
+        Length = 305
+
+ Score = 72 (30.4 bits), Expect = 4.9, P = 0.99
+ Identities = 20/51 (39%), Positives = 29/51 (56%)
+
+Query:    54 PTSQQAKPISITTRAPTTVASTTD-DEVSSSVDGQLAPLISSTTE-GPSSG 102
+             P  Q A+ ++++  +PTT   TT+ D+VS SVD  L     +  E G SSG
+Sbjct:   224 PAPQHAERVNLSPDSPTTTEGTTNQDDVSISVDIDLVCATKNLGENGGSSG 274
+
+
+>F14F9.2 CE09388    status:Predicted TR:Q9GUC5 protein_id:AAF98616.1
+        Length = 277
+
+ Score = 68 (29.0 bits), Expect = 5.0, Sum P(2) = 0.99
+ Identities = 26/78 (33%), Positives = 34/78 (43%)
+
+Query:   783 GIERSD---IAQALPSLTSLAFAQNNQYSSEQSVYECVNPAMRHCSQDEVNHQSPSEI-- 837
+             G +RSD   I    P + S A  ++N  S E S  +   P   H    E +H SP EI  
+Sbjct:   189 GEDRSDDSFIGSEAPFIGSEAPVESNTESEENSHEDSDEP--EHSDSHENDHYSPPEIDS 246
+
+Query:   838 ---PTLPLRGGGPRRQQF 852
+                P L  +G G R + F
+Sbjct:   247 SDDPVLIRKGHGKRGKHF 264
+
+ Score = 45 (20.9 bits), Expect = 5.0, Sum P(2) = 0.99
+ Identities = 30/98 (30%), Positives = 44/98 (44%)
+
+Query:    18 ALLCILVTVFCV-LEC---HGADLTSPT---KKSAPLRITKPQPTSQQAKPISITTRAPT 70
+             A   I+++VF V L     H    ++P+   K  AP     PQPT Q+ + +S      T
+Sbjct:     5 AKFLIILSVFVVGLSAAPRHHKHHSTPSVHLKTDAPP--PPPQPTEQK-EDVSDLPFIGT 61
+
+Query:    71 TVASTTDDEVSSSVDGQLAPLISSTTEGPSSGTTASLV 108
+                   + +  S VDG  AP + S TE P+   + S V
+Sbjct:    62 E--GPAESQTVSVVDGSDAP-VESQTE-PAEDRSDSPV 95
+
+ Score = 42 (19.8 bits), Expect = 9.7, Sum P(2) = 1.00
+ Identities = 26/98 (26%), Positives = 37/98 (37%)
+
+Query:    52 PQPTSQQAKPIS----ITTRAPT-----TVASTTDDEVSSSV----DGQLAPLISSTTEG 98
+             PQPT Q+ + +S    I T  P      +V   +D  V S      D   +P+I S    
+Sbjct:    44 PQPTEQK-EDVSDLPFIGTEGPAESQTVSVVDGSDAPVESQTEPAEDRSDSPVIGSEGSD 102
+
+Query:    99 PSSGTTASLVPEICLNGLQLTVNSADEGTVIRKQEEFV 136
+              S   +A  V +    G +  V S  E    R    F+
+Sbjct:   103 ESQTESAGDVSDDSFIGSEAPVESQTEPAEDRSDAPFI 140
+
+
+>R05D3.2 CE00281    status:Partially_confirmed SW:P34535 protein_id:AAK21441.1
+        Length = 737
+
+ Score = 76 (31.8 bits), Expect = 5.6, P = 1.00
+ Identities = 43/174 (24%), Positives = 84/174 (48%)
+
+Query:   514 LFDGESVMF-WRIKMDTWVATGLTAAILGLIATLAILVFIVVRISLGDVFEGNP-----T 567
+             L+ GE   F +R+ +  W+++  TA  +G   +L +L F V+ + L  +++GN      +
+Sbjct:    99 LYAGEEDYFVYRVSV--WISSTATATSIG---SLTLLPFSVIGVELLQLYDGNYYLQWLS 153
+
+Query:   568 TSIL-LLLSLILVFCS---FV--PYSIEYVGEQRNSHVTFEDAQTLNTLCAVRVF-IMTL 620
+              S++  L + + V  +   FV  P+S  ++  Q      F  ++  N +   R++  M +
+Sbjct:   154 YSLIGALWNYVFVLSNVSLFVLLPFSYFFIESQG-----FSTSKIGNDMTQ-RIYEAMAI 207
+
+Query:   621 VYCFVFSLLLCRAVMLASIGSEGGFLSHVNGYIQAVICAFSVVAQVGMSVQLLV 674
+              + F F LL    V+L  +     FLS  +  +  +   +S V+ +G +V LL+
+Sbjct:   208 SFLFAFVLLCLAEVVLTILDYPVSFLSITSVNLPLI---YSCVSFIG-AVLLLI 257
+
+
+>T11F9.12 CE18953    status:Partially_confirmed TR:Q22402 protein_id:CAA98537.1
+        Length = 688
+
+ Score = 71 (30.1 bits), Expect = 5.6, Sum P(2) = 1.00
+ Identities = 24/70 (34%), Positives = 38/70 (54%)
+
+Query:    37 LTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISSTT 96
+             +T+P +K+ P+ IT    T +Q      TT A TT+ STT  + +++      P  ++ T
+Sbjct:    96 ITAPPRKT-PVPITT---TREQTTTTLRTTSASTTL-STTQPQTTTTTT---IPSTTTMT 147
+
+Query:    97 EGPSSGTTAS 106
+             E  S+ TTAS
+Sbjct:   148 ESSSTSTTAS 157
+
+ Score = 51 (23.0 bits), Expect = 5.6, Sum P(2) = 1.00
+ Identities = 15/38 (39%), Positives = 24/38 (63%)
+
+Query:   544 ATLAILVFIVVRISLGD-VFEGNPTTSILLLLSLILVF 580
+             AT ++L  IV+R  L   V   + TTSI++++ L L+F
+Sbjct:   223 ATRSLLPLIVLRKFLQPRVLIVSITTSIIIIIELTLIF 260
+
+
+>C09B8.8 CE30243    status:Predicted TR:Q8WQG3 protein_id:AAL65776.1
+        Length = 168
+
+ Score = 61 (26.5 bits), Expect = 5.9, Sum P(2) = 1.00
+ Identities = 13/31 (41%), Positives = 21/31 (67%)
+
+Query:   716 YRSQRNYREGILIVIGSVLIMVIWVAWIALS 746
+             Y  +RNY +  L++  S L+ V+ VA+I+LS
+Sbjct:    87 YDLRRNYYKTCLLIFSSTLLAVLRVAFISLS 117
+
+ Score = 45 (20.9 bits), Expect = 5.9, Sum P(2) = 1.00
+ Identities = 11/34 (32%), Positives = 18/34 (52%)
+
+Query:    49 ITKPQPTSQQAKPISITTRAPTTVASTTDDEVSS 82
+             + KP+P S   K  S+TT A + ++    D + S
+Sbjct:    27 VEKPKPLSVTLKKYSLTTAAFSMISHLFFDGILS 60
+
+
+>F32A5.2a CE28288   Peroxidase status:Partially_confirmed TR:Q95QH6
+          protein_id:AAK68356.1
+        Length = 1000
+
+ Score = 61 (26.5 bits), Expect = 6.6, Sum P(3) = 1.00
+ Identities = 32/110 (29%), Positives = 50/110 (45%)
+
+Query:   360 KSVLPSRVLSFAGSIIDLMNWLRGSLSKHCKRGEEHDLYVLESCFNFLNFIEDWRTSEYR 419
+             K  L S VL   G +  L   +RG  S++ KR +     V E+ F       D  T   +
+Sbjct:   797 KGTLHSDVLVNEGGVDPL---IRGMFSQNVKRPQRVTTTVTENMFGST----DLSTINIQ 849
+
+Query:   420 QAHDTAEILSLLLMRKL---GTAMNFQMYQKKVLTLDKITGESRTELREI 466
+             +  D     + +  R+L   GTA NF+   +++L     TG +R +L+EI
+Sbjct:   850 RGRDHGHP-AYVKYRELCGMGTAFNFEHLSREILN----TG-TRNKLQEI 893
+
+ Score = 56 (24.8 bits), Expect = 6.6, Sum P(3) = 1.00
+ Identities = 18/63 (28%), Positives = 26/63 (41%)
+
+Query:    65 TTRAPTTVASTTDDEVSSSVDGQLAPLISSTTEGPSSGTTASLVPEICLNGLQLTVNSAD 124
+             +TR  +TV STT    ++ +   +     +TT  P S TT + VP         T   A 
+Sbjct:   176 STRTASTVPSTTVIPTTTRIPTTVTTTTETTTT-PQSTTTTTTVPPTTTTSTTTTTTIAT 234
+
+Query:   125 EGT 127
+               T
+Sbjct:   235 TTT 237
+
+ Score = 51 (23.0 bits), Expect = 6.6, Sum P(3) = 1.00
+ Identities = 15/47 (31%), Positives = 24/47 (51%)
+
+Query:    28 CVLECHGA---DLTSPTKKSAPLRITKPQPT--SQQAKPISITTRAP 69
+             C L C+     ++  P  K AP R+ +P P   +Q  +P  +TT+ P
+Sbjct:    68 CQLACNTCTRKNVIRPATK-APNRMRRPPPRKLAQTPRPPVVTTQRP 113
+
+
+>T28C6.2 CE03747    status:Partially_confirmed TR:Q22844 protein_id:CAA90993.1
+        Length = 42
+
+ Score = 49 (22.3 bits), Expect = 6.7, P = 1.00
+ Identities = 9/25 (36%), Positives = 14/25 (56%)
+
+Query:   527 MDTWVATGLTAAILGLIATLAILVF 551
+             M TW+  G+   I+G + T  + VF
+Sbjct:     1 MGTWIPLGMGTPIMGWMGTWMVNVF 25
+
+
+>T12B5.11 CE20068    status:Partially_confirmed TR:Q9TZ24 protein_id:AAC68938.1
+        Length = 321
+
+ Score = 71 (30.1 bits), Expect = 6.7, P = 1.00
+ Identities = 26/123 (21%), Positives = 51/123 (41%)
+
+Query:   110 EICLNGLQLTVNSADEG-TVIRKQEEFVKILEGDVVLSVLTKD------PDSALFVINRV 162
+             E+ ++G  +    A+ G + +RK E     +EG   + +  +D        S L + N  
+Sbjct:    80 ELGMDGFHIRYTDAENGGSTVRKDENQETPIEGASSMKIAFQDLKTVLKHTSELRISNEH 139
+
+Query:   163 NQANLIMADFEI--GIRAISIDNASLAENLLIQEVQFLQQCTTYSMGIFVDWELY--KQL 218
+             N+  +I +  EI   ++ I +    L        +  LQ C T  +     W+ +  +Q 
+Sbjct:   140 NEHEIIKSFIEILKSVKCIHVKTIKLVNFSFNDVITILQYCNTKVLESIALWDTHINRQF 199
+
+Query:   219 ESV 221
+             E++
+Sbjct:   200 ENI 202
+
+
+>T19C3.3 CE30183    status:Partially_confirmed SW:Q10009 protein_id:AAC46594.2
+        Length = 92
+
+ Score = 59 (25.8 bits), Expect = 6.9, P = 1.00
+ Identities = 20/74 (27%), Positives = 35/74 (47%)
+
+Query:   822 RHCS-QDEVNHQSPSEIPTLPLRGGGPRRQQFFANLRQANANINPQRPPPRPQQSPSRSS 880
+             +HC+ +D +  Q P  + + P R     + Q F ++  +     P R P R  Q  SR+ 
+Sbjct:    23 KHCNTRDRLFGQDPPAVAS-PKRVTPTFKSQIFDDVPAS-----PSRTPKRTVQVVSRNP 76
+
+Query:   881 VSS-LPPSPDHNKI 893
+             V+  + PSP   ++
+Sbjct:    77 VTGEIKPSPSQQQV 90
+
+
+>R12C12.5 CE29820    status:Partially_confirmed TR:Q21959 protein_id:AAC46784.2
+        Length = 236
+
+ Score = 69 (29.3 bits), Expect = 7.0, P = 1.00
+ Identities = 36/136 (26%), Positives = 58/136 (42%)
+
+Query:   255 KIASVEIATETLEMYNEFMEAARQ--EHMCLMHFKSD-DNVYIMFGNKLASHF---KENG 308
+             K+ +   A E + M+NE ++   +  E +   H K D D V+ +  +++A      +E  
+Sbjct:   102 KLEAQRTALENVGMHNEVIDVLGKTTETLKKEHAKMDIDKVHDLM-DEIADGLAMSEELN 160
+
+Query:   309 TLFSVPT-DRTD-DEFLADLPNRAFVLMENEIDLSTAVELDATPTALDEILIGKSVLPSR 366
+                S P  D  D DE + +L      L +N  DLST  +L   P  L E   G+     R
+Sbjct:   161 EAISAPIGDVADEDELMQELQE----LQDNVADLSTTTKLPDVPATLPEAPSGELTRAGR 216
+
+Query:   367 VLSFA--GSIIDLMNW 380
+                F    ++ +L  W
+Sbjct:   217 RGKFRKMSTMEELEQW 232
+
+
+>Y67A10A.8 CE24569    status:Predicted TR:Q9U1V1 protein_id:CAB60449.1
+        Length = 282
+
+ Score = 70 (29.7 bits), Expect = 7.2, P = 1.00
+ Identities = 20/91 (21%), Positives = 43/91 (47%)
+
+Query:   614 RVFIMTLVYCFVFSLLLCRAVMLASIGSEGGFLS-HVNGYIQAVICAFSVVAQVGMSVQL 672
+             RV ++ ++YC + +  +C  V    +   GGF + HV  +   V+  +S++A   M    
+Sbjct:   149 RVGLLHIIYCIIITFGICPTVHWVFL--HGGFENDHVTKWFPNVVVLYSLIAAAFMFYVT 206
+
+Query:   673 LVVMHV---ASETVSCENIYYGRWLWGLLAY 700
+             +V   +     + V C + ++  ++ G + Y
+Sbjct:   207 MVPEKLWPGKFDVVGCSHQWWHIFILGAMIY 237
+
+
+>F20D1.10 CE23677    status:Partially_confirmed TR:Q9U3I4 protein_id:CAB54233.1
+        Length = 90
+
+ Score = 58 (25.5 bits), Expect = 8.0, P = 1.00
+ Identities = 16/38 (42%), Positives = 24/38 (63%)
+
+Query:   286 FKSDDNVYI--MFGNKLASHFKENGTLFSVPTDRTDDE 321
+             F S  ++YI  +  +K AS+ +EN  +F VPTD  DD+
+Sbjct:    55 FVSASSLYIGGLIAHKGASYLEEN-EIF-VPTDEDDDD 90
+
+
+>C44H4.3 CE08724  locus:sym-1 Drosophila chaoptin protein like
+         status:Partially_confirmed TR:Q93374 protein_id:CAB01865.1
+        Length = 680
+
+ Score = 74 (31.1 bits), Expect = 8.3, P = 1.00
+ Identities = 32/117 (27%), Positives = 48/117 (41%)
+
+Query:    35 ADLTSPTKKSAPLRITKPQPTSQQAKPISITTRAPTTVASTTDDEVSSSVDGQLAPLISS 94
+             ADL  P  +  P+R   P   S +    + TT   TT+A TT  E       +    +  
+Sbjct:   442 ADLC-PKAQPRPIR---PVCCSNEITTTTTTTTTTTTLAPTTTTEEEKEETTETTEKV-- 495
+
+Query:    95 TTEGPSSGTTASLVPEICLNGLQLTVNSADEGTVIRKQEEFVKILEGDVVLSVLTKD 151
+             TT G S  T A+   E   +   + V+  +EGT   ++EE V   E     +  T +
+Sbjct:   496 TTVGKSKKTKATTTTEEPEDDEDVYVDDDEEGT--EEEEEEVSTTEKSTTTTTTTTE 550
+
+
+>C50E3.9 CE08902    status:Predicted TR:Q22929 protein_id:AAB04884.1
+        Length = 330
+
+ Score = 70 (29.7 bits), Expect = 9.0, P = 1.00
+ Identities = 34/122 (27%), Positives = 61/122 (50%)
+
+Query:   523 W-RIKMDTWVATGLTAAILGLIATLAI-LVFIVVRISLGDVFEGNPTT--SILLLLSLIL 578
+             W RI+ D  V T ++  +L L  ++ + ++F  V I +  V+   P+   SI+L LSL L
+Sbjct:   127 WKRIEKD--VKTSIS--MLSLSCSIGVRILFSTVAICISLVYGSKPSLIKSIVLQLSLYL 182
+
+Query:   579 VFCS-FVPYSIEYVGEQRNSHV-TFEDAQTLNTLCAVRVFIMTLVYCFVFSLLLCRAVML 636
+              +C  F   +I +V      +  TF +  + N       F + L++ F+FS++   + +L
+Sbjct:   183 DYCCHFFSIAISFVITLNYFYYCTFRNWHSRNF--KFHKFGV-LIFTFLFSIICAMSSIL 239
+
+Query:   637 AS 638
+              S
+Sbjct:   240 TS 241
+
+
+>T19C9.1 CE16418    status:Predicted TR:O45789 protein_id:CAB07483.1
+        Length = 283
+
+ Score = 69 (29.3 bits), Expect = 9.3, P = 1.00
+ Identities = 22/106 (20%), Positives = 54/106 (50%)
+
+Query:   568 TSILLLLSLILVFCSFVPYSIEYVGEQRNSHVTFEDAQTLNTLCAVRVFIMTLVYCFVFS 627
+             T  L+L+SL+++ C FV ++    G Q+N+   F  A  +  + ++ +FI + +   +  
+Sbjct:   179 TDSLILVSLVILSCRFVIWNYSQ-GTQKNA--LFTKATRIALIDSIIIFIFSFLPSAISQ 235
+
+Query:   628 LLLCRAVMLASIGSEGGFLSHVNGYIQAVICAFSVVAQVGMSVQLL 673
+                 ++V   ++G       ++  +I+A+I  F V+++  + +  +
+Sbjct:   236 QF--QSVNFETVGPIMTMFKNIGLFIEALI-VFKVLSKEAIVINTM 278
+
+
+>K04G2.9 CE06103    status:Predicted TR:Q21228 protein_id:CAB00046.1
+        Length = 208
+
+ Score = 67 (28.6 bits), Expect = 9.4, P = 1.00
+ Identities = 25/95 (26%), Positives = 46/95 (48%)
+
+Query:   540 LGLIATLAILVFIVVRISLGDVFEGNPTTSIL----LLLSL--ILVFCSFVPYSIEYVGE 593
+             LGL+    I + +V+   +  VF   P   IL    +LL++  + +  +F+ + I Y   
+Sbjct:    49 LGLLRIAEIFLCVVIVCLITSVFGPGPFKGILFGQTILLTVASVAMLLTFI-FLIAYFFT 107
+
+Query:   594 QRNSHVTF---EDAQTL-NTLCAVRVFIMTLVYCF 624
+                SH+ F    +A  L N +CAV   ++++V  +
+Sbjct:   108 LHLSHLDFFCWREADLLFNVICAVLFIVLSIVEAY 142
+
+
+>C29E6.4 CE05335    status:Predicted TR:Q18298 protein_id:CAA96604.1
+        Length = 942
+
+ Score = 75 (31.5 bits), Expect = 9.4, P = 1.00
+ Identities = 56/254 (22%), Positives = 102/254 (40%)
+
+Query:    20 LCILVTVFCVL--------ECHGADLTSPTKKSAPLRITKPQPT-SQQAKPISI-TTRAP 69
+             LC+   V C L        +C  + L S    S   +ITKP  T    +  +S+ TT  P
+Sbjct:   417 LCVNSKVHCELISFSTTSNQCLLSTLKSSETASDSKKITKPSETFDTYSSSVSVSTTHVP 476
+
+Query:    70 TTVASTTDDEVS--SSVDGQLAPLISSTTEGPSSGTTASL-----VPEICLNGLQLTVNS 122
+             T++ ST+    +  S+        +S++T    S ++ SL     + +I  N +  T+ S
+Sbjct:   477 TSIRSTSSARPTTYSTTVKSSTTTVSTSTRHDGSSSSESLEDMNDIFDINENFMDTTMTS 536
+
+Query:   123 ADEGTVIRK--QEEFVKILEGDVVLSVLTKDPDSALFVINRVNQANLIMADFEIGIRAIS 180
+             +   +        E     +     S+L  DP+     +  +  +  I      GI  + 
+Sbjct:   537 SSTRSRAHALPNAETKSSNKSSESTSLLPIDPE-----LVGLEDSTPIQLPLNSGIAHVD 591
+
+Query:   181 IDNASLAENLLIQEVQF---LQQCTTYSMGIFVDWELYKQLESVIKDLE-YNIWPIPGTR 236
+             +   S+A   L Q +     L Q T Y+ G+    E + Q    +K+   ++I+ IP  +
+Sbjct:   592 LSRLSIAAQCLPQGINITFDLTQNTKYT-GVVYASERFDQCRVFVKNSSAFSIF-IPRPK 649
+
+Query:   237 AHLFPKVAHLLHQM 250
+              + +     L ++M
+Sbjct:   650 HNSWCNAVELNNEM 663
+
+
+>F59A6.3 CE01981   Glycoprotein status:Predicted TR:Q21027
+         protein_id:AAK31523.1
+        Length = 786
+
+ Score = 74 (31.1 bits), Expect = 9.8, P = 1.00
+ Identities = 27/90 (30%), Positives = 39/90 (43%)
+
+Query:    29 VLECHGADLTS-PTKKSAPLRITKPQPTSQQAKPISITTRAPTTVA-STTDDEVSSSVDG 86
+             V +  G   TS P+      + T   P++     IS T+ A TT   ST+     S+  G
+Sbjct:   429 VSDTSGPSTTSGPSTTLGTTQSTTSGPSTTPGSTISTTSSASTTSGPSTSSGSTVSTTSG 488
+
+Query:    87 QLAP--LISSTTEGPSSGTTASLVPEICLN 114
+             Q        STT GP++ +  S V E  L+
+Sbjct:   489 QSTSSGTTKSTTSGPTTSSGPSTVSERTLS 518
+
+
+Parameters:
+  -i BOSS_DROME.aa
+  -d /blast/wormpep87
+
+  ctxfactor=1.00
+  E=10
+
+  Query                        -----  As Used  -----    -----  Computed  ----
+  Frame  MatID Matrix name     Lambda    K       H      Lambda    K       H
+   +0      0   BLOSUM62        0.322   0.136   0.404    same    same    same
+               Q=9,R=2         0.244   0.0300  0.180     n/a     n/a     n/a
+
+  Query
+  Frame  MatID  Length  Eff.Length     E    S W   T  X   E2     S2
+   +0      0      896       896       10.  73 3  11 22  0.25    33
+                                                    37  0.22    37
+
+
+Statistics:
+
+  Database:  /blast/wormpep87
+   Title:  wormpep87
+   Posted:  4:58:17 PM EDT Sep 30, 2002
+   Created:  4:58:17 PM EDT Sep 30, 2002
+   Format:  XDF-1
+   # of letters in database:  9,238,759
+   # of sequences in database:  20,881
+   # of database sequences satisfying E:  53
+  No. of states in DFA:  585 (62 KB)
+  Total size of DFA:  354 KB (1177 KB)
+  Time to generate neighborhood:  0.01u 0.01s 0.02t  Elapsed: 00:00:00
+  No. of threads or processors used:  1
+  Search cpu time:  17.41u 0.01s 17.42t  Elapsed: 00:00:19
+  Total cpu time:  17.43u 0.03s 17.46t  Elapsed: 00:00:19
+  Start:  Mon Oct 21 15:02:24 2002   End:  Mon Oct 21 15:02:43 2002
