@@ -108,7 +108,10 @@
   perldoc -f open
 #+END_SRC
 
+
+- http://www.perl.org
 - http://perldoc.perl.org/	
+- http://learn.perl.org/
 - http://www.cpan.org/	
 - http://perlmonks.org/	
 
@@ -1107,9 +1110,9 @@ Text in B<bold> I<italic>
 
 ** Perl Resources
 
-http://www.cpan.org/	
-http://search.cpan.org/	
 
+- http://www.cpan.org/	
+- http://search.cpan.org/	
 
 ** Installing from CPAN
 
