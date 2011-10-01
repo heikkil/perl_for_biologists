@@ -1,0 +1,241 @@
+
+#+TITLE: Installing Perl and creating your first perl program
+#+AUTHOR: Heikki Lehv\auml{}slaiho
+#+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
+#+DATE:      Perl programming for biologists \\ 17-19 Dec 2011
+#+DESCRIPTION:
+#+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+##+LaTeX_CLASS_OPTIONS: [bigger]
+
+# #+BEAMER_FRAME_LEVEL: 2
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+# TOC slide before every section
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
+
+## see http://deic.uab.es/~iblanes/beamer_gallery/
+
+##+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+latex_header: \mode<beamer>{\usetheme{Antibes}}
+##+latex_header: \mode<beamer>{\usecolortheme{wolverine}}
+#+latex_header: \mode<beamer>{\usecolortheme{beaver}}
+#+latex_header: \mode<beamer>{\usefonttheme{structurebold}}
+
+#+latex_header: \logo{\includegraphics[width=1cm,height=1cm,keepaspectratio]{img/logo-kaust}}
+
+# original sugestion
+#\definecolor{keywords}{RGB}{255,0,90}
+#\definecolor{comments}{RGB}{60,179,113}
+#\definecolor{fore}{RGB}{249,242,215}
+#\definecolor{back}{RGB}{51,51,51}
+
+\definecolor{keywords}{RGB}{178,0,90}
+\definecolor{comments}{RGB}{0,60,0}
+\definecolor{fore}{RGB}{21,21,21}
+\definecolor{back}{RGB}{211,211,211}
+
+\lstset{
+  basicstyle=\small,
+  basicstyle=\color{fore},
+  keywordstyle=\color{keywords},
+  commentstyle=\color{comments},
+  backgroundcolor=\color{back}
+}
+
+* Which perl?
+
+- Most systems come with preinstalled, "vendor" perl
+  + Unix/LINUX
+  + Mac OS X
+- Good reasons for not using it:
+  + Might not be the version you want
+  + Might not have the modules you need
+  + You might not have access sudo/root access
+  + Bound to one version
+  + Changing the vendor perl might destabilize the OS (Macs!)
+
+* Personal perl
+
+- Install your own perl version in your home directory
+- No sudo/root needed
+- Complete control over versions and modules
+- Not dependent on OS updates
+
+A C compiler is needed
+ 
+- Ubuntu
+
+#+begin_src sh
+sudo apt-get install build-essential
+#+end_src
+
+- Macs
+  + install 'unix tools' section of Apple's Xcode
+
+* Installation
+
+- Macs
+
+#+begin_src sh
+  curl -L http://xrl.us/installperlosx | bash
+  # if this fails, run:
+  perlbrew --force install perl-5.14.0
+#+end_src
+
+- *nix systems
+
+#+begin_src sh
+curl -L http://xrl.us/installperlnix | bash
+#+end_src
+
+
+ --> perlbrew
+
+ --> App:cpanminus
+
+* Perlbrew
+
+- Tool to manage multiple perl installations
+- http://www.perlbrew.pl/
+
+#+begin_src sh
+  perlbrew mirror        # set preferred mirror
+  perlbrew available     # installable versions
+  perlbrew list          # installed perls 
+  perlbrew use <name>    # use in this shell
+  perlbrew switch <name> # use for now on
+#+end_src
+
+
+* Perl for the course
+
+We will be using the latest, stable perl, so run now:
+
+#+begin_src sh
+  perlbrew switch perl-5.14.0
+#+end_src
+
+Verify the perl version:
+#+begin_src sh
+  perl -v
+#+end_src
+
+* App:cpanminus
+
+- Direct, non-verbose installation for CPAN modules and their
+  dependencies using an API
+- Modules will be visible only under currenty used perl
+
+Install two useful modules:
+
+#+begin_src sh
+cpanm Modern::Perl
+cpanm Try::Tiny
+#+end_src
+
+Read their documentation using \texttt{perldoc <Module::Name>}
+
+* Some best practices
+
+1. All code should be under git revision control
+  - See the separate presentation on git
+2. All programs are in their own directories
+  - consecutive numbering is recommended
+3. Tests are written to test program execution
+  - Tests make it easy for anyone to verify that the program works as
+    expected
+  - Ideally tests should be written first
+
+* Directory structure
+
+#+begin_src sh
+  mkdir ~/perl_code
+  cd ~/perl_code
+  git config --global user.name "Your Name"
+  git config --global user.email \
+    "your.name@kaust.edu.sa"
+  git init
+  mkdir example_01_hello
+  cd example_01_hello
+#+end_src
+
+
+* The first program
+
+Create a program that prints out \texttt{Hello!} to the first line of
+output.
+
+#+begin_src perl
+  #!/usr/bin/env perl
+  # hello.pl
+  use Modern::Perl;
+  say "Hello!";
+#+end_src
+
+Add it to the repository:
+#+begin_src sh
+  git add hello.pl
+  git commit -a -m 'first program: hello.pl'
+#+end_src
+
+Execute it:
+
+#+begin_src sh
+  chmod 755 hello.pl
+  ./hello.pl 
+#+end_src
+
+* Testing
+
+- Perl has a built in testing environment
+- Learn more:
+
+#+begin_src sh
+  perldoc Test::Tutorial
+  perldoc Test::Simple
+  perldoc Test::More
+#+end_src
+
+* First test
+
+Create the test file:
+
+#+begin_src perl
+  # hello.t
+  use Test::Simple tests => 1;
+  ok( `./hello.pl` eq "Hello!\n", "output" );
+#+end_src
+
+Add it to the repository:
+
+#+begin_src sh
+  git add hello.t
+  git commit -a -m 'hello.t: tests for hello.pl'
+#+end_src
+
+Execute it:
+
+#+begin_src sh
+  perl hello.t
+#+end_src
+
+* Congratulations!
+
+You have:
+
+1. Created your first perl program
+2. Stored the files in a management system
+3. Written a test to prove the program worked as instructed
