@@ -113,12 +113,11 @@ curl -L http://xrl.us/installperlnix | bash
 
 #+begin_src sh
   perlbrew mirror        # set preferred mirror
-  perlbrew available     # installable versions
+  perlbrew available     # installable perls
   perlbrew list          # installed perls 
   perlbrew use <name>    # use in this shell
   perlbrew switch <name> # use for now on
 #+end_src
-
 
 * Perl for the course
 
@@ -172,7 +171,6 @@ Read their documentation using \texttt{perldoc <Module::Name>}
   cd example_01_hello
 #+end_src
 
-
 * The first program
 
 Create a program that prints out \texttt{Hello!} to the first line of
@@ -185,17 +183,17 @@ output.
   say "Hello!";
 #+end_src
 
-Add it to the repository:
-#+begin_src sh
-  git add hello.pl
-  git commit -a -m 'first program: hello.pl'
-#+end_src
-
 Execute it:
 
 #+begin_src sh
   chmod 755 hello.pl
   ./hello.pl 
+#+end_src
+
+Add it to the repository:
+#+begin_src sh
+  git add hello.pl
+  git commit -a -m 'first program: hello.pl'
 #+end_src
 
 * Testing
@@ -219,17 +217,17 @@ Create the test file:
   ok( `./hello.pl` eq "Hello!\n", "output" );
 #+end_src
 
+Execute it:
+
+#+begin_src sh
+  perl hello.t
+#+end_src
+
 Add it to the repository:
 
 #+begin_src sh
   git add hello.t
   git commit -a -m 'hello.t: tests for hello.pl'
-#+end_src
-
-Execute it:
-
-#+begin_src sh
-  perl hello.t
 #+end_src
 
 * Congratulations!
