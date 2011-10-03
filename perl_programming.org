@@ -88,15 +88,18 @@
 #+END_SRC
 
 ** The Camel Book
+#+begin_center
 #+ATTR_LaTeX: width=0.40\textwidth 
-#+ATTR_LaTeX: \centering 
 [[file:img/camelbook.png]]
-
+#+end_center
 ** Beginning Perl
 
 - Open source book by Simon Cozens
+
+#+begin_center
 #+ATTR_LaTeX: width=0.40\textwidth
 [[file:img/beginningperl.png]]
+#+end_center
 
 - Downloadable at http://www.perl.org/books/beginning-perl/ and locally
 
@@ -1343,19 +1346,25 @@ features are:
 
 
 ** Modular programming (I)
+
+#+begin_center
+
 #+ATTR_LaTeX: width=0.80\textwidth
 [[file:img/modular_programming.png]]
 
+#+end_center
 From Stein et al. Genome Research 2002
 
 
 ** Modular programming (II)
 
 # redraw!
+#+begin_center
 
 #+ATTR_LaTeX: width=0.30\textwidth
 [[file:img/bio_db.png]]
 
+#+end_center
 
 * Bioperl components
  
@@ -1380,9 +1389,12 @@ From Stein et al. Genome Research 2002
 
 ** Class diagram (subset)
 
+#+begin_center
+
 #+ATTR_LaTeX: width=0.70\textwidth
 [[file:img/class_diagram.png]]
 
+#+end_center
 From Stajich et al. Genome Research 2002
 
 
@@ -1541,8 +1553,8 @@ while ( my $seq = $in->next_seq ) {
  + -source - source of the feature (e.g. program) 
  
 - Essential methods 
-  +  primary_tag, source_tag, start,end,strand, frame 
-     add_tag_value, get_tag_values, remove_tag, has_tag 
+  +  primary\_tag, source\_tag, start,end,strand, frame 
+     add_tag\_value, get\_tag\_values, remove\_tag, has\_tag 
 
 
 ** Locations quandary
