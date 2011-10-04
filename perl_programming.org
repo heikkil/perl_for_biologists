@@ -378,6 +378,20 @@ say "$alph: $c ";
   ($a, $b) = ($b, $a);
 #+END_SRC
 
+** Perl built in functions
+
+- List of functions by category: 
+
+#+begin_src sh
+  perldoc perl 
+#+end_src
+
+- Function usage:
+
+#+begin_src sh
+  perldoc -f <function_name>
+#+end_src
+
 
 ** Hashes
 
