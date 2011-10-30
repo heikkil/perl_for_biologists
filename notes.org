@@ -1,0 +1,188 @@
+
+* Install fresh perl
+
+curl -L http://xrl.us/installperlosx | bash
+
+
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  2239  100  2239    0     0    143      0  0:00:15  0:00:15 --:--:--  7589
+Checking for .bash_profile... NOT FOUND
+Creating /Users/heikki/.bash_profile
+Installing perlbrew
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+100  1157  100  1157    0     0    276      0  0:00:04  0:00:04 --:--:--  4017
+
+## Download the latest perlbrew
+## Download the packed patchperl
+
+## Installing perlbrew
+The perlbrew is installed as:
+
+    ~/perl5/perlbrew/bin/perlbrew
+
+You may trash the downloaded /private/var/folders/b8/971cb03n2gl3cx5yrz11btpc0000gs/T/perlbrew from now on.
+
+Perlbrew environment initiated, required directories are created under
+
+    ~/perl5/perlbrew
+
+Paste the following line(s) to the end of your ~/.bashrc and start a
+new shell, perlbrew should be up and fully functional from there:
+
+    source ~/perl5/perlbrew/etc/bashrc
+
+For further instructions, simply run `perlbrew` to see the help message.
+
+Enjoy perlbrew at $HOME!!
+## Installing patchperl
+
+## Done.
+Checking/updating /Users/heikki/.bashrc to source perlbrew bashrc
+Updating your current environment
+Installing Perl 5.14.0 through perlbrew
+Fetching perl-5.14.0 as /Users/heikki/perl5/perlbrew/dists/perl-5.14.0.tar.gz
+Installing /Users/heikki/perl5/perlbrew/build/perl-5.14.0 into ~/perl5/perlbrew/perls/perl-5.14.0
+
+This could take a while. You can run the following command on another shell to track the status:
+
+  tail -f ~/perl5/perlbrew/build.log
+
+
+
+Installing /Users/heikki/perl5/perlbrew/build/perl-5.14.0 failed. See /Users/heikki/perl5/perlbrew/build.log to see why.
+If you want to force install the distribution, try:
+
+  perlbrew --force install perl-5.14.0
+
+Setting Perl 5.14.0 to default
+perl-5.14.0 is not installed
+Installing cpanm,
+------------------
+Install complete - close this terminal window and open a new one,
+then to confirm Perl 5.14.0 is installed type: perl -v
+
+
+ log our, log in
+
+
+ perlbrew --force install perl-5.14.0
+
+perlbrew switch perl-5.14.0
+cpanm Try::Tiny
+
+3jane:~ heikki$ cpanm Test::More
+Test::More is up to date. (0.98)
+3jane:~ heikki$ cpanm Modern::Perl;
+--> Working on Modern::Perl
+Fetching http://search.cpan.org/CPAN/authors/id/C/CH/CHROMATIC/Modern-Perl-1.03.tar.gz ... OK
+Configuring Modern-Perl-1.03 ... OK
+Building and testing Modern-Perl-1.03 ... OK
+Successfully installed Modern-Perl-1.03
+1 distribution installed
+3jane:~ heikki$ pwd
+/Users/heikki
+3jane:~ heikki$ cat > hello.pl
+#!/usr/bin/env perl
+use Modern::Perl;
+say "Hello!";  
+3jane:~ heikki$ chmod 755  hello.pl
+3jane:~ heikki$ ./hello.pl 
+Hello!
+3jane:~ heikki$ 
+
+
+Test::Tutorial
+Test::Simple
+Test::More
+
+--------- hello.pl-----------------------
+#!/usr/bin/env perl
+use Modern::Perl;
+say "Hello!";
+
+
+--------- hello.t-----------------------
+use Test::Simple tests => 1;
+ok( `./hello.pl` eq "Hello!\n", "output" );
+* Windows
+
+http://strawberryperl.com/
+
+* Inspiration
+
+How to Learn Perl
+http://www.modernperlbooks.com/mt/2011/09/how-to-learn-perl.html
+
+
+http://www.perl-begin.org/tutorials/impatient-perl/iperl.html
+
+
+* More on software development:
+
+  - Learn the idoms of the language
+  - Use IDE to code (e.g. vim, Emacs, Padre, Eclipse)
+  - Use logical directory structure for your code
+  - Refactoring and code reuse
+  - Write (inline) documentation
+  - Write README telling what the programme is *supposed* to be doing
+  - List dependencies and how to install your programme
+  - Version control system:
+    + commit logical units
+    + tag releases, document changes
+    + only one set of unique files at any stage
+  - Include the license statement
+  - Get feedback on best practices. Share. Code review!
+
+
+* tips
+
+- Module::Corelist (corelist)
+- App::TimeTracker http://timetracker.plix.at/
+
+* Sites
+
+from:
+http://www.modernperlbooks.com/mt/2011/09/how-to-learn-perl.html
+
+find:
+
+http://perl-begin.org/
+http://learnperl.scratchcomputing.com/
+
+Modern perl screen casts
+http://www.youtube.com/user/gabor529
+
+* http://perltraining.com.au/notes.html
+
+* Padre
+
+Requires perl compiled with threads
+
+http://nxadm.wordpress.com/2010/12/10/get-the-latest-perl-release-with-perlbrew/
+
+try later
+
+* Modern projects
+
+Already in 2005 “modern” applications and distributions started
+appearing in CPAN to complement core Perl: 
+- PPI (2005), 
+- Perl::Critic (2005), 
+- Catalyst (2005), 
+- DBIx::Class (2005), 
+- Moose (2006), 
+- Strawberry Perl (2006), 
+- local::lib (2007), 
+- Padre (2008), 
+- Dancer (2009), 
+- (2009), 
+- perlbrew (2010), 
+- cpanminus (2010), etc.
+ (And my excuses for the many modern projects I forgot to include.)
+
+marpa
+Regexp::Grammars
+carton
+Ubic
