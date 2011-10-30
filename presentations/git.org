@@ -78,17 +78,17 @@
 
 Start by telling git your contact details:
 
-#+begin_src shell
-  $ git config --global user.name "Your Name"
-  $ git config --global user.email \
+#+begin_src sh
+  git config --global user.name "Your Name"
+  git config --global user.email \
     "your.name@kaust.edu.sa"
 #+end_src
 
 You can use it for any directory hierarchy. Simply run:
 
-#+begin_src shell -n
-  $ git init
-  $ git status
+#+begin_src sh -n
+  git init
+  git status
 #+end_src
 
 The second line will list all the files in that directory
@@ -99,36 +99,36 @@ Your directories will inevitably end up having temporary files that
 you do not want to back up. Create or reuse a \texttt{.gitignore} file
 into the root directory.
 
-- These lines in \texttt{.gitignore} ignore typical emacs temporary files:
+- These lines in \texttt{.gitignore} ignore typical emacs temporary
+  files:
 
   \\
   \ast\tilde\\
   \ast\#\\
   .\#\ast
 
-
 * Using git: adding and moving files
 
-git commit command takes note of only those files that have been 'add'ed.
+\texttt{git commit} command takes note of only those files that have
+been add'ed.
 
-#+begin_src shell
-  $ git add .
-  $ git commit -a -m 'note about the commit'
+#+begin_src sh
+  git add .
+  git commit -a -m 'note about the commit'
 #+end_src
-
 
 *Important*: If you want to rename a file or directory that is under
 git, do not use the normal 'mv' command. Git can keep track of the
 change, if you do:
 
-#+begin_src shell
-  $ git mv filename newfilename
+#+begin_src sh
+  git mv filename newfilename
 #+end_src
 
 Similarly, remove a file from disk and git at the same time:
 
-#+begin_src shell
-  $ git rm filename
+#+begin_src sh
+  git rm filename
 #+end_src
 
 See: man pages git, gittutorial
@@ -138,42 +138,42 @@ See: man pages git, gittutorial
 You can create the new local project directory or simply
 add files from an existing directory into this repository:
  
-#+begin_src shell
-  $ mkdir myproj
-  $ cd myproj
-  $ git init
+#+begin_src sh
+  mkdir myproj
+  cd myproj
+  git init
 #+end_src
 
 Add files and content, e.g.:
 
-#+begin_src shell
-  $ echo "text" > readme
+#+begin_src sh
+  echo "text" > readme
 #+end_src
 
 Tell git not to keep track of emacs backup files, e.g. 
 
-#+begin_src shell
-  $ echo '*~' > .gitignore
-  $ git add .
-  $ git commit -a -m 'first commit'
+#+begin_src sh
+  echo '*~' > .gitignore
+  git add .
+  git commit -a -m 'ignore emacs tmp files'
 #+end_src
 
 * Working with files
 
 While working with files, you can check the status any time with:
 
-#+begin_src shell
-  $ git status
-  $ git log (filename)
-  $ git diff filename
-  $ git blame filename
-  $ gitk
+#+begin_src sh -n
+  git status
+  git log (filename)
+  git diff filename
+  git blame filename
+  gitk
 #+end_src
 
 and commit any set of changes.
 
-#+begin_src shell
-  $ git commit -a -m 'short description of changes'
+#+begin_src sh
+  git commit -a -m 'short description of changes'
 #+end_src
 
 * Recovering files
@@ -181,8 +181,8 @@ and commit any set of changes.
 If you notice (git status) that you have accidentally removed a file,
 you can fetch the latest committed version by:
 
-#+begin_src shell
-  $ git checkout filename
+#+begin_src sh
+  git checkout filename
 #+end_src
 
 * More advanced git
@@ -193,16 +193,26 @@ Git contains powerful mechanisms to
 - merge versions
 - study older versions
 
+#+begin_src sh
+  git branch try1
+  git checkout try1
+  # work...
+  git commit -a
+  git checkout master
+  git merge try
+#+end_src
+
 * Installing git
 
-** Ubuntu: 'sudo apt-get install git-core'
-** for other OS see: http://git-scm.com/
+- Ubuntu: 'sudo apt-get install git-core'
+- for other OS see: http://git-scm.com/
 or
-** Mac OSX: http://code.google.com/p/git-osx-installer/
-** MS Windows: http://code.google.com/p/msysgit/
+- Mac OSX: http://code.google.com/p/git-osx-installer/
+- MS Windows: http://code.google.com/p/msysgit/
 
 * Documentation
 
+- man git, man gittutorial
 - Official: http://git-scm.com/documentation
 - http://progit.org/book/ - the best book
 - http://gitref.org/ - reference card expanded to a web site
@@ -213,9 +223,9 @@ or
 
 * git command summary
 
-#+begin_src shell
-$ git init
-$ git status
-$ git add .
-$ git commit -a -m 'comment'
+#+begin_src sh -n
+git init
+git status
+git add .
+git commit -a -m 'comment'
 #+end_src
