@@ -55,6 +55,13 @@
   backgroundcolor=\color{back}
 }
 
+* Course aims
+
+- Be comfortable with a programming environment
+- Know basic perl idioms and commands
+- Know best practices
+- Start using perl to learn it properly
+
 * Which perl?
 
 - Most systems come with preinstalled, "vendor" perl
@@ -63,18 +70,18 @@
 - Good reasons for not using it:
   + Might not be the version you want
   + Might not have the modules you need
-  + You might not have access sudo/root access
+  + You might not have access superuser access
   + Bound to one version
   + Changing the vendor perl might destabilize the OS (Macs!)
 
 * Personal perl
 
 - Install your own perl version in your home directory
-- No sudo/root needed
+- No superuser privileges needed
 - Complete control over versions and modules
 - Not dependent on OS updates
 
-A C compiler is needed
+A C compiler needs to be installed!
  
 - Ubuntu
 
@@ -92,7 +99,7 @@ sudo apt-get install build-essential
 #+begin_src sh
   curl -L http://xrl.us/installperlosx | bash
   # if this fails, run:
-  perlbrew --force install perl-5.14.0
+  perlbrew --force install perl-5.14.2
 #+end_src
 
 - *nix systems
@@ -121,10 +128,10 @@ curl -L http://xrl.us/installperlnix | bash
 
 * Perl for the course
 
-We will be using the latest, stable perl, so run now:
+We will be using the latest stable perl, so run now:
 
 #+begin_src sh
-  perlbrew switch perl-5.14.0
+  perlbrew switch perl-5.14.2
 #+end_src
 
 Verify the perl version:
@@ -132,8 +139,40 @@ Verify the perl version:
   perl -v
 #+end_src
 
+* Comprehensive Perl Archive Network (CPAN)
+
+- Public repository of perl applications, modules and frameworks
+  + >100,000 modules!
+  + http:/cpan.org/
+  + http://search.cpan.org/
+- copies all around the world
+  + use the closest
+- Accessible by different programs that allow you to install them
+  locally
+- Under linux, use your package repository binaries to install
+  difficult packages;
+  + Ubuntu: e.g. install perl interface to GD graphics library
+#+begin_src sh
+sudo apt-get install libgd-gd2-perl
+#+end_src
+
+* Command line tools for CPAN
+
+- cpan (CPAN.pm)
+  + installed with perl
+  + downloads daily complete list of packages
+  + copy, compile, test, install
+  + needs superuser privileges to install system wide
+  + old and complex
+
+- cpanp (CPANPLUS)
+  + attempt to rewrite cpan
+  + same interface
+  + a modest success
+
 * App:cpanminus
 
+- Dependency free, zero configuration, and stand alone
 - Direct, non-verbose installation for CPAN modules and their
   dependencies using an API
 - Modules will be visible only under currenty used perl
@@ -151,7 +190,7 @@ Read their documentation using \texttt{perldoc <Module::Name>}
 
 1. All code should be under git revision control
   - See the separate presentation on git
-2. All programs are in their own directories
+2. All projects are in their own directories
   - consecutive numbering is recommended
 3. Tests are written to test program execution
   - Tests make it easy for anyone to verify that the program works as
@@ -178,7 +217,7 @@ output.
 
 #+begin_src perl
   #!/usr/bin/env perl
-  # hello.pl
+  # example1_hello.pl
   use Modern::Perl;
   say "Hello!";
 #+end_src
@@ -220,7 +259,7 @@ Create the test file:
 Execute it:
 
 #+begin_src sh
-  perl hello.t
+  prove hello.t
 #+end_src
 
 Add it to the repository:
@@ -236,4 +275,4 @@ You have:
 
 1. Created your first perl program
 2. Stored the files in a management system
-3. Written a test to prove the program worked as instructed
+3. Written a test to prove the program works as instructed

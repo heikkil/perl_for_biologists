@@ -1,0 +1,45 @@
+#+LATEX_CLASS: fu-org-article
+#+TITLE: CBRC Course: Perl for biologists
+#+AUTHOR: Heikki Lehv\auml{}slaiho
+#+DATE:  \nbsp
+## 22-24 October
+#+OPTIONS: toc:nil 
+
+
+|         |        Time | Event                                     |
+|---------+-------------+-------------------------------------------|
+|         |       \nbsp |                                           |
+| *Day 1* |             |                                           |
+| intro   | 12.00-15.00 | Talk: *Introduction to perl*              |
+|         |             | Talk: *Connecting securely*               |
+| git     |             | Practical: Connect with ssh               |
+|         |       15.00 | Tea and coffee                            |
+| emacs   | 15.00-17.00 | Talk: *Emacs editor basics*               |
+|         |             | Practical: Emacs tutorial                 |
+|         |       \nbsp |                                           |
+| *Day 2* |             |                                           |
+| perl    |  8.00-11.30 | Talk: *Disks and Files*                   |
+|         |             | Practical: Disks and Files                |
+|         |             | Talk: *Job Control and IO Redirection*    |
+|         |             | Practical: Job Control and IO Redirection |
+|         |       \nbsp |                                           |
+|         | 11:30-12.30 | Lunch                                     |
+|         | 12.30-15.00 | Talk: *Text utilities*                    |
+|         |             | Practical: Text utilities                 |
+|         |       15.00 | Tea and coffee                            |
+|         | 15.00-17.00 | Practical: Text utilities                 |
+|         |       \nbsp |                                           |
+| *Day 3* |             |                                           |
+| bioperl |  8.00-10.30 | Talk: *Compression and Archiving*         |
+|         |             | Practical: Compression and Archiving      |
+|         |             | Talk: *Processes*                         |
+|         |             | Practical: Processes                      |
+|         |             | Talk: *Shells*                            |
+|         |             | Practical: Shells                         |
+|         |       \nbsp |                                           |
+|         | 10.30-12.00 | Early Lunch  (vacate the room)            |
+|         | 12.00-15.00 | Talk: *Bash Programming*                  |
+|         |             | Practical: Bash Programming               |
+|         |       15.00 | Tea and coffee                            |
+|         | 15.00-17.00 | *Test and Feedback*                       |
+
