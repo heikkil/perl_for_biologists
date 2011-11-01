@@ -186,3 +186,5 @@ marpa
 Regexp::Grammars
 carton
 Ubic
+* things to cover
+ MRS::Client

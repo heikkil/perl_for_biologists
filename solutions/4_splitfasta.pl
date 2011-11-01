@@ -58,11 +58,15 @@ while (<IN>) {
     while (length($seq) >= $SEGMENT_LENGTH) {
         #substr EXPR,OFFSET,LENGTH,REPLACEMENT
         my $seqment = substr $seq, 0, $SEGMENT_LENGTH, '';
-        print OUT ">$id-", $seqcounter++, " start=$start\n$seqment\n";
+        print OUT ">$id-", $seqcounter++,
+	    " overlap=$OVERLAP_LENGTH start=$start end=".
+	    ($start+$SEGMENT_LENGTH-1). "\n".
+	    "$seqment\n";
 
         # deal with overlap
         if ($OVERLAP_LENGTH) {
-            $seq = substr($seqment, -1*$OVERLAP_LENGTH, $OVERLAP_LENGTH) . $seq;
+            $seq = substr($seqment, -1*$OVERLAP_LENGTH, $OVERLAP_LENGTH)
+		. $seq;
         }
         $start = $start + $SEGMENT_LENGTH - $OVERLAP_LENGTH;
 
@@ -142,7 +146,7 @@ The lenght of the overlap between subsequent sequences. Defaults to 1,000.
 
   0.0.0, 27 Feb 2007, start of the project
   0.2.0, 27 Feb 2007, first public version
-  0.3.0, 28 Feb 2007, first public version
+  0.3.0, 28 Feb 2007, more documentation public version
 
 =head1 TODO
 

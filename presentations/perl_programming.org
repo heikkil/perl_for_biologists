@@ -1,7 +1,7 @@
 #+TITLE: Perl Programming
 #+AUTHOR: Heikki Lehv\auml{}slaiho
 #+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
-#+DATE:      2011-10-04 \\ CC BY-SA 3.0
+#+DATE:      2011-10-31 \\ CC BY-SA 3.0
 #+DESCRIPTION:
 #+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
 #+LANGUAGE:  en
@@ -16,7 +16,7 @@
 
 #+startup: beamer
 #+LaTeX_CLASS: beamer
-##+LaTeX_CLASS_OPTIONS: [bigger]
+#+LaTeX_CLASS_OPTIONS: [smaller]
 
 #+BEAMER_FRAME_LEVEL: 2
 
@@ -55,7 +55,6 @@
 
 
 * Perl
-
 ** What is Perl
 - Perl is a programming language
   - Born from a combination of C & shell scripting for system administration
@@ -68,10 +67,10 @@
 
 - Oldest scripting language 
   - No separate compilation step needed
-- The line noise of the programming languages.
-#+BEGIN_SRC sh
+  - The line noise of the programming languages.
+#+begin_src perl
   /^[^#]+\s*(?:\d+\w+\s*)[2,3]$/;
-#+END_SRC
+#+end_src
 
 ** Why use Perl
 - Easy to learn
@@ -81,9 +80,9 @@
 - Provides API to things that do not have API
 - Excellent documentation
 - Try
-#+BEGIN_SRC sh
+#+begin_src sh
   man perl
-#+END_SRC
+#+end_src
 
 ** The Camel Book
 #+begin_center
@@ -101,43 +100,55 @@
 
 - Downloadable at http://www.perl.org/books/beginning-perl/ and locally
 
+** Modern Perl
+
+- Open source book by chromatic
+#+begin_center
+#+ATTR_LaTeX: width=0.30\textwidth
+[[file:img/mp_cover_full.png]]
+#+end_center
+
+- Best practices of current perl (intermediate level)
+
+- Downloadable at http://onyxneon.com/books/modern_perl/ and locally
+
 ** Perl Documentation
-#+BEGIN_SRC sh
+#+begin_src sh
   perldoc perltoc
+  perldoc perlfunc
+  perldoc -f open
   perldoc CGI
   perldoc Bio::PrimarySeq
-  perldoc -f open
-#+END_SRC
+#+end_src
 
 
 - http://www.perl.org
 - http://perldoc.perl.org/	
+- http://perl-begin.org/
 - http://learn.perl.org/
 - http://www.cpan.org/	
-- http://perlmonks.org/	
+- http://perlmonks.org/
 
-** Practical perl coding
 
-- Emacs http://www.gnu.org/s/emacs/
-  -- or Aquamacs http://aquamacs.org/
-- Padre, the Perl IDE http://padre.perlide.org/
+** Online tutorials
 
-- cpan and cpanm
-
-- Install cpanm
-
-#+BEGIN_SRC sh
-  curl -L http://cpanmin.us | perl - App::cpanminus
-#+END_SRC
+- http://learnperl.scratchcomputing.com/
+  - short introductions
+- http://perltraining.com.au/notes.html
+  - material for several week long courses
+- http://www.modernperlbooks.com/mt/2011/09/how-to-learn-perl.html
+  - guidelines for learning from cromatic
+- http://www.perl-begin.org/tutorials/impatient-perl/iperl.html
+  - thorough coverage for the impatient
 
 ** Programming Perl
 
-- Best Practices
-- Aimed at Perl 5.10.x
-- Shortcuts
-- Code Re-Use
-- Maintainable Development
-- Shortest Path between two points
+- Best practices
+- Aimed at Perl 5.12.x
+- Shortcuts (idoms)
+- Code re-use
+- Maintainable development
+- Shortest path between two points
 
 ** Perl program structure
 
@@ -147,12 +158,11 @@
     :BEAMER_col: 0.5
     :END:
 - shebang #!
+  + /usr/bin/perl
 - directives (use)
 - keywords 
 - functions
 - statements ;
-- escape sequences: " \t\n "
-
 - white space
 - comments
 
@@ -162,26 +172,24 @@
     :BEAMER_env: ignoreheading
     :END:
 
-#+BEGIN_SRC sh
+#+begin_src sh
 > cat hello.pl
-#+END_SRC
+#+end_src
 
 
-#+BEGIN_SRC perl
-#!/usr/bin/perl
-# hello.pl
-use warnings;
+#+begin_src perl
+#!/usr/bin/env perl
+# example1_hello.pl
+use Modern::Perl;
+say "Hello!";
+#+end_src
 
-# print a message
-print "Hello world!\n";
-#+END_SRC
-
-#+BEGIN_SRC sh
+#+begin_src sh
 > chmod 755 hello.pl
 > hello.pl
-Hello world!
+Hello!
 >
-#+END_SRC
+#+end_src
 
 * Perl variables
 
@@ -216,38 +224,38 @@ Hello world!
     :BEAMER_env: ignoreheading
     :END:
 
-#+BEGIN_SRC perl
-#!/usr/bin/perl
-# print_sum.pl
-use warnings;
-use strict;
+#+begin_src perl
+#!/usr/bin/env perl
+# example2_sum/sum.pl
+use Modern::Perl;
 
-print " Give a number ";
+print "Give a number: ";
 my $num = <STDIN>;
+
 my $num2 = '0.5';
 my $float = $num + $num2;
-my $res = 'Sum';
 
 # print the sum
-print "$res is $float\n ";
-#+END_SRC
+my $res = 'Sum';
+print "$res is $float\n";
+#+end_src
 
 
 ** Pragmas
 
-- use strict;
+- \texttt{use Modern::Perl;}
+  - Recommended, declares both below
+  - Also gives function \texttt{say}
+- \texttt{use strict;}
   - Forces variable declaration
   - Needed for maintainable code
   - Scoping
   - Garbage collection
-- use warnings;
-  - Forces variables initialization
+- \texttt{use warnings;}
+  - Alerts on uninitialized variables
   - Warns on deprecated syntax
   - Useful for sanity checking
-  - in desperate situations: \texttt{no warnings;}
-- use Modern::Perl;
-  - alternative, declares both above
-  - also gives function \texttt{say}
+  - In desperate situations: \texttt{no warnings;}
 
 ** undef
 
@@ -256,34 +264,38 @@ print "$res is $float\n ";
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.5
     :END:
-- Q: What is the value of variable, if the value has not been assigned?
+- Q: What is the value of a variable if the value has not been assigned?
+\pause
 - A:  \texttt{undef}, meaning not defined, void
-  - \texttt{use warnings} will warn if you try
-  - to access undefined variables
+  - \texttt{use warnings} will warn if you try to access undefined variables
+
+#+begin_src sh
+Use of uninitialized value $num in say at ./undef.pl line 7.
+#+end_src
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.5
     :END:
-#+BEGIN_SRC perl
-#!/usr/bin/perl
-# print_num.pl
-use warnings; use strict;
+#+begin_src perl
+#!/usr/bin/env perl
+# example3_undef/undef.pl
+use Modern::Perl;
 
 my $num;
-# print 
-print "$num\n";
-#+END_SRC
+# print
+say $num;
+#+end_src
 
 
 ** Operators
 
 
-| Function          | String      | Numeric      |
+| *Function*        | *String*    | *Numeric*    |
 |-------------------+-------------+--------------|
-| Assignment        | \\=$        | \=           |
-| Equality          | eq, ne      | \=\=, !\=    |
+| Assignment        | $=$         | $=$          |
+| Equality          | eq, ne      | $==$, $!=$   |
 | Comparison        | lt,le,gt,ge | <, <=, >, >= |
 | Concatenation     | .           | n/a          |
 | Repetition        | x           | n/a          |
@@ -301,19 +313,18 @@ print "$num\n";
   - operating and assinging at once ($a $+=$ $b;)
   - autoincrement and autodecrement ($count++, ++$c;)
 
-** Arrays
+** Array
 
 - Implements stacks, lists, queues
 
-#+BEGIN_SRC perl
-   @a = (); # literal empty list
+#+begin_src perl
+   @a = ();         # literal empty list
    @b= qw(a t c g); # white space limited list
    push @b, 'u'; $first = shift @b; # functions
-#+END_SRC
-
+#+end_src
+#+begin_center
 file:img/array.pdf
-
-
+#+end_center
 
 ** Working with arrays
 
@@ -335,9 +346,10 @@ file:img/array.pdf
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.6
     :END:
-#+BEGIN_SRC perl
-#!/usr/bin/perl
-use Modern::Perl; # counting.pl 
+#+begin_src perl
+#!/usr/bin/env perl
+# example4_counting/counting.pl
+use Modern::Perl;
 my $alph = 'atgc';
 say length($alph);
 my @alph = split '', $alph;
@@ -349,31 +361,72 @@ foreach (@alph) {
     $c++;
     my $alph = 'augc';
 }
-say "$alph: $c ";
-#+END_SRC
+say "$alph: $c";
+#+end_src
+
+** Working with arrays: output
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.4
+    :END:
+#+begin_src perl
+> counting.pl
+4
+3
+4
+0: aa
+1: tt
+2: gg
+3: cc
+atgc: 4 
+#+end_src
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.6
+    :END:
+#+begin_src perl
+#!/usr/bin/env perl
+# example4_counting/counting.pl
+use Modern::Perl;
+my $alph = 'atgc';
+say length($alph);
+my @alph = split '', $alph;
+print "$#alph\n";
+print scalar(@alph), "\n";
+my $c = 0;
+foreach (@alph) {
+    say "$c: ", $alph[$c], $_;
+    $c++;
+    my $alph = 'augc';
+}
+say "$alph: $c";
+#+end_src
 
 
 ** Working with arrays
 
 - Ranges, an easy way to generate lists:
-#+BEGIN_SRC perl
+#+begin_src perl
   (1 .. 6), ( 8 .. -2 ), ('a' .. 'z')
-#+END_SRC
+#+end_src
 
-- Can be used a slices
-#+BEGIN_SRC perl
+- Can be used as slices
+#+begin_src perl
   @three = reverse sort @months[ -1..1 ];
-#+END_SRC
+#+end_src
 
 - Months with 31 days:
-#+BEGIN_SRC perl
+#+begin_src perl
   @months[0,3,5, 7-8, 9, 11]
-#+END_SRC
+#+end_src
 
 - Swapping values without intermediate variables:
-#+BEGIN_SRC perl
-  ($a, $b) = ($b, $a);
-#+END_SRC
+#+begin_src perl
+  ($x, $y) = ($x, $y);
+#+end_src
 
 ** Perl built in functions
 
@@ -393,51 +446,52 @@ say "$alph: $c ";
 ** Hashes
 
 - Special Initialization:
-#+BEGIN_SRC perl
+#+begin_src perl
   my %hash = ( ‘key1’ => ‘value1’ );
-#+END_SRC
-  - Could be written \texttt{( ‘key1’, ‘value1’, ‘key2’, ‘value2’ )}
+#+end_src
+  - Could be written \texttt{( ‘key1’, ‘value1’, ‘key2’, ‘value2’, ... )}
 - Hash keys are unique!
 - Access scalar elements inside hashes like this:
-#+BEGIN_SRC perl
+#+begin_src perl
   my $value = $hash{key};
-#+END_SRC
+#+end_src
 - Hashes auto-vivify!
-#+BEGIN_SRC perl
-  $hash{test1} = 'value';  # creates an entry with key test1;
-#+END_SRC
+#+begin_src perl
+  # create an entry with key test1;
+  $hash{test1} = 'value';
+#+end_src
 - When you use hashes all the time, you have mastered perl!
   - (hash references are even better, but we'll talk about them later)
 
 
 ** Hash functions
 
-#+BEGIN_SRC perl
+#+begin_src perl
 my $is_there = exists $hash{key};
-#+END_SRC
+#+end_src
 - Returns 1 if the key exists, undef if not.
 - Does not auto-vivify.
 
-#+BEGIN_SRC perl
+#+begin_src perl
 my $has_value = defined $hash{key};
-#+END_SRC
+#+end_src
 - Return 1 if the key has value, undef if not
 
-#+BEGIN_SRC perl
+#+begin_src perl
 my @list = keys %hash;
-#+END_SRC
+#+end_src
 - Returns a list of the keys in the hash
 
-#+BEGIN_SRC perl
+#+begin_src perl
 my @list = values %hash;
-#+END_SRC
+#+end_src
 - Returns a list of the values in the hash
 
 
 ** Default variables
 
 - $_ - the "default scalar"
-  - for example, texttt{chomp()} and texttt{print()} work on default
+  - for example, \texttt{chomp()} and \texttt{print()} work on default
     scalar if no argument is given
 
 - @\_ & @ARGV - the "default arrays"
@@ -470,7 +524,7 @@ my @list = values %hash;
     :BEAMER_col: 0.5
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 if (<some test>) {
     # do
 } elsif (<other test>) {
@@ -487,7 +541,7 @@ unless ($valid) {
     check($value)
 }
 check($value) unless $valid;
-#+END_SRC
+#+end_src
 
 
 ** What is boolean in Perl
@@ -520,12 +574,12 @@ check($value) unless $valid;
     :BEAMER_col: 0.5
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 start from 10, 
 keep repeating until 0
   print value
   remove 2
-#+END_SRC
+#+end_src
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
@@ -533,13 +587,13 @@ keep repeating until 0
     :BEAMER_col: 0.5
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 x = 10;
 until ($x < 0) {
 	print $x;
 	$x -= 2;
 }
-#+END_SRC
+#+end_src
 
 ** Subroutines
 
@@ -561,7 +615,7 @@ until ($x < 0) {
     :BEAMER_col: 0.5
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 sub version; #sum_sub.pl
 say 'version';
 say version;
@@ -580,7 +634,7 @@ sub add ($$) {
 my $sum = add1(2,3);
 $sum = add 2, 3;
 sub version {'1.0'};
-#+END_SRC
+#+end_src
 
 
 ** Long arguments for subroutines
@@ -589,7 +643,7 @@ sub version {'1.0'};
 - If you have more than two arguments often, you might want to use
   hashes to pass arguments to subroutines
 
-#+BEGIN_SRC perl
+#+begin_src perl
 sub add2 { # sub_sub2.pl
     my %args = @_;
     my $one = $args{one} || 0;
@@ -605,7 +659,7 @@ sub add ($$) {
 my $sum2 = add2(one => 2,
                 two => 3);
 my $sum = add(2,3);
-#+END_SRC
+#+end_src
 
 
 
@@ -633,7 +687,7 @@ my $sum = add(2,3);
     :BEAMER_col: 0.5
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 @lower = ('a' .. 'z');
 $myletters = \@lower;
 push @$myletters, '-';
@@ -646,7 +700,7 @@ $matrix[0][5] = 3;
 ref \$a; #returns SCALAR
 ref \@a; #returns ARRAY
 ref \%a; #returns HASH
-#+END_SRC
+#+end_src
 
 
 ** Subroutines revisited
@@ -667,7 +721,7 @@ ref \%a; #returns HASH
     :BEAMER_col: 0.5
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 sub first_is_longer { #longer.pl
     my ($lref1, $lref2) = @_;
 
@@ -675,7 +729,7 @@ sub first_is_longer { #longer.pl
     my $sec = @$lref2; # length
     ($first > $sec) ? 1 : 0;
 }
-#+END_SRC
+#+end_src
 
 * Working with files
 
@@ -690,20 +744,20 @@ sub first_is_longer { #longer.pl
     :BEAMER_col: 0.5
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 # the most useful perl construct
 while (<>) {
      # do something
 }
-#+END_SRC
+#+end_src
 
 
-#+BEGIN_SRC perl
+#+begin_src perl
 # same as:
 > perl -ne '#do something'
 # redirection
 > perl -ne '#do something' > file
-#+END_SRC
+#+end_src
 
 
 ** Filehandles
@@ -730,7 +784,7 @@ while (<>) {
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.6
     :END:
-#+BEGIN_SRC perl
+#+begin_src perl
 print "Hello\n"; # file1.pl
 print STDOUT "Hello\n"; # identical
 my $file = 'seq.embl';
@@ -743,7 +797,7 @@ close FH;
   open my $F, '>', $file or die $!;
   while (<$F>) { chomp; ... }
 }
-#+END_SRC
+#+end_src
 
 
 ** Reading and Writing a file
@@ -764,7 +818,7 @@ close FH;
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.5
     :END:
-#+BEGIN_SRC perl
+#+begin_src perl
 # file2.pl
 die "Not writable" unless -w $file;
 open my $LOG, '>>', $file or die $!;
@@ -778,7 +832,7 @@ while (<$SEQ>) {
     my ($ac) = $seq =~ /AC +(\w+)/;  
     print "$ac\n" if $seq =~ /FT +CDS/;
 }
-#+END_SRC
+#+end_src
 
 * Regular expressions
 
@@ -800,7 +854,7 @@ while (<$SEQ>) {
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.6
     :END:
-#+BEGIN_SRC perl
+#+begin_src perl
 /even/; # literal
 /eve+n/; # + means one or more
 /eve*n/; # * means zero or more
@@ -810,7 +864,7 @@ while (<$SEQ>) {
 /[0123456789]/ # character class
 /[0-9]/ # range, in ASCII
 /\d/  # character class
-#+END_SRC
+#+end_src
 
 
 ** Regex shorthands
@@ -839,7 +893,7 @@ while (<$SEQ>) {
     :BEAMER_col: 0.6
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 /^  \w+.+/ # ^ forces line start
 /\d$/ # $ forces line end
 /\bword\b/ # word boundary
@@ -852,7 +906,7 @@ if (/\w/) { # word_char.pl
     say "ID error: $line"
         if $line !~ /ID/;
 }
-#+END_SRC
+#+end_src
 
 ** String manipulations with regexs
 *** list 					      :B_ignoreheading:BMCOL:
@@ -875,7 +929,7 @@ if (/\w/) { # word_char.pl
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.6
     :END:
-#+BEGIN_SRC perl
+#+begin_src perl
 /^  (\w+)(.+)/;
 my first_word = $1;
 my $rest = $2; # or
@@ -888,7 +942,7 @@ s/[Uu]/t/;
 s/(\w+)/"$1"/; # add quotes around 
                # the first word
 $count = tr/[AT]/N/; 
-#+END_SRC
+#+end_src
 
 
 ** Regex modifiers and greedyness
@@ -909,7 +963,7 @@ $count = tr/[AT]/N/;
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.5
     :END:
-#+BEGIN_SRC perl
+#+begin_src perl
 
 s/(\w+)/"$1"/g; # quotes around 
                 # every word
@@ -920,8 +974,7 @@ my $count = tr/[AT]/N/;
 /.+(w+)/; # last word character
 /.+?(w+)/; # first whole word
 
-#+END_SRC
-
+#+end_src
 
 * Real world programming - errors and all
 
@@ -944,19 +997,19 @@ my $count = tr/[AT]/N/;
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.3
     :END:
-#+BEGIN_SRC perl
+#+begin_src perl
 $a = 0;
 eval {
     $b = 5/$a;
 };
 warn $@ if $@; 
-#+END_SRC
+#+end_src
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.3
     :END:
-#+BEGIN_SRC perl
+#+begin_src perl
 use Try::Tiny;
 $a = 0;
 try {
@@ -964,26 +1017,26 @@ try {
 } catch {
     warn $_;
 };
-#+END_SRC
+#+end_src
 
 
 ** Calling external progammes
 
-#+BEGIN_SRC perl
+#+begin_src perl
 
 system("ls");
 
 # to catch the output use backtics
 $files =  `ls -1`;
-#+END_SRC
+#+end_src
 
 
 ** Running perl
 
-#+BEGIN_SRC perl
+#+begin_src perl
 man perrun
 man perldebug
-#+END_SRC
+#+end_src
 
 - Chapter 9 in Beginning Perl
 - Command line perl
@@ -1021,7 +1074,7 @@ man perldebug
     :BEAMER_col: 0.8
     :END:
 
-#+BEGIN_SRC perl
+#+begin_src perl
 use Getopt::Long;
 use constant PROGRAMME_NAME => 'optlong.pl';
 use constant VERSION => '0.1';
@@ -1036,7 +1089,7 @@ GetOptions
    'h|help|?'     => 
    sub{exec('perldoc',$0); exit 0} 
   );
-#+END_SRC
+#+end_src
 
 
 
@@ -1063,7 +1116,7 @@ GetOptions
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.5
     :END:
-#+BEGIN_SRC perl
+#+begin_src perl
 =pod
 =head1 Heading Text
 
@@ -1076,15 +1129,15 @@ Text in B<bold> I<italic>
 =begin format
 =end format
 =cut
-#+END_SRC
+#+end_src
 
 
 ** POD tools
 - pod2html   pod2latex  pod2man    pod2text   pod2usage, podchecker
 - use POD to create selfdocumenting scripts
-#+BEGIN_SRC perl
+#+begin_src perl
   exec('perldoc',$0); exit;
-#+END_SRC
+#+end_src
 - Headers for a program:
   - NAME, SYNOPSIS, DESCRIPTION (INSTALLING, RUNNING, OPTIONS), VERSION, TODO, BUGS, AUTHOR, CONTRIBUTORS, LICENSE, (SUBROUTINES)
 - Use inline documentation when you can
@@ -1192,7 +1245,7 @@ perl -MBio::Perl -le 'print Bio::Perl->VERSION;'
 #+end_src
 
 Update
-#+begin_src 
+#+begin_src sh
 cd ~/src/bioperl-live
 git pull
 cd ~/src/bioperl-run
@@ -1209,7 +1262,7 @@ git pull
 
 ** Simple example
 
-#+BEGIN_SRC perl
+#+begin_src perl
 #!/usr/bin/perl -w
 use strict;
 use Bio::SeqIO;
@@ -1228,10 +1281,10 @@ while ( my $seq = $in->next_seq ) {
                $f->end);
     }
 }
-#+END_SRC
+#+end_src
 
 ** Simple example, output
-#+BEGIN_SRC sh
+#+begin_src sh
 % perl ex1.pl 
 Sequence length is 2701 
 1st ATG is at 80 
@@ -1247,7 +1300,7 @@ features are:
   3'UTR (1145..2659)
   polyA_site (1606..1606)
   polyA_site (2660..2660)
-#+END_SRC
+#+end_src
 
 ** Gotchas
 - Sequences start with 1 in Bioperl (historical reasons). In perl strings, arrays, etc start with 0. 
@@ -1257,11 +1310,11 @@ features are:
 - Make sure you know what you're getting back - if you get back an
   array, don't assign it to a scalar in haste.
 
-#+BEGIN_SRC perl
+#+begin_src perl
   my ($val) = $obj->get_array(); # 1st item
   my @vals  = $obj->get_array(); # whole list
   my $val   = $obj->get_array(); # array length
-#+END_SRC
+#+end_src
 
 ** Where to go for help
 
@@ -1423,7 +1476,7 @@ From Stajich et al. Genome Research 2002
 
 ** Build a sequence and translate it
 
-#+BEGIN_SRC perl
+#+begin_src perl
 #!/usr/bin/perl -w
 use strict;
 use Bio::PrimarySeq;
@@ -1431,15 +1484,15 @@ my $seq = new Bio::PrimarySeq(-seq => 'ATGGGACCAAGTA',
                               -display_id => 'example1');
 print "seq length is ", $seq->length, "\n";
 print "translation is ", $seq->translate()->seq(), "\n";
-#+END_SRC
+#+end_src
 
 
 
-#+BEGIN_SRC sh
+#+begin_src sh
 % perl ex2.pl
 seq length is 13
 translation is MGPS
-#+END_SRC
+#+end_src
 
 
 ** Bio::PrimarySeq I
@@ -1491,7 +1544,7 @@ translation is MGPS
 ** Parse a sequence from file
 
 
-#+BEGIN_SRC perl
+#+begin_src perl
 # ex3.pl
 use Bio::SeqIO;
 my $in = new Bio::SeqIO(-format => 'swiss',
@@ -1506,12 +1559,12 @@ foreach my $feature ( $seq->top_SeqFeatures ) {
     print $feature->start, " ",$feature->end, " ",
           $feature->primary_tag, "\n";
 }
-#+END_SRC
+#+end_src
 
 
 ** Parse a sequence from file, output
 
-#+BEGIN_SRC sh
+#+begin_src sh
 % perl ex3.pl 
 Organism name: Fruit fly (Drosophila melanogaster)
 Hart A.C., Kraemer H., van Vactor D.L. Jr., Paidhungat M., Zipursky
@@ -1527,7 +1580,7 @@ Hart A.C., Kraemer H., van Vactor D.L. Jr., Paidhungat M., Zipursky
 759 781 TRANSMEM 
 782 896 DOMAIN
  ...
-#+END_SRC
+#+end_src
 
  
 ** Bio::SeqIO
@@ -1545,7 +1598,7 @@ Hart A.C., Kraemer H., van Vactor D.L. Jr., Paidhungat M., Zipursky
 
 ** Read in sequence and write out in different format
 
-#+BEGIN_SRC perl
+#+begin_src perl
 # ex4.pl
 use Bio::SeqIO;
 my $in = new Bio::SeqIO(-format => 'genbank',
@@ -1556,7 +1609,7 @@ while ( my $seq = $in->next_seq ) {
     next unless $seq->desc =~ /hypothetical/i;
     $out->write_seq($seq);
 }
-#+END_SRC
+#+end_src
 
 ** Sequence Features: Bio::SeqFeatureI
 
@@ -1589,7 +1642,7 @@ while ( my $seq = $in->next_seq ) {
 - Each sequence feature has a location() method to get access to this object. 
 
 ** Create a sequence and a feature
-#+BEGIN_SRC perl
+#+begin_src perl
 #ex5.pl
 use Bio::Seq;
 use Bio::SeqFeature::Generic;
@@ -1607,10 +1660,10 @@ my $f = Bio::SeqFeature::Generic->new
 $seq->add_SeqFeature($f);
 my $out = new Bio::SeqIO(-format => 'genbank');
 $out->write_seq($seq);
-#+END_SRC
+#+end_src
 
 ** Create a sequence and a feature, output
-#+BEGIN_SRC sh
+#+begin_src sh
 % perl ex5.pl
 LOCUS      BOSSfragment        34 aa         linear           UNK
 DEFINITION pep frag
@@ -1622,7 +1675,7 @@ ORIGIN
        1 tvasttddev vatgltaail gliatlailv fivv
 //
 
-#+END_SRC
+#+end_src
  
 
 
@@ -1640,7 +1693,7 @@ ORIGIN
 
 ** Retrieve sequences from a database
 
-#+BEGIN_SRC perl
+#+begin_src perl
 # ex6.pl
 use Bio::DB::GenBank;
 use Bio::DB::SwissProt;
@@ -1658,7 +1711,7 @@ $out->write_seq($seq);
 $db = new Bio::DB::GenPept();
 $seq = $db->get_Seq_by_acc('CAD35755');
 $out->write_seq($seq);
-#+END_SRC
+#+end_src
 
 ** The Open Biological Database Access (OBDA) System
 
@@ -1675,7 +1728,7 @@ $out->write_seq($seq);
 
 
 ** Retrieve sequences using OBDA
-#+BEGIN_SRC perl
+#+begin_src perl
 # ex7.pl
 use Bio::DB::Registry 1.2;# needs bioperl release 1.2.2 or later
 my $registry = Bio::DB::Registry->new;
@@ -1684,7 +1737,7 @@ my $db = $registry->get_database('embl');
 # get_Seq_by_{id|acc|version}
 my $seq = $db->get_Seq_by_acc("J02231");
 print $seq->seq,"\n";
- #+END_SRC
+ #+end_src
 
 ** Alignments
  
@@ -1702,7 +1755,7 @@ print $seq->seq,"\n";
 
 ** Multiple Sequence Alignments
 
-#+BEGIN_SRC perl
+#+begin_src perl
 # ex.pl
 # usage: convert_aln.pl < in.aln > out.phy
 use Bio::AlignIO;
@@ -1711,7 +1764,7 @@ my $out = new Bio::AlignIO(-format => 'phylip');
 while( my $aln = $in->next_aln ) {
     $out->write_aln($aln);
 }
-#+END_SRC
+#+end_src
 
 
 ** BLAST/FASTA/HMMER Parsing
@@ -1724,7 +1777,7 @@ while( my $aln = $in->next_aln ) {
 
 
 ** Parse a BLAST & FASTA report
-#+BEGIN_SRC perl
+#+begin_src perl
 # ex8.pl
 use Bio::SearchIO;
 use Math::BigFloat;
@@ -1751,11 +1804,11 @@ while( my ($format,$file) = each %files ) {
     print "--\n";
   }
 }
-#+END_SRC
+#+end_src
  
 ** Parse a BLAST & FASTA report, output
 
-#+BEGIN_SRC perl
+#+begin_src perl
 % perl ex7.pl
 Query is: BOSS_DROME Bride of sevenless protein precursor. 896 aa
 Matrix was BL50
@@ -1771,11 +1824,11 @@ HSP Len is 315 E-value is 4.9e-11 Bit score 182
 HSP Len is 28 E-value is 1.4e-09 Bit score 39
   Query loc: 508 535 Sbject loc: 427 454
 --
-#+END_SRC
+#+end_src
 
 
 ** Create an HTML version of a report
-#+BEGIN_SRC perl
+#+begin_src perl
 #!/usr/bin/perl -w
 # ex9.pl
 use strict;
@@ -1789,12 +1842,12 @@ my $writer = new Bio::SearchIO::Writer::HTMLResultWriter;
 my $out = new Bio::SearchIO(-writer => $writer,
                             -file => '>BOSS_Ce.BLASTP.html');
 
-#+END_SRC
+#+end_src
 
 
 ** Create an HTML version of a report
 
-#+BEGIN_SRC perl
+#+begin_src perl
 while( my $result = $in->next_result ) {
     my @keephits;
     my $newresult = new Bio::Search::Result::GenericResult
@@ -1823,7 +1876,7 @@ while( my $result = $in->next_result ) {
     $out->write_result($newresult);
 }
 
-#+END_SRC
+#+end_src
  
 * Other things covered by Bioperl
  

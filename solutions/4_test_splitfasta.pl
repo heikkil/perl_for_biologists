@@ -7,7 +7,8 @@ BEGIN { plan tests => 5 }
 
 print "# I'm testing ", `splitfasta.pl -v`, "\n";
 
-ok  scalar grep {/^>/} split /\n/, `./splitfasta.pl --segment 10 --overlap 0 test.fa`, 4;
+ok  scalar grep {/^>/} split /\n/, 
+    `./splitfasta.pl --segment 10 --overlap 0 test.fa`, 4;
 
 my $seqs = `./splitfasta.pl --segment 10 --overlap 2 test.fa`;
 ok scalar grep {/^>/} split (/\n/, $seqs), 5;

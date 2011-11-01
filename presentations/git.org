@@ -58,7 +58,7 @@
   + CVS, oldest
 
 - *EVERYONE* needs to keep track of changes in their files
-- everyone should and everyone needs to at this course 
+- Everyone should and everyone have to at this course 
 
 * What is git
 
@@ -84,7 +84,7 @@ Start by telling git your contact details:
     "your.name@kaust.edu.sa"
 #+end_src
 
-You can use it for any directory hierarchy. Simply run:
+You can use it for any directory hierarchy. Simply run at the top level:
 
 #+begin_src sh -n
   git init
@@ -110,7 +110,7 @@ into the root directory.
 * Using git: adding and moving files
 
 \texttt{git commit} command takes note of only those files that have
-been add'ed.
+been added.
 
 #+begin_src sh
   git add .
@@ -131,7 +131,6 @@ Similarly, remove a file from disk and git at the same time:
   git rm filename
 #+end_src
 
-See: man pages git, gittutorial
 
 * Creating a new local git repository
 
@@ -176,10 +175,17 @@ and commit any set of changes.
   git commit -a -m 'short description of changes'
 #+end_src
 
+
+* How to work with git
+
+- Commit early, commit often
+- One commit represents one idea or one change
+- Write clear, verbose comments
+
 * Recovering files
 
-If you notice (git status) that you have accidentally removed a file,
-you can fetch the latest committed version by:
+No matter how mangle a file, you can always fetch the latest committed
+version from the repository:
 
 #+begin_src sh
   git checkout filename
@@ -189,17 +195,18 @@ you can fetch the latest committed version by:
 
 Git contains powerful mechanisms to 
 
+- sync with remote locations
 - branch
 - merge versions
 - study older versions
 
 #+begin_src sh
-  git branch try1
-  git checkout try1
+  git branch try1     # give name
+  git checkout try1   # start using it
   # work...
-  git commit -a
-  git checkout master
-  git merge try
+  git commit -a       # commit all changes
+  git checkout master # back to main
+  git merge try       # apply all changes/
 #+end_src
 
 * Installing git

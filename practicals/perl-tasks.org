@@ -1,0 +1,144 @@
+#+TITLE: Perl Exercises
+#+AUTHOR: Heikki Lehv\auml{}slaiho
+#+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
+#+DATE:      2011-10-31 \\ CC BY-SA 3.0
+#+DESCRIPTION:
+#+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smaller]
+
+##+BEAMER_FRAME_LEVEL: 2
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+# TOC slide before every section
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
+
+## see http://deic.uab.es/~iblanes/beamer_gallery/
+
+##+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+latex_header: \mode<beamer>{\usetheme{Antibes}}
+##+latex_header: \mode<beamer>{\usecolortheme{wolverine}}
+#+latex_header: \mode<beamer>{\usecolortheme{beaver}}
+#+latex_header: \mode<beamer>{\usefonttheme{structurebold}}
+
+#+latex_header: \logo{\includegraphics[width=1cm,height=1cm,keepaspectratio]{img/logo-kaust}}
+
+# original sugestion
+#\definecolor{keywords}{RGB}{255,0,90}
+#\definecolor{comments}{RGB}{60,179,113}
+#\definecolor{fore}{RGB}{249,242,215}
+#\definecolor{back}{RGB}{51,51,51}
+
+\definecolor{keywords}{RGB}{178,0,90}
+\definecolor{comments}{RGB}{0,60,0}
+\definecolor{fore}{RGB}{21,21,21}
+\definecolor{back}{RGB}{211,211,211}
+\lstset{
+  basicstyle=\small,
+  basicstyle=\color{fore},
+  keywordstyle=\color{keywords},
+  commentstyle=\color{comments},
+  backgroundcolor=\color{back}
+}
+
+* 1. Basic perl program
+
+Write a perl program that prints out your name.
+
+- *Aim*: To make sure you can edit perl code with syntax highlighting,
+  and run it.
+
+* 2.a. Date conversions
+
+Write a subroutine called date() that reads the current date from the
+unix \texttt{date} command output and returns it in what ever format
+you see appropriate.  Call the subroutine within the program to show
+that it works and print out the result.
+
+- *Aim*: Know how to manipulate data with regexps and how to call an
+  external command line program. Encapsulation using a subroutine.
+
+- *Note*: In real world you would like to use builtin functions
+  \texttt{localtime()} and \texttt{gmtime()}.
+
+Do the other parts of this task if you have time.
+
+* 2.b. ISO date 
+
+Make an other version of the subroutine to returns date in ISO
+format (YYYY-MM-DD, e.g. 2007-03-22).
+
+- *Hint*: Use a hash to store the month names as keys and month
+  numbers as values.
+
+- *Hint*: Presise text formatting can be done with \texttt{sprintf()}.
+
+* 2.c. Date with arguments
+
+Make a third version of the date subroutine by making it possible
+to use named arguments to select the returned format. Use a default,
+so that the subroutine always returns something.
+
+* 3. Sequence converter in plain perl
+
+Write a program that reads in a file containing an EMBL sequence
+file, parses its contents line by line and prints out a FASTA
+formatted text into STDOUT. Use the ar.embl file and the sequence
+version as the id.
+
+- *Aim*: Know how to use '(<>)' construct and regular expressions to
+  select parts of the line and to do changes to it.
+
+- *FASTA file format*: The id line starting with '>' followed by one
+  word ID, and multi word optional description. Fields are separated
+  by a space character. Multiple sequence lines follow; no spaces or
+  numbers, no fixed line length.
+
+
+* 4. Split sequence
+
+Write a program that takes in a sequence and splits it up into
+seqments with an overlap. Use 4test\_splitfasta.pl test file and
+4test.fa sequence file.
+
+- *Aim*: Write a full blown program in a controlled manner. First work
+  out a pseudocode, then create tests, start writing with a simplified
+  assumption, get it to work, elaborate until all the requirements of
+  the program are met. Add command line options and comment
+  your program using POD.
+
+* 5. Bioperl sequence converter
+
+Write an EMBL to FASTA converter with BioPerl. Run it with file
+ar.embl and compare the output to the one got in exercise 3.
+
+- *Aim*: Use BioPerl to solve problems.
+
+- *Hint*: Read Bio::SeqIO documentation using perldoc
+
+
+* 6. BLAST parsing
+
+Write a bioperl program that parses a BLAST output and prints out
+accession numbers to all hits with better E value than 1.  Use
+t/data/a\_thaliana.blastn bioperl test file to run it.
+
+- *Hint*: Read SearchIO HOWTO from the BioPerl website.
+
+- *Hint*: See examples/searchio/blast\_example.pl in BioPerl and remove
+  (or comment out) unnecessary lines.
+
+- *Hint*: use command line program grep to find BioPerl test files
+  that use Bio::SearchIO.
