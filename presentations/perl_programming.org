@@ -498,7 +498,7 @@ my @list = values %hash;
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.4
     :END:
 
 - *Loops and decisions*
@@ -513,7 +513,7 @@ my @list = values %hash;
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.6
     :END:
 
 #+begin_src perl
@@ -537,26 +537,27 @@ check($value) unless $valid;
 
 ** What is boolean in Perl
 
-- Anything can be tested.
+- There is no separate boolean variable
+- Anything can be tested
   - An empty string is false
   - Number 0 and string "0" are false
   - An empty list () is false
   - Undefined value, undef, is false
-  - everything else is true
-
+  - *Everything else is true*
 
 ** Pseudocode
 
-- Near English (or any natural language) explanation what code does
+- Near English (or any natural language) explanation what code does,
   written before writing the code
 
 - Keep elaborating and adding programme code like elements until it is
   easy to implement.
 
-  - e.g. how to count from 10 to zero in even numbers:
+- Example: How to count from 10 to zero in even numbers:
 
-
+#+begin_center
 \texttt{  start from 10, remove 2, keep repeating until 0}
+#+end_center
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
@@ -565,10 +566,11 @@ check($value) unless $valid;
     :END:
 
 #+begin_src perl
-start from 10, 
+start from 10,
 keep repeating until 0
   print value
   remove 2
+done
 #+end_src
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -580,7 +582,7 @@ keep repeating until 0
 #+begin_src perl
 x = 10;
 until ($x < 0) {
-	print $x;
+	say $x;
 	$x -= 2;
 }
 #+end_src
@@ -614,20 +616,17 @@ sub add1 {
     my $one = shift;
     my $two = shift; 	
     my $sum = $one + $two;
-    return $sum;
-}
+    return $sum;}
 
 sub add ($$) {
-    shift() + shift();
-}
-
+    shift() + shift();}
 my $sum = add1(2,3);
 $sum = add 2, 3;
 sub version {'1.0'};
 #+end_src
 
-** Long arguments for subroutines
 
+** Long arguments for subroutines
 
 - If you have more than two arguments often, you might want to use
   hashes to pass arguments to subroutines
@@ -667,14 +666,13 @@ my $sum = add(2,3);
   + hashes of hashes,
   + hashes of arrays, ...
 
-- texttt{ref()} tells what is the referenced structure
+- \texttt{ref()} tells what is the referenced structure
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.5
     :END:
-
 #+begin_src perl
 @lower = ('a' .. 'z');
 $myletters = \@lower;
@@ -690,7 +688,7 @@ ref \@a; #returns ARRAY
 ref \%a; #returns HASH
 #+end_src
 
-** Subroutines revisited
+* Subroutines revisited
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
