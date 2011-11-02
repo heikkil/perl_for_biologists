@@ -203,7 +203,6 @@ Hello!
   - Associative Arrays without order
   - Key => Value
 
-
 **  Scalars
 
 
@@ -239,7 +238,6 @@ my $float = $num + $num2;
 my $res = 'Sum';
 print "$res is $float\n";
 #+end_src
-
 
 ** Pragmas
 
@@ -288,7 +286,6 @@ my $num;
 say $num;
 #+end_src
 
-
 ** Operators
 
 
@@ -302,7 +299,6 @@ say $num;
 | Basic Math        | n/a         | +,-,*,/      |
 | Modulus, Exponent | n/a         | %,^          |
 | Sorting           | cmp         | <=>          |
-
 
 ** Operators
 
@@ -405,7 +401,6 @@ foreach (@alph) {
 say "$alph: $c";
 #+end_src
 
-
 ** Working with arrays
 
 - Ranges, an easy way to generate lists:
@@ -442,7 +437,6 @@ say "$alph: $c";
   perldoc -f <function_name>
 #+end_src
 
-
 ** Hashes
 
 - Special Initialization:
@@ -462,7 +456,6 @@ say "$alph: $c";
 #+end_src
 - When you use hashes all the time, you have mastered perl!
   - (hash references are even better, but we'll talk about them later)
-
 
 ** Hash functions
 
@@ -486,7 +479,6 @@ my @list = keys %hash;
 my @list = values %hash;
 #+end_src
 - Returns a list of the values in the hash
-
 
 ** Default variables
 
@@ -543,7 +535,6 @@ unless ($valid) {
 check($value) unless $valid;
 #+end_src
 
-
 ** What is boolean in Perl
 
 - Anything can be tested.
@@ -552,7 +543,6 @@ check($value) unless $valid;
   - An empty list () is false
   - Undefined value, undef, is false
   - everything else is true
-
 
 
 ** Pseudocode
@@ -636,7 +626,6 @@ $sum = add 2, 3;
 sub version {'1.0'};
 #+end_src
 
-
 ** Long arguments for subroutines
 
 
@@ -660,7 +649,6 @@ my $sum2 = add2(one => 2,
                 two => 3);
 my $sum = add(2,3);
 #+end_src
-
 
 
 ** References
@@ -701,7 +689,6 @@ ref \$a; #returns SCALAR
 ref \@a; #returns ARRAY
 ref \%a; #returns HASH
 #+end_src
-
 
 ** Subroutines revisited
 
@@ -759,7 +746,6 @@ while (<>) {
 > perl -ne '#do something' > file
 #+end_src
 
-
 ** Filehandles
 
 
@@ -798,7 +784,6 @@ close FH;
   while (<$F>) { chomp; ... }
 }
 #+end_src
-
 
 ** Reading and Writing a file
 
@@ -866,13 +851,11 @@ while (<$SEQ>) {
 /\d/  # character class
 #+end_src
 
-
 ** Regex shorthands
 - Always use the shortest form for clarity
 - What does /p*/ match?
   - It always matches
 - Exact number of repetions
-
 
 ** Regex anchors and operators
 *** list 					      :B_ignoreheading:BMCOL:
@@ -944,7 +927,6 @@ s/(\w+)/"$1"/; # add quotes around
 $count = tr/[AT]/N/; 
 #+end_src
 
-
 ** Regex modifiers and greedyness
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -977,9 +959,6 @@ my $count = tr/[AT]/N/;
 #+end_src
 
 * Real world programming - errors and all
-
-
-
 
 ** Catching errors
 
@@ -1019,7 +998,6 @@ try {
 };
 #+end_src
 
-
 ** Calling external progammes
 
 #+begin_src perl
@@ -1029,7 +1007,6 @@ system("ls");
 # to catch the output use backtics
 $files =  `ls -1`;
 #+end_src
-
 
 ** Running perl
 
@@ -1042,7 +1019,6 @@ man perldebug
 - Command line perl
 - You should have learned it by now by example!
 
-
 ** Modules
 - Logical organisation of code
 - Code reuse
@@ -1054,7 +1030,6 @@ man perldebug
   - compile time include
   - 'use'ing a perl module makes object oriented interface available
     and usually exports common functions
-
 
 ** Getopt::Long
 
@@ -1090,7 +1065,6 @@ GetOptions
    sub{exec('perldoc',$0); exit 0} 
   );
 #+end_src
-
 
 
 ** Plain Old Documentation
@@ -1130,7 +1104,6 @@ Text in B<bold> I<italic>
 =end format
 =cut
 #+end_src
-
 
 ** POD tools
 - pod2html   pod2latex  pod2man    pod2text   pod2usage, podchecker
@@ -1219,7 +1192,6 @@ Text in B<bold> I<italic>
   - ... but you will not want to use it from there!
 - Sequence databases change so often that official releases are often outdated
 - http://www.bioperl.org/wiki/Using_Git
-
 
 **  Installing BioPerl via Git (I) start
 
@@ -1338,7 +1310,6 @@ features are:
   + way to create classes that enhance other classes (Bio::PrimarySeq
     -> Bio::Seq)
 
-
 ** Brief Object Oriented overview
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -1407,7 +1378,6 @@ features are:
     :END:
 [[file:img/puzzle_interface.png]]
 
-
 ** Interfaces and Inheritance in Bioperl
 - What you need to know: 
   + Interfaces are declared with trailing 'I' (Bio::PrimarySeqI) 
@@ -1420,7 +1390,6 @@ features are:
 - Methods which start with an underscore are considered 'private' 
 - Watch out. Perl programmers can cheat. 
 
-
 ** Modular programming (I)
 
 #+begin_center
@@ -1430,7 +1399,6 @@ features are:
 
 #+end_center
 From Stein et al. Genome Research 2002
-
 
 ** Modular programming (II)
 
@@ -1453,7 +1421,6 @@ From Stein et al. Genome Research 2002
   + Bio::LocatableSeq - subsequences 
   + Bio::Seq::Meta - residue annotation
 
-
 ** Sequence components II
 - Features 
   + Bio::SeqFeature::Generic - Basic Sequence features 
@@ -1461,7 +1428,6 @@ From Stein et al. Genome Research 2002
   + Bio::SeqFeature::FeaturePair - Paired features (HSPs) 
   + Sequence Input: Bio::SeqIO 
   + Annotation: Bio::Annotation::XX objects 
-
 
 ** Class diagram (subset)
 
@@ -1472,7 +1438,6 @@ From Stein et al. Genome Research 2002
 
 #+end_center
 From Stajich et al. Genome Research 2002
-
 
 ** Build a sequence and translate it
 
@@ -1493,7 +1458,6 @@ print "translation is ", $seq->translate()->seq(), "\n";
 seq length is 13
 translation is MGPS
 #+end_src
-
 
 ** Bio::PrimarySeq I
 
@@ -1517,12 +1481,10 @@ translation is MGPS
   + -trunc - get a sub-sequence as an object 
 
 
-
 ** Bio::PrimarySeq III
 - Methods only for nucleotide sequences 
   + translate - get the protein translation 
   + revcom - get the reverse complement
-
 
 ** Bio::Seq
 - Initialization 
@@ -1539,7 +1501,6 @@ translation is MGPS
   + -top\_SeqFeatures - Get all the toplevel features 
   + -all\_SeqFeatures - Get all features flattening those which contain sub-features (rare now).
   + -feature\_count - Get the number of features attached
-
 
 ** Parse a sequence from file
 
@@ -1561,7 +1522,6 @@ foreach my $feature ( $seq->top_SeqFeatures ) {
 }
 #+end_src
 
-
 ** Parse a sequence from file, output
 
 #+begin_src sh
@@ -1582,7 +1542,6 @@ Hart A.C., Kraemer H., van Vactor D.L. Jr., Paidhungat M., Zipursky
  ...
 #+end_src
 
- 
 ** Bio::SeqIO
 
 - Can read sequence from a file or a filehandle 
@@ -1594,7 +1553,6 @@ Hart A.C., Kraemer H., van Vactor D.L. Jr., Paidhungat M., Zipursky
   + -format - format for reading writing 
 - Some supported formats: 
   - genbank, embl, swiss, fasta, raw, gcg, scf, bsml, game, tab
-
 
 ** Read in sequence and write out in different format
 
@@ -1618,7 +1576,6 @@ while ( my $seq = $in->next_seq ) {
 - additional tag/value pairs 
 - Subclasses by numerous objects - power of the interface!
 
-
 ** Sequence Features: Bio::SeqFeature::Generic
 - Initialize 
  + -start, -end, -strand 
@@ -1631,7 +1588,6 @@ while ( my $seq = $in->next_seq ) {
 - Essential methods 
   +  primary\_tag, source\_tag, start,end,strand, frame 
      add_tag\_value, get\_tag\_values, remove\_tag, has\_tag 
-
 
 ** Locations quandary
 - How to manage features that span more than just start/end 
@@ -1678,7 +1634,6 @@ ORIGIN
 #+end_src
  
 
-
 ** Sequence Databases
 - Remote databases 
   + GenBank, GenPept, EMBL, SwissProt - Bio::DB::XX 
@@ -1689,7 +1644,6 @@ ORIGIN
 - SQL dbs 
   + Bio::DB::GFF 
   + Bio::DB::BioSeqDatabases (through bioperl-db pkg)
-
 
 ** Retrieve sequences from a database
 
@@ -1726,7 +1680,6 @@ $out->write_seq($seq);
 - biofetch - Bio::DB 
 - more: 	http://www.bioperl.org/HOWTOs/html/OBDA_Access.html
 
-
 ** Retrieve sequences using OBDA
 #+begin_src perl
 # ex7.pl
@@ -1752,7 +1705,6 @@ print $seq->seq,"\n";
 - Bio::AlignIO - Parser 
 - Bio::SimpleAlign - Data Object 
 
-
 ** Multiple Sequence Alignments
 
 #+begin_src perl
@@ -1766,7 +1718,6 @@ while( my $aln = $in->next_aln ) {
 }
 #+end_src
 
-
 ** BLAST/FASTA/HMMER Parsing
 - Can be split into 3 components 
   + Result - one per query, associated db stats and run parameters 
@@ -1774,7 +1725,6 @@ while( my $aln = $in->next_aln ) {
   + HSP - High Scoring Segment Pairs. Components of the Hit which match the query. 
 - Corresponding object types in the Bio::Search namespace 
 - Implemented for BLAST, FASTA, HMMER 
-
 
 ** Parse a BLAST & FASTA report
 #+begin_src perl
@@ -1826,7 +1776,6 @@ HSP Len is 28 E-value is 1.4e-09 Bit score 39
 --
 #+end_src
 
-
 ** Create an HTML version of a report
 #+begin_src perl
 #!/usr/bin/perl -w
@@ -1843,7 +1792,6 @@ my $out = new Bio::SearchIO(-writer => $writer,
                             -file => '>BOSS_Ce.BLASTP.html');
 
 #+end_src
-
 
 ** Create an HTML version of a report
 
@@ -1889,7 +1837,6 @@ while( my $result = $in->next_result ) {
 - Bio::Tools::EPCR 
 - (recent) Genewise, Genscan, Est2Genome, RepeatMasker 
 
-
 ** Things I'm skipping (here)
 
 - In detail: Bio::Annotation objects 
@@ -1901,7 +1848,6 @@ while( my $result = $in->next_result ) {
 - Bio::Restriction - find restriction enzyme sites and cut sequence 
 - Bio::Variation - represent mutations, SNPs, any small variations of sequence
 
-
 ** More useful things
 - Bio::Structure - parse/represent protein structure (PDB) data 
 - Bio::Tools::Alignment::Consed - process Consed data 
@@ -1909,7 +1855,6 @@ while( my $result = $in->next_result ) {
 - Bio::MapIO, Bio::Map - genetic, linkage maps (rudiments) 
 - Bio::Coordinate - transformations between coordinate systems
 - Bio::Tools::Analysis – web scraping
-
 
 ** Bioperl can help you run things too
 
@@ -1921,13 +1866,11 @@ while( my $result = $in->next_result ) {
 - Phylogenetic tools (PAML, Molphy, PHYLIP) 
 - More utilities added on a regular basis for the BioPipe pipeline project, http://www.biopipe.org/
 
-
 ** Other project off-shoots and integrations
 - Microarray data and objects (Allen Day) 
 - BioSQL - relational db for sequence data (Hilmar Lapp, Chris Mungall, GNF) 
 - Biopipe - generic pipeline setup (Elia Stupka, Shawn Hoon, Fugu-Sg) 
 - GBrowse - genome browser (Lincoln Stein)
-
 
 ** Acknowledgements
 
