@@ -188,3 +188,11 @@ carton
 Ubic
 * things to cover
  MRS::Client
+
+task: split fasta file based on header information
+
+task: create pseudo code and code for simple task
+
+possibility: ssh-copy-id
+
+ 

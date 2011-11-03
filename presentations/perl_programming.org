@@ -58,7 +58,7 @@
 ** What is Perl
 - Perl is a programming language
   - Born from a combination of C & shell scripting for system administration
-  - Larry Wall’s background in linguistics led to Perl borrowing ideas
+  - Larry Wall's background in linguistics led to Perl borrowing ideas
     from natural languages.
 
 - "There is more than one way to do it"
@@ -441,9 +441,9 @@ say "$alph: $c";
 
 - Special Initialization:
 #+begin_src perl
-  my %hash = ( ‘key1’ => ‘value1’ );
+  my %hash = ( key1 => 'value1' );
 #+end_src
-  - Could be written \texttt{( ‘key1’, ‘value1’, ‘key2’, ‘value2’, ... )}
+  - Could be written \texttt{( 'key1', 'value1', 'key2', 'value2', ... )}
 - Hash keys are unique!
 - Access scalar elements inside hashes like this:
 #+begin_src perl
@@ -592,19 +592,19 @@ until ($x < 0) {
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.4
     :END:
-- create your own verbs
-- prototypes and predeclarations of subroutines can be used
-- lexical scoping
-- shift works on @_
-- last statement is returned
+- Create your own verbs
+- Prototypes and predeclarations of subroutines can be used
+- Lexical scoping
+- Shift works on @\_
+- Last statement is returned
 - Note: you can not pass two arrays, they are flattened into one!
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.6
     :END:
 
 #+begin_src perl
@@ -617,19 +617,18 @@ sub add1 {
     my $two = shift; 	
     my $sum = $one + $two;
     return $sum;}
-
-sub add ($$) {
+# no space btw dollar signs!
+sub add ($ $) {
     shift() + shift();}
 my $sum = add1(2,3);
 $sum = add 2, 3;
 sub version {'1.0'};
 #+end_src
 
-
 ** Long arguments for subroutines
 
-- If you have more than two arguments often, you might want to use
-  hashes to pass arguments to subroutines
+If you have more than two arguments often, you might want to use
+  hashes to pass arguments to subroutines:
 
 #+begin_src perl
 sub add2 { # sub_sub2.pl
@@ -637,18 +636,15 @@ sub add2 { # sub_sub2.pl
     my $one = $args{one} || 0;
     my $two = $args{two} || 0;
     my $sum = $one +$two;
-    return $sum;
-}
+    return $sum; }
 
 sub add ($$) {
-    shift() + shift();
-}
+    shift() + shift(); }
 
 my $sum2 = add2(one => 2,
                 two => 3);
-my $sum = add(2,3);
+my $sum = add 2,3;
 #+end_src
-
 
 ** References
 
@@ -658,7 +654,8 @@ my $sum = add(2,3);
     :BEAMER_col: 0.5
     :END:
 
-- Reference is a scalar variable pointer to some other, often more complex, structure.
+- Reference is a scalar variable pointer to some other, often more
+  complex, structure.
 
 - It does not have to a named structure
 
@@ -688,22 +685,19 @@ ref \@a; #returns ARRAY
 ref \%a; #returns HASH
 #+end_src
 
-* Subroutines revisited
+** Subroutines revisited
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.3
     :END:
-
-
-- passing more compex arguments as references
-- ? : operator
-
+  - passing more compex arguments as references
+  - ? : operator
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.7
     :END:
 
 #+begin_src perl
@@ -720,13 +714,13 @@ sub first_is_longer { #longer.pl
 
 ** Reading and Writing a file
 - The easy way:
-- Use /texttt{while (<>){ } } construct
-- Redirect the output at command line into a file
+  - Use the \texttt{while (<>){ }} construct
+- Redirect the output from command line into a file
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.7
     :END:
 
 #+begin_src perl
@@ -744,29 +738,23 @@ while (<>) {
 > perl -ne '#do something' > file
 #+end_src
 
-** Filehandles
-
+** Filehandles, the old way
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.4
+    :BEAMER_col: 0.3
     :END:
 
 - Default filehandle is STDOUT
-- $! special variable holds
-- error messages
+- $! special variable holds error messages
 - perldoc -f -x
 - perldoc -f open
-- $/  'input record separator'
-  - defaults to "\n"
-- The three argument form is preferred
-  - lexical scope to filehandles
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.6
+    :BEAMER_col: 0.7
     :END:
 #+begin_src perl
 print "Hello\n"; # file1.pl
@@ -775,11 +763,36 @@ my $file = 'seq.embl';
 die "Not exist" unless -e $file;
 die "Not readable" unless -r $file;
 open FH, $file or die $!;
-while (<FH>) { chomp; print;}
-close FH;
+while (<FH>) { chomp; say;}
+#+end_src
+
+** Filehandles, the modern way
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.3
+    :END:
+
+- The three argument form is preferred
+  - gives lexical scope to filehandles
+- die automatically
+- $/  'input record separator'
+  - defaults to \texttt{\\ n}
+# error \, how to produce
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.7
+    :END:
+#+begin_src perl
+ # file2.pl
+use autodie; # test with Try::Tiny
+
 {
-  open my $F, '>', $file or die $!;
-  while (<$F>) { chomp; ... }
+  open my $F, '>', $file;
+  while (<$F>) { chomp; say $_; }
 }
 #+end_src
 
@@ -788,7 +801,7 @@ close FH;
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.3
     :END:
 
 - Permanent record of program execution
@@ -799,21 +812,22 @@ close FH;
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.7
     :END:
 #+begin_src perl
 # file2.pl
+use autodie;
 die "Not writable" unless -w $file;
-open my $LOG, '>>', $file or die $!;
-print STDERR "log: $params\n";
-print $LOG "$params\n";
+open my $LOG, '>>', $file;
+say STDERR "log: $params";
+say $LOG $params;
 
 local $/ = "\/\/\n";
-open my $SEQ, '<', shift or die $!;
+open my $SEQ, '<', shift;
 while (<$SEQ>) {
     my $seq = $_; 
     my ($ac) = $seq =~ /AC +(\w+)/;  
-    print "$ac\n" if $seq =~ /FT +CDS/;
+    say $ac if $seq =~ /FT +CDS/;
 }
 #+end_src
 
@@ -827,39 +841,50 @@ while (<$SEQ>) {
     :BEAMER_col: 0.4
     :END:
 - used for finding patterns in
-  - free text, semi-structured  text (database parsing), sequences (e.g. ProSite)
+  - free text
+  - semi-structured text (database parsing)
+  - sequences (ProSite)
 - consists of 
   - literals
   - metacharacters
+-  perldoc perlrequick, perldoc perlretut
+
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.6
+    :BEAMER_col: 0.7
     :END:
 #+begin_src perl
 /even/; # literal
-/eve+n/; # + means one or more
-/eve*n/; # * means zero or more
-/eve?n/; # ? means zero or one
+/eve+n/; # + means one or more e
+/eve*n/; # * means zero or more e
+/eve?n/; # ? means zero or one e
 /e(ve)+n/ # group
 /0|1|2|3|4|5|6|7|8|9/ # alteration
 /[0123456789]/ # character class
 /[0-9]/ # range, in ASCII
+/e[ve]+n/ # character class
 /\d/  # character class
 #+end_src
 
 ** Regex shorthands
 - Always use the shortest form for clarity
-- What does /p*/ match?
+- What does /p*/ match? \pause
   - It always matches
-- Exact number of repetions
+- Exact number of repetitions
+
+#+begin_src perl
+  # P loop, nucleotide binding 
+  # (AG)XXXXGK(ST), PROSITE
+  /[AG]X{4}GK[ST]/; # perl
+#+end_src
 
 ** Regex anchors and operators
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.4
+    :BEAMER_col: 0.3
     :END:
 
 - Anchoring the match to a border
@@ -871,11 +896,11 @@ while (<$SEQ>) {
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.6
+    :BEAMER_col: 0.7
     :END:
-
+#test usege without $line
 #+begin_src perl
-/^  \w+.+/ # ^ forces line start
+/^  \w+/ # ^ forces line start
 /\d$/ # $ forces line end
 /\bword\b/ # word boundary
 
@@ -897,14 +922,14 @@ if (/\w/) { # word_char.pl
     :END:
 
 - contents of parenthesis is remembered
-- fancier version of split()
+- fancier version of \testtt{split()}
 - explicit m allows use of any delimiter
 - regexp operators:
-  + match      m//
-  + substitution     s///
-  + translate     t///
+  + match m//
+  + substitution s///
+  + translate t///
     + returns number of translations
-    + useful for counting   
+    + useful for counting
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
@@ -920,8 +945,8 @@ my ($first_word, $rest)
 /\w+\\\w+/;
 m|\w+\\w+|;
 s/[Uu]/t/;
-s/(\w+)/"$1"/; # add quotes around 
-               # the first word
+# add quotes
+s/(\w+)/"$1"/; 
 $count = tr/[AT]/N/; 
 #+end_src
 
@@ -930,7 +955,7 @@ $count = tr/[AT]/N/;
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.4
     :END:
 - Modifiers
   - g - global
@@ -941,19 +966,16 @@ $count = tr/[AT]/N/;
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
+    :BEAMER_col: 0.6
     :END:
 #+begin_src perl
+ # quotes around every word 
+s/(\w+)/"$1"/g;
 
-s/(\w+)/"$1"/g; # quotes around 
-                # every word
-
-my $count = tr/[AT]/N/;
-
-
-/.+(w+)/; # last word character
-/.+?(w+)/; # first whole word
-
+# last word character
+/.+(w+)/;
+# first whole word
+/.+? (w+)/;
 #+end_src
 
 * Real world programming - errors and all
@@ -966,7 +988,7 @@ my $count = tr/[AT]/N/;
     variable $@
   + semicolon at the end of the 
     eval block is required
-- Try::Tiny is easier to remember
+- Try::Tiny is better
 
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -1009,8 +1031,8 @@ $files =  `ls -1`;
 ** Running perl
 
 #+begin_src perl
-man perrun
-man perldebug
+perldoc perrun
+perldoc perldebug
 #+end_src
 
 - Chapter 9 in Beginning Perl
@@ -1020,9 +1042,9 @@ man perldebug
 ** Modules
 - Logical organisation of code
 - Code reuse
-- @INC – paths where Perl looks for modules
-- (do) - call subroutines from an other file
-- require – runtime include of a file or module
+- @INC -- paths where Perl looks for modules
+- (do) -- call subroutines from an other file
+- require -- runtime include of a file or module
   - allows testing and graceful failure
 - use
   - compile time include
@@ -1037,7 +1059,7 @@ man perldebug
     :BEAMER_col: 0.25
     :END:
 - a standard library
-- used to set short or long options from command line
+- used to set short *and* long options from command line
 - $0, name of the calling programme
 
 
@@ -1049,13 +1071,13 @@ man perldebug
 
 #+begin_src perl
 use Getopt::Long;
-use constant PROGRAMME_NAME => 'optlong.pl';
+use constant PROGR_NAME => 'optlong.pl';
 use constant VERSION => '0.1';
 our $DEBUG = '';
 our $DIR = '.';
 GetOptions
   ('v|version'  => 
-    sub{print PROGRAMME_NAME, ", version ",
+    sub{print PROGR_NAME, ", version ",
         VERSION, "\n"; exit 1; },
    'd|directory:s'=> \$DIR,
    'g|debug'      => \$DEBUG,
@@ -1076,12 +1098,12 @@ GetOptions
 - POD: embedded structured comments in code
 - *Empty* lines separate commands
 - Three types of text:
-1. ordinary paragraphs
-  - formatting codes
-2. verbatim paragraphs
-  - indented
-3. command paragraphs
-  - see code 
+  1. Ordinary paragraphs
+    - Formatting codes
+  2. Verbatim paragraphs
+    - Indented
+  3. Command paragraphs
+    - See code 
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
@@ -1089,6 +1111,7 @@ GetOptions
     :BEAMER_col: 0.5
     :END:
 #+begin_src perl
+# compressed vertically!
 =pod
 =head1 Heading Text
 
@@ -1105,13 +1128,13 @@ Text in B<bold> I<italic>
 
 ** POD tools
 - pod2html   pod2latex  pod2man    pod2text   pod2usage, podchecker
-- use POD to create selfdocumenting scripts
+- use POD to create self-documenting programs
 #+begin_src perl
   exec('perldoc',$0); exit;
 #+end_src
-- Headers for a program:
+- Top level headers for a program:
   - NAME, SYNOPSIS, DESCRIPTION (INSTALLING, RUNNING, OPTIONS), VERSION, TODO, BUGS, AUTHOR, CONTRIBUTORS, LICENSE, (SUBROUTINES)
-- Use inline documentation when you can
+- Use inline documentation always when you can
 
 * Code reuse and CPAN
 
@@ -1120,7 +1143,8 @@ Text in B<bold> I<italic>
 - CPAN Authors usually QA their code
 - The community reviews CPAN Modules
 - Always look for a module *first*
-- Chances are, it’s been done faster and more securely than you could do it by yourself
+- Chances are, it's been done faster and more securely than you could
+  do it by yourself
 - It saves time
 - You might be able to do it better, but is it worth it?
 
@@ -1139,7 +1163,8 @@ Text in B<bold> I<italic>
 - *MIME::Lite* for constructing email message with or without attachments
 - *Spreadsheet::ParseExcel* to read in Excel Spreadsheets
 - *Spreadsheet::WriteExcel* to create spreadsheets in perl
-- *XML::Twig* for XML data
+- *XML::Twig* for manupulating XML data
+- *XML::Simple* for reading and writing simple XML
 - *PDL*, Perl Data Language, to work with matrices and math
 
 ** Perl Resources
@@ -1150,13 +1175,14 @@ Text in B<bold> I<italic>
 
 ** Installing from CPAN
 
-- use your distro's package manager to install most – and especialy complex modules.
-- e.g. \texttt{sudo apt-get install GD} – graphics library
+- use your distro's package manager to install most -- and especialy complex modules.
+- e.g. \texttt{sudo apt-get install GD} -- graphics library
 - first run configuring of  cpan:
   - \texttt{o conf init} at cpan prompt 
 - sets closest mirrors and finds helper programs
 
-** cpanm - App:cpanminus
+- cpanm - App:cpanminus
+  + modern installer of choice
 
 ** What is new in perl
 
@@ -1297,17 +1323,6 @@ features are:
 - Bioperl mailing list: bioperl-l@bioperl.org 
 - Bug reports:https://redmine.open-bio.org/projects/bioperl
 
-** Object Oriented programming (OOP)
-- class
-  + Description of data and methods (Bio::PrimarySeq)
-- method
-  + way to access data (Bio::PrimarySeq::seq())
-- object
-  + instance of a class (my $seq = Bio::PrimarySeq->new)
-- inheritance
-  + way to create classes that enhance other classes (Bio::PrimarySeq
-    -> Bio::Seq)
-
 ** Brief Object Oriented overview
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -1327,7 +1342,19 @@ features are:
     :END:
 [[file:img/puzzle_seq.png]]
 
+
 * Object oriented programming
+
+** Object Oriented programming (OOP) concepts
+- class
+  + Description of data and methods (Bio::PrimarySeq)
+- method
+  + way to access data (Bio::PrimarySeq::seq())
+- object
+  + instance of a class (my $seq = Bio::PrimarySeq->new)
+- inheritance
+  + way to create classes that enhance other classes (Bio::PrimarySeq
+    -> Bio::Seq)
 
 ** Objects in Perl
 
@@ -1838,21 +1865,21 @@ while( my $result = $in->next_result ) {
 ** Things I'm skipping (here)
 
 - In detail: Bio::Annotation objects 
-- Bio::Biblio - Bibliographic objects 
-- Bio::Tools::CodonTable - represent codon tables 
-- Bio::Tools::SeqStats - base-pair freq, dicodon freq, etc 
-- Bio::Tools::SeqWords - count n-mer words in a sequence 
-- Bio::SeqUtils – mixed helper functions
-- Bio::Restriction - find restriction enzyme sites and cut sequence 
-- Bio::Variation - represent mutations, SNPs, any small variations of sequence
+- Bio::Biblio -- Bibliographic objects 
+- Bio::Tools::CodonTable -- represent codon tables 
+- Bio::Tools::SeqStats -- base-pair freq, dicodon freq, etc 
+- Bio::Tools::SeqWords -- count n-mer words in a sequence 
+- Bio::SeqUtils -- mixed helper functions
+- Bio::Restriction -- find restriction enzyme sites and cut sequence 
+- Bio::Variation -- represent mutations, SNPs, any small variations of sequence
 
 ** More useful things
-- Bio::Structure - parse/represent protein structure (PDB) data 
-- Bio::Tools::Alignment::Consed - process Consed data 
-- Bio::TreeIO, Bio::Tree - Phylogenetic Trees 
-- Bio::MapIO, Bio::Map - genetic, linkage maps (rudiments) 
-- Bio::Coordinate - transformations between coordinate systems
-- Bio::Tools::Analysis – web scraping
+- Bio::Structure -- parse/represent protein structure (PDB) data 
+- Bio::Tools::Alignment::Consed -- process Consed data 
+- Bio::TreeIO, Bio::Tree -- Phylogenetic Trees 
+- Bio::MapIO, Bio::Map -- genetic, linkage maps (rudiments) 
+- Bio::Coordinate -- transformations between coordinate systems
+- Bio::Tools::Analysis -- web scraping
 
 ** Bioperl can help you run things too
 
@@ -1874,4 +1901,9 @@ while( my $result = $in->next_result ) {
 
 - LOTS of people have made the toolkit what it is today. 
 - The Bioperl AUTHORS list in the distro is a starting point. 
-- Some people who really got the project started and kept it going: Jason Stajich, Sendu Bala, Chris Field, Brian Osborne, Steven Brenner, Ewan Birney, Lincoln Stein, Steve Chervitz, Ian Korf, Chris Dagdigian, Hilmar Lapp, Heikki Lehväslaiho, Georg Fuellen & Elia Stupka
+
+- Some people who really got the project started and kept it going:
+  Jason Stajich, Sendu Bala, Chris Field, Brian Osborne, Steven
+  Brenner, Ewan Birney, Lincoln Stein, Steve Chervitz, Ian Korf, Chris
+  Dagdigian, Hilmar Lapp, Heikki Lehvaslaiho, Georg Fuellen & Elia
+  Stupka
