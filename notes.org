@@ -187,7 +187,11 @@ Regexp::Grammars
 carton
 Ubic
 * things to cover
- MRS::Client
+  CLOCK: [2011-11-08 Tue 08:27]
+  :PROPERTIES:
+  :ORDERED:  t
+  :END:
+MRS::Client
 
 task: split fasta file based on header information
 
@@ -195,4 +199,14 @@ task: create pseudo code and code for simple task
 
 possibility: ssh-copy-id
 
+
  
+http://perl-tutorial.org/
+
+App::TimeTracker
+http://timetracker.plix.at/
+
+http://johnwang.com/explaining-why-moose-is-awesome-the-direct-way/
+Why: Moose makes Perl more Maintainable than Other Languages
+How: Moose adds Static Typing to Getters and Setters
+Bonus: Moose Eliminates Write Once Code
