@@ -1,0 +1,101 @@
+#; -*- mode: Org;-*-
+
+* Perl class demonstration code
+
+  This directory contains examples for Object Oriented Programming
+  (OOP) in Perl.
+
+  The example coded is a simple biological sequence file in FASTA text
+  format. Every entry starts with a '>' character in the first
+  column. It supports only three attributes:
+
+  - identifier (id), a word after the '>' character
+  - description (descr), free text in one line
+  - sequence (seq), multi-line nucleotide or amino acid sequence
+
+* Classic style
+
+  OO was thrown in Perl with minimal addition to procedural language
+  -- and it shows.  A class is typically just a hash reference
+  "blessed" to a special name. All the additional OO concepts have to
+  be hand coded every time. There is plenty of hard-to-read code that
+  is easy to get wrong. BioPerl uses classic style with agreed
+  conventions. It is important to understand the basics of the classic
+  code does, more modern approaches use similar constructs under the
+  hood.
+
+** Code
+
+   The file fastaseq_oldperl.pl contains the definition of Perl class
+   FastaSeq and a few lines that creates one FastaSeq object and sets
+   its attributes. Notice how the FastaSeq class is not 'used' by the
+   main package when both are in the same file.
+
+   Run the example by:
+
+   $ ./fastaseq_oldperl.pl
+
+* Modern style
+
+  Moose is a complete rewrite of Perl OO framework that follows all
+  modern best practices. Moose is very comprehensive, and complex, and
+  therefore hard to learn. It also relatively slow to load and run.
+  Recently, a number of modules have been created that take the Moose
+  approach but streamline the classes (e.g. Mouse, Mousse, Moo,
+  Mo). We will use the smallest of these modules, Mo. Basic Mo is 450
+  characters of code. In its creator's words: "M is nothing. Mo is
+  more. Not much".
+
+** Install Mo
+
+  The module Mo needs to be installed before running the examples:
+
+  $ cpanm Mo
+
+** Code 1
+
+  The first package in the file fastareader.pl demonstrates code that
+  re-implements the class FastaSeq. Note how compact the code is. To
+  make the example more interesting, the same file includes the class
+  ReadFasta. It reads FASTA text files into FastaSeq objects. The
+  equivalent code can be found in BioPerl in classes Bio::PrimarySeq
+  and Bio::SeqIO::fasta.
+
+  Run this example by:
+
+  $ ./fastareader.pl
+
+** Code 2 
+
+   Writing everything in one file is fine when you are exploring
+   possibilities or demonstrating capabilities. To write manageable
+   and reusable code, different components need to be stored in their
+   own files, in-line documentation and tests needs to written.
+
+   The class code was taken from fastareader.pl and placed in the lib
+   subdirectory into appropriately named files. Unit tests were
+   written for both classes and placed into the t subdirectory. This
+   organization is common in CPAN modules and follows Perl
+   conventions.
+
+   it now easy to run the prove utility that by default looks for
+   tests in the t directory. You have to use the option -l to tell
+   prove to add the lib subdirectory to the module path:
+
+   $ prove -l
+
+   The example script read_fasta.pl demonstrates the use of these new
+   modules:
+
+   $ ./read_fasta.pl
+
+   Notice the 4th line of the script: 'use lib "./lib";' It tells the
+   script where to find the used classes. Normally you'd add that
+   directory to  environmental variable PERL5LIB where it it could be
+   automatically added to the global Perl variable @INC.
+
+   All three fasta sequences are again written out to valid FASTA text
+   format in standard out within the while loop. It is easy to add
+   check fro sequence contents to this loop and write out only the
+   interesting ones.
+

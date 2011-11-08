@@ -1,4 +1,4 @@
-use lib './lib';
+#; -*- mode: CPerl;-*-
 use Test::More tests => 9;
 
 require FastaSeq;
