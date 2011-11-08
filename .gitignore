@@ -23,3 +23,4 @@ vc.tex
 *.temp
 *.tex
 *.tar.gz
+.tracker.json
