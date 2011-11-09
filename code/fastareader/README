@@ -24,7 +24,7 @@
   code does, more modern approaches use similar constructs under the
   hood.
 
-** Code
+** Code 1
 
    The file fastaseq_oldperl.pl contains the definition of Perl class
    FastaSeq and a few lines that creates one FastaSeq object and sets
@@ -52,20 +52,18 @@
 
   $ cpanm Mo
 
-** Code 1
+** Code 2
 
   The first package in the file fastareader.pl demonstrates code that
   re-implements the class FastaSeq. Note how compact the code is. To
   make the example more interesting, the same file includes the class
-  ReadFasta. It reads FASTA text files into FastaSeq objects. The
-  equivalent code can be found in BioPerl in classes Bio::PrimarySeq
-  and Bio::SeqIO::fasta.
+  ReadFasta. It reads FASTA text files into FastaSeq objects.
 
   Run this example by:
 
   $ ./fastareader.pl
 
-** Code 2 
+** Code 3 
 
    Writing everything in one file is fine when you are exploring
    possibilities or demonstrating capabilities. To write manageable
@@ -99,3 +97,26 @@
    check fro sequence contents to this loop and write out only the
    interesting ones.
 
+* BioPerl
+
+   BioPerl has been around for so long that it still uses classic perl
+   objects. The beauty of the object approach is that the interface,
+   the way objects are called is essentially the same.
+
+   The equivalent code can be found in BioPerl in classes
+   Bio::PrimarySeq and Bio::SeqIO::fasta. The fasta code is not called
+   directly but by using generic Bio::SeqIO; the file format is
+   guessed from the file extension.
+
+   Do not forget to have a BioPerl installed first.
+
+** Code 4
+
+   Run the code:
+
+   $ ./read_fasta_bioperl.pl
+
+   The dump of the sequence object shows that there are more
+   attributes hidden inside it. The _root_verbose attribute is an
+   indication of the Bio::Root superclass that is common to all
+   BioPerl objects.
