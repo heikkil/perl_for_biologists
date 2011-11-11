@@ -101,7 +101,8 @@
 
    BioPerl has been around for so long that it still uses classic perl
    objects. The beauty of the object approach is that the interface,
-   the way objects are called is essentially the same.
+   the way objects are called, is essentially the same regardless of
+   the implementation.
 
    The equivalent code can be found in BioPerl in classes
    Bio::PrimarySeq and Bio::SeqIO::fasta. The fasta code is not called
