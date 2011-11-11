@@ -1,4 +1,4 @@
-#!/usr/bin/env perl
+
 package ReadFasta;
 #use Mo;
 use Mo qw'build';
