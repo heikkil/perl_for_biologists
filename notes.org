@@ -210,3 +210,113 @@ http://johnwang.com/explaining-why-moose-is-awesome-the-direct-way/
 Why: Moose makes Perl more Maintainable than Other Languages
 How: Moose adds Static Typing to Getters and Setters
 Bonus: Moose Eliminates Write Once Code
+
+
+* Impatient perl
+iperl.pdf
+
+** string
+
+- string literals
+  - single quotes: verbatim
+  - variable interpolation
+- chomp
+- concatenation: period
+- repetition
+- length
+- substr
+- split/join
+- qw (a b);
+- HERE documents
+
+** numbers
+
+- abs
+- int
+- sqrt
+- exp, log
+- rand
+- sprintf
+- oct, hex
+
+- flow control precedence (|| versus or )
+- conditional operator 
+  - my $res = $boolean ? $value1 : $value2
+
+- more practicals on scalars and scalar functions
+
+** references and file handles
+
+** arrays
+
+- for(each)
+- scalar
+- push
+- pop
+- shift
+- unshift
+- sort
+- reverse
+- splice
+
+* hashes
+
+- exists
+- delete
+- keys
+- values
+- each
+
+* references
+
+- way to complex structures
+- since arrays and hashes can store only scalars, you need a scalar to
+  point to it. That is a reference.
+- function ref()
+- autovivification
+- can not print, use Data::Dumper or YAML
+
+* Packages, name spaces and lexical scoping
+
+- package defines a name space
+- our: package variables ("global")
+- my : lexical variables
+- blocks of code
+- garbage collection
+
+
+- procedural versus OO 
+- "perl, do this to a variable"
+  -- function acts on a variable
+- object, do this to yourself
+  -- object has a method to do something
+
+- Class is a package the returns a blessed construct (hash)
+  - it needs a constructor
+  - and other methods that act on  data
+
+
+- POD
+- command line arguments
+- file input and output
+- file tests
+- glob() - shell style filename
+
+
+* Regular expressions
+
+1. match default or m
+2. substute  s
+3. tranliterate tr or y
+
+scalar binding
+
+1. =~  match
+2. !~ not match
+
+- wild cards, metacharacters
+- capturing parentheses
+- greedy vs thrifty quantifiers
+- position anchors
+- modifiers , 'perldoc perlre'
+  -
