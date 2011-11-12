@@ -2,7 +2,7 @@
 package FastaSeq;
 use Mo;
 has id => ();
-has descr => ();
+has desc => ();
 has seq => ();
 sub length {
     my $self = shift;

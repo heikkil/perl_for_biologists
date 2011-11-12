@@ -5,8 +5,8 @@ require_ok ('FastaSeq');
 
 my $s = FastaSeq->new;
 isa_ok $s, 'FastaSeq';
-can_ok 'FastaSeq', qw'id descr seq length';
+can_ok 'FastaSeq', qw'id desc seq length';
 ok $s->id('A') eq 'A', "id()";
-ok $s->descr('acme') eq 'acme', "descr()";
+ok $s->desc('acme') eq 'acme', "desc()";
 ok $s->seq('actg') eq 'actg', "seq()";
 ok $s->length() == 4, "length()";

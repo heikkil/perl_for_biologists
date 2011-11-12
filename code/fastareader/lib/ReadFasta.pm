@@ -29,12 +29,12 @@ sub next_seq {
 	my $entry = $_;
 #	print $entry;
 	my ($id) = $entry =~ /^>? *(\w*)/;
-	my ($descr) = $entry =~ /^>? *\w* ?(.*)\n/;
+	my ($desc) = $entry =~ /^>? *\w* ?(.*)\n/;
 	my ($str) = $entry =~ /^.*?\n(.*)/s;
 	$str =~ s/\W//g;
 #	print "$id\n";
 	my $seq = FastaSeq->new (id => $id);
-	$seq->descr($descr) if $descr;
+	$seq->desc($desc) if $desc;
 	$seq->seq($str) if $str;
 	return $seq;
     }
