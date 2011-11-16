@@ -199,7 +199,7 @@ task: create pseudo code and code for simple task
 
 possibility: ssh-copy-id
 
-
+Chart::Strip - Draw strip chart type graphs.
  
 http://perl-tutorial.org/
 
@@ -320,3 +320,47 @@ scalar binding
 - position anchors
 - modifiers , 'perldoc perlre'
   -
+* core perl
+
+** Perl releases
+- annual major release
+  - Production releases with even numbers
+    + 5.10 (2011), 5.12 (2010), 5.14 (2011), 5.16
+  - Development releases with odd numbers
+    + 5.15, ...
+- minor releases when needed
+
+*** Perl 5.10
+- defined or operator //
+- built-in switch statement
+
+  my $a = '';
+  given ($codon) {
+     when (/ATG/) {$a = 'M; '}
+     when (/TAA/) {$a = '*'; }
+     default {$a = 'N'}
+
+- smart matching ~~
+  + perldoc perlsyn
+- say()
+- lexical default variable: my $_
+- stacked file tests: e.g. -f -w -x $file
+- regexp improvements
+  - named capture buffers /(?<name>)/; say $+{name}
+- some features off by default: use Modern::Perl; perl -E 'say "a"'
+
+
+*** Perl 5.12
+- package takes version: package MyParser 0.1
+- yada-yada operator ...
+  + compiles, throws unimplemented exeption when run
+- automatics 'use strict;' when 'use 5.12.0'
+- parent instead of base
+- autodie
+
+*** Perl 5.14
+- nodestructuve substitution (r)
+  + s///r and tr///r act on copy
+  + $new = s/a/b/r; # $_ still has a
+- CPAN meta modules
+- HTTP::Tiny - http client
