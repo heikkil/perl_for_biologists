@@ -1113,7 +1113,7 @@ GetOptions
 #+begin_src perl
 # compressed vertically!
 =pod
-=head1 Heading Text
+=head1 HEADING TEXT
 
 Text in B<bold> I<italic>
 
