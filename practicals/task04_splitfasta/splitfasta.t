@@ -1,7 +1,13 @@
-#!/usr/bin/env perl
+# ; -*- mode: CPerl; -*-  for Emacs
+#
+# Run this with
+#
+#   prove -vl splitfasta.t
+#
+
 use Test::Simple tests => 5;
 
-print "# I'm testing ", `splitfasta.pl -v`, "\n";
+print "# I'm testing ", `./splitfasta.pl -v`, "\n";
 
 ok `./splitfasta.pl --segment 10 --overlap 0 test.fa| grep -c ">"` == 4,
     'overlap 0';

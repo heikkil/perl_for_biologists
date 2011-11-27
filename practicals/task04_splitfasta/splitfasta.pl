@@ -5,7 +5,7 @@ use Getopt::Long;
 use autodie;
 
 use constant PROGRAMME_NAME => 'splitfasta.pl';
-use constant VERSION => '0.4';
+use constant VERSION => '0.5';
 
 my ($OUTPUT, $SEGMENT_LENGTH, $OVERLAP_LENGTH) = (undef, 10000, 1000);
 GetOptions(
@@ -20,9 +20,12 @@ GetOptions(
 
 # ---------------------------------------
 # open input file and output file
+# input comes from a file
 my $INPUT = shift;
 open my $IN, "<", $INPUT;
 
+# if output file has not been given, print to STDOUT
+# filehandle OUT is used in both cases
 if ($OUTPUT) {
     open(OUT, ">$OUTPUT");
 } else {
@@ -31,7 +34,7 @@ if ($OUTPUT) {
 
 # variables
 my $seq = "";   # sequence residues
-my $header;     # contents of the header llne
+my $header;     # contents of the header line
 my $id;         # seq id from the $header
 my $seqcounter; # segment count
 my $start;      # pointer to the original seq loc
@@ -39,34 +42,50 @@ my $start;      # pointer to the original seq loc
 while (<$IN>) {
     chomp;
     if (/^>/) {
-        # the header line starts a new sequence
+        # the header line starts a new input sequence
 
-        # print out last residues from previous seq
+        # print out to new output sequence the
+	# last residues from previous input seq
         print OUT ">$id-", $seqcounter++, " start=$start\n$seq\n" if $seq;
 
+	# read in the ID to $id
         $header = $_;
         ($id) = $header =~ /(\w+)/;
+	# reset the $seq to empty
         $seq = '';
+	# $seqcounter is reset to 0
         $seqcounter = 0;
+	# start counting residies form 1
         $start = 1;
-    } else { # store sequence
+    } else { # store sequence in $seq
+	# remove all non-residue characters
         s/[^a-zA-Z]//g;
         $seq .= $_;
     }
 
+    # while input seq is long enough
     while (length($seq) >= $SEGMENT_LENGTH) {
-        #substr EXPR,OFFSET,LENGTH,REPLACEMENT
+
+	# extract $SEGMENT_LENGTH long region out of the input seq
+        #use: substr EXPR,OFFSET,LENGTH,REPLACEMENT
         my $seqment = substr $seq, 0, $SEGMENT_LENGTH, '';
+
+	# print out a new FASTA sequence
+	# name is "$id-$seqcounter"
         print OUT ">$id-", $seqcounter++,
 	    " overlap=$OVERLAP_LENGTH start=$start end=".
 	    ($start+$SEGMENT_LENGTH-1). "\n".
 	    "$seqment\n";
 
-        # deal with overlap
+        # deal with overlap, if defined
+	# copy $OVERLAP_LENGTH segment from the end of the just printed sequence
+	# and prepend it back the $seq
         if ($OVERLAP_LENGTH) {
             $seq = substr($seqment, -1*$OVERLAP_LENGTH, $OVERLAP_LENGTH)
 		. $seq;
         }
+
+	# keep track what is the new start location
         $start = $start + $SEGMENT_LENGTH - $OVERLAP_LENGTH;
 
     }
@@ -135,7 +154,7 @@ The lenght of the new sequences. Defaults to 10,000.
 
 =item B<-s|--overlap_length> value
 
-The lenght of the overlap between subsequent sequences. Defaults to 1,000.
+The length of the overlap between subsequent sequences. Defaults to 1,000.
 
 
 =back
@@ -147,6 +166,7 @@ The lenght of the overlap between subsequent sequences. Defaults to 1,000.
   0.2.0, 27 Feb 2007, first public version
   0.3.0, 28 Feb 2007, more documentation public version
   0.4.0,  1 Oct 2011, modernize
+  0.5.0, 27 Oct 2011, more code comments
 
 =head1 TODO
 

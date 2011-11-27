@@ -136,6 +136,10 @@ http://www.perl-begin.org/tutorials/impatient-perl/iperl.html
   - Get feedback on best practices. Share. Code review!
 
 
+* git 
+
+http://think-like-a-git.net/
+
 * tips
 
 - Module::Corelist (corelist)

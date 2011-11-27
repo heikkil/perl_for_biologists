@@ -60,12 +60,34 @@ Write a perl program that prints out your name.
 - *Aim*: To make sure you can edit perl code with syntax highlighting,
   and run it.
 
-* 2.a. Date conversions
+* 2. Sequence converter in plain perl
 
-Write a subroutine called date() that reads the current date from the
-unix \texttt{date} command output and returns it in what ever format
-you see appropriate.  Call the subroutine within the program to show
-that it works and print out the result.
+Write a program that reads in a file containing an EMBL sequence
+file, parses its contents line by line and prints out a FASTA
+formatted text into STDOUT. Use the data/ar.embl file and the sequence
+version as the id.
+
+- *Aim*: Know how to use the '(<>)' construct and regular expressions
+  to select parts of the line and to do changes to it.
+
+- *FASTA file format*: The id line starting with '>' followed by one
+  word ID, and multi word optional description. Fields are separated
+  by a space character. Multiple sequence lines follow; no spaces or
+  numbers, no fixed line length.
+
+- *Test*: Run command and add code to file ./task02_embl2fasta.pl.
+
+#+begin_src sh
+  ./test.sh
+#+end_src
+
+
+* 3.a. Date conversions
+
+Write a subroutine called date\_a() that reads the current date from
+the unix \texttt{date} command output and returns it in what ever
+format you see appropriate.  Call the subroutine within the program to
+show that it works and print out the result.
 
 - *Aim*: Know how to manipulate data with regexps and how to call an
   external command line program. Encapsulation using a subroutine.
@@ -73,38 +95,28 @@ that it works and print out the result.
 - *Note*: In real world you would like to use builtin functions
   \texttt{localtime()} and \texttt{gmtime()}.
 
-Do the other parts of this task if you have time.
+- *Test*: Run command:
 
-* 2.b. ISO date 
+#+begin_src sh
+  prove -vl splitfasta.t
+#+end_src
+
+* 3.b. ISO date 
 
 Make an other version of the subroutine to returns date in ISO
 format (YYYY-MM-DD, e.g. 2007-03-22).
 
-- *Hint*: Use a hash to store the month names as keys and month
-  numbers as values.
+- *Hint*: Create a helper subroutine that converts names into
+  numbers. Inside the subroutine, use hash to store the month
+  names as keys and month numbers as values.
 
-- *Hint*: Presise text formatting can be done with \texttt{sprintf()}.
+- *Hint*: Precise text formatting can be done with \texttt{sprintf()}.
 
-* 2.c. Date with arguments
+* 3.c. Date with arguments
 
 Make a third version of the date subroutine by making it possible
 to use named arguments to select the returned format. Use a default,
 so that the subroutine always returns something.
-
-* 3. Sequence converter in plain perl
-
-Write a program that reads in a file containing an EMBL sequence
-file, parses its contents line by line and prints out a FASTA
-formatted text into STDOUT. Use the ar.embl file and the sequence
-version as the id.
-
-- *Aim*: Know how to use '(<>)' construct and regular expressions to
-  select parts of the line and to do changes to it.
-
-- *FASTA file format*: The id line starting with '>' followed by one
-  word ID, and multi word optional description. Fields are separated
-  by a space character. Multiple sequence lines follow; no spaces or
-  numbers, no fixed line length.
 
 
 * 4. Split sequence
@@ -119,15 +131,27 @@ seqments with an overlap. Use 4test\_splitfasta.pl test file and
   the program are met. Add command line options and comment
   your program using POD.
 
+- *Test*: Run command:
+
+#+begin_src sh
+  prove -vl splitfasta.t
+#+end_src
+
 * 5. Bioperl sequence converter
 
 Write an EMBL to FASTA converter with BioPerl. Run it with file
-ar.embl and compare the output to the one got in exercise 3.
+data/ar.embl and compare the output to the one you created in
+exercise 2.
 
-- *Aim*: Use BioPerl to solve problems.
+- *Aim*: Use BioPerl to solve bioinformatics problems.
 
 - *Hint*: Read Bio::SeqIO documentation using perldoc
 
+- *Test*: Run command:
+
+#+begin_src sh
+  ./test.sh
+#+end_src
 
 * 6. BLAST parsing
 
@@ -140,5 +164,11 @@ t/data/a\_thaliana.blastn bioperl test file to run it.
 - *Hint*: See examples/searchio/blast\_example.pl in BioPerl and remove
   (or comment out) unnecessary lines.
 
-- *Hint*: use command line program grep to find BioPerl test files
-  that use Bio::SearchIO.
+- *Hint*: Read to find BioPerl test files that use Bio::SearchIO
+  (t/SearchIO).
+
+- *Test*: Run command:
+
+#+begin_src sh
+  ./test.sh
+#+end_src
