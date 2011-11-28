@@ -75,9 +75,10 @@ version as the id.
   by a space character. Multiple sequence lines follow; no spaces or
   numbers, no fixed line length.
 
-- *Test*: Run command and add code to file ./task02_embl2fasta.pl.
+- *Test*: Run command and add code to file ./task02\_embl2fasta.pl.
 
 #+begin_src sh
+  cd practicals/task02_sequenceconverter
   ./test.sh
 #+end_src
 
@@ -95,9 +96,10 @@ show that it works and print out the result.
 - *Note*: In real world you would like to use builtin functions
   \texttt{localtime()} and \texttt{gmtime()}.
 
-- *Test*: Run command:
+- *Test*: Do everything within the test file. Run command:
 
 #+begin_src sh
+  cd practicals/task03_date
   prove -vl splitfasta.t
 #+end_src
 
@@ -122,18 +124,18 @@ so that the subroutine always returns something.
 * 4. Split sequence
 
 Write a program that takes in a sequence and splits it up into
-seqments with an overlap. Use 4test\_splitfasta.pl test file and
-4test.fa sequence file.
+seqments with an overlap.
 
 - *Aim*: Write a full blown program in a controlled manner. First work
   out a pseudocode, then create tests, start writing with a simplified
   assumption, get it to work, elaborate until all the requirements of
-  the program are met. Add command line options and comment
-  your program using POD.
+  the program are met. Add command line options and comment your
+  program using POD. Most of this has been prepared for you.
 
 - *Test*: Run command:
 
 #+begin_src sh
+  cd practicals/task04_splitfasta
   prove -vl splitfasta.t
 #+end_src
 
@@ -150,6 +152,7 @@ exercise 2.
 - *Test*: Run command:
 
 #+begin_src sh
+  cd practicals/task05_bioperl_seqconverter
   ./test.sh
 #+end_src
 
@@ -170,5 +173,6 @@ t/data/a\_thaliana.blastn bioperl test file to run it.
 - *Test*: Run command:
 
 #+begin_src sh
+  cd practicals/task06_blast_parsing
   ./test.sh
 #+end_src
