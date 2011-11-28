@@ -61,6 +61,8 @@
 - Know basic perl idioms and commands
 - Know best practices
 - Start using perl to learn it properly
+- Understand what are objects in perl
+- Use BioPerl
 
 * Which perl?
 
@@ -70,8 +72,8 @@
 - Good reasons for not using it:
   + Might not be the version you want
   + Might not have the modules you need
-  + You might not have access superuser access
-  + Bound to one version
+  + You might not have superuser access
+  + You will be bound to one version
   + Changing the vendor perl might destabilize the OS (Macs!)
 
 * Personal perl
@@ -147,8 +149,8 @@ Verify the perl version:
   + http://search.cpan.org/
 - copies all around the world
   + use the closest
-- Accessible by different programs that allow you to install them
-  locally
+- Accessible by different programs that allow you to install modules
+  to your computer
 - Under linux, use your package repository binaries to install
   difficult packages;
   + Ubuntu: e.g. install perl interface to GD graphics library
@@ -200,8 +202,8 @@ Read their documentation using \texttt{perldoc <Module::Name>}
 * Directory structure
 
 #+begin_src sh
-  mkdir ~/perl_code
-  cd ~/perl_code
+  scp student0@baloo-dev.cbrc.kaust.edu.sa/perl_course .
+  cd ~/perl_course
   git config --global user.name "Your Name"
   git config --global user.email \
     "your.name@kaust.edu.sa"
@@ -212,8 +214,8 @@ Read their documentation using \texttt{perldoc <Module::Name>}
 
 * The first program
 
-Create a program that prints out \texttt{Hello!} to the first line of
-output.
+Type in the following 4 lines in emacs. It prints out \texttt{Hello!}
+to the first line of output.
 
 #+begin_src perl
   #!/usr/bin/env perl
@@ -222,7 +224,7 @@ output.
   say "Hello!";
 #+end_src
 
-Execute it:
+Execute it from command line:
 
 #+begin_src sh
   chmod 755 hello.pl
