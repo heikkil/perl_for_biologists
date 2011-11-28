@@ -1,4 +1,5 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
+# ex8.pl
 use strict;
 use Bio::SearchIO;
 use Math::BigFloat;

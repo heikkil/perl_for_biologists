@@ -1,4 +1,5 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
+# ex3.pl
 use strict;
 use Bio::SeqIO;
 my $in = new Bio::SeqIO(-format => 'swiss',

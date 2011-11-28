@@ -158,7 +158,7 @@
     :BEAMER_col: 0.5
     :END:
 - shebang #!
-  + /usr/bin/perl
+  + /usr/bin/env perl
 - directives (use)
 - keywords 
 - functions
@@ -1259,7 +1259,8 @@ git pull
 ** Simple example
 
 #+begin_src perl
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
+# ex1.pl
 use strict;
 use Bio::SeqIO;
 my $in = new Bio::SeqIO(-format => 'genbank',
@@ -1467,7 +1468,8 @@ From Stajich et al. Genome Research 2002
 ** Build a sequence and translate it
 
 #+begin_src perl
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
+# ex2.pl
 use strict;
 use Bio::PrimarySeq;
 my $seq = new Bio::PrimarySeq(-seq => 'ATGGGACCAAGTA', 
@@ -1625,6 +1627,7 @@ while ( my $seq = $in->next_seq ) {
 ** Create a sequence and a feature
 #+begin_src perl
 #ex5.pl
+use Modern::Perl;
 use Bio::Seq;
 use Bio::SeqFeature::Generic;
 use Bio::SeqIO;
@@ -1708,7 +1711,7 @@ $out->write_seq($seq);
 ** Retrieve sequences using OBDA
 #+begin_src perl
 # ex7.pl
-use Bio::DB::Registry 1.2;# needs bioperl release 1.2.2 or later
+use Bio::DB::Registry;
 my $registry = Bio::DB::Registry->new;
 # $registry->services
 my $db = $registry->get_database('embl');
@@ -1803,7 +1806,7 @@ HSP Len is 28 E-value is 1.4e-09 Bit score 39
 
 ** Create an HTML version of a report
 #+begin_src perl
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
 # ex9.pl
 use strict;
 use Bio::SearchIO;

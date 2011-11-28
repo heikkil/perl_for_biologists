@@ -1,6 +1,9 @@
+#!/usr/bin/env perl
 # ex7.pl
+use Modern::Perl;
 use Data::Dumper;
-use Bio::DB::Registry 1.2; # needs bioperl release 1.2.2 or later
+use Bio::DB::Registry;
+
 my $registry = Bio::DB::Registry->new;
 #print Dumper $registry;
 # $registry->services

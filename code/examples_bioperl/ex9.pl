@@ -1,4 +1,5 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
+# ex9.pl
 use strict;
 use Bio::SearchIO;
 use Bio::SearchIO::Writer::HTMLResultWriter;
@@ -22,7 +23,7 @@ while( my $result = $in->next_result ) {
 	 -database_letters  => $result->database_letters,
 	 -database_entries  => $result->database_entries,
 	 -algorithm         => $result->algorithm,
-	 -algorithm_version => $result->algorithm_version,	 
+	 -algorithm_version => $result->algorithm_version,
 	 );
     foreach my $param ( $result->available_parameters ) {
 	$newresult->add_parameter($param,$result->get_parameter($param));

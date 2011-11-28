@@ -1,10 +1,12 @@
-#!/usr/bin/perl -w
+#!/usr/bin/env perl
+# ex6.pl
 use strict;
 use Bio::DB::GenBank;
 use Bio::DB::SwissProt;
 use Bio::DB::GenPept;
 use Bio::DB::EMBL;
 use Bio::SeqIO;
+
 my $out = new Bio::SeqIO(-file => ">remote_seqs.embl",
 			 -format => 'embl');
 my $db = new Bio::DB::SwissProt();

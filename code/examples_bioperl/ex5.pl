@@ -1,3 +1,6 @@
+#!/usr/bin/env perl
+# ex5.pl
+use Modern::Perl;
 use Bio::Seq;
 use Bio::SeqFeature::Generic;
 use Bio::SeqIO;
