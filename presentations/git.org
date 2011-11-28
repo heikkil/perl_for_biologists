@@ -184,8 +184,8 @@ and commit any set of changes.
 
 * Recovering files
 
-No matter how mangle a file, you can always fetch the latest committed
-version from the repository:
+No matter how you have mangled a file, you can always fetch the latest
+committed version from the repository:
 
 #+begin_src sh
   git checkout filename
