@@ -1324,6 +1324,23 @@ features are:
 - Bioperl mailing list: bioperl-l@bioperl.org 
 - Bug reports:https://redmine.open-bio.org/projects/bioperl
 
+** perlmethods: List of methods in a class
+
+- Introspection is not built in perl5
+- install the CPAN module Class::Inspector
+
+#+begin_src sh
+  cpanm Class::Inspector
+#+end_src
+
+- Call a script perl_course/bin/perlmethods with a class name to list
+  classes where each method is defined, e.g.:
+
+#+begin_src sh
+  perlmethods Bio::PrimarySeq
+#+end_src
+
+
 ** Brief Object Oriented overview
 
 *** list 					      :B_ignoreheading:BMCOL:
