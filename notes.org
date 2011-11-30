@@ -418,4 +418,6 @@ cat aminoacids.tab | perl -lne 'print if /(NH2.*){2}/'
 #+end_src
 
 
-* 
+* moodle course
+
+bala ~/old/home/heikki/w/perl
