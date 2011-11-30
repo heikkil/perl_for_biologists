@@ -847,7 +847,14 @@ while (<$SEQ>) {
 - consists of 
   - literals
   - metacharacters
--  perldoc perlrequick, perldoc perlretut
+- perldoc:
+  - perlrequick		Perl regular expressions quick start
+  - perlretut		Perl regular expressions tutorial
+  - perlre		Perl regular expressions, the rest of the story
+  - perlrebackslash	Perl regular expression backslash sequences
+  - perlrecharclass	Perl regular expression character classes
+  - perlreref		Perl regular expressions quick reference
+
 
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -871,7 +878,7 @@ while (<$SEQ>) {
 ** Regex shorthands
 - Always use the shortest form for clarity
 - What does /p*/ match? \pause
-  - It always matches
+  - It always matches!
 - Exact number of repetitions
 
 #+begin_src perl
@@ -1250,10 +1257,14 @@ git pull
 
 ** What is Bioperl
 
-- A collection of Perl modules for processing data for the life sciences 
-- A project made up of biologists, bioinformaticians, computer scientists 
-- An open source toolkit of building blocks for life sciences applications 
-- Supported by Open Bioinformatics Foundation (O|B|F), http://www.open-bio.org/ 
+- A collection of Perl modules for processing data for the life
+  sciences
+- A project made up of biologists, bioinformaticians, computer
+  scientists
+- An open source toolkit of building blocks for life sciences
+  applications
+- Supported by Open Bioinformatics Foundation (O|B|F),
+  http://www.open-bio.org/
 - Collaborative online community
 
 ** Simple example
@@ -1300,10 +1311,10 @@ features are:
 #+end_src
 
 ** Gotchas
-- Sequences start with 1 in Bioperl (historical reasons). In perl strings, arrays, etc start with 0. 
+- Sequences start with 1 in Bioperl (historical reasons). In perl
+  strings, arrays, etc start with 0.
 - When using a module, CaseMatTers. 
-- methods are usually lower case with underscores (_). 
-
+- methods are usually lower case with underscores (_).
 - Make sure you know what you're getting back - if you get back an
   array, don't assign it to a scalar in haste.
 
@@ -1712,31 +1723,6 @@ $seq = $db->get_Seq_by_acc('CAD35755');
 $out->write_seq($seq);
 #+end_src
 
-** The Open Biological Database Access (OBDA) System
-
-- cross-platform, database independent 
-- implemented in Bioperl, Biopython, Biojava, Bioruby 
-- database access controlled by registry file(s) 
-- global or user's own 
-- the default registry retrieved over the web 
-- Database types implemented: 
-- flat - Bio::Index 
-- biosql 
-- biofetch - Bio::DB 
-- more: 	http://www.bioperl.org/HOWTOs/html/OBDA_Access.html
-
-** Retrieve sequences using OBDA
-#+begin_src perl
-# ex7.pl
-use Bio::DB::Registry;
-my $registry = Bio::DB::Registry->new;
-# $registry->services
-my $db = $registry->get_database('embl');
-# get_Seq_by_{id|acc|version}
-my $seq = $db->get_Seq_by_acc("J02231");
-print $seq->seq,"\n";
- #+end_src
-
 ** Alignments
  
 [[file:img/alignment.png]]
@@ -1753,7 +1739,7 @@ print $seq->seq,"\n";
 ** Multiple Sequence Alignments
 
 #+begin_src perl
-# ex.pl
+# ex7.pl
 # usage: convert_aln.pl < in.aln > out.phy
 use Bio::AlignIO;
 my $in = new Bio::AlignIO(-format => 'clustalw');
