@@ -1,0 +1,8 @@
+#!/usr/bin/env perl
+
+use Class::Inspector;
+
+$class = shift || die "Usage: methods perl_class_name\n";
+eval "require $class";
+print join ("\n", sort @{Class::Inspector->methods($class,'full','public')}),
+            "\n";
