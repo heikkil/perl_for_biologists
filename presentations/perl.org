@@ -79,7 +79,7 @@
   - CPAN, perlmonks, Perl User Groups
 - Provides API to things that do not have API
 - Excellent documentation
-- Try
+- Try:
 #+begin_src sh
   man perl
 #+end_src
