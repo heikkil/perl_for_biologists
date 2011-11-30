@@ -1215,6 +1215,98 @@ Text in B<bold> I<italic>
 
    http://www.slideshare.net/kaokun/introduction-to-writing-readable-and-maintainable-perl
 
+* Object oriented programming
+
+** Object Oriented programming (OOP) concepts
+- class
+  + Description of data and methods (Bio::PrimarySeq)
+- method
+  + way to access data (Bio::PrimarySeq::seq())
+- object
+  + instance of a class (my $seq = Bio::PrimarySeq->new)
+- inheritance
+  + way to create classes that enhance other classes (Bio::PrimarySeq
+    -> Bio::Seq)
+
+** Objects in Perl
+
+- An object is simply a reference that happens to know which class it
+  belongs to.
+
+- A class is simply a package that happens to provide methods to deal
+  with object references.
+
+- A method is simply a subroutine that expects an object reference (or
+  a package name, for class methods) as the first argument.
+
+** Inheritance
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+- Objects inherit methods from their parent 
+- They inherit state (data members); not explicitly in Perl. 
+- Methods can be overridden by children 
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+[[file:img/puzzle_inherit.png]]
+
+** Interfaces
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+- Interfaces can be thought of as an agreement 
+- Object will at least look  a certain way 
+- It is independent of what goes on under the hood 
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.2
+    :END:
+[[file:img/puzzle_interface.png]]
+
+** Interfaces and Inheritance in Bioperl
+- What you need to know: 
+  + Interfaces are declared with trailing 'I' (Bio::PrimarySeqI) 
+  + Can be assured that at least these methods will be implemented by
+    subclasses
+  + Can treat all inheriting objects as if they were the same,
+    i.e. Bio::PrimarySeq, Bio::Seq, Bio::Seq::RichSeq all have basic
+    Bio::PrimarySeqI methods.
+- In Perl, good OO requires good manners. 
+- Methods which start with an underscore are considered 'private' 
+- Watch out. Perl programmers can cheat. 
+
+** Modular programming (I)
+
+#+begin_center
+
+#+ATTR_LaTeX: width=0.80\textwidth
+[[file:img/modular_programming.png]]
+
+#+end_center
+From Stein et al. Genome Research 2002
+
+** Modular programming (II)
+
+# redraw!
+#+begin_center
+
+#+ATTR_LaTeX: width=0.30\textwidth
+[[file:img/bio_db.png]]
+
+#+end_center
+
 * BioPerl
 
 ** BioPerl
@@ -1370,99 +1462,6 @@ features are:
     :BEAMER_col: 0.5
     :END:
 [[file:img/puzzle_seq.png]]
-
-
-* Object oriented programming
-
-** Object Oriented programming (OOP) concepts
-- class
-  + Description of data and methods (Bio::PrimarySeq)
-- method
-  + way to access data (Bio::PrimarySeq::seq())
-- object
-  + instance of a class (my $seq = Bio::PrimarySeq->new)
-- inheritance
-  + way to create classes that enhance other classes (Bio::PrimarySeq
-    -> Bio::Seq)
-
-** Objects in Perl
-
-- An object is simply a reference that happens to know which class it
-  belongs to.
-
-- A class is simply a package that happens to provide methods to deal
-  with object references.
-
-- A method is simply a subroutine that expects an object reference (or
-  a package name, for class methods) as the first argument.
-
-** Inheritance
-
-*** list 					      :B_ignoreheading:BMCOL:
-    :PROPERTIES: 
-    :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
-    :END:
-- Objects inherit methods from their parent 
-- They inherit state (data members); not explicitly in Perl. 
-- Methods can be overridden by children 
-
-*** list 					      :B_ignoreheading:BMCOL:
-    :PROPERTIES: 
-    :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
-    :END:
-[[file:img/puzzle_inherit.png]]
-
-** Interfaces
-
-*** list 					      :B_ignoreheading:BMCOL:
-    :PROPERTIES: 
-    :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.5
-    :END:
-- Interfaces can be thought of as an agreement 
-- Object will at least look  a certain way 
-- It is independent of what goes on under the hood 
-
-*** list 					      :B_ignoreheading:BMCOL:
-    :PROPERTIES: 
-    :BEAMER_env: ignoreheading
-    :BEAMER_col: 0.2
-    :END:
-[[file:img/puzzle_interface.png]]
-
-** Interfaces and Inheritance in Bioperl
-- What you need to know: 
-  + Interfaces are declared with trailing 'I' (Bio::PrimarySeqI) 
-  + Can be assured that at least these methods will be implemented by
-    subclasses
-  + Can treat all inheriting objects as if they were the same,
-    i.e. Bio::PrimarySeq, Bio::Seq, Bio::Seq::RichSeq all have basic
-    Bio::PrimarySeqI methods.
-- In Perl, good OO requires good manners. 
-- Methods which start with an underscore are considered 'private' 
-- Watch out. Perl programmers can cheat. 
-
-** Modular programming (I)
-
-#+begin_center
-
-#+ATTR_LaTeX: width=0.80\textwidth
-[[file:img/modular_programming.png]]
-
-#+end_center
-From Stein et al. Genome Research 2002
-
-** Modular programming (II)
-
-# redraw!
-#+begin_center
-
-#+ATTR_LaTeX: width=0.30\textwidth
-[[file:img/bio_db.png]]
-
-#+end_center
 
 * Bioperl components
  

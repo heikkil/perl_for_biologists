@@ -1,0 +1,656 @@
+#+TITLE: BioPerl
+#+AUTHOR: Heikki Lehv\auml{}slaiho
+#+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
+#+DATE:      2011-10-31 \\ CC BY-SA 3.0
+#+DESCRIPTION:
+#+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smaller]
+
+#+BEAMER_FRAME_LEVEL: 2
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+# TOC slide before every section
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
+
+## see http://deic.uab.es/~iblanes/beamer_gallery/
+
+##+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+latex_header: \mode<beamer>{\usetheme{Antibes}}
+##+latex_header: \mode<beamer>{\usecolortheme{wolverine}}
+#+latex_header: \mode<beamer>{\usecolortheme{beaver}}
+#+latex_header: \mode<beamer>{\usefonttheme{structurebold}}
+
+#+latex_header: \logo{\includegraphics[width=1cm,height=1cm,keepaspectratio]{img/logo-kaust}}
+
+# original sugestion
+#\definecolor{keywords}{RGB}{255,0,90}
+#\definecolor{comments}{RGB}{60,179,113}
+#\definecolor{fore}{RGB}{249,242,215}
+#\definecolor{back}{RGB}{51,51,51}
+
+\definecolor{keywords}{RGB}{178,0,90}
+\definecolor{comments}{RGB}{0,60,0}
+\definecolor{fore}{RGB}{21,21,21}
+\definecolor{back}{RGB}{211,211,211}
+\lstset{
+  basicstyle=\small,
+  basicstyle=\color{fore},
+  keywordstyle=\color{keywords},
+  commentstyle=\color{comments},
+  backgroundcolor=\color{back}
+}
+
+
+* BioPerl
+** BioPerl
+
+- BioPerl is in CPAN
+  - ... but you will not want to use it from there!
+- Sequence databases change so often that official releases are often outdated
+- http://www.bioperl.org/wiki/Using_Git
+
+**  Installing BioPerl via Git (I) start
+
+#+begin_src sh
+mkdir ~/src
+cd ~/src
+git clone git://github.com/bioperl/bioperl-live.git
+git clone git://github.com/bioperl/bioperl-run.git
+#+end_src
+
+Tell perl where to find BioPerl (put this in your ~/.bash\_profile):
+
+#+begin_src sh -n
+export PERL5LIB="$HOME/src/bioperl-live:$PERL5LIB"
+export PERL5LIB="$HOME/src/bioperl-run:$PERL5LIB"
+#+end_src
+
+**  Installing BioPerl via Git (I) test and maintain
+Test:
+
+#+begin_src sh
+perl -MBio::Perl -le 'print Bio::Perl->VERSION;'
+#+end_src
+
+Update
+#+begin_src sh
+cd ~/src/bioperl-live
+git pull
+cd ~/src/bioperl-run
+git pull
+#+end_src
+
+** What is Bioperl
+
+- A collection of Perl modules for processing data for the life
+  sciences
+- A project made up of biologists, bioinformaticians, computer
+  scientists
+- An open source toolkit of building blocks for life sciences
+  applications
+- Supported by Open Bioinformatics Foundation (O|B|F),
+  http://www.open-bio.org/
+- Collaborative online community
+
+** Simple example
+
+#+begin_src perl
+#!/usr/bin/env perl
+# ex1.pl
+use strict;
+use Bio::SeqIO;
+my $in = new Bio::SeqIO(-format => 'genbank',
+                        -file => 'AB077698.gb');
+while ( my $seq = $in->next_seq ) { 
+    print "Sequence length is ", $seq->length(), "\n";
+    my $sequence = $seq->seq();
+    print "1st ATG is at ", index($sequence,'ATG')+1, "\n";
+    print "features are: \n";
+    foreach my $f ( $seq->top_SeqFeatures ) {
+        printf("  %s %s(%s..%s)\n",
+               $f->primary_tag,
+               $f->strand < 0 ? 'complement' : '',
+               $f->start,
+               $f->end);
+    }
+}
+#+end_src
+
+** Simple example, output
+#+begin_src sh
+% perl ex1.pl 
+Sequence length is 2701 
+1st ATG is at 80 
+features are: 
+  source (1..2701)
+  gene (1..2701)
+  5'UTR (1..79)
+  CDS (80..1144)
+  misc_feature (137..196)
+  misc_feature (239..292)
+  misc_feature (617..676)
+  misc_feature (725..778)
+  3'UTR (1145..2659)
+  polyA_site (1606..1606)
+  polyA_site (2660..2660)
+#+end_src
+
+** Gotchas
+- Sequences start with 1 in Bioperl (historical reasons). In perl
+  strings, arrays, etc start with 0.
+- When using a module, CaseMatTers. 
+- methods are usually lower case with underscores (_).
+- Make sure you know what you're getting back - if you get back an
+  array, don't assign it to a scalar in haste.
+
+#+begin_src perl
+  my ($val) = $obj->get_array(); # 1st item
+  my @vals  = $obj->get_array(); # whole list
+  my $val   = $obj->get_array(); # array length
+#+end_src
+
+** Where to go for help
+
+- http://docs.bioperl.org/	 
+- http://bioperl.org/
+- FAQ, HOWTOs, Tutorial
+- modules/ directory (for class diagrams) 
+- perldoc Module::Name::Here 
+- Publication - Stajich et al. Genome Res 2002 
+- Bioperl mailing list: bioperl-l@bioperl.org 
+- Bug reports:https://redmine.open-bio.org/projects/bioperl
+
+** perlmethods: List of methods in a class
+
+- Introspection is not built in perl5
+- install the CPAN module Class::Inspector
+
+#+begin_src sh
+  cpanm Class::Inspector
+#+end_src
+
+- Call a script perl_course/bin/perlmethods with a class name to list
+  classes where each method is defined, e.g.:
+
+#+begin_src sh
+  perlmethods Bio::PrimarySeq
+#+end_src
+
+** Brief Object Oriented overview
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+- Break problem into components 
+- Each component has data (state) and methods 
+- Only interact with  component through methods 
+- Interface versus implementations 
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+[[file:img/puzzle_seq.png]]
+
+* Bioperl components
+ 
+** Sequence components I
+
+- Sequences 
+  + Bio::PrimarySeq - Basic sequence operations (aa and nt) 
+  + Bio::Seq - Supports attached features 
+  + Bio::Seq::RichSeq - GenBank,EMBL,SwissProt fields 
+  + Bio::LocatableSeq - subsequences 
+  + Bio::Seq::Meta - residue annotation
+
+** Sequence components II
+- Features 
+  + Bio::SeqFeature::Generic - Basic Sequence features 
+  + Bio::SeqFeature::Similarity - Represent similarity info 
+  + Bio::SeqFeature::FeaturePair - Paired features (HSPs) 
+  + Sequence Input: Bio::SeqIO 
+  + Annotation: Bio::Annotation::XX objects 
+
+** Class diagram (subset)
+
+#+begin_center
+
+#+ATTR_LaTeX: width=0.70\textwidth
+[[file:img/class_diagram.png]]
+
+#+end_center
+From Stajich et al. Genome Research 2002
+
+** Build a sequence and translate it
+
+#+begin_src perl
+#!/usr/bin/env perl
+# ex2.pl
+use strict;
+use Bio::PrimarySeq;
+my $seq = new Bio::PrimarySeq(-seq => 'ATGGGACCAAGTA', 
+                              -display_id => 'example1');
+print "seq length is ", $seq->length, "\n";
+print "translation is ", $seq->translate()->seq(), "\n";
+#+end_src
+
+
+
+#+begin_src sh
+% perl ex2.pl
+seq length is 13
+translation is MGPS
+#+end_src
+
+** Bio::PrimarySeq I
+
+- Initialization 
+  + -seq - sequence string 
+  + -display\_id - sequence ID (i.e. >ID DESCRIPTION) 
+  + -desc - description 
+  + -accession\_number - accession number 
+  + -alphabet - alphabet (dna,rna,protein) 
+  + -is\_circular - is a circular sequence (boolean) 
+  + -primary\_id - primary ID (like GI number)
+
+** Bio::PrimarySeq III
+- Essential methods 
+  + -length - return the length of the sequence 
+  + -seq - get/set the sequence string 
+  + -desc - get/set the description string 
+  + -display\_id - get/set the display id string 
+  + -alphabet - get/set the sequence alphabet 
+  + -subseq - get a sub-sequence as a string 
+  + -trunc - get a sub-sequence as an object 
+
+** Bio::PrimarySeq III
+- Methods only for nucleotide sequences 
+  + translate - get the protein translation 
+  + revcom - get the reverse complement
+
+** Bio::Seq
+- Initialization 
+ + -annotation - Bio::AnnotationCollectionI object 
+ + -features - array ref of Bio::SeqFeatureI objects 
+ + -species - Bio::Species object 
+
+** Bio::Seq
+- Essential methods 
+  + -species - get/set the Bio::Species object 
+  + -annotation - get/set the Bio::AnnotationCollectionI object 
+  + -add\_SeqFeature - attach a Bio::SeqFeatureI object to Seq 
+  + -flush\_SeqFeatures - remove all features 
+  + -top\_SeqFeatures - Get all the toplevel features 
+  + -all\_SeqFeatures - Get all features flattening those which contain sub-features (rare now).
+  + -feature\_count - Get the number of features attached
+
+** Parse a sequence from file
+
+
+#+begin_src perl
+# ex3.pl
+use Bio::SeqIO;
+my $in = new Bio::SeqIO(-format => 'swiss',
+                        -file => 'BOSS_DROME.sp');
+my $seq = $in->next_seq();
+my $species = $seq->species;
+print "Organism name: ", $species->common_name, " ",
+    "(", $species->genus, " ", $species->species, ")\n";
+my ($ref1) = $seq->annotation->get_Annotations('reference');
+print $ref1->authors,"\n";
+foreach my $feature ( $seq->top_SeqFeatures ) {
+    print $feature->start, " ",$feature->end, " ",
+          $feature->primary_tag, "\n";
+}
+#+end_src
+
+** Parse a sequence from file, output
+
+#+begin_src sh
+% perl ex3.pl 
+Organism name: Fruit fly (Drosophila melanogaster)
+Hart A.C., Kraemer H., van Vactor D.L. Jr., Paidhungat M., Zipursky
+1 31 SIGNAL 
+32 896 CHAIN 
+32 530 DOMAIN 
+531 554 TRANSMEM 
+570 588 TRANSMEM 
+615 637 TRANSMEM 
+655 676 TRANSMEM 
+693 712 TRANSMEM 
+728 748 TRANSMEM 
+759 781 TRANSMEM 
+782 896 DOMAIN
+ ...
+#+end_src
+
+** Bio::SeqIO
+
+- Can read sequence from a file or a filehandle 
+  + special trick to read from a string: use IO::String 
+
+- Initialize 
+  + -file - filename for input (prepend > for output files) 
+  + -fh - filehandle for reading or writing 
+  + -format - format for reading writing 
+- Some supported formats: 
+  - genbank, embl, swiss, fasta, raw, gcg, scf, bsml, game, tab
+
+** Read in sequence and write out in different format
+
+#+begin_src perl
+# ex4.pl
+use Bio::SeqIO;
+my $in = new Bio::SeqIO(-format => 'genbank',
+                        -file => 'in.gb');
+my $out = new Bio::SeqIO(-format => 'fasta',
+                         -file =>'>out.fa');
+while ( my $seq = $in->next_seq ) {
+    next unless $seq->desc =~ /hypothetical/i;
+    $out->write_seq($seq);
+}
+#+end_src
+
+** Sequence Features: Bio::SeqFeatureI
+
+- Basic sequence features - have a location in sequence 
+- primary\_tag, source\_tag, score, frame 
+- additional tag/value pairs 
+- Subclasses by numerous objects - power of the interface!
+
+** Sequence Features: Bio::SeqFeature::Generic
+- Initialize 
+ + -start, -end, -strand 
+ + -frame - frame 
+ + -score - score 
+ + -tag - hash reference of tag/values 
+ + -primary - primary tag name 
+ + -source - source of the feature (e.g. program) 
+ 
+- Essential methods 
+  +  primary\_tag, source\_tag, start,end,strand, frame 
+     add_tag\_value, get\_tag\_values, remove\_tag, has\_tag 
+
+** Locations quandary
+- How to manage features that span more than just start/end 
+- Solution: An interface Bio::LocationI, and implementations in Bio::Location 
+- Bio::Location::Simple - default: 234, 39^40 
+- Bio::Location::Split - multiple locations (join,order) 
+- Bio::Location::Fuzzy - (<1..30, 80..>900) 
+- Each sequence feature has a location() method to get access to this object. 
+
+** Create a sequence and a feature
+#+begin_src perl
+#ex5.pl
+use Modern::Perl;
+use Bio::Seq;
+use Bio::SeqFeature::Generic;
+use Bio::SeqIO;
+my $seq = Bio::Seq->new
+    (-seq => 'STTDDEVVATGLTAAILGLIATLAILVFIVV',
+     -display_id => 'BOSSfragment',
+     -desc => 'pep frag');
+my $f = Bio::SeqFeature::Generic->new
+    (-seq_id => 'BOSSfragment',
+     -start => 7, -end => 22,
+     -primary => 'TRANSMEMBRANE',
+     -source => 'hand_curated',
+     -tag => {'note' => 'putative transmembrane'});
+$seq->add_SeqFeature($f);
+my $out = new Bio::SeqIO(-format => 'genbank');
+$out->write_seq($seq);
+#+end_src
+
+** Create a sequence and a feature, output
+#+begin_src sh
+% perl ex5.pl
+LOCUS      BOSSfragment        34 aa         linear           UNK
+DEFINITION pep frag
+ACCESSION  unknown
+FEATURES            Location/Qualifiers
+    TRANSMEMBRANE   10..25
+                   /note="putative transmembrane"
+ORIGIN
+       1 tvasttddev vatgltaail gliatlailv fivv
+//
+
+#+end_src
+ 
+** Sequence Databases
+- Remote databases 
+  + GenBank, GenPept, EMBL, SwissProt - Bio::DB::XX 
+- Local databases 
+  + local Fasta - Bio::Index::Fasta, Bio::DB::Fasta 
+  + local Genbank,EMBL,SwissProt - Bio::Index::XX 
+  + local alignments - Bio::Index::Blast, Bio::Index::SwissPfam 
+- SQL dbs 
+  + Bio::DB::GFF 
+  + Bio::DB::BioSeqDatabases (through bioperl-db pkg)
+
+** Retrieve sequences from a database
+
+#+begin_src perl
+# ex6.pl
+use Bio::DB::GenBank;
+use Bio::DB::SwissProt;
+use Bio::DB::GenPept;
+use Bio::DB::EMBL;
+use Bio::SeqIO;
+my $out = new Bio::SeqIO(-file => ">remote_seqs.embl",
+                         -format => 'embl');
+my $db = new Bio::DB::SwissProt();
+my $seq = $db->get_Seq_by_acc('7LES_DROME');
+$out->write_seq($seq);
+$db = new Bio::DB::GenBank();
+$seq = $db->get_Seq_by_acc('AF012924');
+$out->write_seq($seq);
+$db = new Bio::DB::GenPept();
+$seq = $db->get_Seq_by_acc('CAD35755');
+$out->write_seq($seq);
+#+end_src
+
+** Alignments
+ 
+[[file:img/alignment.png]]
+ 
+** Alignment Components
+- Pairwise Alignments 
+- Bio::SearchIO - Parser 
+- Bio::Search::XX - Data Objects 
+- Bio::SeqFeature::SimilarityPair 
+- Multiple Seq Alignments 
+- Bio::AlignIO - Parser 
+- Bio::SimpleAlign - Data Object 
+
+** Multiple Sequence Alignments
+
+#+begin_src perl
+# ex7.pl
+# usage: convert_aln.pl < in.aln > out.phy
+use Bio::AlignIO;
+my $in = new Bio::AlignIO(-format => 'clustalw');
+my $out = new Bio::AlignIO(-format => 'phylip');
+while( my $aln = $in->next_aln ) {
+    $out->write_aln($aln);
+}
+#+end_src
+
+** BLAST/FASTA/HMMER Parsing
+- Can be split into 3 components 
+  + Result - one per query, associated db stats and run parameters 
+  + Hit - Sequence which matches query 
+  + HSP - High Scoring Segment Pairs. Components of the Hit which match the query. 
+- Corresponding object types in the Bio::Search namespace 
+- Implemented for BLAST, FASTA, HMMER 
+
+** Parse a BLAST & FASTA report
+#+begin_src perl
+# ex8.pl
+use Bio::SearchIO;
+use Math::BigFloat;
+my $cutoff = Math::BigFloat->new('0.001');
+my %files = ( 'blast' => 'BOSS_Ce.BLASTP',
+              'fasta' => 'BOSS_Ce.FASTA');
+while( my ($format,$file) = each %files ) {
+  my $in = new Bio::SearchIO(-format => $format,
+                             -file => $file);
+  while( my $r = $in->next_result ) {
+    print "Query is: ", $r->query_name, " ",
+          $r->query_description," ",$r->query_length," aa\n";
+    print " Matrix was ", $r->get_parameter('matrix'), "\n";
+    while( my $h = $r->next_hit ) {
+      last unless Math::BigFloat->new($h->significance) < $cutoff;
+      print "Hit is ", $h->name, "\n";
+      while( my $hsp = $h->next_hsp ) {
+        print " HSP Len is ", $hsp->length('total'), " ",
+              " E-value is ", $hsp->evalue, " Bit score ", $hsp->score, " \n",
+              " Query loc: ",$hsp->query->start, " ", $hsp->query->end," ",
+              " Sbject loc: ",$hsp->hit->start, " ", $hsp->hit->end,"\n";
+      }
+    }
+    print "--\n";
+  }
+}
+#+end_src
+ 
+** Parse a BLAST & FASTA report, output
+
+#+begin_src perl
+% perl ex7.pl
+Query is: BOSS_DROME Bride of sevenless protein precursor. 896 aa
+Matrix was BL50
+Hit is F35H10.10
+HSP Len is 728 E-value is 6.8e-05 Bit score 197.9
+  Query loc: 207 847 Sbject loc: 640 1330
+--
+Query is: BOSS_DROME Bride of sevenless protein precursor. 896 aa
+Matrix was BLOSUM62
+Hit is F35H10.10
+HSP Len is 315 E-value is 4.9e-11 Bit score 182
+  Query loc: 511 813 Sbject loc: 1006 1298
+HSP Len is 28 E-value is 1.4e-09 Bit score 39
+  Query loc: 508 535 Sbject loc: 427 454
+--
+#+end_src
+
+** Create an HTML version of a report
+#+begin_src perl
+#!/usr/bin/env perl
+# ex9.pl
+use strict;
+use Bio::SearchIO;
+use Bio::SearchIO::Writer::HTMLResultWriter;
+use Math::BigFloat;
+my $cutoff = Math::BigFloat->new('0.2');
+my $in = new Bio::SearchIO(-format => 'blast',
+                           -file => 'BOSS_Ce.BLASTP');
+my $writer = new Bio::SearchIO::Writer::HTMLResultWriter;
+my $out = new Bio::SearchIO(-writer => $writer,
+                            -file => '>BOSS_Ce.BLASTP.html');
+
+#+end_src
+
+** Create an HTML version of a report
+
+#+begin_src perl
+while( my $result = $in->next_result ) {
+    my @keephits;
+    my $newresult = new Bio::Search::Result::GenericResult
+        (-query_name        => $result->query_name,
+         -query_accession   => $result->query_accession,
+         -query_description => $result->query_description,
+         -query_length      => $result->query_length,
+         -database_name     => $result->database_name,
+         -database_letters  => $result->database_letters,
+         -database_entries  => $result->database_entries,
+         -algorithm         => $result->algorithm,
+         -algorithm_version => $result->algorithm_version,
+        );
+    foreach my $param ( $result->available_parameters ) {
+        $newresult->add_parameter($param,
+                                  $result->get_parameter($param));
+    }
+    foreach my $stat ( $result->available_statistics ) {
+        $newresult->add_statistic($stat,
+                                  $result->get_statistic($stat));
+    }
+    while( my $hit = $result->next_hit ) {
+        last if Math::BigFloat->new($hit->significance) > $cutoff;
+        $newresult->add_hit($hit);
+    }
+    $out->write_result($newresult);
+}
+
+#+end_src
+ 
+* Other things covered by Bioperl
+** Parse outputs from various programs
+
+- Bio::Tools::Results::Sim4 
+- Bio::Tools::GFF 
+- Bio::Tools::Genscan,MZEF, GRAIL 
+- Bio::Tools::Phylo::PAML, Bio::Tools::Phylo::Molphy 
+- Bio::Tools::EPCR 
+- (recent) Genewise, Genscan, Est2Genome, RepeatMasker 
+
+** Things I'm skipping (here)
+
+- In detail: Bio::Annotation objects 
+- Bio::Biblio -- Bibliographic objects 
+- Bio::Tools::CodonTable -- represent codon tables 
+- Bio::Tools::SeqStats -- base-pair freq, dicodon freq, etc 
+- Bio::Tools::SeqWords -- count n-mer words in a sequence 
+- Bio::SeqUtils -- mixed helper functions
+- Bio::Restriction -- find restriction enzyme sites and cut sequence 
+- Bio::Variation -- represent mutations, SNPs, any small variations of sequence
+
+** More useful things
+- Bio::Structure -- parse/represent protein structure (PDB) data 
+- Bio::Tools::Alignment::Consed -- process Consed data 
+- Bio::TreeIO, Bio::Tree -- Phylogenetic Trees 
+- Bio::MapIO, Bio::Map -- genetic, linkage maps (rudiments) 
+- Bio::Coordinate -- transformations between coordinate systems
+- Bio::Tools::Analysis -- web scraping
+
+** Bioperl can help you run things too
+
+- Namespace is Bio::Tools::Run 
+- In separate CVS module bioperl-run since v1.2 
+- EMBOSS, BLAST, TCoffee, Clustalw 
+- SoapLab, PISE 
+- Remote Blast searches at NCBI (Bio::Tools::Run::RemoteBlast) 
+- Phylogenetic tools (PAML, Molphy, PHYLIP) 
+- More utilities added on a regular basis for the BioPipe pipeline project, http://www.biopipe.org/
+
+** Other project off-shoots and integrations
+- Microarray data and objects (Allen Day) 
+- BioSQL - relational db for sequence data (Hilmar Lapp, Chris Mungall, GNF) 
+- Biopipe - generic pipeline setup (Elia Stupka, Shawn Hoon, Fugu-Sg) 
+- GBrowse - genome browser (Lincoln Stein)
+
+** Acknowledgements
+
+- LOTS of people have made the toolkit what it is today. 
+- The Bioperl AUTHORS list in the distro is a starting point. 
+
+- Some people who really got the project started and kept it going:
+  Jason Stajich, Sendu Bala, Chris Field, Brian Osborne, Steven
+  Brenner, Ewan Birney, Lincoln Stein, Steve Chervitz, Ian Korf, Chris
+  Dagdigian, Hilmar Lapp, Heikki Lehvaslaiho, Georg Fuellen & Elia
+  Stupka
