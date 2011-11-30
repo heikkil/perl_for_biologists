@@ -109,7 +109,7 @@
 #+end_center
 
 - Best practices of current perl (intermediate level)
-
+- First version November 2010
 - Downloadable at http://onyxneon.com/books/modern_perl/ and locally
 
 ** Perl Documentation
@@ -144,7 +144,7 @@
 ** Programming Perl
 
 - Best practices
-- Aimed at Perl 5.12.x
+- Aimed at Perl 5.14.2.
 - Shortcuts (idoms)
 - Code re-use
 - Maintainable development
@@ -195,13 +195,13 @@ Hello!
 
 ** Variable types
 - Scalars - Start with a $
-  - Strings, Integers, Floating Point Numbers, References to other variables
-- Arrays - Start with a @
+  - Strings, integers, floating point numbers, references to other variables
+- Arrays - start with a @
   - Zero based index
-  - Contain an ordered list of Scalars
-- Hashes - Start with %
-  - Associative Arrays without order
-  - Key => Value
+  - Contain an ordered list of scalars
+- Hashes - start with %
+  - Associative arrays without order
+  - key => value
 
 **  Scalars
 
@@ -431,7 +431,7 @@ say "$alph: $c";
   perldoc perl 
 #+end_src
 
-- Function usage:
+- Usage of a function:
 
 #+begin_src sh
   perldoc -f <function_name>
@@ -599,7 +599,7 @@ until ($x < 0) {
 - Lexical scoping
 - Shift works on @\_
 - Last statement is returned
-- Note: you can not pass two arrays, they are flattened into one!
+- Note: You can not pass two arrays, they are flattened into one!
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
@@ -847,15 +847,6 @@ while (<$SEQ>) {
 - consists of 
   - literals
   - metacharacters
-- perldoc:
-  - perlrequick		Perl regular expressions quick start
-  - perlretut		Perl regular expressions tutorial
-  - perlre		Perl regular expressions, the rest of the story
-  - perlrebackslash	Perl regular expression backslash sequences
-  - perlrecharclass	Perl regular expression character classes
-  - perlreref		Perl regular expressions quick reference
-
-
 
 *** list 					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
@@ -874,6 +865,16 @@ while (<$SEQ>) {
 /e[ve]+n/ # character class
 /\d/  # character class
 #+end_src
+
+** Help on Regex
+
+- perldoc:
+  - perlrequick		Perl regular expressions quick start
+  - perlretut		Perl regular expressions tutorial
+  - perlre		Perl regular expressions, the rest of the story
+  - perlrebackslash	Perl regular expression backslash sequences
+  - perlrecharclass	Perl regular expression character classes
+  - perlreref		Perl regular expressions quick reference
 
 ** Regex shorthands
 - Always use the shortest form for clarity
@@ -1159,8 +1160,10 @@ Text in B<bold> I<italic>
 
 - *Getopt::Long* for command line parsing
 - *Carp* provides more intelligent designs for error/warning messages
-- *Data::Dumper* for debugging
+- *Data::Dumper* for debugging (standard module)
+  - *Data::Printer* is modern alternative
 - *CGI & CGI::Pretty* provide an interface to the CGI Environment
+  - *CGI::Application*
 - *DBI* provides a unified interface to relational databases
 - *DateTime* for date interfaces, also DateTime::Format::DateManip
 
@@ -1170,23 +1173,23 @@ Text in B<bold> I<italic>
 - *MIME::Lite* for constructing email message with or without attachments
 - *Spreadsheet::ParseExcel* to read in Excel Spreadsheets
 - *Spreadsheet::WriteExcel* to create spreadsheets in perl
+   - being replaced by *Excel::Writer::XLSX*
 - *XML::Twig* for manupulating XML data
 - *XML::Simple* for reading and writing simple XML
 - *PDL*, Perl Data Language, to work with matrices and math
 
 ** Perl Resources
 
-
 - http://www.cpan.org/	
 - http://search.cpan.org/	
 
 ** Installing from CPAN
 
-- use your distro's package manager to install most -- and especialy complex modules.
-- e.g. \texttt{sudo apt-get install GD} -- graphics library
-- first run configuring of  cpan:
+- Use your distro's package manager to install most -- and especialy complex modules.
+- E.g. \texttt{sudo apt-get install GD} -- graphics library
+- First configure CPAN:
   - \texttt{o conf init} at cpan prompt 
-- sets closest mirrors and finds helper programs
+- Sets closest mirrors and finds helper programs
 
 - cpanm - App:cpanminus
   + modern installer of choice
@@ -1196,8 +1199,9 @@ Text in B<bold> I<italic>
  - Modern::Perl
  - Perl5i
  - Mo, Moo, Moose
- - Plack and Dancer, Mojolicious
+ - Plack/PSGI middle-ware; Dancer,  Mojolicious
  - CPAN book draft: http://camelo.perl-hackers.net/~ambs/
+ - Modern Perl book v2 any day now
  - Task::Kensho - recommended modules
 
 ** Best Practices
