@@ -1,0 +1,126 @@
+#+TITLE: MRS - database entry retrieval
+#+AUTHOR: Heikki Lehv\auml{}slaiho
+#+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
+#+DATE:      2011-11-29 \\ CC BY-SA 3.0
+#+DESCRIPTION:
+#+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smaller]
+
+##+BEAMER_FRAME_LEVEL: 2
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+# TOC slide before every section
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
+
+## see http://deic.uab.es/~iblanes/beamer_gallery/
+
+##+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+latex_header: \mode<beamer>{\usetheme{Antibes}}
+##+latex_header: \mode<beamer>{\usecolortheme{wolverine}}
+#+latex_header: \mode<beamer>{\usecolortheme{beaver}}
+#+latex_header: \mode<beamer>{\usefonttheme{structurebold}}
+
+#+latex_header: \logo{\includegraphics[width=1cm,height=1cm,keepaspectratio]{img/logo-kaust}}
+
+# original sugestion
+#\definecolor{keywords}{RGB}{255,0,90}
+#\definecolor{comments}{RGB}{60,179,113}
+#\definecolor{fore}{RGB}{249,242,215}
+#\definecolor{back}{RGB}{51,51,51}
+
+\definecolor{keywords}{RGB}{178,0,90}
+\definecolor{comments}{RGB}{0,60,0}
+\definecolor{fore}{RGB}{21,21,21}
+\definecolor{back}{RGB}{211,211,211}
+\lstset{
+  basicstyle=\small,
+  basicstyle=\color{fore},
+  keywordstyle=\color{keywords},
+  commentstyle=\color{comments},
+  backgroundcolor=\color{back}
+}
+
+
+* MRS
+
+- Short for *Maarten's Retrieval System*
+- A search engine for biomedical databases
+- Maintains local copy of databases for random access
+  - public data sets, e.g. UniProt
+  - local data, e.g. sequence collections
+- pure Perl implementation
+
+* History: SRS
+
+- Sequence Retrieval System (1993-2002) by Thure Etzold (EMBL)
+- First tool to automatically index and link biomedical databases
+  based on their database cross-references.
+- Moved from academia to proprietary domain (LION Bioscience AG) 2002
+- Company sold repeatedly and development stopped ~2005
+- Installations still available in various academic sites, e.g.
+  http://srs.ebi.ac.uk/
+
+
+* Searches
+
+- Simple searches
+- Case insensitive searches
+- Wildcards
+  - Asterisk for any number of characters: e.g. lysozyme* 
+  - Question mark for any one character: e.g. lyso?yme
+- Implicit AND
+  -- Multiple words are automatically connected with AND
+- Boolean operators (upper case only): AND, OR, NOT
+- All databanks searched by default
+  - Use Databank selection pop-up button on web interface
+  - See under Status button for complete list
+- All fields
+  - Query can be limited to a specific field using its short name
+    + e.g. os:human
+  - Follow database display from the Status page for field info
+
+* Results display
+
+- Results are sorted by database
+  - Click on individual entries
+  - You can click on database name to get second view:
+- If you limited query to one database, they are sorted by relevance
+  and shown select boxes
+- If you select one or more entries, bottom of the window displays
+  action menu:
+  - listing selected entries
+  - "Clear" - clear the selection
+  - "Download" - entries in several formats
+  - "Align" - when entries are suitable (sequences) with ClustalW
+  - "Link" - to xref databases (e.g. UniProt -> Prosite)
+
+* Individual entry
+
+- Has hypertext links by default
+- Action menu bar at the top
+  - "View" - in different formats
+  - "Find Similar" - string match?
+  - "Blast" - this entry against a database
+  - Download - save to disk
+
+* MRS::Client
+
+- Test installation on macs!
+  - http://www.explain.com.au/oss/libxml2xslt.html
+#+begin_src sh
+  sudo apt-get install libxml2-dev
+  cpanm MRS::Client
+#+end_src
