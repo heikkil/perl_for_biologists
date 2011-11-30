@@ -1,32 +1,36 @@
-ID   HSANDREC   standard; RNA; HUM; 3569 BP.
+ID   M20132; SV 1; linear; mRNA; STD; HUM; 3569 BP.
 XX
 AC   M20132; J03180;
 XX
-SV   M20132.1
-XX
 DT   23-NOV-1989 (Rel. 21, Created)
-DT   02-JUL-1999 (Rel. 60, Last updated, Version 4)
+DT   07-OCT-2008 (Rel. 97, Last updated, Version 6)
 XX
 DE   Human androgen receptor (AR) mRNA, complete cds.
 XX
 KW   androgen receptor.
 XX
 OS   Homo sapiens (human)
-OC   Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Mammalia; Eutheria;
-OC   Primates; Catarrhini; Hominidae; Homo.
+OC   Eukaryota; Metazoa; Chordata; Craniata; Vertebrata; Euteleostomi; Mammalia;
+OC   Eutheria; Euarchontoglires; Primates; Haplorrhini; Catarrhini; Hominidae;
+OC   Homo.
 XX
 RN   [1]
 RP   1-3569
-RX   MEDLINE; 89112208.
+RX   PUBMED; 3216866.
 RA   Lubahn D.B., Joseph D.R., Sar M., Tan J., Higgs H.N., Larson R.E.,
 RA   French F.S., Wilson E.M.;
 RT   "The human androgen receptor: complementary deoxyribonucleic acid cloning,
 RT   sequence analysis and gene expression in prostate";
 RL   Mol. Endocrinol. 2(12):1265-1275(1988).
 XX
-DR   GDB; 120556; AR.
-DR   SWISS-PROT; P10275; ANDR_HUMAN.
-DR   TRANSFAC; T00040; T00040.
+DR   Ensembl-Gn; ENSG00000169083; Homo_sapiens.
+DR   Ensembl-Tr; ENST00000374690; Homo_sapiens.
+DR   Ensembl-Tr; ENST00000396043; Homo_sapiens.
+DR   Ensembl-Tr; ENST00000396044; Homo_sapiens.
+DR   Ensembl-Tr; ENST00000504326; Homo_sapiens.
+DR   Ensembl-Tr; ENST00000514029; Homo_sapiens.
+DR   Ensembl-Tr; ENST00000544984; Homo_sapiens.
+DR   GDB; 9888353.
 XX
 CC   Draft entry and computer readable sequence [1] kindly submitted by
 CC   E.M.Wilson, 18-AUG-1988.
@@ -34,16 +38,73 @@ XX
 FH   Key             Location/Qualifiers
 FH
 FT   source          1..3569
-FT                   /db_xref="taxon:9606"
 FT                   /organism="Homo sapiens"
 FT                   /map="Xq11.2-q12"
-FT   gene            363..3122
-FT                   /gene="AR"
+FT                   /mol_type="mRNA"
+FT                   /db_xref="taxon:9606"
 FT   CDS             363..3122
 FT                   /codon_start=1
-FT                   /db_xref="SWISS-PROT:P10275"
-FT                   /note="androgen receptor"
 FT                   /gene="AR"
+FT                   /note="androgen receptor"
+FT                   /db_xref="GDB:120556"
+FT                   /db_xref="GOA:P10275"
+FT                   /db_xref="H-InvDB:HIT000194715.13"
+FT                   /db_xref="HGNC:644"
+FT                   /db_xref="InterPro:IPR000536"
+FT                   /db_xref="InterPro:IPR001103"
+FT                   /db_xref="InterPro:IPR001628"
+FT                   /db_xref="InterPro:IPR008946"
+FT                   /db_xref="InterPro:IPR013088"
+FT                   /db_xref="PDB:1E3G"
+FT                   /db_xref="PDB:1GS4"
+FT                   /db_xref="PDB:1T5Z"
+FT                   /db_xref="PDB:1T63"
+FT                   /db_xref="PDB:1T65"
+FT                   /db_xref="PDB:1XJ7"
+FT                   /db_xref="PDB:1XOW"
+FT                   /db_xref="PDB:1XQ3"
+FT                   /db_xref="PDB:1Z95"
+FT                   /db_xref="PDB:2AM9"
+FT                   /db_xref="PDB:2AMA"
+FT                   /db_xref="PDB:2AMB"
+FT                   /db_xref="PDB:2AO6"
+FT                   /db_xref="PDB:2AX6"
+FT                   /db_xref="PDB:2AX7"
+FT                   /db_xref="PDB:2AX8"
+FT                   /db_xref="PDB:2AX9"
+FT                   /db_xref="PDB:2AXA"
+FT                   /db_xref="PDB:2HVC"
+FT                   /db_xref="PDB:2OZ7"
+FT                   /db_xref="PDB:2PIO"
+FT                   /db_xref="PDB:2PIP"
+FT                   /db_xref="PDB:2PIQ"
+FT                   /db_xref="PDB:2PIR"
+FT                   /db_xref="PDB:2PIT"
+FT                   /db_xref="PDB:2PIU"
+FT                   /db_xref="PDB:2PIV"
+FT                   /db_xref="PDB:2PIW"
+FT                   /db_xref="PDB:2PIX"
+FT                   /db_xref="PDB:2PKL"
+FT                   /db_xref="PDB:2PNU"
+FT                   /db_xref="PDB:2Q7I"
+FT                   /db_xref="PDB:2Q7J"
+FT                   /db_xref="PDB:2Q7K"
+FT                   /db_xref="PDB:2Q7L"
+FT                   /db_xref="PDB:2YLO"
+FT                   /db_xref="PDB:2YLP"
+FT                   /db_xref="PDB:2YLQ"
+FT                   /db_xref="PDB:2Z4J"
+FT                   /db_xref="PDB:3B5R"
+FT                   /db_xref="PDB:3B65"
+FT                   /db_xref="PDB:3B66"
+FT                   /db_xref="PDB:3B67"
+FT                   /db_xref="PDB:3B68"
+FT                   /db_xref="PDB:3BTR"
+FT                   /db_xref="PDB:3L3X"
+FT                   /db_xref="PDB:3L3Z"
+FT                   /db_xref="PDB:3RLJ"
+FT                   /db_xref="PDB:3RLL"
+FT                   /db_xref="UniProtKB/Swiss-Prot:P10275"
 FT                   /protein_id="AAA51729.1"
 FT                   /translation="MEVQLGLGRVYPRPPSKTYRGAFQNLFQSVREVIQNPGPRHPEAA
 FT                   SAAPPGASLLLLQQQQQQQQQQQQQQQQQQQQQETSPRQQQQQQGEDGSPQAHRRGPTG
