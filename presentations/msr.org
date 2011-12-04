@@ -5,7 +5,7 @@
 #+DESCRIPTION:
 #+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
 #+LANGUAGE:  en
-#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
 #+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
 #+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
 #+EXPORT_SELECT_TAGS: export
@@ -62,10 +62,12 @@
   - public data sets, e.g. UniProt
   - local data, e.g. sequence collections
 - pure Perl implementation
+- CBRC: http://mrs.cbrc.kaust.edu.sa:18080/
 
 * History: SRS
 
-- Sequence Retrieval System (1993-2002) by Thure Etzold (EMBL)
+- Sequence Retrieval System, 1993-2002-(present), by Thure Etzold
+  (EMBL)
 - First tool to automatically index and link biomedical databases
   based on their database cross-references.
 - Moved from academia to proprietary domain (LION Bioscience AG) 2002
@@ -73,11 +75,9 @@
 - Installations still available in various academic sites, e.g.
   http://srs.ebi.ac.uk/
 
-
 * Searches
 
-- Simple searches
-- Case insensitive searches
+- Searches are case insensitive
 - Wildcards
   - Asterisk for any number of characters: e.g. lysozyme* 
   - Question mark for any one character: e.g. lyso?yme
@@ -93,7 +93,9 @@
   - Follow database display from the Status page for field info
 
 * Results display
-
+#+begin_src sh
+  hox b8
+#+end_src
 - Results are sorted by database
   - Click on individual entries
   - You can click on database name to get second view:
@@ -117,10 +119,30 @@
   - Download - save to disk
 
 * MRS::Client
-
-- Test installation on macs!
+- Perl module for interacting MRS server
+- Not installable on vanilla Macs without superuser
+  - needs libxml2
   - http://www.explain.com.au/oss/libxml2xslt.html
+- Under linux:
+
 #+begin_src sh
   sudo apt-get install libxml2-dev
   cpanm MRS::Client
+#+end_src
+
+- Installs command line tool: mrsclient
+- Installed at the remote computer
+
+* Using MRS::Client
+
+- See example script at code/examples\_bioperl/mrs.pl for
+  - How to use the CBRC MRS server
+  - How to retrieve sequences directly into BioPerl objects
+
+- Using the command line tool on CBRS MRS server:
+
+#+begin_src sh
+  alias mrsclient='mrsclient -H mrs.cbrc.kaust.edu.sa'
+  mrsclient -C
+  mrsclient -d uniprot -a ac:P22815 -f fasta
 #+end_src
