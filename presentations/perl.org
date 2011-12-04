@@ -1036,6 +1036,37 @@ system("ls");
 $files =  `ls -1`;
 #+end_src
 
+** Debugging perl
+
+- print statements
+  - make them depend on global variable $DEBUG
+  - use Data::Dumper or Data::Printer for complex structures
+
+#+begin_src perl
+   our $DEBUG = 1;
+   print $x if $DEBUG;
+   print $y if $DEBUG;
+#+end_src
+
+- Perl command line debugger
+
+#+begin_src sh
+   perl -d prog.pl
+#+end_src
+
+- A la bash -x switch using Devel::Trace
+
+#+begin_src sh
+   perl -d:Trace prog.pl
+#+end_src
+
+- Graphical debugger Devel::ptkdb
+  - depends on Tk graphics library (perl module)
+
+#+begin_src sh
+   perl -d:ptkdb prog.pl
+#+end_src
+
 ** Running perl
 
 #+begin_src perl
