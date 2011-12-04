@@ -152,7 +152,7 @@ Add files and content, e.g.:
 Tell git not to keep track of emacs backup files, e.g. 
 
 #+begin_src sh
-  echo '*~' > .gitignore
+  echo '*~' >> .gitignore
   git add .
   git commit -a -m 'ignore emacs tmp files'
 #+end_src
@@ -206,12 +206,12 @@ Git contains powerful mechanisms to
   # work...
   git commit -a       # commit all changes
   git checkout master # back to main
-  git merge try       # apply all changes/
+  git merge try       # apply changes to master
 #+end_src
 
 * Installing git
 
-- Ubuntu: 'sudo apt-get install git-core'
+- Ubuntu: 'sudo apt-get install git-core gitk'
 - for other OS see: http://git-scm.com/
 or
 - Mac OSX: http://code.google.com/p/git-osx-installer/
