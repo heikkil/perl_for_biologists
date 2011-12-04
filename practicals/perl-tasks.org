@@ -83,7 +83,63 @@ version as the id.
 #+end_src
 
 
-* 3.a. Date conversions
+* 3. Exploring biochemistry of amino acides with regexps
+
+Using file data/aminoacids.tab and perl regular expressions, answer
+questions and show command line:
+
+3.a. How many amino acids contain a double covalent bond (=)?
+
+\pause
+
+#+begin_src sh
+cat aminoacids.tab | perl -lne 'print if /=/'
+#Arginine        arg R   HN=C(NH2)-NH-(CH2)3-CH(NH2)-COOH
+#Histidine       his H   NH-CH=N-CH=C-CH2-CH(NH2)-COOH
+#Tryptophan      trp W   Ph-NH-CH=C-CH2-CH(NH2)-COOH
+cat aminoacids.tab | perl -lne 'print if /=/' | wc -l
+# 3
+#+end_src
+
+3.b. Print out the three letter abbreviations in capital case
+   (e.g. Aaa) for double covalent bond amino acids.
+
+\pause
+
+#+begin_src sh
+cat aminoacids.tab | perl -lne \
+  'print ucfirst $1 if /\t(\w{3}).*=/' 
+  'print "\u$1" if /\t(\w{3}).*=/' 
+#Arg
+#His
+#Trp
+#+end_src
+
+"\u" is an example of perl string formatting characters (see, perldoc
+perlfunc)
+
+
+3.c. Which amino acid(s) do not have the amino (NH_2) group
+
+\pause
+
+#+begin_src sh
+cat aminoacids.tab | perl -lne 'print unless /NH2/'
+# Proline pro P   NH-(CH2)3-CH-COOH
+#+end_src
+
+3.d. Which amino acid has two amino groups? 
+
+\pause
+
+#+begin_src sh
+cat aminoacids.tab | perl -lne 'print if /NH2.*NH2/'
+cat aminoacids.tab | perl -lne 'print if /(NH2.*){2}/'
+# Arginine        arg R   HN=C(NH2)-NH-(CH2)3-CH(NH2)-COOH
+#+end_src
+
+
+* 4.a. Date conversions
 
 Write a subroutine called date\_a() that reads the current date from
 the unix \texttt{date} command output and returns it in what ever
@@ -103,7 +159,7 @@ show that it works and print out the result.
   prove -vl splitfasta.t
 #+end_src
 
-* 3.b. ISO date 
+* 4.b. ISO date 
 
 Make an other version of the subroutine to returns date in ISO
 format (YYYY-MM-DD, e.g. 2007-03-22).
@@ -114,14 +170,14 @@ format (YYYY-MM-DD, e.g. 2007-03-22).
 
 - *Hint*: Precise text formatting can be done with \texttt{sprintf()}.
 
-* 3.c. Date with arguments
+* 4.c. Date with arguments
 
 Make a third version of the date subroutine by making it possible
 to use named arguments to select the returned format. Use a default,
 so that the subroutine always returns something.
 
 
-* 4. Split sequence
+* 5. Split sequence
 
 Write a program that takes in a sequence and splits it up into
 seqments with an overlap.
@@ -139,7 +195,7 @@ seqments with an overlap.
   prove -vl splitfasta.t
 #+end_src
 
-* 5. Bioperl sequence converter
+* 6. Bioperl sequence converter
 
 Write an EMBL to FASTA converter with BioPerl. Run it with file
 data/ar.embl and compare the output to the one you created in
@@ -156,7 +212,7 @@ exercise 2.
   ./test.sh
 #+end_src
 
-* 6. BLAST parsing
+* 7. BLAST parsing
 
 Write a bioperl program that parses a BLAST output and prints out
 accession numbers to all hits with better E value than 1.  Use

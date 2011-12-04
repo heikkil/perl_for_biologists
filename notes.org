@@ -371,53 +371,15 @@ scalar binding
 * other resources
 http://www.people.vcu.edu/~elhaij/IntroBioinf/Notes/
 
-* regular expression tasks
-
-Using file data/aminoacids.tab and perl regular expressions, answer
-questions and show command line:
-
-1. How many amino acids contain a double covalent bond?
-
-#+begin_src sh
-cat aminoacids.tab | perl -lne 'print if /=/'
-#Arginine        arg R   HN=C(NH2)-NH-(CH2)3-CH(NH2)-COOH
-#Histidine       his H   NH-CH=N-CH=C-CH2-CH(NH2)-COOH
-#Tryptophan      trp W   Ph-NH-CH=C-CH2-CH(NH2)-COOH
-cat aminoacids.tab | perl -lne 'print if /=/' | wc -l
-# 3
-#+end_src
-
-2. Print out the three letter abbreviations in capital case  for
-   double covalent bond amino acids.
-
-#+begin_src sh
-cat aminoacids.tab | perl -lne \
-  'print ucfirst $1 if /\t(\w{3}).*=/' 
-  'print "\u$1" if /\t(\w{3}).*=/' 
-#Arg
-#His
-#Trp
-#+end_src
-
-# "\u" is an example of perl string formatting characters, ref list?
-
-
-3. Which amino acids do not have the amino (NH_2) group
-
-#+begin_src sh
-cat aminoacids.tab | perl -lne 'print unless /NH2/'
-# Proline pro P   NH-(CH2)3-CH-COOH
-#+end_src
-
-4. Which amino acid has two amino groups? 
-
-#+begin_src sh
-cat aminoacids.tab | perl -lne 'print if /NH2.*NH2/'
-cat aminoacids.tab | perl -lne 'print if /(NH2.*){2}/'
-# Arginine        arg R   HN=C(NH2)-NH-(CH2)3-CH(NH2)-COOH
-#+end_src
-
-
 * moodle course
 
 bala ~/old/home/heikki/w/perl
+
+* Command line options:
+
+*Getopt::Long*, heavily used *App::Options* a few years ago, now
+settling with my own module. Recently there have been some new
+development efforts like *MooseX::GetOpt*, *Moo::Getopt*, and *App::Rad*.
+
+Path::Class::Rule
+
