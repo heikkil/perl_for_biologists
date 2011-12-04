@@ -86,7 +86,7 @@ version as the id.
 * 3. Exploring biochemistry of amino acides with regexps
 
 Using file data/aminoacids.tab and perl regular expressions, answer
-questions and show command line:
+questions and show the command line:
 
 3.a. How many amino acids contain a double covalent bond (=)?
 
@@ -101,8 +101,7 @@ cat aminoacids.tab | perl -lne 'print if /=/' | wc -l
 # 3
 #+end_src
 
-3.b. Print out the three letter abbreviations in capital case
-   (e.g. Aaa) for double covalent bond amino acids.
+* 3.b. Print out the three letter abbreviations in capital case (e.g. Aaa) for double covalent bond amino acids.
 
 \pause
 
@@ -115,11 +114,11 @@ cat aminoacids.tab | perl -lne \
 #Trp
 #+end_src
 
-"\u" is an example of perl string formatting characters (see, perldoc
+"\ u" is an example of perl string formatting characters (see, perldoc
 perlfunc)
 
 
-3.c. Which amino acid(s) do not have the amino (NH_2) group
+* 3.c. Which amino acid(s) do not have the amino (NH_2) group?
 
 \pause
 
@@ -128,7 +127,7 @@ cat aminoacids.tab | perl -lne 'print unless /NH2/'
 # Proline pro P   NH-(CH2)3-CH-COOH
 #+end_src
 
-3.d. Which amino acid has two amino groups? 
+* 3.d. Which amino acid has two amino groups? 
 
 \pause
 
