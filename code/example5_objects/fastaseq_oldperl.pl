@@ -1,4 +1,4 @@
-# #!/usr/bin/env perl
+#!/usr/bin/env perl
 
 package FastaSeq;
 use strict;
@@ -7,7 +7,7 @@ use warnings;
 sub new {
   my ($class, %args) = @_;
   my $self = {};
-  bless $self; 
+  bless $self, 'FastaSeq';
 
   $self->id( $args{id} ) if defined $args{id};
   $self->id( $args{descr} ) if defined $args{descr};
