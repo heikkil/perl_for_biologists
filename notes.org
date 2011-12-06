@@ -383,3 +383,16 @@ development efforts like *MooseX::GetOpt*, *Moo::Getopt*, and *App::Rad*.
 
 Path::Class::Rule
 
+Perl Advent calendars
+http://www.lowlevelmanager.com/2011/12/perl-advent-calendars-2011-edition.html
+
+* managing perlbrew
+ - check the list for compiling threads
+ - keeping older modules within a major perl version:
+
+  perlbrew install -j 9 perl-5.14.2 \
+    -D otherlibdirs="$PERLBREW_ROOT/perls/perl-5.14.1/lib/site_perl/5.14.1"
+
+ - how to copy modules?
+ -  update: cpan-outdated | cpanm
+
