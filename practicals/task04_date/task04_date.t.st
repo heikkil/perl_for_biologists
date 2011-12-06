@@ -2,7 +2,7 @@
 #
 # Run this with
 #
-#   prove -vl task03_date.t
+#   prove -vl task04_date.t
 #
 
 use Test::Simple tests => 6;
@@ -25,53 +25,26 @@ ok date_c(format => 'ISO')  =~ /\d{4}-\d{2}-\d{2}/,
 
 
 sub date_a {
-    my $date =`date`;
-    my ($mon, $day, $year) = $date =~ /\w+ +(\w+) +(\d+).+(\d{4})/;
-    #print "($mon, $day, $year)";
-    return "$day-$mon-$year";
+
 }
 
 sub month_name2number {
-    my $name = shift;
 
-    my @months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec );
-    my %months;
-    my $count = 1;
-    foreach my $month_name (@months) {
-	$months{$month_name} = $count;
-	$count++;
-    }
-    #use Data::Dumper; print Dumper \%months;
-    return $months{$name};
 }
 
 
 sub date_b {
-    my $date =`date`;
-    my ($mon, $day, $year) = $date =~ /\w+ +(\w+) +(\d+).+(\d{4})/;
 
-    return sprintf "%4d-%02d-%02d", $year, month_name2number($mon), $day;
 }
 
 sub date_c {
-    my %arg =  @_;
-    print Dumper \%arg;
-    my $date =`date`;
-    my ($mon, $day, $year) =
-                #  Thu   Mar    22 16:18:55 SAST 2007
-        $date =~ /^\w+ +(\w+) +(\d+).+(\d{4})/;
 
-    if ($arg{format} eq 'ISO') {
-        return sprintf "%4d-%02d-%02d", $year, month_name2number($mon), $day;
-    } else {
-        return "$day-$mon-$year";
-    }
 }
 
 
 =pod
 
-  * 3.a. Date conversions
+  * 4.a. Date conversions
 
   Write a subroutine called date_a() that reads the current date from
   the unix \texttt{date} command output and returns it in what ever
@@ -90,7 +63,7 @@ sub date_c {
        prove -vl task02_date.t
 
 
-  * 3.b. ISO date
+  * 4.b. ISO date
 
   Make an other version of the subroutine to returns date in ISO
   format (YYYY-MM-DD, e.g. 2007-03-22).
@@ -102,7 +75,7 @@ sub date_c {
   - Hint: Precise text formatting can be done with sprintf().
 
 
-  * 3.c. Date with arguments
+  * 4.c. Date with arguments
 
   Make a third version of the date subroutine by making it possible to
   use named arguments to select the returned format. Use a default, so

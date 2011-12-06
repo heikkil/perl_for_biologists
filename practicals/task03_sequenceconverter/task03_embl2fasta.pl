@@ -7,7 +7,7 @@ while (<>) {
     # using sequence version as the ID
     # print second word on the line
     # add fasta header key character to the output
-    print ">$1" if /^SV +(\S+)/;
+    print ">$1" if /^ID +(\S+);/;
 
     # finish the output line with the DE line
     say " $1" if /^DE +(.+)/;

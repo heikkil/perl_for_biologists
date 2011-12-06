@@ -4,7 +4,7 @@ echo Run this bash script
 echo
 
 echo now running the embl2fasta converter...
-./task02_embl2fasta.pl ../../data/ar.embl > ar.fasta
+./task03_embl2fasta.pl ../../data/ar.embl > ar.fasta
 echo results are stored in ./ar.fasta
 echo
 echo comparing the fasta files

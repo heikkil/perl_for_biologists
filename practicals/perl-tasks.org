@@ -60,6 +60,17 @@ Write a perl program that prints out your name.
 - *Aim*: To make sure you can edit perl code with syntax highlighting,
   and run it.
 
+
+* 2. Populate a hash from an array
+
+Create an array of three letter abbreviations of English month names.
+Loop over the elements of the array and assign each month its
+corresponding ordinal. Demonstrate that calling $months{'Jan'} and
+$months{'Dec'} print out the correct ordinal number.
+
+- *Aim*: Know the difference between array and hash and how the latter
+  has scalar values that can be directly accessed by key.
+
 * 2. Sequence converter in plain perl
 
 Write a program that reads in a file containing an EMBL sequence
@@ -83,7 +94,7 @@ version as the id.
 #+end_src
 
 
-* 3. Exploring biochemistry of amino acides with regexps
+* 3. Exploring biochemistry of amino acids with regexps
 
 Using file data/aminoacids.tab and perl regular expressions, answer
 questions and show the command line:
@@ -164,8 +175,8 @@ Make an other version of the subroutine to returns date in ISO
 format (YYYY-MM-DD, e.g. 2007-03-22).
 
 - *Hint*: Create a helper subroutine that converts names into
-  numbers. Inside the subroutine, use hash to store the month
-  names as keys and month numbers as values.
+  numbers. Inside the subroutine, use hash to store the month names as
+  keys and month numbers as values. Use the code from task 2.
 
 - *Hint*: Precise text formatting can be done with \texttt{sprintf()}.
 
