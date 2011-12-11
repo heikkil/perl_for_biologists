@@ -280,6 +280,9 @@ iperl.pdf
 - autovivification
 - can not print, use Data::Dumper or YAML
 
+* arrays
+ List::Util
+ List::MoreUtils 
 * Packages, name spaces and lexical scoping
 
 - package defines a name space
@@ -396,3 +399,9 @@ http://www.lowlevelmanager.com/2011/12/perl-advent-calendars-2011-edition.html
  - how to copy modules?
  -  update: cpan-outdated | cpanm
 
+
+perlbrew install perl-5.14.2 -Dusethreads --as threaded-5.14.2
+perlbrew install -j 5 perl-5.14.2
+
+
+-
