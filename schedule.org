@@ -19,24 +19,25 @@
 |         | 15.00-17.00 | Talk: *Emacs editor basics*            |
 |         |             | Practical: Emacs tutorial              |
 |         |             | Talk: *Perl Variables*                 |
-|         |             | Practical: *Perl Variables*            |
+|         |             | Practical: Tasks 1, 2                  |
 |         |       \nbsp |                                        |
 | *Day 2* |             |                                        |
+|         |        8.00 | Tea and coffee                         |
 |         |  8.00-11.30 | Talk: *Perl flow control*              |
-|         |             | Practical:                             |
 |         |             | Talk: *Working with files*             |
-|         |             | Practical: Task 2, Sequence converter  |
+|         |             | Talk: *Perl regular expressions*       |
+|         |             | Practical: Tasks 3, 4, 5               |
 |         |       \nbsp |                                        |
-|         | 11:30-12.30 | Lunch                                  |
-|         | 12.30-15.00 | Talk: *Perl regular expressions*       |
-|         |             | Practical: Task 4                      |
+|         | 11.30-12.30 | Lunch                                  |
+|         | 12.30-15.00 |                                        |
 |         |             | Talk: *Error handling*                 |
 |         |             | Talk: *Code reuse and CPAN*            |
 |         |       15.00 | Tea and coffee                         |
 |         | 15.00-17.00 | Practical: Installing BioPerl          |
-|         |             | Practical: Solutions to task 4         |
+|         |             | Practical: Solutions to tasks so far   |
 |         |       \nbsp |                                        |
 | *Day 3* |             |                                        |
+|         |        8.00 | Tea and coffee                         |
 |         |  8.00-10.30 | Talk: *Objects in Perl*                |
 |         |             | Practical: Subclassing                 |
 |         |             | Talk: *Sequence and search in BioPerl* |
@@ -48,4 +49,3 @@
 |         |             | Practical: Solutions to BioPerl tasks  |
 |         |       15.00 | Tea and coffee                         |
 |         | 15.00-17.00 | *Test and Feedback*                    |
-
