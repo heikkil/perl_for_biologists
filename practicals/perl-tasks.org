@@ -165,8 +165,8 @@ show that it works and print out the result.
 - *Test*: Do everything within the test file. Run command:
 
 #+begin_src sh
-  cd practicals/task03_date
-  prove -vl splitfasta.t
+  cd practicals/task04_date
+  prove -vl task04_date.t
 #+end_src
 
 * 4.b. ISO date 
