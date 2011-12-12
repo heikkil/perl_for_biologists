@@ -131,7 +131,6 @@ Similarly, remove a file from disk and git at the same time:
   git rm filename
 #+end_src
 
-
 * Creating a new local git repository
 
 You can create the new local project directory or simply
@@ -174,7 +173,6 @@ and commit any set of changes.
 #+begin_src sh
   git commit -a -m 'short description of changes'
 #+end_src
-
 
 * How to work with git
 
@@ -226,7 +224,6 @@ or
 - http://book.git-scm.com/index.html
 - http://git-scm.com/course/svn.html - for subversion users
 - http://www.kernel.org/pub/software/scm/git/docs/everyday.html
-
 
 * git command summary
 
