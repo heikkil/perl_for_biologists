@@ -55,6 +55,13 @@
   backgroundcolor=\color{back}
 }
 
+* Teaching aims
+
+1. Teach programming language basics
+2. Teach basic perl
+3. Teach best practices
+4. Show enough advanced perl (BioPerl) to start learning on your own
+
 * Course aims
 
 - Be comfortable with a programming environment
@@ -62,7 +69,7 @@
 - Know best practices
 - Start using perl to learn it properly
 - Understand what are objects in perl
-- Use BioPerl
+- Use BioPerl and know where to look for help
 
 * Which perl?
 
@@ -110,10 +117,24 @@ sudo apt-get install build-essential
 curl -L http://xrl.us/installperlnix | bash
 #+end_src
 
-
  --> perlbrew
 
  --> App:cpanminus
+
+Update: http://learn.perl.org/installing/
+
+* Installation, advanced
+
+This is for future reference, only:
+
+#+begin_src sh
+perlbrew install \
+  -j 2  -Dusethreads perl-5.14.2
+#+end_src
+- \texttt{-j N}: use N parallel process for compiling and tests
+  + N depends on number of cores in your system 
+- \texttt{-Dusethreads}: allow multiple threads (parallel processes)
+  in perl
 
 * Perlbrew
 
@@ -202,14 +223,18 @@ Read their documentation using \texttt{perldoc <Module::Name>}
 * Directory structure
 
 #+begin_src sh
-  scp student0@baloo-dev.cbrc.kaust.edu.sa/perl_course .
-  cd ~/perl_course
+  cd
+  scp student0@baloo-dev.cbrc.kaust.edu.sa/\
+      perl_course .
+  cd perl_course
   git config --global user.name "Your Name"
   git config --global user.email \
     "your.name@kaust.edu.sa"
   git init
-  mkdir example_01_hello
-  cd example_01_hello
+  git add .
+  git commit -a -m 'initial commit'
+  cd code/example_1_hello
+  # cd code; mkdir myhello; cd myhello 
 #+end_src
 
 * The first program
