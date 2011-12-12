@@ -62,7 +62,7 @@
 - Sequence databases change so often that official releases are often outdated
 - http://www.bioperl.org/wiki/Using_Git
 
-**  Installing BioPerl via Git (I) start
+** Installing BioPerl via Git (I) start
 
 #+begin_src sh
 mkdir ~/src
@@ -73,12 +73,12 @@ git clone git://github.com/bioperl/bioperl-run.git
 
 Tell perl where to find BioPerl (put this in your ~/.bash\_profile):
 
-#+begin_src sh -n
-export PERL5LIB="$HOME/src/bioperl-live:$PERL5LIB"
-export PERL5LIB="$HOME/src/bioperl-run:$PERL5LIB"
+#+begin_src sh
+export PERL5LIB=$HOME/src/bioperl-live:$PERL5LIB
+export PERL5LIB=$HOME/src/bioperl-run:$PERL5LIB
 #+end_src
 
-**  Installing BioPerl via Git (I) test and maintain
+** Installing BioPerl via Git (I) test and maintain
 Test:
 
 #+begin_src sh
@@ -92,7 +92,7 @@ git pull
 cd ~/src/bioperl-run
 git pull
 #+end_src
-
+- Tool to manage multiple git repositories: App::GitGot
 ** What is Bioperl
 
 - A collection of Perl modules for processing data for the life
@@ -110,21 +110,18 @@ git pull
 #+begin_src perl
 #!/usr/bin/env perl
 # ex1.pl
-use strict;
-use Bio::SeqIO;
+use Modern::Perl; use Bio::SeqIO;
 my $in = new Bio::SeqIO(-format => 'genbank',
                         -file => 'AB077698.gb');
-while ( my $seq = $in->next_seq ) { 
-    print "Sequence length is ", $seq->length(), "\n";
+while( my $seq = $in->next_seq ) {
+    say "Sequence length is ", $seq->length();
     my $sequence = $seq->seq();
-    print "1st ATG is at ", index($sequence,'ATG')+1, "\n";
-    print "features are: \n";
+    say "1st ATG is at ", index($sequence,'ATG')+1;
+    say "features are:";
     foreach my $f ( $seq->top_SeqFeatures ) {
-        printf("  %s %s(%s..%s)\n",
-               $f->primary_tag,
-               $f->strand < 0 ? 'complement' : '',
-               $f->start,
-               $f->end);
+	printf("  %s %s(%s..%s)\n",$f->primary_tag,
+	       $f->strand < 0 ? 'complement' : '',
+	       $f->start, $f->end);
     }
 }
 #+end_src
@@ -152,7 +149,7 @@ features are:
 - Sequences start with 1 in Bioperl (historical reasons). In perl
   strings, arrays, etc start with 0.
 - When using a module, CaseMatTers. 
-- methods are usually lower case with underscores (_).
+- Methods are usually lower case with underscores (_).
 - Make sure you know what you're getting back - if you get back an
   array, don't assign it to a scalar in haste.
 
@@ -164,30 +161,16 @@ features are:
 
 ** Where to go for help
 
-- http://docs.bioperl.org/	 
-- http://bioperl.org/
-- FAQ, HOWTOs, Tutorial
-- modules/ directory (for class diagrams) 
 - perldoc Module::Name::Here 
+- http://docs.bioperl.org/
+- http://bioperl.org/
+  - FAQ, HOWTOs, Tutorial
+  - http://bioperl.org/wiki/HOWTO:Beginners
+- modules/ directory (for class diagrams) 
 - Publication - Stajich et al. Genome Res 2002 
-- Bioperl mailing list: bioperl-l@bioperl.org 
+- Bioperl mailing list: bioperl-l@bioperl.org
+  - http://bioperl.org/wiki/Mailing_lists
 - Bug reports:https://redmine.open-bio.org/projects/bioperl
-
-** perlmethods: List of methods in a class
-
-- Introspection is not built in perl5
-- install the CPAN module Class::Inspector
-
-#+begin_src sh
-  cpanm Class::Inspector
-#+end_src
-
-- Call a script perl_course/bin/perlmethods with a class name to list
-  classes where each method is defined, e.g.:
-
-#+begin_src sh
-  perlmethods Bio::PrimarySeq
-#+end_src
 
 ** Brief Object Oriented overview
 
@@ -206,10 +189,25 @@ features are:
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.5
     :END:
-[[file:img/puzzle_seq.png]]
+[[file:img/puzzle_seq.pdf]]
 
-* Bioperl components
- 
+** perlmethods: List of methods in a class
+
+- Introspection is not built in perl5
+- install the CPAN module Class::Inspector
+
+#+begin_src sh
+  cpanm Class::Inspector
+#+end_src
+
+- Call the script perl\_course/bin/perlmethods with a class name to list
+  classes where each method is defined, e.g.:
+
+#+begin_src sh
+  perlmethods Bio::PrimarySeq
+#+end_src
+
+* Bioperl core components 
 ** Sequence components I
 
 - Sequences 
@@ -244,10 +242,12 @@ From Stajich et al. Genome Research 2002
 # ex2.pl
 use strict;
 use Bio::PrimarySeq;
-my $seq = new Bio::PrimarySeq(-seq => 'ATGGGACCAAGTA', 
-                              -display_id => 'example1');
+my $seq = new Bio::PrimarySeq
+    (-seq => 'ATGGGACCAAGTA', 
+     -display_id => 'example1');
 print "seq length is ", $seq->length, "\n";
-print "translation is ", $seq->translate()->seq(), "\n";
+print "translation is ", 
+    $seq->translate()->seq(), "\n";
 #+end_src
 
 
@@ -305,18 +305,19 @@ translation is MGPS
 
 #+begin_src perl
 # ex3.pl
-use Bio::SeqIO;
+use Modern::Perl; use Bio::SeqIO;
 my $in = new Bio::SeqIO(-format => 'swiss',
                         -file => 'BOSS_DROME.sp');
 my $seq = $in->next_seq();
 my $species = $seq->species;
-print "Organism name: ", $species->common_name, " ",
-    "(", $species->genus, " ", $species->species, ")\n";
-my ($ref1) = $seq->annotation->get_Annotations('reference');
-print $ref1->authors,"\n";
+say "Organism name: ", $species->common_name, " ",
+ "(", $species->genus, " ", $species->species, ")";
+my ($ref1) = $seq->annotation->
+    get_Annotations('reference');
+say $ref1->authors;
 foreach my $feature ( $seq->top_SeqFeatures ) {
-    print $feature->start, " ",$feature->end, " ",
-          $feature->primary_tag, "\n";
+    say $feature->start, " ",$feature->end, " ",
+          $feature->primary_tag;
 }
 #+end_src
 
@@ -352,6 +353,8 @@ Hart A.C., Kraemer H., van Vactor D.L. Jr., Paidhungat M., Zipursky
 - Some supported formats: 
   - genbank, embl, swiss, fasta, raw, gcg, scf, bsml, game, tab
 
+- See: http://www.bioperl.org/wiki/HOWTO:SeqIO
+
 ** Read in sequence and write out in different format
 
 #+begin_src perl
@@ -374,6 +377,8 @@ while ( my $seq = $in->next_seq ) {
 - additional tag/value pairs 
 - Subclasses by numerous objects - power of the interface!
 
+- See: http://www.bioperl.org/wiki/HOWTO:Feature-Annotation
+
 ** Sequence Features: Bio::SeqFeature::Generic
 - Initialize 
  + -start, -end, -strand 
@@ -384,13 +389,13 @@ while ( my $seq = $in->next_seq ) {
  + -source - source of the feature (e.g. program) 
  
 - Essential methods 
-  +  primary\_tag, source\_tag, start,end,strand, frame 
-     add_tag\_value, get\_tag\_values, remove\_tag, has\_tag 
+  +  primary\_tag, source\_tag, start,end,strand, frame, 
+     add\_tag\_value, get\_tag\_values, remove\_tag, has\_tag 
 
 ** Locations quandary
 - How to manage features that span more than just start/end 
 - Solution: An interface Bio::LocationI, and implementations in Bio::Location 
-- Bio::Location::Simple - default: 234, 39^40 
+- Bio::Location::Simple - default: 234, 39\land40 \\
 - Bio::Location::Split - multiple locations (join,order) 
 - Bio::Location::Fuzzy - (<1..30, 80..>900) 
 - Each sequence feature has a location() method to get access to this object. 
@@ -398,10 +403,8 @@ while ( my $seq = $in->next_seq ) {
 ** Create a sequence and a feature
 #+begin_src perl
 #ex5.pl
-use Modern::Perl;
-use Bio::Seq;
-use Bio::SeqFeature::Generic;
-use Bio::SeqIO;
+use Modern::Perl; use Bio::Seq;
+use Bio::SeqFeature::Generic; use Bio::SeqIO;
 my $seq = Bio::Seq->new
     (-seq => 'STTDDEVVATGLTAAILGLIATLAILVFIVV',
      -display_id => 'BOSSfragment',
@@ -447,10 +450,8 @@ ORIGIN
 
 #+begin_src perl
 # ex6.pl
-use Bio::DB::GenBank;
-use Bio::DB::SwissProt;
-use Bio::DB::GenPept;
-use Bio::DB::EMBL;
+use Bio::DB::GenBank; use Bio::DB::SwissProt;
+use Bio::DB::GenPept; use Bio::DB::EMBL;
 use Bio::SeqIO;
 my $out = new Bio::SeqIO(-file => ">remote_seqs.embl",
                          -format => 'embl');
@@ -498,41 +499,51 @@ while( my $aln = $in->next_aln ) {
   + HSP - High Scoring Segment Pairs. Components of the Hit which match the query. 
 - Corresponding object types in the Bio::Search namespace 
 - Implemented for BLAST, FASTA, HMMER 
-
+- See the http://www.bioperl.org/wiki/HOWTO:SearchIO
 ** Parse a BLAST & FASTA report
 #+begin_src perl
 # ex8.pl
-use Bio::SearchIO;
-use Math::BigFloat;
+use Bio::SearchIO; use Math::BigFloat;
 my $cutoff = Math::BigFloat->new('0.001');
-my %files = ( 'blast' => 'BOSS_Ce.BLASTP',
-              'fasta' => 'BOSS_Ce.FASTA');
+my %files = ('blast' => 'BOSS_Ce.BLASTP',
+             'fasta' => 'BOSS_Ce.FASTA');
 while( my ($format,$file) = each %files ) {
   my $in = new Bio::SearchIO(-format => $format,
                              -file => $file);
   while( my $r = $in->next_result ) {
-    print "Query is: ", $r->query_name, " ",
-          $r->query_description," ",$r->query_length," aa\n";
-    print " Matrix was ", $r->get_parameter('matrix'), "\n";
+    say "Query is: ", $r->query_name, " ",
+      $r->query_description," ",$r->query_length," aa";
+    say "Matrix was ", $r->get_parameter('matrix');
     while( my $h = $r->next_hit ) {
       last unless Math::BigFloat->new($h->significance) < $cutoff;
-      print "Hit is ", $h->name, "\n";
+      say "Hit is ", $h->name;
       while( my $hsp = $h->next_hsp ) {
-        print " HSP Len is ", $hsp->length('total'), " ",
-              " E-value is ", $hsp->evalue, " Bit score ", $hsp->score, " \n",
-              " Query loc: ",$hsp->query->start, " ", $hsp->query->end," ",
-              " Sbject loc: ",$hsp->hit->start, " ", $hsp->hit->end,"\n";
+       # see next slide
       }
     }
     print "--\n";
   }
 }
 #+end_src
- 
+
+** Parse a BLAST & FASTA report
+
+The innermost loop:
+
+#+begin_src perl
+print " HSP Len is ", $hsp->length('total'), " ",
+      " E-value is ", $hsp->evalue,
+      " Bit score ", $hsp->score, " \n",
+      " Query loc: ",$hsp->query->start,
+      " ", $hsp->query->end," ",
+      " Sbject loc: ",$hsp->hit->start,
+      " ", $hsp->hit->end,"\n";
+
+#+end_src
 ** Parse a BLAST & FASTA report, output
 
 #+begin_src perl
-% perl ex7.pl
+% perl ex8.pl
 Query is: BOSS_DROME Bride of sevenless protein precursor. 896 aa
 Matrix was BL50
 Hit is F35H10.10
@@ -549,7 +560,7 @@ HSP Len is 28 E-value is 1.4e-09 Bit score 39
 --
 #+end_src
 
-** Create an HTML version of a report
+** Create an HTML version of a report (1/3)
 #+begin_src perl
 #!/usr/bin/env perl
 # ex9.pl
@@ -558,47 +569,54 @@ use Bio::SearchIO;
 use Bio::SearchIO::Writer::HTMLResultWriter;
 use Math::BigFloat;
 my $cutoff = Math::BigFloat->new('0.2');
-my $in = new Bio::SearchIO(-format => 'blast',
-                           -file => 'BOSS_Ce.BLASTP');
-my $writer = new Bio::SearchIO::Writer::HTMLResultWriter;
-my $out = new Bio::SearchIO(-writer => $writer,
-                            -file => '>BOSS_Ce.BLASTP.html');
+my $in = new Bio::SearchIO
+    (-format => 'blast',
+     -file => 'BOSS_Ce.BLASTP');
+my $writer = 
+    new Bio::SearchIO::Writer::HTMLResultWriter;
+my $out = new Bio::SearchIO
+    (-writer => $writer,
+     -file => '>BOSS_Ce.BLASTP.html');
 
 #+end_src
 
-** Create an HTML version of a report
+** Create an HTML version of a report (2/3)
 
 #+begin_src perl
 while( my $result = $in->next_result ) {
-    my @keephits;
-    my $newresult = new Bio::Search::Result::GenericResult
-        (-query_name        => $result->query_name,
-         -query_accession   => $result->query_accession,
-         -query_description => $result->query_description,
-         -query_length      => $result->query_length,
-         -database_name     => $result->database_name,
-         -database_letters  => $result->database_letters,
-         -database_entries  => $result->database_entries,
-         -algorithm         => $result->algorithm,
-         -algorithm_version => $result->algorithm_version,
-        );
-    foreach my $param ( $result->available_parameters ) {
-        $newresult->add_parameter($param,
-                                  $result->get_parameter($param));
-    }
-    foreach my $stat ( $result->available_statistics ) {
-        $newresult->add_statistic($stat,
-                                  $result->get_statistic($stat));
-    }
-    while( my $hit = $result->next_hit ) {
-        last if Math::BigFloat->new($hit->significance) > $cutoff;
-        $newresult->add_hit($hit);
-    }
-    $out->write_result($newresult);
+  my @keephits;
+  my $newresult = new Bio::Search::Result::GenericResult
+    (-query_name        => $result->query_name,
+     -query_accession   => $result->query_accession,
+     -query_description => $result->query_description,
+     -query_length      => $result->query_length,
+     -database_name     => $result->database_name,
+     -database_letters  => $result->database_letters,
+     -database_entries  => $result->database_entries,
+     -algorithm         => $result->algorithm,
+     -algorithm_version => $result->algorithm_version,
+    );
 }
-
 #+end_src
- 
+** Create an HTML version of a report (3/3)
+
+#+begin_src perl
+foreach my $param ($result->available_parameters) {
+  $newresult->add_parameter
+    ($param, $result->get_parameter($param));
+}
+foreach my $stat ($result->available_statistics) {
+  $newresult->add_statistic
+    ($stat, $result->get_statistic($stat));
+}
+while( my $hit = $result->next_hit ) {
+  last if Math::BigFloat->new
+    ($hit->significance) > $cutoff;
+  $newresult->add_hit($hit);
+}
+$out->write_result($newresult);
+#+end_src
+
 * Other things covered by Bioperl
 ** Parse outputs from various programs
 
@@ -631,12 +649,11 @@ while( my $result = $in->next_result ) {
 ** Bioperl can help you run things too
 
 - Namespace is Bio::Tools::Run 
-- In separate CVS module bioperl-run since v1.2 
+- In separate module bioperl-run 
 - EMBOSS, BLAST, TCoffee, Clustalw 
 - SoapLab, PISE 
 - Remote Blast searches at NCBI (Bio::Tools::Run::RemoteBlast) 
 - Phylogenetic tools (PAML, Molphy, PHYLIP) 
-- More utilities added on a regular basis for the BioPipe pipeline project, http://www.biopipe.org/
 
 ** Other project off-shoots and integrations
 - Microarray data and objects (Allen Day) 
@@ -654,3 +671,21 @@ while( my $result = $in->next_result ) {
   Brenner, Ewan Birney, Lincoln Stein, Steve Chervitz, Ian Korf, Chris
   Dagdigian, Hilmar Lapp, Heikki Lehvaslaiho, Georg Fuellen & Elia
   Stupka
+** History and Copyright
+
+- Heikki Lehv\auml{}slaiho, heikki.lehvaslaiho@kaust.edu.sa \\
+  CBRC, KAUST \\
+  December 2011
+
+- Heikki Lehv\auml{}slaiho, heikki@sanbi.ac.za \\
+  SANBI, University of Western Cape \\
+  March 2007
+
+- Jason Stajich, jason@bioperl.org \\
+  Duke University \\
+  2005
+
+This work is licensed under the Creative Commons
+Attribution-ShareAlike 3.0 Unported.  To view a copy of this license,
+visit http://creativecommons.org/licenses/by-sa/3.0/
+
