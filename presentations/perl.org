@@ -1290,7 +1290,7 @@ Text in B<bold> I<italic>
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.5
     :END:
-[[file:img/puzzle_inherit.png]]
+[[file:img/puzzle_inherit.pdf]]
 
 ** Interfaces
 
@@ -1308,7 +1308,7 @@ Text in B<bold> I<italic>
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.2
     :END:
-[[file:img/puzzle_interface.png]]
+    [[file:img/puzzle_interface.pdf]]
 
 ** Interfaces and Inheritance in Bioperl
 - What you need to know: 
@@ -1322,7 +1322,7 @@ Text in B<bold> I<italic>
 - Methods which start with an underscore are considered 'private' 
 - Watch out. Perl programmers can cheat. 
 
-** Modular programming (I)
+** Modular programming (I) DBrowser
 
 #+begin_center
 
@@ -1332,13 +1332,12 @@ Text in B<bold> I<italic>
 #+end_center
 From Stein et al. Genome Research 2002
 
-** Modular programming (II)
+** Modular programming (II) Bio::DB
 
-# redraw!
 #+begin_center
 
-#+ATTR_LaTeX: width=0.30\textwidth
-[[file:img/bio_db.png]]
+#+ATTR_LaTeX: width=0.90\textwidth
+[[file:img/bio_db.pdf]]
 
 #+end_center
 
