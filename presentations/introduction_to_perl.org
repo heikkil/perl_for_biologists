@@ -71,6 +71,14 @@
 - Understand what are objects in perl
 - Use BioPerl and know where to look for help
 
+* Student actions
+
+- Follow the talks
+- Experiment on command line
+- Read on-line documentation
+- Do the practicals
+- Read books for overview
+
 * Which perl?
 
 - Most systems come with preinstalled, "vendor" perl
