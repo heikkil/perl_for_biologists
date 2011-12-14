@@ -203,7 +203,7 @@ Hello!
   - Associative arrays without order
   - key => value
 
-**  Scalars
+** Scalars
 
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -268,7 +268,9 @@ print "$res is $float\n";
   - \texttt{use warnings} will warn if you try to access undefined variables
 
 #+begin_src sh
-Use of uninitialized value $num in say at ./undef.pl line 7.
+Use of uninitialized \
+value $num in say at \
+./undef.pl line 7.
 #+end_src
 
 *** list 					      :B_ignoreheading:BMCOL:
@@ -309,6 +311,73 @@ say $num;
   - operating and assinging at once ($a $+=$ $b;)
   - autoincrement and autodecrement ($count++, ++$c;)
 
+** Working with strings
+*** [#B] list					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+
+- "$string" '$literals'
+  - single quotes: verbatim
+  - variable interpolation
+- Operators:
+  + concatenation .
+  + repetition x
+- join()
+- chomp()
+- length()
+- substr() - replace!
+- HERE documents
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+#+begin_src perl
+my $a = "$b". '$c'. 'pl';
+my $s = join ',', @list;
+my $sep =  '-' x 40;
+say length $seq ;
+my $last = 
+    substr $a, -1, 1;
+$ml = <<HERE
+This is a $adj
+multi line
+HERE
+print $ml; 
+#+end_src
+** Working with numbers
+*** [#B] list					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.4
+    :END:
+
+- abs() - absolute value
+- sqrt()- positive square root
+  + see Math::Complex
+- exp(), log()
+- rand() - pseudo rnd number
+- (trigonometry)
+- int() - integer part
+- printf(), sprintf()
+  + perldoc -f sprintf
+- oct(), hex()
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.6
+    :END:
+#+begin_src perl
+  my $rounded = int($float+0.5);
+  $a=2.66666;
+  printf "%.2f\n", $a;  # 2.67
+  printf "%+.2f\n", $a; #+2.67
+
+#+end_src
+
 ** Array
 
 - Implements stacks, lists, queues
@@ -324,7 +393,7 @@ file:img/array.pdf
 
 ** Working with arrays
 
-*** list 					      :B_ignoreheading:BMCOL:
+*** [#B] list					      :B_ignoreheading:BMCOL:
     :PROPERTIES: 
     :BEAMER_env: ignoreheading
     :BEAMER_col: 0.4
@@ -822,14 +891,36 @@ open my $LOG, '>>', $file;
 say STDERR "log: $params";
 say $LOG $params;
 
-local $/ = "\/\/\n";
-open my $SEQ, '<', shift;
-while (<$SEQ>) {
+{
+  local $/ = "\/\/\n";
+  open my $SEQ, '<', shift;
+  while (<$SEQ>) {
     my $seq = $_; 
     my ($ac) = $seq =~ /AC +(\w+)/;  
     say $ac if $seq =~ /FT +CDS/;
+  }
 }
 #+end_src
+
+** External program execution
+- exec()
+  + limited use as it does not return anything to perl
+- system() 
+  + forks a new process first
+  + returns the exit status
+- *`backtics`* 
+  + strictly speaking it is a operator
+  + returns STDOUT of called cmdline
+#+begin_src perl
+  my $date = `date`; chomp $date;
+#+end_src
+- pipes
+  + pipes cmdline output to filehandle
+#+begin_src perl
+  use autodie;
+  open $FH, 'zcat file.gz|';
+#+end_src
+   
 
 * Regular expressions
 
@@ -1199,15 +1290,16 @@ Text in B<bold> I<italic>
 - *DateTime* for date interfaces, also DateTime::Format::DateManip
 
 ** Some Modules (II)
+- *LWP::Simple* and *LWP::UserAgent* interfaces to libwww-perl
 - *WWW::Mechanize* for web screen scraping
 - *HTML::TreeBuilder* for HTML parsing
 - *MIME::Lite* for constructing email message with or without attachments
 - *Spreadsheet::ParseExcel* to read in Excel Spreadsheets
 - *Spreadsheet::WriteExcel* to create spreadsheets in perl
-   - being replaced by *Excel::Writer::XLSX*
+  - being replaced by *Excel::Writer::XLSX*
 - *XML::Twig* for manupulating XML data
 - *XML::Simple* for reading and writing simple XML
-- *PDL*, Perl Data Language, to work with matrices and math
+- *PDL*, Perl Data Language, fast matrix and math
 
 ** Perl Resources
 
