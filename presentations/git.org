@@ -207,6 +207,29 @@ Git contains powerful mechanisms to
   git merge try       # apply changes to master
 #+end_src
 
+* Too many git repositories?
+
+- App::GitGot - A tool to make it easier to manage multiple git
+  repositories.
+
+- New tool, Linux only (?), some installation hick-ups (v.1.04):
+
+  1. sudo apt-get install libssl-dev - dependency for Net::GitHub
+  2. cpanm --force Crypt::SSLeay - failed tests
+  3. cpanm App::GitGot
+
+- Installs command line program got
+- list and categorize (tags) repositories
+
+#+begin_src sh
+got add # run within a repo root
+got ls
+got status
+got update
+got -t bioperl update # update tagged repos
+got cd 1 # use name or number
+#+end_src
+
 * Installing git
 
 - Ubuntu: 'sudo apt-get install git-core gitk'
