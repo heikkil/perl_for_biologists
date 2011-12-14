@@ -217,7 +217,7 @@ Bonus: Moose Eliminates Write Once Code
 
 
 * Impatient perl
-iperl.pdf
+ iperl.pdf
 
 ** string
 
@@ -263,7 +263,7 @@ iperl.pdf
 - reverse
 - splice
 
-* hashes
+** hashes
 
 - exists
 - delete
@@ -271,7 +271,7 @@ iperl.pdf
 - values
 - each
 
-* references
+** references
 
 - way to complex structures
 - since arrays and hashes can store only scalars, you need a scalar to
@@ -280,10 +280,10 @@ iperl.pdf
 - autovivification
 - can not print, use Data::Dumper or YAML
 
-* arrays
+** arrays
  List::Util
  List::MoreUtils 
-* Packages, name spaces and lexical scoping
+** Packages, name spaces and lexical scoping
 
 - package defines a name space
 - our: package variables ("global")
@@ -309,8 +309,7 @@ iperl.pdf
 - file tests
 - glob() - shell style filename
 
-
-* Regular expressions
+** Regular expressions
 
 1. match default or m
 2. substute  s
@@ -404,4 +403,19 @@ perlbrew install perl-5.14.2 -Dusethreads --as threaded-5.14.2
 perlbrew install -j 5 perl-5.14.2
 
 
--
+* Yulia's wish list
+
+
+#1. String manipulation functions like chomp(), join(), split(),
+#   substr() and others. As you can deal with strings not only with
+#   regexps. Those functions are of extreme use, especially chomp().
+#2. DBI (DataBase Interface). May be this topic is little bit advanced,
+#   but it's also very helpful.
+#3. External program execution (system, exac, backticks). In Unix one
+#   can integrate shell utilities into perl script. Also it it' helpful
+#   if one is creating a pipeline based on different already existing
+#   programs.
+#4. Very basic web-programming (LWP module, or others). Sometimes one
+#   just need to download 1000 files from the site, which for unknown
+#   reasons are not in the archive.
+
