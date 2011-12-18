@@ -789,6 +789,12 @@ sub first_is_longer { #longer.pl
 }
 #+end_src
 
+** Further reading
+
+Almost all topics covered so far are in
+
+ - perldoc perlintro
+
 * Working with files
 
 ** Reading and Writing a file
@@ -870,7 +876,7 @@ while (<FH>) { chomp; say;}
 use autodie; # test with Try::Tiny
 
 {
-  open my $F, '>', $file;
+  open my $F, '<', $file;
   while (<$F>) { chomp; say $_; }
 }
 #+end_src
