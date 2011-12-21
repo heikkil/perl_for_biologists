@@ -66,6 +66,7 @@
 
 - Be comfortable with a programming environment
 - Know basic perl idioms and commands
+- Run perl as part of unix command line
 - Know best practices
 - Start using perl to learn it properly
 - Understand what are objects in perl
