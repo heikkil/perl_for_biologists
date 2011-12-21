@@ -1,0 +1,244 @@
+#+TITLE: Connecting securely
+#+AUTHOR: Heikki Lehv\auml{}slaiho
+#+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
+#+DATE:      2011-12-17 \\ CC BY-SA 3.0
+#+DESCRIPTION:
+#+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smaller]
+
+##+BEAMER_FRAME_LEVEL: 2
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+# TOC slide before every section
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
+
+## see http://deic.uab.es/~iblanes/beamer_gallery/
+
+##+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+latex_header: \mode<beamer>{\usetheme{Antibes}}
+##+latex_header: \mode<beamer>{\usecolortheme{wolverine}}
+#+latex_header: \mode<beamer>{\usecolortheme{beaver}}
+#+latex_header: \mode<beamer>{\usefonttheme{structurebold}}
+
+#+latex_header: \logo{\includegraphics[width=1cm,height=1cm,keepaspectratio]{img/logo-kaust}}
+
+## define colours for code listings
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{60,179,113}
+\definecolor{fore}{RGB}{249,242,215}
+\definecolor{back}{RGB}{51,51,51}
+\lstset{
+  basicstyle=\color{fore},
+  keywordstyle=\color{keywords},
+  commentstyle=\color{comments},
+  backgroundcolor=\color{back}
+}
+
+* The necessity of security
+
+- Everything is interconnected in the web
+- Security is provided by *secure practices*
+- Connections between computers have to be secured
+- Telnet is not allowed, everything through ssh
+
+* SSH
+
+- Secure Shell (SSH) is a network protocol for connecting two
+  networked computers via a secure channel over an insecure network.
+  + For secure data communication
+  + Remote shell services
+  + Command execution
+
+- Makes possible remote execution with GUI in the local screen
+
+- SSH uses public-key cryptography to authenticate the remote computer
+  and allow the remote computer to authenticate the user
+
+* Public-key cryptography
+
+** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+- "Asymmetric key cryptography"
+- Public and private keys
+- Usually based on products of large prime numbers
+
+** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+
+#+ATTR_LaTeX: width=0.95\textwidth
+[[file:img/Public-key-crypto-1.pdf]]
+\\ \tiny Image adapted from Wikimedia Commons, CC BY-SA 3.0.
+
+* How cryptographic keys are used
+#+begin_center
+
+#+ATTR_LaTeX: width=0.70\textwidth
+[[file:img/Public_key_signing.pdf]]
+\\ \tiny Image from Wikimedia Commons, CC BY-SA 3.0.
+
+#+end_center
+
+
+* Secure Shell (SSH)
+
+- SSH command
+  + \texttt{ssh [-l login] hostname} OR 
+  + \texttt{ssh username@hostname}
+- SCP command
+  + \texttt{scp [[user1]@host1:]file1 [[user2]@host2:]file2}
+  + Arguments provide the source and destination respectively
+- Examples (remote computer 'remote'):
+#+begin_src sh
+  ssh student1@baloo-dev.kaust.edu.sa
+  ssh -l root remote
+  scp ../docs/budget.doc remote:documents/
+  scp remote:backup.gz .
+  ssh remote 'date ; w'
+#+end_src
+
+
+* Passwordless connection (1/3): keys
+
+How to create secure connection from local *to* remote computer
+
+- create a DSA key pair in your *local* computer:
+
+#+begin_src sh
+  ssh-keygen -t dsa
+#+end_src
+
+- Leave the passphrase empty
+- Files id\_dsa and id\_dsa.pub are put into the ~/.ssh dir under home
+  directory.
+- Check the files:
+
+#+begin_src sh
+  ls -al ~/.ssh
+#+end_src
+
+* Passwordless connection (2/3): share public key
+
+- Copy the public key *to* the remote machine
+- The remote ~/.ssh directory has already created for you
+
+#+begin_src sh
+  # at the local computer:
+  scp ~/.ssh/id_dsa.pub \ 
+    remote:.ssh/authorized_keys
+  # or
+  scp ~/.ssh/id_dsa.pub \
+  student1@baloo-dev.cbrc.kaust.edu.sa:.ssh/authorized_keys
+#+end_src
+
+- Note that this overwrites any previous keys
+- To avoid it, copy in two steps
+#+begin_src sh
+  scp ~/.ssh/id_dsa.pub remote:
+  ssh remote \
+    'cat id_dsa.pub >> .ssh/authorized_keys'
+#+end_src
+
+* Passwordless connection (3/3): permissions
+
+- Set the permissions in the remote computer
+  + Everything in .ssh must be visible only to you
+
+#+begin_src sh
+  # connect from local to remote
+  ssh student1@cbrc.kaust.edu.sa
+  # in the remote:
+  chmod 700 ~/.ssh/
+  chmod 600 ~/.ssh/*
+#+end_src
+
+
+* SSH shortcuts
+
+#+begin_src sh
+touch ~/.ssh/config
+chmod 600 ~/.ssh/config
+#+end_src
+
+- Example contents, change the user:
+#10.75.106.110
+
+#+begin_src sh
+Host remote
+     Hostname baloo-dev.cbrc.kaust.edu.sa
+     User student1
+#+end_src
+
+- Now try connecting from local!
+
+#+begin_src sh
+  ssh remote
+#+end_src
+
+
+* rsync
+
+- Replacement and extension of scp (and rcp)
+  + Copy files and directories between a local host and a remote host
+  + Can use SSH as a secure channel
+  + Can send/receive only the bytes inside files that changed since
+    the last replication
+  + Can remove files on the destination host if those files were
+     deleted on the source host to keep both hosts *in sync*.
+
+#+begin_src sh -n
+  rsync -avz ~ remote:backup
+  cd ; rsync -avz  remote:unix_course .
+#+end_src
+
+- Copies in archive mode, verbose output and using compression
+- See the man page for more examples
+
+* Practical
+
++ You have been created a temporary account (student<no>) in a linux
+  computer \texttt{baloo-dev.cbrc.kaust.edu.sa} . Your password
+  expires at first login. Go and change it.
+
++ In the remote computer, run this command:
+
+#+begin_src sh
+  ~/unix_course/bin/identity.sh
+#+end_src
+
++ Establish a passwordless connection to your account.
+
++ Add lines to your ssh config to call this computer 'remote'
+
++ Copy the current course contents into your work computer. The
+  following commands should work:
+
+#+begin_src sh
+  cd ; rsync -avz \
+  student1@baloo-dev.cbrc.kaust.edu.sa:unix_course/ .
+  # or
+  cd ; rsync -avz remote:unix_course .
+#+end_src
+
+Note the colon and full stop characters!
+
+
+
