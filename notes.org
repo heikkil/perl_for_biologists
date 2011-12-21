@@ -281,8 +281,8 @@ Bonus: Moose Eliminates Write Once Code
 - can not print, use Data::Dumper or YAML
 
 ** arrays
- List::Util
- List::MoreUtils 
+# List::Util
+# List::MoreUtils 
 ** Packages, name spaces and lexical scoping
 
 - package defines a name space
@@ -419,3 +419,11 @@ perlbrew install -j 5 perl-5.14.2
 #   just need to download 1000 files from the site, which for unknown
 #   reasons are not in the archive.
 
+* feedback form
+http://bit.ly/perlfeedback 
+
+* cpandoc
+
+Pod::Cpandoc
+
+alias perldoc='cpandoc'
