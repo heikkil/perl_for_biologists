@@ -212,6 +212,9 @@ sudo apt-get install libgd-gd2-perl
 Install two useful modules:
 
 #+begin_src sh
+#speed up testing in multi-core computers
+# setup for a quad core:
+export TEST_JOBS=9 # keep in ~/.bashrc
 cpanm Modern::Perl
 cpanm Try::Tiny
 #+end_src
