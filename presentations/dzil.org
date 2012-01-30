@@ -1,0 +1,281 @@
+#+TITLE: Dist::Zilla - distribution builder
+#+AUTHOR: Heikki Lehv\auml{}slaiho
+#+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
+#+DATE:      2011-10-04 \\ CC BY-SA 3.0
+#+DESCRIPTION:
+#+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:nil \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:nil ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+##+LaTeX_CLASS_OPTIONS: [bigger]
+
+##+BEAMER_FRAME_LEVEL: 2
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+# TOC slide before every section
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
+
+## see http://deic.uab.es/~iblanes/beamer_gallery/
+
+##+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+latex_header: \mode<beamer>{\usetheme{Antibes}}
+##+latex_header: \mode<beamer>{\usecolortheme{wolverine}}
+#+latex_header: \mode<beamer>{\usecolortheme{beaver}}
+#+latex_header: \mode<beamer>{\usefonttheme{structurebold}}
+
+#+latex_header: \logo{\includegraphics[width=1cm,height=1cm,keepaspectratio]{img/logo-kaust}}
+
+## define colours for code listings
+\definecolor{keywords}{RGB}{255,0,90}
+\definecolor{comments}{RGB}{60,179,113}
+\definecolor{fore}{RGB}{249,242,215}
+\definecolor{back}{RGB}{51,51,51}
+\lstset{
+  basicstyle=\color{fore},
+  keywordstyle=\color{keywords},
+  commentstyle=\color{comments},
+  backgroundcolor=\color{back}
+}
+
+
+* Two kinds of coding projects
+
+1. Single use, throw-away
+   - one liners, small scripts
+2. Reusable code
+
+Most code falls in the latter category.
+
+So why not do it properly!
+
+* What is Dist::Zilla?
+
+- A collection of perl modules to create well organized perl
+  distributions.
+- Integrates with CPAN and GitHub when needed.
+
+* Why is it better than other modules?
+
+- All (very complex) operations happen at author's computer
+- Installation of prerequisites is done only once
+  - loads of dependencies!
+- There is no cruft in the distribution package
+- Lots of different tasks can be automated
+  - testing
+  - check-ups
+- Once set up, simplifies writing shareable packages
+
+
+* Initialize the distzilla environment
+
+- Simple, off-the-shelf functionality
+
+#+begin_src sh
+ dzil setup
+#+end_src
+
+This will interactively ask for 
+
+  - your name
+  - your email
+  - license to use
+  - copyright holder
+
+and write it into file \texttt{\$HOME/.dzil/config.ini}
+
+- This information will be used for all future distzilla projects.
+
+* Start a new project
+
+#+begin_src sh
+  dzil init Name
+#+end_src
+
+This will:
+
+- Create a sub-directory with project name
+- Create a perl module skeleton into lib/Name.pm
+- Create the project-specific dzil configuretion file
+  \texttt{dist.init} 
+  - It uses a bundle of plugins called @Basic
+  - Basic bundle creates Makefile.PL and other supporting files
+  - For full functionality see:
+#+BEGIN_SRC sh
+  perldoc Dist::Zilla::PluginBundle::Basic
+#+END_SRC
+
+* What is included in a perl distribution?
+
+- README - human readable instructions
+- LICENSE - software license
+- MANIFEST - list of files in the distribution
+- lib/Module.pm - the perl code
+- t/01-module.t - tests for the code
+- META.yml - module meta data all in one place
+- MakeFile.PL - compilation instructions using perl MakeMaker
+  - Installation programme (e.g. cpanm) calls this automatically
+  - It can be run manually:
+
+#+BEGIN_SRC sh
+perl Makefile.PL # create the make file
+make             # run make
+make test        # run tests
+make install     # install, add sudo if needed
+#+END_SRC
+
+* Creating a release
+
+First you have the write your code and tests, of course!
+
+#+BEGIN_SRC sh
+  dzil build
+  dzil test -v
+  prove -lv t/01-module.t
+#+END_SRC
+
+When you are happy, run
+
+#+BEGIN_SRC sh
+  dzil release
+#+END_SRC
+
+and you get Name-0.001.tar.gz ready for:
+
+- installing: \texttt{cpanm Name-0.001.tar.gz}
+- passing on to your collaborators
+- uploading to CPAN (but dzil can do that, too)
+
+* What has dzil done?
+
+- Collected distribution files into a distribution directory
+- Examined the code to find prerequisites (including minimum versions)
+- Generated a Makefile.PL (or Build.PL)
+- Generated a MANIFEST
+- Generated a META.yml and/or META.json files
+- Generated a LICENSE file
+- Made sure distribution tests pass
+- Created a tarball of the directory
+- (Uploaded the tarball to CPAN)
+
+* What can dzil do more?
+
+- Munge files to write boilerplate text
+- Integrate with git
+- Code syntax check
+- POD syntax check 
+- POD text spell check
+
+* What can dzil do (1/2)?
+
+- Collect distribution files into a distribution directory
+- Examine the code to find prerequisites (including minimum versions)
+- Generate a Makefile.PL (and/or Build.PL)
+- Generate a MANIFEST
+- Generate a META.yml and/or META.json files
+- Generate a LICENSE file
+- Generate a README file from the main module's Pod
+- Generate some generic \*.t files
+- *Make sure everything is checked into git*
+- Make sure distribution tests pass
+- *Make sure modules compile*
+
+* What can dzil do (2/2)?
+
+- *Check POD syntax*
+- *Check that POD covers all methods*
+- *Check that line endings are correct*
+- *Test POD text for spelling*
+- Make sure additional tests in the xt/ directory pass
+- For each applicable file:
+  - *Calculate the next version and write $VERSION*
+  - *Find an abstract and write a NAME section in the POD*
+  - *Write the $VERSION into the POD*
+  - *Add AUTHORS and COPYRIGHT sections to the POD*
+  - *Add a formal copyright and license statement*
+- *Add the $VERSION and timestamp to my Changes file*
+- *Tag the release with git*
+- Create a tarball of the directory
+- Upload the tarball to CPAN
+
+
+* What can dzil do (3/2)?
+
+- More all the time...
+
+- dzil is written to be completely modular
+  - uses Moose OO framework
+- Most things can be automated
+  - All this work is invisible to the end user
+- More plugins are being released all the time
+- You add more functionality into \texttt{dist.ini} and your code
+- Automate installing dependencies:
+
+#+BEGIN_SRC sh
+  dzil authordeps | cpanm
+  dzil listdeps | cpanm
+#+END_SRC
+
+* dzil has minting profiles
+
+- Combinations of plugins can be pre-determined
+- File skeletons can be written into \texttt{\$HOME/.dzil}:
+
+#+BEGIN_SRC sh
+├── config.ini
+└── profiles/
+    └── default/
+        ├── Module.pm
+        ├── plugins.ini
+        ├── profile.ini
+        └── skel/
+            ├── .gitignore
+            ├── MANIFEST.SKIP
+            ├── perlcritic.rc
+            └── weaver.ini
+#+END_SRC
+
+* Multiple minting profiles
+
+
+- \texttt{\$HOME/.dzil/profiles} can contain more than one directory:
+- You can have a minting profile for every need:
+
+#+BEGIN_SRC sh
+dzil new My::Module
+dzil new -p default My::Module  # same as above
+dzil new research Res::Module
+#+END_SRC
+
+- Editing has to be done by hand
+- Minting profiles can be uploaded to CPAN and installed from there.
+
+* Getting started with minting profiles
+
+- Creates a default profile that can do everything above
+- Make sure cpanm is installed
+
+#+BEGIN_SRC sh
+  cd ; tar zxvf dzil-heikki.tar.gz
+  ~/.dzil/bin/dzil-update.pl
+  dzil setup
+#+END_SRC
+
+- Test the setup:
+
+#+BEGIN_SRC sh
+  dzil new Hello
+  cd Hello
+  dzil test --release --author
+#+END_SRC
+
+- Now start adding tests, code and documentation
