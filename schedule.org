@@ -19,14 +19,14 @@
 |         | 15.00-17.00 | Talk: *Emacs editor basics*            |
 |         |             | Practical: Emacs tutorial              |
 |         |             | Talk: *Perl Variables*                 |
-|         |             | Practical: Tasks 1, 2                  |
+|         |             | Practical: Tasks 1                     |
 |         |       \nbsp |                                        |
 | *Day 2* |             |                                        |
 |         |        8.00 | Tea and coffee                         |
 |         |  8.00-11.30 | Talk: *Perl flow control*              |
 |         |             | Talk: *Working with files*             |
 |         |             | Talk: *Perl regular expressions*       |
-|         |             | Practical: Tasks 3, 4, 5               |
+|         |             | Practical: Tasks 2, 3, 4, (5)          |
 |         |       \nbsp |                                        |
 |         | 11.30-12.30 | Lunch                                  |
 |         | 12.30-15.00 |                                        |
@@ -43,7 +43,7 @@
 |         |             | Talk: *Sequence and search in BioPerl* |
 |         |             | Practical: Sequence tasks with BioPerl |
 |         |       \nbsp |                                        |
-|         | 10.30-12.00 | Early Lunch  (vacate the room)         |
+|         | 11.30-12.30 | Lunch                                  |
 |         | 12.00-15.00 | Talk: *MRS database server*            |
 |         |             | Talk: *Other components in BioPerl*    |
 |         |             | Practical: Solutions to BioPerl tasks  |
