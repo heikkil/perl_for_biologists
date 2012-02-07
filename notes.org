@@ -429,3 +429,6 @@ Pod::Cpandoc
 alias perldoc='cpandoc'
 * git flow
 http://www.lowlevelmanager.com/2011/03/using-git-flow-with-github.html
+* Perl tutorials Hub
+
+http://perl-tutorial.org/
