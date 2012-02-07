@@ -225,6 +225,62 @@ and you get Name-0.001.tar.gz ready for:
   dzil listdeps | cpanm
 #+END_SRC
 
+* After dzilla: POD
+
+- The PodWeaver plugin will generate these sections. Do not write them
+  by hand:
+
+  - NAME, VERSION, COPYRIGHT, LICENSE
+
+- The one line description of the module need to added to each module:
+
+#+BEGIN_SRC perl
+  # ABSTRACT: the purpose of the module
+#+END_SRC
+
+
+- The PodCoverageTests plugin needs you to use tag =method to document
+  all methods and functions.
+
+#+BEGIN_SRC perl
+=method name
+
+What the method does
+ 
+#+END_SRC
+
+* After dzilla: scripts
+
+- To install scripts automatically, enable plugin ExecDir. All scripts
+  in the \texttt{bin} subdirectory will be installed
+
+  - Put all other scripts in an other directory, e.g. \texttt{scripts}
+
+- dzilla is geared for modules. You need to have these:
+
+#+BEGIN_SRC perl
+
+# ABSTRACT: the purpose of the script
+# PODNAME: test.pl
+
+package main;
+
+#+END_SRC
+
+* After dzilla: accessing $VERSION from scripts
+
+- If you write code that uses $VERSION that will be added by zdilla,
+  you need to do extra work. E.g.:
+
+#+BEGIN_SRC perl
+if ($opt_v) { # from Getopt::Std
+    no strict; no warnings;
+    print "$0 v. $VERSION\n";
+    exit 0;
+}
+#+END_SRC
+
+
 * dzil has minting profiles
 
 - Combinations of plugins can be pre-determined
