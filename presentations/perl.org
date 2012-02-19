@@ -937,7 +937,6 @@ say $LOG $params;
   open $FH, 'zcat file.gz|';
 #+end_src
    
-
 * Regular expressions
 
 ** Regular expressions
@@ -1316,6 +1315,7 @@ Text in B<bold> I<italic>
 - *XML::Twig* for manupulating XML data
 - *XML::Simple* for reading and writing simple XML
 - *PDL*, Perl Data Language, fast matrix and math
+- *Chart::Clicker* extensible graphs
 
 ** Perl Resources
 
