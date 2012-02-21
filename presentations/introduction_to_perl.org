@@ -221,6 +221,21 @@ cpanm Try::Tiny
 
 Read their documentation using \texttt{perldoc <Module::Name>}
 
+* Updating modules using cpanm
+
+To keep your CPAN module collection updated, you need to install a
+tool:
+
+#+BEGIN_SRC sh
+cpanm App-cpanoutdated
+#+END_SRC
+
+Any time you want to update all upgradable modules:
+
+#+BEGIN_SRC sh
+cpan-outdated | cpanm
+#+END_SRC
+
 * Some best practices
 
 1. All code should be under git revision control
