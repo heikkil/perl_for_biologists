@@ -432,3 +432,6 @@ http://www.lowlevelmanager.com/2011/03/using-git-flow-with-github.html
 * Perl tutorials Hub
 
 http://perl-tutorial.org/
+* Parallel::Forkmanager
+
+http://perltalks.celogeek.com/slides/2012/01/parallel-forkmanager-slide.html
