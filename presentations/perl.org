@@ -474,7 +474,7 @@ say "$alph: $c";
 
 - Ranges, an easy way to generate lists:
 #+begin_src perl
-  (1 .. 6), ( 8 .. -2 ), ('a' .. 'z')
+  (1 .. 6), reverse ('a' .. 'z')
 #+end_src
 
 - Can be used as slices
@@ -484,7 +484,7 @@ say "$alph: $c";
 
 - Months with 31 days:
 #+begin_src perl
-  @months[0,3,5, 7-8, 9, 11]
+  @months[0, 2, 4, 6, 7, 9, 11]
 #+end_src
 
 - Swapping values without intermediate variables:
@@ -753,7 +753,7 @@ my $sum = add 2,3;
 @lower = ('a' .. 'z');
 $myletters = \@lower;
 push @$myletters, '-';
-$upper = \('A' .. 'Z');
+$upper = ['A' .. 'Z'];
 ${$all}{'upper'} = $upper;
 $all->{'lower'} = \@lower;
 $matrix[0][5] = 3;
