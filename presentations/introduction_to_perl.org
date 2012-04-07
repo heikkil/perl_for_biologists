@@ -1,8 +1,8 @@
-
 #+TITLE: Installing Perl and creating your first perl program
 #+AUTHOR: Heikki Lehv\auml{}slaiho
+
 #+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
-#+DATE:      2011-12-04 \\ CC BY-SA 3.0
+#+DATE:      2012-04-07 \\ CC BY-SA 3.0
 #+DESCRIPTION:
 #+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
 #+LANGUAGE:  en
