@@ -1087,9 +1087,9 @@ $count = tr/[AT]/N/;
 s/(\w+)/"$1"/g;
 
 # last word character
-/.+(w+)/;
+/.+(\w+)/;
 # first whole word
-/.+? (w+)/;
+/.+? (\w+)/;
 #+end_src
 
 * Real world programming - errors and all
