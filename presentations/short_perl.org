@@ -1,0 +1,893 @@
+#+TITLE: Programming in Perl 
+#+AUTHOR: Heikki Lehv\auml{}slaiho
+#+EMAIL:     heikki.lehvaslaiho@kaust.edu.sa
+#+DATE:      2012-03-06 \\ CC BY-SA 3.0
+#+DESCRIPTION:
+#+KEYWORDS: UNIX, LINUX , CLI, history, summary, command line  
+#+LANGUAGE:  en
+#+OPTIONS:   H:3 num:t toc:t \n:nil @:t ::t |:t ^:t -:t f:t *:t <:t
+#+OPTIONS:   TeX:t LaTeX:t skip:nil d:nil todo:t pri:nil tags:not-in-toc
+#+INFOJS_OPT: view:nil toc:t ltoc:t mouse:underline buttons:0 path:http://orgmode.org/org-info.js
+#+EXPORT_SELECT_TAGS: export
+#+EXPORT_EXCLUDE_TAGS: noexport
+#+LINK_UP:   
+#+LINK_HOME: 
+#+XSLT:
+
+#+startup: beamer
+#+LaTeX_CLASS: beamer
+#+LaTeX_CLASS_OPTIONS: [smaller]
+
+#+BEAMER_FRAME_LEVEL: 2
+
+#+COLUMNS: %40ITEM %10BEAMER_env(Env) %9BEAMER_envargs(Env Args) %4BEAMER_col(Col) %10BEAMER_extra(Extra)
+
+# TOC slide before every section
+#+latex_header: \AtBeginSection[]{\begin{frame}<beamer>\frametitle{Topic}\tableofcontents[currentsection]\end{frame}}
+
+## see http://deic.uab.es/~iblanes/beamer_gallery/
+
+##+latex_header: \mode<beamer>{\usetheme{Madrid}}
+#+latex_header: \mode<beamer>{\usetheme{Antibes}}
+##+latex_header: \mode<beamer>{\usecolortheme{wolverine}}
+#+latex_header: \mode<beamer>{\usecolortheme{beaver}}
+#+latex_header: \mode<beamer>{\usefonttheme{structurebold}}
+
+#+latex_header: \logo{\includegraphics[width=1cm,height=1cm,keepaspectratio]{img/logo-kaust}}
+
+# original sugestion
+#\definecolor{keywords}{RGB}{255,0,90}
+#\definecolor{comments}{RGB}{60,179,113}
+#\definecolor{fore}{RGB}{249,242,215}
+#\definecolor{back}{RGB}{51,51,51}
+
+\definecolor{keywords}{RGB}{178,0,90}
+\definecolor{comments}{RGB}{0,60,0}
+\definecolor{fore}{RGB}{21,21,21}
+\definecolor{back}{RGB}{211,211,211}
+\lstset{
+  basicstyle=\small,
+  basicstyle=\color{fore},
+  keywordstyle=\color{keywords},
+  commentstyle=\color{comments},
+  backgroundcolor=\color{back}
+}
+
+
+* Perl
+** What is Perl
+- Perl is a programming language
+  - Born from a combination of C & shell scripting for system administration
+  - Larry Wall's background in linguistics led to Perl borrowing ideas
+    from natural languages.
+
+- "There is more than one way to do it"
+
+- The glue that holds the internet together.
+
+- Oldest scripting language 
+  - No separate compilation step needed
+  - The line noise of the programming languages.
+#+begin_src perl
+  /^[^#]+\s*(?:\d+\w+\s*)[2,3]$/;
+#+end_src
+
+** Why use Perl
+- Easy to learn
+- Cross platform
+- Very strong community support
+  - CPAN, perlmonks, Perl User Groups
+- Provides API to things that do not have API
+- Excellent documentation
+- Try:
+#+begin_src sh
+  man perl
+#+end_src
+
+** The Camel Book
+#+begin_center
+#+ATTR_LaTeX: width=0.40\textwidth 
+[[file:img/camelbook.png]]
+#+end_center
+- The fourth edition is just out
+- The introductory chapter is freely available
+** Beginning Perl
+
+- Open source book by Simon Cozens
+
+#+begin_center
+#+ATTR_LaTeX: width=0.40\textwidth
+[[file:img/beginningperl.png]]
+#+end_center
+
+- Downloadable at http://www.perl.org/books/beginning-perl/ and locally
+
+** Modern Perl
+
+- Open source book by chromatic
+#+begin_center
+#+ATTR_LaTeX: width=0.30\textwidth
+[[file:img/mp_cover_full.png]]
+#+end_center
+
+- Best practices of current perl (intermediate level)
+- Second release, 2011-2012
+- Downloadable at http://onyxneon.com/books/modern_perl/ and locally
+
+** Perl Documentation
+#+begin_src sh
+  perldoc perltoc
+  perldoc perlfunc
+  perldoc -f open
+  perldoc CGI
+  perldoc Bio::PrimarySeq
+#+end_src
+
+
+- http://www.perl.org
+- http://perldoc.perl.org/	
+- http://perl-begin.org/
+- http://learn.perl.org/
+- http://www.cpan.org/	
+- http://perlmonks.org/
+
+
+** Online tutorials
+
+- http://learnperl.scratchcomputing.com/
+  - short introductions
+- http://perltraining.com.au/notes.html
+  - material for several week long courses
+- http://www.modernperlbooks.com/mt/2011/09/how-to-learn-perl.html
+  - guidelines for learning from cromatic
+- http://www.perl-begin.org/tutorials/impatient-perl/iperl.html
+  - thorough coverage for the impatient
+
+** Programming Perl
+
+- Best practices
+- Aimed at Perl 5.14.2.
+- Shortcuts (idoms)
+- Code re-use
+- Maintainable development
+- Shortest path between two points
+
+** Perl program structure
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+- shebang #!
+  + /usr/bin/env perl
+- directives (use)
+- keywords 
+- functions
+- statements ;
+- white space
+- comments
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_col: 0.5
+    :BEAMER_env: ignoreheading
+    :END:
+
+#+begin_src sh
+> cat hello.pl
+#+end_src
+
+
+#+begin_src perl
+#!/usr/bin/env perl
+# example1_hello.pl
+use Modern::Perl;
+say "Hello!";
+#+end_src
+
+#+begin_src sh
+> chmod 755 hello.pl
+> hello.pl
+Hello!
+>
+#+end_src
+    
+
+* Running perl
+ 
+** Which perl?
+
+- Most systems come with preinstalled, "vendor" perl
+  + Unix/LINUX
+  + Mac OS X
+- Good reasons for not using it:
+  + Might not be the version you want
+  + Might not have the modules you need
+  + You might not have superuser access
+  + You will be bound to one version
+  + Changing the vendor perl might destabilize the OS (Macs!)
+
+** Personal perl
+
+- Install your own perl version in your home directory
+- No superuser privileges needed
+- Complete control over versions and modules
+- Not dependent on OS updates
+
+A C compiler needs to be installed!
+ 
+- Ubuntu
+
+#+begin_src sh
+sudo apt-get install build-essential
+#+end_src
+
+- Macs
+  + install 'unix tools' section of Apple's Xcode
+
+** Installation
+
+- Macs
+
+#+begin_src sh
+  curl -L http://xrl.us/installperlosx | bash
+  # if this fails, run:
+  perlbrew --force install perl-5.14.2
+#+end_src
+
+- *nix systems
+
+#+begin_src sh
+curl -L http://xrl.us/installperlnix | bash
+#+end_src
+
+ --> perlbrew
+
+ --> App:cpanminus
+
+Update: http://learn.perl.org/installing/
+
+** Installation, advanced
+
+This is for future reference, only:
+
+#+begin_src sh
+perlbrew install \
+  -j 2  -Dusethreads perl-5.14.2
+#+end_src
+- \texttt{-j N}: use N parallel process for compiling and tests
+  + N depends on number of cores in your system 
+- \texttt{-Dusethreads}: allow multiple threads (parallel processes)
+  in perl
+
+** Perlbrew
+
+- Tool to manage multiple perl installations
+- http://www.perlbrew.pl/
+
+#+begin_src sh
+  perlbrew mirror        # set preferred mirror
+  perlbrew available     # installable perls
+  perlbrew list          # installed perls 
+  perlbrew use <name>    # use in this shell
+  perlbrew switch <name> # use for now on
+#+end_src
+
+** Perl for the course
+
+We will be using the latest stable perl, so run now:
+
+#+begin_src sh
+  perlbrew switch perl-5.14.2
+#+end_src
+
+Verify the perl version:
+#+begin_src sh
+  perl -v
+#+end_src
+
+* Perl variables
+
+** Variable types
+- Scalars - Start with a $
+  - Strings, integers, floating point numbers, references to other variables
+- Arrays - start with a @
+  - Zero based index
+  - Contain an ordered list of scalars
+- Hashes - start with %
+  - Associative arrays without order
+  - key => value
+
+** Scalars
+
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+- Any single value
+- Automatic type casting
+- String interpolation
+  - Only in double quoted strings
+- In Perl, context is everything!
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_col: 0.5
+    :BEAMER_env: ignoreheading
+    :END:
+
+#+begin_src perl
+#!/usr/bin/env perl
+# example2_sum/sum.pl
+use Modern::Perl;
+
+print "Give a number: ";
+my $num = <STDIN>;
+
+my $num2 = '0.5';
+my $float = $num + $num2;
+
+# print the sum
+my $res = 'Sum';
+print "$res is $float\n";
+#+end_src
+
+** Pragmas
+
+- \texttt{use Modern::Perl;}
+  - Recommended, declares both below
+  - Also gives function \texttt{say}
+- \texttt{use strict;}
+  - Forces variable declaration
+  - Needed for maintainable code
+  - Scoping
+  - Garbage collection
+- \texttt{use warnings;}
+  - Alerts on uninitialized variables
+  - Warns on deprecated syntax
+  - Useful for sanity checking
+  - In desperate situations: \texttt{no warnings;}
+
+** undef
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+- Q: What is the value of a variable if the value has not been assigned?
+\pause
+- A:  \texttt{undef}, meaning not defined, void
+  - \texttt{use warnings} will warn if you try to access undefined variables
+
+#+begin_src sh
+Use of uninitialized \
+value $num in say at \
+./undef.pl line 7.
+#+end_src
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+#+begin_src perl
+#!/usr/bin/env perl
+# example3_undef/undef.pl
+use Modern::Perl;
+
+my $num;
+# print
+say $num;
+#+end_src
+
+** Operators
+
+
+| *Function*        | *String*    | *Numeric*    |
+|-------------------+-------------+--------------|
+| Assignment        | $=$         | $=$          |
+| Equality          | eq, ne      | $==$, $!=$   |
+| Comparison        | lt,le,gt,ge | <, <=, >, >= |
+| Concatenation     | .           | n/a          |
+| Repetition        | x           | n/a          |
+| Basic Math        | n/a         | +,-,*,/      |
+| Modulus, Exponent | n/a         | %,^          |
+| Sorting           | cmp         | <=>          |
+
+** Operators
+
+- normal matematical precedence
+- operators force the context on variables!
+- More:
+  - boolean operators ( and, &&, or, || )
+  - operating and assinging at once ($a $+=$ $b;)
+  - autoincrement and autodecrement ($count++, ++$c;)
+
+** Working with strings
+*** [#B] list					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+
+- "$string" '$literals'
+  - single quotes: verbatim
+  - variable interpolation
+- Operators:
+  + concatenation .
+  + repetition x
+- join()
+- chomp()
+- length()
+- substr() - replace!
+- HERE documents
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+#+begin_src perl
+my $a = "$b". '$c'. 'pl';
+my $s = join ',', @list;
+my $sep =  '-' x 40;
+say length $seq ;
+my $last = 
+    substr $a, -1, 1;
+$ml = <<HERE
+This is a $adj
+multi line
+HERE
+print $ml; 
+#+end_src
+** Working with numbers
+*** [#B] list					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.4
+    :END:
+
+- abs() - absolute value
+- sqrt()- positive square root
+  + see Math::Complex
+- exp(), log()
+- rand() - pseudo rnd number
+- (trigonometry)
+- int() - integer part
+- printf(), sprintf()
+  + perldoc -f sprintf
+- oct(), hex()
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.6
+    :END:
+#+begin_src perl
+  my $rounded = int($float+0.5);
+  $a=2.66666;
+  printf "%.2f\n", $a;  # 2.67
+  printf "%+.2f\n", $a; #+2.67
+
+#+end_src
+
+** Array
+
+- Implements stacks, lists, queues
+
+#+begin_src perl
+   @a = ();         # literal empty list
+   @b= qw(a t c g); # white space limited list
+   push @b, 'u'; $first = shift @b; # functions
+#+end_src
+#+begin_center
+file:img/array.pdf
+#+end_center
+
+** Working with arrays
+
+*** [#B] list					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.4
+    :END:
+- Special variable $#alph,  index of last element
+- Special variable $_
+- split() and join(), foreach()
+- Enclosure
+- Scalar context gives array length
+- Access array elements as scalars
+- Note the sigill shift: @ -> $
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.6
+    :END:
+#+begin_src perl
+#!/usr/bin/env perl
+# example4_counting/counting.pl
+use Modern::Perl;
+my $alph = 'atgc';
+say length($alph);
+my @alph = split '', $alph;
+print "$#alph\n";
+print scalar(@alph), "\n";
+my $c = 0;
+foreach (@alph) {
+    say "$c: ", $alph[$c], $_;
+    $c++;
+    my $alph = 'augc';
+}
+say "$alph: $c";
+#+end_src
+
+** Working with arrays: output
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.4
+    :END:
+#+begin_src perl
+> counting.pl
+4
+3
+4
+0: aa
+1: tt
+2: gg
+3: cc
+atgc: 4 
+#+end_src
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.6
+    :END:
+#+begin_src perl
+#!/usr/bin/env perl
+# example4_counting/counting.pl
+use Modern::Perl;
+my $alph = 'atgc';
+say length($alph);
+my @alph = split '', $alph;
+print "$#alph\n";
+print scalar(@alph), "\n";
+my $c = 0;
+foreach (@alph) {
+    say "$c: ", $alph[$c], $_;
+    $c++;
+    my $alph = 'augc';
+}
+say "$alph: $c";
+#+end_src
+
+** Working with arrays
+
+- Ranges, an easy way to generate lists:
+#+begin_src perl
+  (1 .. 6), ( 8 .. -2 ), ('a' .. 'z')
+#+end_src
+
+- Can be used as slices
+#+begin_src perl
+  @three = reverse sort @months[ -1..1 ];
+#+end_src
+
+- Months with 31 days:
+#+begin_src perl
+  @months[0,3,5, 7-8, 9, 11]
+#+end_src
+
+- Swapping values without intermediate variables:
+#+begin_src perl
+  ($y, $x) = ($x, $y);
+#+end_src
+
+** Standard perl not enough?
+
+CPAN to rescue. Try these modules:
+
+- List::Util
+- List::MoreUtils 
+
+Also,
+ - String::Util
+
+** Perl built in functions
+
+- List of functions by category: 
+
+#+begin_src sh
+  perldoc perl 
+#+end_src
+
+- Usage of a function:
+
+#+begin_src sh
+  perldoc -f <function_name>
+#+end_src
+
+** Hashes
+
+- Special Initialization:
+#+begin_src perl
+  my %hash = ( key1 => 'value1' );
+#+end_src
+  - Could be written \texttt{( 'key1', 'value1', 'key2', 'value2', ... )}
+- Hash keys are unique!
+- Access scalar elements inside hashes like this:
+#+begin_src perl
+  my $value = $hash{key};
+#+end_src
+- Hashes auto-vivify!
+#+begin_src perl
+  # create an entry with key test1;
+  $hash{test1} = 'value';
+#+end_src
+- When you use hashes all the time, you have mastered perl!
+  - (hash references are even better, but we'll talk about them later)
+
+** Hash functions
+
+#+begin_src perl
+my $is_there = exists $hash{key};
+#+end_src
+- Returns 1 if the key exists, undef if not.
+- Does not auto-vivify.
+
+#+begin_src perl
+my $has_value = defined $hash{key};
+#+end_src
+- Return 1 if the key has value, undef if not
+
+#+begin_src perl
+my @list = keys %hash;
+#+end_src
+- Returns a list of the keys in the hash
+
+#+begin_src perl
+my @list = values %hash;
+#+end_src
+- Returns a list of the values in the hash
+
+** Default variables
+
+- $_ - the "default scalar"
+  - for example, \texttt{chomp()} and \texttt{print()} work on default
+    scalar if no argument is given
+
+- @\_ & @ARGV - the "default arrays"
+  - Subroutines use @\_ as default
+  - Outside of a subroutine, @ARGV is the default array, only used for
+    command line input
+
+* Flow control
+
+** Control structures
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.4
+    :END:
+
+- *Loops and decisions*
+- for, foreach
+- if, elsif, else
+- while
+- "if not" equals "unless"
+
+- transposition helps 
+- readability
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.6
+    :END:
+
+#+begin_src perl
+if (<some test>) {
+    # do
+} elsif (<other test>) {
+    # do
+} else {
+    # do
+}
+$a = 5;
+while ($a>0) {
+    # do
+    $a--;
+}
+unless ($valid) {
+    check($value)
+}
+check($value) unless $valid;
+#+end_src
+
+** What is boolean in Perl
+
+- There is no separate boolean variable
+- Anything can be tested
+  - An empty string is false
+  - Number 0 and string "0" are false
+  - An empty list () is false
+  - Undefined value, undef, is false
+  - *Everything else is true*
+
+** Pseudocode
+
+- Near English (or any natural language) explanation what code does,
+  written before writing the code
+
+- Keep elaborating and adding programme code like elements until it is
+  easy to implement.
+
+- Example: How to count from 10 to zero in even numbers:
+
+#+begin_center
+\texttt{  start from 10, remove 2, keep repeating until 0}
+#+end_center
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+
+#+begin_src perl
+start from 10,
+keep repeating until 0
+  print value
+  remove 2
+done
+#+end_src
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+
+#+begin_src perl
+x = 10;
+until ($x < 0) {
+	say $x;
+	$x -= 2;
+}
+#+end_src
+
+** Subroutines
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.4
+    :END:
+- Create your own verbs
+- Prototypes and predeclarations of subroutines can be used
+- Lexical scoping
+- Shift works on @\_
+- Last statement is returned
+- Note: You can not pass two arrays, they are flattened into one!
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.6
+    :END:
+
+#+begin_src perl
+sub version; #sum_sub.pl
+say 'version';
+say version;
+
+sub add1 {
+    my $one = shift;
+    my $two = shift; 	
+    my $sum = $one + $two;
+    return $sum;}
+# no space btw dollar signs!
+sub add ($ $) {
+    shift() + shift();}
+my $sum = add1(2,3);
+$sum = add 2, 3;
+sub version {'1.0'};
+#+end_src
+
+** Long arguments for subroutines
+
+If you have more than two arguments often, you might want to use
+  hashes to pass arguments to subroutines:
+
+#+begin_src perl
+sub add2 { # sub_sub2.pl
+    my %args = @_;
+    my $one = $args{one} || 0;
+    my $two = $args{two} || 0;
+    my $sum = $one +$two;
+    return $sum; }
+
+sub add ($$) {
+    shift() + shift(); }
+
+my $sum2 = add2(one => 2,
+                two => 3);
+my $sum = add 2,3;
+#+end_src
+
+** References
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+
+- Reference is a scalar variable pointer to some other, often more
+  complex, structure.
+
+- It does not have to a named structure
+
+- References make it possible to create complex structures:
+  + hashes of hashes,
+  + hashes of arrays, ...
+
+- \texttt{ref()} tells what is the referenced structure
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.5
+    :END:
+#+begin_src perl
+@lower = ('a' .. 'z');
+$myletters = \@lower;
+push @$myletters, '-';
+$upper = \('A' .. 'Z');
+${$all}{'upper'} = $upper;
+$all->{'lower'} = \@lower;
+$matrix[0][5] = 3;
+
+# using ref()
+ref \$a; #returns SCALAR
+ref \@a; #returns ARRAY
+ref \%a; #returns HASH
+#+end_src
+
+** Subroutines revisited
+
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.3
+    :END:
+  - passing more compex arguments as references
+  - ? : operator
+*** list 					      :B_ignoreheading:BMCOL:
+    :PROPERTIES: 
+    :BEAMER_env: ignoreheading
+    :BEAMER_col: 0.7
+    :END:
+
+#+begin_src perl
+sub first_is_longer { #longer.pl
+    my ($lref1, $lref2) = @_;
+
+    my $first = @$lref1; #length
+    my $sec = @$lref2; # length
+    ($first > $sec) ? 1 : 0;
+}
+#+end_src
+
+** Further reading
+
+Almost all topics covered so far are in
+
+ - perldoc perlintro
+
