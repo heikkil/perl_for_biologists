@@ -1,0 +1,234 @@
+#+TITLE:  Regular Expressions
+
+- perldoc:
+  - perlrequick		Perl regular expressions quick start
+  - perlretut		Perl regular expressions tutorial
+  - perlre		Perl regular expressions, the rest of the story
+  - perlrebackslash	Perl regular expression backslash sequences
+  - perlrecharclass	Perl regular expression character classes
+  - perlreref		Perl regular expressions quick reference
+
+
+* Types of regexps
+
+Regular expressions are patterns that match strings and allow retrieving
+information and modifying them. The three categories of regexps are
+*match*, *substitute* and *transliterate*. They operate on $_;
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle yes
+  use v5.10;
+  $_ = "AUCAGAUCGCAU";
+  say if /AUC/;  # match
+  s/U/T/g;       # substitute
+  tr/A-Z/a-z/;   # transliterate
+  say;
+#+END_SRC
+
+#+RESULTS:
+: AUCAGAUCGCAU
+: atcagatcgcat
+
+Matching to arbitrary strings is done using positive (\=~) and
+negative (\!~) regular expression binding operators.
+
+Parenthesis inside a matching regexp export the matching string. The
+first match is exported to variable $1, the second to $2 and so on.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle yes
+  use v5.10;
+  my $name = 'Heikki Lehvaslaiho';
+  $name_rx = '[^ ]+';   # any number of non-spaces
+  
+  # at one go
+  my ($first_name) = $name =~ /($name_rx)/;
+  # match first the assignment
+  $name =~ /([^ ]+)/;
+  $first_name = $1 if $1;
+  say "$name => $first_name";
+#+END_SRC
+
+#+RESULTS:
+: Heikki Lehvaslaiho => Heikki
+
+* Basics of regexp patterns
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle yes
+  /even/;      # literal
+  /^even/;     # literal, beginning of the line
+  /even$/;     # literal end of the line
+  /eve+n/;     # + means one or more e
+  /eve*n/;     # * means zero or more e
+  /eve?n/;     # ? means zero or one e
+  /eve{2,4}n/; # {; two to four times
+  /e(ve)+n/    # group for export, eveven
+  /0|1|2|3|4|5|6|7|8|9/ # alteration
+  /[0123456789]/ # character class
+  /[0-9]+/       # range, in ASCII
+  /\d+/          # digits
+  /e[ve]+n/      # character class, inclusive
+  /e[^ve]+n/     # character class, exclusive
+  /e.*n/         #
+#+END_SRC
+
+see: REGex TESTER http://www.regextester.com/
+
+Regexps always match as early as possible and extend as far as
+possible (greedy).
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle show_match.pl
+use v5.10;
+sub show_match ($$) {
+   my $s = shift;
+   my $rx = shift;
+   $s =~ /$rx/;
+   say "|$1|";
+}
+
+show_match "One two three ", '([te].*[te])';
+
+#+END_SRC
+
+#+RESULTS:
+: |e two three|
+
+Add ? to the cardinality character to revert to lazy (non-greedy) matching.
+
+* Regexp character classes
+
+
+- \d matches a digit, not just [0-9] but also digits from non-roman
+   scripts
+- \s matches a whitespace character, the set [\ \t\r\n\f] and others
+- \w matches a word character (alphanumeric or _), not just
+  [0-9a-zA-Z_] but also digits and characters from non-roman scripts
+- \D is a negated \d; it represents any other character than a digit,
+  or [^\d]
+- \S is a negated \s; it represents any non-whitespace character [^\s]
+- \W is a negated \w; it represents any non-word character [^\w]
+- The period '.' matches any character but "\n" (unless the modifier
+  "//s" is in effect, as explained below).
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle show_match2.pl
+use v5.10;
+sub show_match ($$) {
+   my $s = shift;
+   my $rx = shift;
+   $s =~ /$rx/;
+   say "|$1|$2|";
+}
+
+show_match "  One  two three, 1 22 333", '(\d+\W+)(\w+)$';
+
+#+END_SRC
+
+#+RESULTS:
+: |22 |333|
+
+* Regexp modifiers
+
+See 'perldoc perlre
+
+-  m   Treat string as multiple lines. "^" and "$" match internal lines
+-  s   Treat string as single line. "." matches even newline
+-  i   Do case-insensitive pattern matching.
+-  x   Permitting whitespace and comments.
+-  g   Global (repeated) matching
+
+and more Unicode-related modifiers.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle show_match2.pl
+use v5.10;
+sub show_match ($$) {
+   my $s = shift;
+   my $rx = shift;
+
+   while ($s =~ /$rx/gi) {
+     say pos $s, ": |$1|";
+   }
+}
+
+show_match "One two three, 1 22 333", '(\w.{3})';
+
+#+END_SRC
+
+#+RESULTS:
+: 4: |One |
+: 8: |two |
+: 12: |thre|
+: 16: |e, 1|
+: 21: |22 3|
+
+* Internal matching
+
+Use \1, \2, \3 etc to match groups within regexps. The parenthesis are
+counted from the open.
+
+
+These are the various ways you can run perl regular expression on the
+command line:
+
+#+BEGIN_SRC sh :tangle no
+  perl -ne 'print if /((\w)\2){3}/' /usr/share/dict/words
+  cat /usr/share/dict/words | perl -ne 'print if /((\w)\2){3}/'
+  grep -P '/((\w)\2){3}/' /usr/share/dict/words
+#+END_SRC
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle dict_words.pl
+  use v5.10;
+  #use autodie;
+  sub show_matches ($) {
+      my $rx = shift;
+      open my $F, "<", "/usr/share/dict/words";
+      while (<$F>) {
+          print if /$rx/i;
+      }
+  }
+    
+  show_matches '((\w)\2){3}';
+  say;
+  show_matches '((\w(\w))\3){3}';
+  say;
+  show_matches '(.(.))(.\2){4}';
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+bookkeeper
+bookkeeper's
+bookkeepers
+bookkeeping
+bookkeeping's
+
+McConnell
+McConnell's
+Mississippi
+Mississippi's
+Mississippian
+Mississippians
+barrenness
+barrenness's
+noncommittally
+rottenness
+suddenness
+suddenness's
+sullenness
+sullenness's
+
+Guadalajara
+Guadalajara's
+divisibility
+divisibility's
+indivisibility
+indivisibility's
+#+end_example
+

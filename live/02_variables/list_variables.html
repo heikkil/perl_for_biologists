@@ -1,0 +1,483 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>List variables</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="List variables"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-03-13 09:04:23 AST"/>
+<meta name="author" content="Heikki Lehvaslaiho"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">List variables</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Complex Variables handle lists of arbitrary complexity</a></li>
+<li><a href="#sec-2">2 Arrays</a>
+<ul>
+<li><a href="#sec-2-1">2.1 Assigning into arrays</a></li>
+<li><a href="#sec-2-2">2.2 Ranges</a></li>
+<li><a href="#sec-2-3">2.3 Functions to manipulate arrays</a></li>
+<li><a href="#sec-2-4">2.4 Slicing arrays</a></li>
+<li><a href="#sec-2-5">2.5 Swapping values without intermediate variables:</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 Hashes</a>
+<ul>
+<li><a href="#sec-3-1">3.1 Working with hashes</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Complex Variables handle lists of arbitrary complexity</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+In addition to scalar variables, there are only two other types of
+basic variables in Perl: arrays and hashes. Again, they are easily
+regognized by their sigil:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Type</th><th scope="col" class="left">Sigil</th><th scope="col" class="left">Example</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">scalar</td><td class="left">$</td><td class="left">$name</td></tr>
+<tr><td class="left">array</td><td class="left">@</td><td class="left">@name</td></tr>
+<tr><td class="left">hash</td><td class="left">%</td><td class="left">%name</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Arrays</h2>
+<div class="outline-text-2" id="text-2">
+
+
+<ul>
+<li>contains ordered list of scalars
+</li>
+<li>starts counting elements from zero
+</li>
+<li>implements lists, stacks, queues
+</li>
+</ul>
+
+
+
+
+
+<pre class="example">my $alph = 'atgc';
+print length($alph), "\n";
+my @alph = split '', $alph;
+print "$#alph\n";               # index of last element
+print scalar(@alph), "\n";      # scalar context =&gt; number of elements
+my $c = 0;
+foreach (@alph) {
+    print "$c: ", $alph[$c], $_, "\n";  # special variable $_; sigil shift!
+    $c++;
+    my $alph = 'augc';          # using the enclosure
+}
+print"$alph: $c ($_)", "\n";
+</pre>
+
+
+<pre class="example">
+4
+3
+4
+0: aa
+1: tt
+2: gg
+3: cc
+atgc: 4 ()
+</pre>
+
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Assigning into arrays</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+
+
+
+<pre class="example">my @a;
+$a[3] = 'fourth';
+print $a[3];
+
+# instant multi-dimensional arrays
+$b[2][3] = 'red queen';
+</pre>
+
+
+<pre class="example">
+fourth
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Ranges</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<p>
+Range operator an easy way to generate lists:
+</p>
+
+
+
+<pre class="example">my @a = ((1 .. 4), reverse ('a' .. 'z'));
+print "@a";
+</pre>
+
+
+<pre class="example">
+1 2 3 4 z y x w v u t s r q p o n m l k j i h g f e d c b a
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-3" class="outline-3">
+<h3 id="sec-2-3"><span class="section-number-3">2.3</span> Functions to manipulate arrays</h3>
+<div class="outline-text-3" id="text-2-3">
+
+
+<p>
+Most common functions manipulate arrays at their ends. They are
+special cases of function called splice().
+</p>
+<p>
+<img src="img/array.png"  alt="img/array.png" />
+</p>
+
+
+<pre class="example">@alph = qw(a t g c);
+print "@alph\n";
+push @alph, 'u';
+print "@alph\n";
+$last = pop @alph;
+print "@alph\t$last\n";
+$first = shift @alph;
+print "@alph \t$first\n";
+unshift @alph, $first;
+print "@alph\n";
+</pre>
+
+
+<pre class="example">
+a t g c
+a t g c u
+a t g c	u
+t g c 	a
+a t g c
+</pre>
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-4" class="outline-3">
+<h3 id="sec-2-4"><span class="section-number-3">2.4</span> Slicing arrays</h3>
+<div class="outline-text-3" id="text-2-4">
+
+
+
+
+
+<pre class="example">my @months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+my @three = reverse sort @months[ -1..1 ];
+print "@three";
+</pre>
+
+
+<pre class="example">
+Jan Feb Dec
+</pre>
+
+
+<ul>
+<li>Months with 31 days:
+</li>
+</ul>
+
+
+
+
+
+<pre class="example">#                0   1   2   3   4   5   6   7   8   9   10  11  12
+my @months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+print join (", ", @months[0, 2, 4, 6, 7, 9, 11]), "\n";
+</pre>
+
+
+<pre class="example">
+Jan, Mar, May, Jul, Aug, Oct, Dec
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-5" class="outline-3">
+<h3 id="sec-2-5"><span class="section-number-3">2.5</span> Swapping values without intermediate variables:</h3>
+<div class="outline-text-3" id="text-2-5">
+
+
+
+
+
+<pre class="example">my ($y, $x) = ("aaa", "bbb");
+print "$x $y\n";
+($y, $x) = ($x, $y);
+print "$x $y\n";
+</pre>
+
+
+<pre class="example">
+bbb aaa
+aaa bbb
+</pre>
+
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Hashes</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<ul>
+<li>Holds key/value pairs of scalars
+</li>
+<li>There is <b>no order</b> in which they values are retrieved!
+</li>
+</ul>
+
+
+
+
+
+
+<pre class="example">use Data::Dumper; # standard perl module
+
+my @array = qw( bread 5 milk 3 butter 1);
+print Dumper \@array;
+my %hash = @array;
+print Dumper \%hash;
+
+# special syntax for hashes
+%hash2 = (cheese =&gt; 2, meat =&gt; 'no bones');
+print Dumper \%hash2;
+
+# access a value
+print "Buy ", $hash{bread}, " breads\n";
+
+# any key can be assigned a value and will come to existance
+# this is known as auto-vivification
+$hash{apples} = 6;
+$hash{pears} = undef;
+
+my $var; #undef
+
+</pre>
+
+
+
+<pre class="example">$VAR1 = [
+          'bread',
+          '5',
+          'milk',
+          '3',
+          'butter',
+          '1'
+        ];
+$VAR1 = {
+          'bread' =&gt; '5',
+          'butter' =&gt; '1',
+          'milk' =&gt; '3'
+        };
+$VAR1 = {
+          'cheese' =&gt; 2,
+          'meat' =&gt; 'no bones'
+        };
+Buy 5 breads
+</pre>
+
+
+
+
+</div>
+
+<div id="outline-container-3-1" class="outline-3">
+<h3 id="sec-3-1"><span class="section-number-3">3.1</span> Working with hashes</h3>
+<div class="outline-text-3" id="text-3-1">
+
+
+
+
+
+<pre class="example">
+my %hash = ( bread =&gt; 5, milk =&gt; 3, butter =&gt; 1);
+
+# safe way to see if key exists - without autovivification
+print "Bread? ", exists $hash{bread};
+
+# does the key have a value?
+print "\nBread has value? ", defined $hash{bread};
+
+# list of keys. Unordered!
+print "\nKeys: ", join " ", keys %hash;
+
+#  how many keys?
+print "\nCount of keys: ",  scalar keys %hash;
+
+# list of values;
+print "\nValues: ", join " ", values %hash;
+
+
+</pre>
+
+
+<pre class="example">
+Bread? 1
+Bread has value? 1
+Keys: bread butter milk
+Count of keys: 3
+Values: 5 1 3
+</pre>
+
+
+
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-03-13 09:04:23 AST</p>
+<p class="author">Author: Heikki Lehvaslaiho</p>
+<p class="creator">Org version 7.8.03 with Emacs version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

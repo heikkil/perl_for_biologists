@@ -1,0 +1,301 @@
+#+TITLE:  Files and the OS
+
+* Managing files in the operating system
+
+** rm
+
+#+BEGIN_SRC perl
+  use v5.10;
+  unlink $file;
+  unlink @files;
+#+END_SRC
+
+** mv
+
+#+BEGIN_SRC perl
+ rename $old_name, $new_name;
+#+END_SRC
+
+The *rename* does not move files between file systems. For that, you
+can use:
+
+#+BEGIN_SRC perl
+  use File::Copy qw(move);
+  move $old_name, $new_name;
+#+END_SRC
+
+** cp
+
+There is no cp equivalent in core perl, so use File::Copy
+#+BEGIN_SRC perl
+  use File::Copy qw(copy);
+  copy $old_file, $new_file;
+#+END_SRC
+  
+** mkdir 
+
+Identical to the UNIX command
+
+* Reading and writing files
+
+** Shorthand for reading from a file
+
+Special construct: (<>) reads from STDIN one line at a time.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle grep_begin.pl
+  while (<>) {
+      print if substr($_, 0, 7) eq '#+BEGIN'
+  }
+#+END_SRC
+
+#+BEGIN_SRC sh
+  cat files.org | grep_begin.pl
+#+END_SRC
+
+#+RESULTS:
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl | :tangle | grep_begin.pl    |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | perl | :tangle | open_modern.pl   |
+| #+BEGIN_SRC | perl | :tangle | open_older.pl    |
+| #+BEGIN_SRC | perl | :tangle | open_older.pl    |
+| #+BEGIN_SRC | perl | :tangle | open_multiple.pl |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | perl | :tangle | all_reverse.pl   |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl | :tangle | yes              |
+
+If you give your programme command line arguments, they are added to
+the program level default variable *@ARGV*. This while loop will treat
+them as filenames and pass all lines to $_;
+
+#+BEGIN_SRC sh
+  grep_begin.pl files.org 
+#+END_SRC
+
+#+RESULTS:
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl | :tangle | grep_begin.pl    |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | perl | :tangle | open_modern.pl   |
+| #+BEGIN_SRC | perl | :tangle | open_older.pl    |
+| #+BEGIN_SRC | perl | :tangle | open_older.pl    |
+| #+BEGIN_SRC | perl | :tangle | open_multiple.pl |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | perl | :tangle | all_reverse.pl   |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl | :tangle | yes              |
+
+
+You can call this behaviour from command line, too, but it is usually
+done with regular expressions:
+
+
+#+BEGIN_SRC sh
+  perl -ne "print if /for/" *pl
+#+END_SRC
+
+#+RESULTS:
+: for my $plfile (@ls) {
+
+FOr more perl command line options see: perldoc perlrun
+
+#+BEGIN_SRC sh
+  perl -ne "print if /^\#\+BEGIN/" files.org
+#+END_SRC
+
+#+RESULTS:
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl | :tangle | grep_begin.pl    |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | perl | :tangle | open_modern.pl   |
+| #+BEGIN_SRC | perl | :tangle | open_older.pl    |
+| #+BEGIN_SRC | perl | :tangle | open_older.pl    |
+| #+BEGIN_SRC | perl | :tangle | open_multiple.pl |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | sh   |         |                  |
+| #+BEGIN_SRC | perl | :tangle | all_reverse.pl   |
+| #+BEGIN_SRC | perl |         |                  |
+| #+BEGIN_SRC | perl | :tangle | yes              |
+
+
+
+** Opening a file
+
+See: 'perldoc -f open' and 'perldoc perlopentut'
+
+A file handle is pointer to a file in a file system. It is held in a
+scalar variable.
+
+You should always use the modern, three argument mode of open with
+autodie:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle open_modern.pl
+  use v5.10;
+  use strict; use warnings;
+  use autodie;
+    
+  { # code block to automatically close the filehandle in the end
+      open my $F, "<", "input.txt";
+      while (<$F>) {
+          print;
+      }
+  }
+#+END_SRC
+
+#+RESULTS:
+
+You can close the filehandle manually, too.
+
+Without autodie, you'll have to test the success yourself and print
+the error message ($!):
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle open_older.pl
+  use strict; use warnings;
+  open my $fh, "<", "input.txt" or die "cannot open < input.txt: $!";
+  while (<>) {
+      print;
+  }
+  close $f;
+#+END_SRC
+
+
+You can also test if the file exist before opening it:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle open_older.pl
+  use v5.10;
+  use strict; use warnings;
+
+  my $file = 'input.txt';
+  say "File $file does not exist" and exit unless -e $file;
+  say "File $file is not readable" and exit unless -r $file;
+
+  open my $fh, "<", "input.txt" or die "cannot open < input.txt: $!";
+  while (<>) {
+      print;
+  }
+  close $f;
+#+END_SRC
+
+Read more about file tests in 'perldoc -f -x'.
+
+A complete example reading from a file, writing the results into a file
+and comments in a log:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle open_multiple.pl
+  use v5.10;
+  use strict; use warnings;
+  use autodie;
+  
+  my $file = shift; # read the first argument;
+  open my $IN,  "<",  $file;
+  open my $OUT, ">",  "$file.out";
+  open my $LOG, ">>", "$file.log";
+  
+  while (<$IN>) {
+      # modify the line and print it to $out
+      chomp;
+      say $OUT scalar reverse;    
+  }
+  
+  say $LOG scalar localtime. "\tran programme $0";
+#+END_SRC
+
+Run the programme like this.
+
+#+BEGIN_SRC sh
+  open_multiple.pl grep_begin.pl
+#+END_SRC
+
+There is no printed output!
+
+
+
+* Running programmes from perl
+
+Perl has backtics operator for running external programmes and
+capturing the output. Perl can be used instead of shell scripts to
+automate running of programmes.
+
+Say you have created a programme:
+
+#+BEGIN_SRC sh
+echo "perl -lne 'print scalar reverse'" > rev.sh;
+chmod 755 rev.sh
+#+END_SRC
+
+#+RESULTS:
+
+And you want to run it on all .pl files  in the directory:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle all_reverse.pl
+use v5.10;
+@ls = split "\n", `ls *pl`;
+say "files: ", "@ls";
+
+for my $plfile (@ls) {
+   say `rev.sh < $plfile`;
+}
+
+#+END_SRC
+
+The above programme will plenty of output. Try it on command line!
+
+There are many ways to open compressed files and stream their contents
+into a programme. This is the simplest that does not use any external
+modules and works in UNIX environments:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl 
+  use autodie;
+  my $file = 'seqs.fa.gz';
+  open my $FH, "zcat $file|";
+  while (<$FH>) {
+    # do something
+  } 
+#+END_SRC
+
+
+By default perl  follows UNIX command line conventions to read files
+line by line. This is controlled by a global variable $/. It can be
+redefined to read multiple lines.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle cds_in_embl.pl
+{ # code block limits the extend of local declaration of a global variable
+  local $/ = "\/\/\n";
+  open my $SEQ, '<', shift;
+  while (<$SEQ>) {
+    my $seq = $_; 
+    my ($ac) = $seq =~ /AC +(\w+)/;  
+    say "$.: ", $ac if $seq =~ /FT +CDS/;
+  }
+}
+#+END_SRC
+
+For every line or block read, perl increases its internal counter $.
+
+

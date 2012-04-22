@@ -1,0 +1,234 @@
+#+TITLE: List variables
+
+* Complex Variables handle lists of arbitrary complexity
+
+In addition to scalar variables, there are only two other types of
+basic variables in Perl: arrays and hashes. Again, they are easily
+regognized by their sigil:
+
+| Type   | Sigil | Example |
+|--------+-------+---------|
+| scalar | $     | $name   |
+| array  | @     | @name   |
+| hash   | %     | %name   |
+|--------+-------+---------|
+
+* Arrays
+
+- contains ordered list of scalars
+- starts counting elements from zero
+- implements lists, stacks, queues
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle array_counting.pl
+  my $alph = 'atgc';
+  print length($alph), "\n";
+  my @alph = split '', $alph;
+  print "$#alph\n";               # index of last element
+  print scalar(@alph), "\n";      # scalar context => number of elements
+  my $c = 0;
+  foreach (@alph) {
+      print "$c: ", $alph[$c], $_, "\n";  # special variable $_; sigil shift!
+      $c++;
+      my $alph = 'augc';          # using the enclosure
+  }
+  print"$alph: $c ($_)", "\n";
+#+END_SRC
+
+#+RESULTS:
+: 4
+: 3
+: 4
+: 0: aa
+: 1: tt
+: 2: gg
+: 3: cc
+: atgc: 4 ()
+
+** Assigning into arrays
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle yes
+  my @a;
+  $a[3] = 'fourth';
+  print $a[3];
+  
+  # instant multi-dimensional arrays
+  $b[2][3] = 'red queen';
+#+END_SRC
+
+#+RESULTS:
+: fourth
+
+
+** Ranges
+
+Range operator an easy way to generate lists:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle array_range_operator.pl
+  my @a = ((1 .. 4), reverse ('a' .. 'z'));
+  print "@a";
+#+END_SRC
+
+#+RESULTS:
+: 1 2 3 4 z y x w v u t s r q p o n m l k j i h g f e d c b a
+
+
+
+** Functions to manipulate arrays
+
+Most common functions manipulate arrays at their ends. They are
+special cases of function called splice().
+
+[[file:img/array.png]]
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle array_manip.pl
+  @alph = qw(a t g c);
+  print "@alph\n";
+  push @alph, 'u';
+  print "@alph\n";
+  $last = pop @alph;
+  print "@alph\t$last\n";
+  $first = shift @alph;
+  print "@alph \t$first\n";
+  unshift @alph, $first;
+  print "@alph\n";
+#+END_SRC
+
+#+RESULTS:
+: a t g c
+: a t g c u
+: a t g c	u
+: t g c 	a
+: a t g c
+
+
+** Slicing arrays
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle array.pl
+  my @months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+  my @three = reverse sort @months[ -1..1 ];
+  print "@three";
+#+END_SRC
+
+#+RESULTS:
+: Jan Feb Dec
+
+- Months with 31 days:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle array_element_selection.pl
+  #                0   1   2   3   4   5   6   7   8   9   10  11  12
+  my @months = qw( Jan Feb Mar Apr May Jun Jul Aug Sep Oct Nov Dec);
+  print join (", ", @months[0, 2, 4, 6, 7, 9, 11]), "\n";
+#+END_SRC
+
+#+RESULTS:
+: Jan, Mar, May, Jul, Aug, Oct, Dec
+
+** Swapping values without intermediate variables:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle array_swap.pl
+  my ($y, $x) = ("aaa", "bbb");
+  print "$x $y\n";
+  ($y, $x) = ($x, $y);
+  print "$x $y\n";
+#+END_SRC
+
+#+RESULTS:
+: bbb aaa
+: aaa bbb
+
+
+* Hashes
+
+- Holds key/value pairs of scalars
+- There is *no order* in which they values are retrieved!
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle hash_create.pl
+use Data::Dumper; # standard perl module
+
+my @array = qw( bread 5 milk 3 butter 1);
+print Dumper \@array;
+my %hash = @array;
+print Dumper \%hash;
+
+# special syntax for hashes
+%hash2 = (cheese => 2, meat => 'no bones');
+print Dumper \%hash2;
+
+# access a value
+print "Buy ", $hash{bread}, " breads\n";
+
+# any key can be assigned a value and will come to existance
+# this is known as auto-vivification
+$hash{apples} = 6;
+$hash{pears} = undef;
+
+my $var; #undef
+
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+$VAR1 = [
+          'bread',
+          '5',
+          'milk',
+          '3',
+          'butter',
+          '1'
+        ];
+$VAR1 = {
+          'bread' => '5',
+          'butter' => '1',
+          'milk' => '3'
+        };
+$VAR1 = {
+          'cheese' => 2,
+          'meat' => 'no bones'
+        };
+Buy 5 breads
+#+end_example
+
+
+** Working with hashes
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle hash_functions.pl
+
+  my %hash = ( bread => 5, milk => 3, butter => 1);
+
+  # safe way to see if key exists - without autovivification
+  print "Bread? ", exists $hash{bread};
+  
+  # does the key have a value?
+  print "\nBread has value? ", defined $hash{bread};
+
+  # list of keys. Unordered!
+  print "\nKeys: ", join " ", keys %hash;
+
+  #  how many keys?
+  print "\nCount of keys: ",  scalar keys %hash;
+
+  # list of values;
+  print "\nValues: ", join " ", values %hash;
+
+
+#+END_SRC
+
+#+RESULTS:
+: Bread? 1
+: Bread has value? 1
+: Keys: bread butter milk
+: Count of keys: 3
+: Values: 5 1 3
+
+
+

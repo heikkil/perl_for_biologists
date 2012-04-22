@@ -1,0 +1,806 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Simple variables</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Simple variables"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-03-13 08:23:47 AST"/>
+<meta name="author" content="Heikki Lehvaslaiho"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Simple variables</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Variables: simple values</a>
+<ul>
+<li><a href="#sec-1-1">1.1 What are variables</a></li>
+<li><a href="#sec-1-2">1.2 Numbers</a></li>
+<li><a href="#sec-1-3">1.3 Strings</a></li>
+<li><a href="#sec-1-4">1.4 Operators</a></li>
+<li><a href="#sec-1-5">1.5 Boolean values</a></li>
+<li><a href="#sec-1-6">1.6 Comparing values</a></li>
+<li><a href="#sec-1-7">1.7 Boolean operators</a></li>
+<li><a href="#sec-1-8">1.8 String operators</a></li>
+<li><a href="#sec-1-9">1.9 Special versions of assigning</a></li>
+<li><a href="#sec-1-10">1.10 Scoping</a></li>
+<li><a href="#sec-1-11">1.11 Variable names</a></li>
+<li><a href="#sec-1-12">1.12 Variable interpolation</a></li>
+<li><a href="#sec-1-13">1.13 Some string functions</a></li>
+<li><a href="#sec-1-14">1.14 Some numeric functions</a></li>
+<li><a href="#sec-1-15">1.15 Special variables</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Variables: simple values</h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> What are variables</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+<p>
+Variables are easy to spot: They all start with a special
+character. Simple variables are stored in <b>scalar</b> variables starting
+with the "$" character.
+</p>
+<p>
+Perl is <b>context sensitive</b> language. One aspect of this is that there
+is only one variable type for strings, numbers and boolean values.
+</p>
+<p>
+Be sure to understand the difference between variable and value!
+</p>
+<p>
+The "=" is not "equals" but is the assignment operator.
+</p>
+
+
+
+<pre class="example">$a = 'a';
+print $a;
+</pre>
+
+
+<pre class="example">
+a
+</pre>
+
+
+<p>
+String 'a' is stored in variable $a.
+</p>
+
+
+
+<pre class="example">$a = 2;
+print $a;
+</pre>
+
+
+<pre class="example">
+2
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> Numbers</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+<p>
+If we use a numerical operator on a value, the <b>numerical value</b> is
+extracted from a it. Numerical operators can be applied on string values.
+</p>
+
+
+
+<pre class="example">$a = '2a';
+print $a + $a;
+</pre>
+
+
+<pre class="example">
+4
+</pre>
+
+
+<p>
+Certain rules apply, so do not try to misuse this feature!
+</p>
+<p>
+Numbers have a few special formats in perl:
+</p>
+
+
+
+<pre class="example">$a = 2_000_000_000_000;
+print $a * $a;
+</pre>
+
+
+<pre class="example">
+4e+24
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> Strings</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+<p>
+Single-quoted strings are <b>verbatim</b>, double quotes allow
+<b>interpolation</b> of special characters and variables.
+</p>
+<p>
+The special characters has to be <b>escaped</b> with a backslash "\"
+character.
+</p>
+
+
+
+<pre class="example">print "\tThis is a 'line' \\ \n";
+print '\tThis is a \'line\' \\ \n';
+</pre>
+
+
+<pre class="example">
+	This is a 'line' \ 
+\tThis is a 'line' \ \n
+</pre>
+
+
+<p>
+The quote-like operator makes it possible to write without escaping
+all the time. Any delimiter can be used &ndash; as long as it does not
+appear in the string.
+</p>
+
+
+
+<pre class="example">my $time = 5;
+print qq("We'll finish at $time o'clock", I say.);
+</pre>
+
+
+<pre class="example">
+"We'll finish at 5 o'clock", I say.
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> Operators</h3>
+<div class="outline-text-3" id="text-1-4">
+
+
+<p>
+Normal precedence. Changeable with parenthesis. This table and all the
+gory details are in the <b>perlop</b> man page.
+</p>
+
+
+
+<pre class="example">perldoc perlop
+</pre>
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left">Operator precedence</th></tr>
+</thead>
+<tbody>
+<tr><td class="left">List operators (left)</td></tr>
+<tr><td class="left">-&gt;</td></tr>
+<tr><td class="left">++ --</td></tr>
+<tr><td class="left">**</td></tr>
+<tr><td class="left">! ~ \ and unary + and -</td></tr>
+<tr><td class="left">=~ !~</td></tr>
+<tr><td class="left">* / % x</td></tr>
+<tr><td class="left">+ - .</td></tr>
+<tr><td class="left"><a name="" class="target"> </a></td></tr>
+<tr><td class="left">named unary operators</td></tr>
+<tr><td class="left">&lt; &gt; &lt;= &gt;= lt gt le ge</td></tr>
+<tr><td class="left">== != &lt;=&gt; eq ne cmp ~~</td></tr>
+<tr><td class="left">&amp;</td></tr>
+<tr><td class="left">\</td></tr>
+<tr><td class="left">&amp;&amp;</td></tr>
+<tr><td class="left">\/\/</td></tr>
+<tr><td class="left">..  &hellip;</td></tr>
+<tr><td class="left">?:</td></tr>
+<tr><td class="left">= += -= *= etc.</td></tr>
+<tr><td class="left">, =&gt;</td></tr>
+<tr><td class="left">list operators (right)</td></tr>
+<tr><td class="left">not</td></tr>
+<tr><td class="left">and</td></tr>
+<tr><td class="left">or xor</td></tr>
+</tbody>
+</table>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-5" class="outline-3">
+<h3 id="sec-1-5"><span class="section-number-3">1.5</span> Boolean values</h3>
+<div class="outline-text-3" id="text-1-5">
+
+
+<p>
+Truth is a everything except:
+</p>
+<ul>
+<li>zero
+</li>
+<li>empty string
+</li>
+<li>undefined value
+</li>
+<li>empty list
+</li>
+</ul>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-6" class="outline-3">
+<h3 id="sec-1-6"><span class="section-number-3">1.6</span> Comparing values</h3>
+<div class="outline-text-3" id="text-1-6">
+
+
+<p>
+Since scalar can hold both strings and numbers, comparison operators
+have to be different.
+</p>
+
+
+
+<pre class="example">print "Is a same as b? ", 'a' eq 'b', "\n";
+print "Is a same as a? ", 'a' eq 'a', "\n";
+print "Is 2 same as 3? ", 2 == 3, "\n";
+print "Is 2 not same as 3? ", 2 != 3, "\n";
+print "Is 2 same as 2? ", 2 == 2, "\n";
+
+print "Is a smaller than as b? ", 'a' lt 'b', "\n";
+print "Is 2 smaller than 3? ", 2 &lt; 3, "\n";
+
+</pre>
+
+
+<pre class="example">
+Is a same as b? 
+Is a same as a? 1
+Is 2 same as 3? 
+Is 2 not same as 3? 1
+Is 2 same as 2? 1
+Is a smaller than as b? 1
+Is 2 smaller than 3? 1
+</pre>
+
+
+<p>
+As you can see, true is most commonly represented by 1 and false by an
+empty string.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-7" class="outline-3">
+<h3 id="sec-1-7"><span class="section-number-3">1.7</span> Boolean operators</h3>
+<div class="outline-text-3" id="text-1-7">
+
+
+<p>
+Logical operators <b>and</b>, <b>or</b> and <b>not</b> are easier to use in symbolic
+forms which also have higher precedence. Use parenths when needed!
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left"><b>Verbose</b></th><th scope="col" class="left"><b>Symbolic</b></th></tr>
+</thead>
+<tbody>
+<tr><td class="left">and</td><td class="left">&amp;&amp;</td></tr>
+<tr><td class="left">or</td><td class="left">&#124;&#124;</td></tr>
+<tr><td class="left">not</td><td class="left">!</td></tr>
+</tbody>
+</table>
+
+
+
+
+
+
+<pre class="example">print 6&lt;7 &amp;&amp; 1&lt;2, "\n";
+print 6&lt;7 &amp;&amp; 1&gt;2, "\n";
+print 6&gt;7 || 1&lt;2, "\n";
+
+print 0 || 3, "\n";
+
+print 6&lt;7, "\n";
+print !(6&gt;7), "\n";
+print 0 || 2, "\n";
+</pre>
+
+
+<pre class="example">
+1
+
+1
+3
+1
+1
+2
+</pre>
+
+
+<p>
+Boolean operators are usually used in conditional statements (<b>if</b>)
+where their usage is clearer. More of them later&hellip;
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-8" class="outline-3">
+<h3 id="sec-1-8"><span class="section-number-3">1.8</span> String operators</h3>
+<div class="outline-text-3" id="text-1-8">
+
+
+<p>
+Concatenation operator, ".".
+</p>
+
+
+
+<pre class="example">print "Two times ". "three is ". 2*3 . "\n";
+</pre>
+
+
+<pre class="example">
+Two times three is 6
+</pre>
+
+
+<p>
+Repetition operator, "x".
+</p>
+
+
+
+<pre class="example">print "&lt;&gt;" x 30, "\n";
+</pre>
+
+
+<pre class="example">
+&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;&lt;&gt;
+</pre>
+
+
+<p>
+Range operator, ".."
+</p>
+
+
+
+<pre class="example">print 1..9;
+</pre>
+
+
+<pre class="example">
+123456789
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-9" class="outline-3">
+<h3 id="sec-1-9"><span class="section-number-3">1.9</span> Special versions of assigning</h3>
+<div class="outline-text-3" id="text-1-9">
+
+
+<p>
+Operating and assigning at once: in-place operators
+</p>
+
+
+
+<pre class="example">$a = $a + $b;  # common need
+$a += $b;      # a shorter and faster way
+$a ||= 'def';  # assigning a default value 
+</pre>
+
+
+
+
+<p>
+Multiple assignments
+</p>
+
+
+
+<pre class="example">$d = $c = $b = 2;
+print "$d = $c = $b";
+$b = 4 + ($a = 2);  # not recommended
+# do the assignments separately
+$a = 2;
+$b = 4 + $a;
+</pre>
+
+
+<pre class="example">
+2 = 2 = 2
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-10" class="outline-3">
+<h3 id="sec-1-10"><span class="section-number-3">1.10</span> Scoping</h3>
+<div class="outline-text-3" id="text-1-10">
+
+
+<p>
+All variable so far have been <b>global</b>, i.e. visible everywhere in
+the programme. Variables typically have different values in
+different parts of the programme. 
+</p>
+
+
+
+<pre class="example">$state = 'outside';
+{
+    $state = 'inside';
+    print "In : $state", "\n" 
+}
+print "Out: $state", "\n" 
+</pre>
+
+
+<pre class="example">
+In : inside
+Out: inside
+</pre>
+
+
+<p>
+<b>Lexical variables</b> solve this problem by limiting the visibility to
+a block. This is done using keyword <b>my</b> before the variable. 
+</p>
+
+
+
+<pre class="example">$state = 'outside';
+{
+    my $state = 'inside';
+    print "In : $state", "\n" 
+}
+print "Out: $state", "\n" 
+</pre>
+
+
+<pre class="example">
+In : inside
+Out: outside
+</pre>
+
+
+<p>
+Now you can see the benefits of limiting visibility of variables. The
+<b>use strict</b> pragma forces you to declare all variables. Using 'my' at
+top level makes the code available in all blocks under it &ndash; in effct
+global within the file.
+</p>
+
+
+
+
+<pre class="example">use strict;
+my $state = 'outside'; # will not compile without 'my'
+print "Out : $state", "\n";
+{
+    my $state = 'inside';
+    print "In : $state", "\n"; 
+}
+print "Out: $state", "\n";
+</pre>
+
+
+<pre class="example">
+Out : outside
+In : inside
+Out: outside
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-11" class="outline-3">
+<h3 id="sec-1-11"><span class="section-number-3">1.11</span> Variable names</h3>
+<div class="outline-text-3" id="text-1-11">
+
+
+<ol>
+<li>Sigil
+</li>
+<li>First character: letter or underscore
+</li>
+<li>Then: numbers, letters or underscores x 251
+</li>
+</ol>
+
+
+<p>
+<b>Case sensitive!</b>
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-1-12" class="outline-3">
+<h3 id="sec-1-12"><span class="section-number-3">1.12</span> Variable interpolation</h3>
+<div class="outline-text-3" id="text-1-12">
+
+
+<p>
+Same rules apply as for special characters: Only double quoted strings
+are interpolated.
+</p>
+
+
+
+<pre class="example">my $aa = '1';
+print "This is $aa\n";
+print "This is ${aa}st\n"; # just like in BASH
+$b = "${aa}st";
+$b = $aa. "st";  # identical to above line
+</pre>
+
+
+<pre class="example">
+This is 1
+This is 1st
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-13" class="outline-3">
+<h3 id="sec-1-13"><span class="section-number-3">1.13</span> Some string functions</h3>
+<div class="outline-text-3" id="text-1-13">
+
+
+<p>
+See 'perldoc perlfunc'
+</p>
+
+
+
+<pre class="example">my $name = 'heikki';
+print ucfirst($name), " is ", length($name), " characters long\n";
+# more: uc(), lc()
+# see: perldoc -f substr
+print substr($name, 3, 2), " are the two consonants in the middle of $name\n";
+# substr can be used to do inplace modifications of strings, too
+substr $name, 0, 1, uc(substr $name, 0, 1);
+print "$name\n";
+</pre>
+
+
+<pre class="example">
+Heikki is 6 characters long
+kk are the two consonants in the middle of heikki
+Heikki
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-14" class="outline-3">
+<h3 id="sec-1-14"><span class="section-number-3">1.14</span> Some numeric functions</h3>
+<div class="outline-text-3" id="text-1-14">
+
+
+<p>
+Only basic numerical functions are part of core Perl.
+</p>
+
+
+
+<pre class="example">print abs(-2), "\n";
+my $res = sqrt(2);
+print int($res), " &lt;-- $res\n";
+# $res = sqrt(-2); but see CPAN for Math::Complex
+print "rand: ", int(rand(10)), "\n";  # perldoc -f rand
+# see perldoc -f log
+</pre>
+
+
+<pre class="example">
+2
+1 &lt;-- 1.4142135623731
+rand: 0
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-15" class="outline-3">
+<h3 id="sec-1-15"><span class="section-number-3">1.15</span> Special variables</h3>
+<div class="outline-text-3" id="text-1-15">
+
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+<caption></caption>
+<colgroup><col class="left" /><col class="left" />
+</colgroup>
+<thead>
+<tr><th scope="col" class="left"><b>Symbol</b></th><th scope="col" class="left"><b>Description</b></th></tr>
+</thead>
+<tbody>
+<tr><td class="left">$_</td><td class="left">the default scalar</td></tr>
+<tr><td class="left">@_</td><td class="left">the default array</td></tr>
+<tr><td class="left">@ARGV</td><td class="left">command line arguments</td></tr>
+<tr><td class="left">&lt;STDIN&gt;</td><td class="left">reading from input</td></tr>
+</tbody>
+</table>
+
+
+
+
+
+<pre class="example">print "Give your grade (1-10): ";
+$grade = &lt;STDIN&gt;;
+chomp $grade;   # remove the new line at the end of the string 
+print "\nGrade is $grade\n";
+# test input and process
+</pre>
+
+
+<pre class="example">
+Give your grade (1-10): 
+Grade is 
+</pre>
+
+</div>
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-03-13 08:23:47 AST</p>
+<p class="author">Author: Heikki Lehvaslaiho</p>
+<p class="creator">Org version 7.8.03 with Emacs version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

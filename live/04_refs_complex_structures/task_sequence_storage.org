@@ -1,0 +1,157 @@
+#+TITLE:  Sequence storage
+
+* Task
+
+In this array of strings each string holds three fields: id, descr
+and seq.
+
+my @seqs =
+("Q4X180\tPutative lipase atg15\tMKSSRKRTKRR",
+"A7A179\tSterol 3-beta-glucosyltransferase\tMPITQIISASD",
+"Q8S929\tCysteine protease ATG4a\tMKALCDRFVPQ"
+)
+
+Process the array into a hash reference so that this statement prints
+out the description:
+
+say $seqs->{A7A179}->{descr};
+
+
+* Sample solution
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle yes
+  use v5.10;
+  use strict;
+  use warnings;
+  use Data::Dumper; # Data::Printer 
+  my $DEBUG = 1;
+  
+  my @seqs =
+      ("Q4X180\tPutative lipase atg15\tMKSSRKRTKRR",
+       "A7A179\tSterol 3-beta-glucosyltransferase\tMPITQIISASD",
+       "Q8S929\tCysteine protease ATG4a\tMKALCDRFVPQ");
+  
+  # create the data stucture to hold sequence information
+  my $seqs;
+  for (@seqs) {
+      my ($id, $descr, $seq) = split "\t";
+      say "($id, $descr, $seq)" if $DEBUG;
+  
+      # building first a hash and adding a reference 
+      # to that hash into out data structure ($seqs)
+  
+      my %this_seq;
+      $this_seq{id} = $id;
+      $this_seq{descr} = $descr;
+      $this_seq{seq} = $seq;
+      print Dumper \%this_seq;
+      $seqs->{$id} = \%this_seq;
+      print Dumper $seqs;
+      
+      # doing the same thing at one go
+      #$seqs->{$id}->{descr} = $descr;
+      #$seqs->{$id}->{seq} = $seq;
+  
+      print Dumper $seqs;
+  }
+  
+  # call information from the data structure
+  say $seqs->{A7A179}->{descr};
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+(Q4X180, Putative lipase atg15, MKSSRKRTKRR)
+$VAR1 = {
+          'id' => 'Q4X180',
+          'seq' => 'MKSSRKRTKRR',
+          'descr' => 'Putative lipase atg15'
+        };
+$VAR1 = {
+          'Q4X180' => {
+                        'id' => 'Q4X180',
+                        'seq' => 'MKSSRKRTKRR',
+                        'descr' => 'Putative lipase atg15'
+                      }
+        };
+$VAR1 = {
+          'Q4X180' => {
+                        'id' => 'Q4X180',
+                        'seq' => 'MKSSRKRTKRR',
+                        'descr' => 'Putative lipase atg15'
+                      }
+        };
+(A7A179, Sterol 3-beta-glucosyltransferase, MPITQIISASD)
+$VAR1 = {
+          'id' => 'A7A179',
+          'seq' => 'MPITQIISASD',
+          'descr' => 'Sterol 3-beta-glucosyltransferase'
+        };
+$VAR1 = {
+          'A7A179' => {
+                        'id' => 'A7A179',
+                        'seq' => 'MPITQIISASD',
+                        'descr' => 'Sterol 3-beta-glucosyltransferase'
+                      },
+          'Q4X180' => {
+                        'id' => 'Q4X180',
+                        'seq' => 'MKSSRKRTKRR',
+                        'descr' => 'Putative lipase atg15'
+                      }
+        };
+$VAR1 = {
+          'A7A179' => {
+                        'id' => 'A7A179',
+                        'seq' => 'MPITQIISASD',
+                        'descr' => 'Sterol 3-beta-glucosyltransferase'
+                      },
+          'Q4X180' => {
+                        'id' => 'Q4X180',
+                        'seq' => 'MKSSRKRTKRR',
+                        'descr' => 'Putative lipase atg15'
+                      }
+        };
+(Q8S929, Cysteine protease ATG4a, MKALCDRFVPQ)
+$VAR1 = {
+          'id' => 'Q8S929',
+          'seq' => 'MKALCDRFVPQ',
+          'descr' => 'Cysteine protease ATG4a'
+        };
+$VAR1 = {
+          'A7A179' => {
+                        'id' => 'A7A179',
+                        'seq' => 'MPITQIISASD',
+                        'descr' => 'Sterol 3-beta-glucosyltransferase'
+                      },
+          'Q4X180' => {
+                        'id' => 'Q4X180',
+                        'seq' => 'MKSSRKRTKRR',
+                        'descr' => 'Putative lipase atg15'
+                      },
+          'Q8S929' => {
+                        'id' => 'Q8S929',
+                        'seq' => 'MKALCDRFVPQ',
+                        'descr' => 'Cysteine protease ATG4a'
+                      }
+        };
+$VAR1 = {
+          'A7A179' => {
+                        'id' => 'A7A179',
+                        'seq' => 'MPITQIISASD',
+                        'descr' => 'Sterol 3-beta-glucosyltransferase'
+                      },
+          'Q4X180' => {
+                        'id' => 'Q4X180',
+                        'seq' => 'MKSSRKRTKRR',
+                        'descr' => 'Putative lipase atg15'
+                      },
+          'Q8S929' => {
+                        'id' => 'Q8S929',
+                        'seq' => 'MKALCDRFVPQ',
+                        'descr' => 'Cysteine protease ATG4a'
+                      }
+        };
+Sterol 3-beta-glucosyltransferase
+#+end_example
+

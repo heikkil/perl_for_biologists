@@ -1,0 +1,455 @@
+#+TITLE:  Control structures
+
+See: perldoc perlintro
+
+* Conditional statements
+
+General format of the *if* conditional statement is:
+
+#+HEADERS: :results output :exports both
+#+BEGIN_SRC perl
+  if (<some test>) {
+      # do
+  } elsif (<other test>) {
+      # do
+  } elsif (<one more test>) {
+      # do
+  } else { # if nothing else matches
+      # do
+  }
+#+END_SRC
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle if_construct.pl
+  $a = 8;
+  if ($a >= 4 and $a < 7) {
+      print "few\n";
+  } elsif ($a >= 2 && $a < 4) {
+      print "couple\n";
+  } elsif ($a == 1 ) {
+      print "one\n";
+  } elsif ( not $a ) { # same as: $a == undef || $s == 0
+      print "none\n";
+  } else {
+      print "many\n";
+  }
+#+END_SRC
+
+#+RESULTS:
+: many
+
+Note the use of *not*.
+
+In modern perls (5.10 and later) there is a new function called given()
+(see: perldoc -f given) that does same as switch() in many languages.
+
+If has clearer syntax than /if/ when comparing many times.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle given.pl
+  use v5.10; # this is how you enable new features
+  $a = 9;
+  given( $a ){ # the value is put in $_
+      when( [4..6] ) { say "few"   }
+      when( [2..3] ) { say "couple"}
+      when( [1..1] ) { say "one"   }
+      when( not $_ ) { say "none"  }
+      default        { say "many"  }
+  }
+#+END_SRC
+
+#+RESULTS:
+: many
+
+More often, you only have two choices and the use of if seems
+more natural:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle if_short.pl
+  use v5.10;
+  $a = 'think';
+  if ($a eq 'make') {
+     say "making...";
+  } else {
+     say "Skipping making.";
+  }
+#+END_SRC
+
+#+RESULTS:
+: Skipping making.
+
+Perl has an other shorthand for this called ternary conditional
+operator, ":?" but you might have to make sure to take care of
+operator precedence by using parenthesis liberally.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle ternary.pl
+  use v5.10; 
+  # this is a common usage
+  $n = 2;
+  printf "I have %d dog%s.\n", $n,
+            ($n == 1) ? "" : "s";
+  # This is better done using normal if:
+  $a = 'think';
+  $a eq 'make' ? (say "making...") : (say "Skipping making.");
+#+END_SRC
+
+#+RESULTS:
+: I have 2 dogs.
+: Skipping making.
+
+
+For printf format, see 'perldoc -f sprintf'.
+
+This emphasizes structured approach to complex set of decisions. Perl
+makes it possible to use several other approaches.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle unless.pl
+  use v5.10;
+  $a = '';
+  # leaving an empty code block look strange:
+  if ($a) {
+  } else {
+     say '$a is empty';
+  }
+  # better get rid of it:
+  if (not $a) {
+     say '$a is empty';
+  }
+  # more fluently:
+  unless ($a) {
+     say '$a is empty';
+  }
+  # even easier to read with the transposed order of elements
+  say '$a is empty' unless $a;
+  # note the lack of parenthesis
+#+END_SRC
+
+#+RESULTS:
+: $a is empty
+: $a is empty
+: $a is empty
+: $a is empty
+
+The code should be readable, so use the shortest construct possible.
+
+* Loops
+
+The standard *for* loop (or *foreach* ) can be written exactly like in
+C:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle for_c.pl
+  use v5.10;
+  for ($i = 1;$i<4;$i++) {
+      say $i;
+  }
+#+END_SRC
+
+#+RESULTS:
+: 1
+: 2
+: 3
+
+Most of the time you do not need all that complexity:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle for_perl.pl
+  use v5.10;
+  for ( 1 .. 3 ) {
+      say $_; # values get assigned to default variable
+  }
+#+END_SRC
+
+#+RESULTS:
+: 1
+: 2
+: 3
+
+If you code is dealing with many variables and lists, it is 
+better to name the variables
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle for_perl_named.pl
+  use v5.10;
+  my @countdown = reverse 1 .. 3;
+  foreach my $count (@countdown ) {
+      say $count; 
+  }
+  say "Boom!"
+#+END_SRC
+
+#+RESULTS:
+: 3
+: 2
+: 1
+: Boom!
+
+
+The *for* loop is used to go through elements of arrays and hashes:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle hash_contents.pl
+  use v5.10;
+  my %hash = qw( bread 10 milk 3 butter 1 );
+  for my $item (sort keys %hash) {
+      printf " %-7s # %2s\n",  $item, $hash{$item};
+  }
+  
+#+END_SRC
+
+#+RESULTS:
+:  bread   # 10
+:  butter  #  1
+:  milk    #  3
+
+Use printf (perldoc sprintf) only when really needed to align values.
+
+if you need to test the variable when you are executing, use the
+*while* loop.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle while.pl
+  use v5.10;
+  my $a = 3;
+  while ($a) {
+      say $a;
+      $a--;
+  }
+#+END_SRC
+
+#+RESULTS:
+: 3
+: 2
+: 1
+
+
+The *while* loop is also good for working with arrays and hashes. Use
+it when you do not know beforehand how long you will be reading. Here
+it continues until the array is empty.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle while.pl
+  use v5.10;
+  my @a = 'a' .. 'g';
+  while (@a) {
+      my $rand = int(rand(10));
+      if ($rand <5) {
+         say "$rand ", (shift @a);
+      } else {
+          say "$rand ", (pop @a);
+      }
+  }
+#+END_SRC
+
+#+RESULTS:
+: 2 a
+: 3 b
+: 4 c
+: 1 d
+: 7 g
+: 9 f
+: 9 e
+
+
+The logic of the *while* can be reverse by using the *until* loop. 
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle until.pl
+  use v5.10;
+  my $done;
+  $counting_up = 1;
+  until ($done) {
+      say "doing stuff";
+      $counting_up++;
+      $done = 1 if $counting_up == 3;
+  }
+#+END_SRC
+
+#+RESULTS:
+: doing stuff
+: doing stuff
+
+Equally well, you can be using a long loop and get out of it using *last*.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle endless_loop.pl
+  use v5.10;
+  $counting_up = 1;
+  while (1) {
+      say "doing stuff";
+      $counting_up++;
+      last if $counting_up == 3;
+  }
+#+END_SRC
+
+#+RESULTS:
+: doing stuff
+: doing stuff
+
+
+** Loops in shorthand 
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle looping_with_map.pl
+use v5.10;
+for (1..10) {
+  say $_ if $_ > 5;
+}
+# alternative way
+map {say $_} grep {$_ > 5} 1..10;
+my @aa = grep {$_ > 5} 1..10;
+
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+6
+7
+8
+9
+10
+6
+7
+8
+9
+10
+#+end_example
+
+* Subroutines
+
+See 'perldoc perlsub'
+
+In addition to conditional statements and loops, subroutines are the
+most important way of organizing the flow of programme execution.
+
+Subroutines allow you to take a single task and completely separate it from
+the rest of the programme. It is a closure so you can use lexically
+scoped local variables.
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle greet.pl
+  use v5.10;
+  use strict;
+  use warnings;
+
+  sub greet {
+      my $greeting = "Hello!";
+      say $greeting;
+  }
+  greet();
+#+END_SRC
+
+#+RESULTS:
+: Hello!
+
+
+When you pass it arguments and use the return value, you have written
+your own function. You should not use other variables than those
+declared inside the function.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle sum1.pl
+  use v5.10;
+  sub sum1 {
+      my ($first, $second) = @_;  # @_ = default array
+      my $sum = $first + $second;
+      return $sum;
+  }
+  say sum1(2,3,4);
+#+END_SRC
+
+#+RESULTS:
+: 5
+
+Arguments to the subroutine are passed using the *default array*. Rather
+than using it directly, it is better practice to use function *shift*,
+that acts on default array. 
+
+The last evaluated statement is returned at the end of the subroutine
+execution. This can be visually emphasized by using the *return* key
+word.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle sum2.pl
+  use v5.10;
+  sub sum2 {
+      my $first = shift;
+      my $second = shift;
+      my $sum = $first + $second;
+  }
+  say sum2(2,3); # parenthesis needed
+#+END_SRC
+
+#+RESULTS:
+: 5
+
+Unless the subroutine knows how many arguments it can take, you have
+to use parenthesis around the arguments of the function call. This is
+done by *prototypes* after the subroutine name.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle sum3.pl
+  use v5.10;
+  my $DEBUG = 0;
+  sub sum3 ($$) {  # exactly two scalars needed
+      say "inside sum3" if $DEBUG;
+      shift() +  shift(); # parenthesis needed here
+  }
+  say sum3 2,3;
+  say sum3 4,5;
+#+END_SRC
+
+#+RESULTS:
+: 5
+: 9
+
+By default, arguments defined by their order. If there are many
+arguments, some of them optional,  and the order might be difficult to
+remember. We can use hash view to the array to give names to arguments.
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle sum4.pl
+  use v5.10;
+  
+  sub sum4 {
+      my %args = @_;
+      my $one = $args{one} || 0;
+      my $two = $args{two} || 0;
+      return $one + $two;
+  }
+  
+  say sum4(one => 2,
+           two => 3);
+  say sum4(two => 4);
+#+END_SRC
+
+#+RESULTS:
+: 5
+: 4
+
+Since arguments are passed as elements of the default array, multiple
+arrays are concatenated together, *flattened*.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle count_elements.pl
+  use v5.10;
+  my @list1 = qw( 3 5 7);
+  my @list2 = qw( 9 2 4 5);
+  
+  sub count_arrays {
+      return scalar @_;
+  }
+  
+  say count_arrays (@list1, @list2);
+#+END_SRC
+
+#+RESULTS:
+: 7
+
+How can we pass list arguments without flattening?

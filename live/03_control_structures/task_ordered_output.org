@@ -1,0 +1,31 @@
+#+TITLE:  Ordering a list
+
+* Task
+
+Write a perl script 'order.pl' that asks for positive integers from
+the user, stores them in an array, stops asking when it gets an empty
+string, sorts them numerically (see perldoc -f sort) and prints them
+out all in one line.
+
+* Sample solution
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle task_order.pl
+use v5.10;
+use strict;
+use warnings;
+
+my @a;
+my $n = 1;
+while ($n) {
+    print "Give a positive integer or nothing: ";
+    $n = <STDIN>;
+    chomp $n;
+    # next unless $n =~ /^[0-9]+$/;
+    # say STDERR "|$n|";  # for debugging
+    push @a, $n;
+}
+
+say STDOUT join " ", sort {$a <=> $b} @a;
+#+END_SRC
+

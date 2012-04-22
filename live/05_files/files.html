@@ -1,0 +1,513 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Files and the OS</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Files and the OS"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-03-20 11:05:01 AST"/>
+<meta name="author" content="Heikki Lehvaslaiho"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Files and the OS</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Managing files in the operating system</a>
+<ul>
+<li><a href="#sec-1-1">1.1 rm</a></li>
+<li><a href="#sec-1-2">1.2 mv</a></li>
+<li><a href="#sec-1-3">1.3 cp</a></li>
+<li><a href="#sec-1-4">1.4 mkdir</a></li>
+</ul>
+</li>
+<li><a href="#sec-2">2 Reading and writing files</a>
+<ul>
+<li><a href="#sec-2-1">2.1 Shorthand for reading from a file</a></li>
+<li><a href="#sec-2-2">2.2 Opening a file</a></li>
+</ul>
+</li>
+<li><a href="#sec-3">3 Running programmes from perl</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Managing files in the operating system</h2>
+<div class="outline-text-2" id="text-1">
+
+
+
+</div>
+
+<div id="outline-container-1-1" class="outline-3">
+<h3 id="sec-1-1"><span class="section-number-3">1.1</span> rm</h3>
+<div class="outline-text-3" id="text-1-1">
+
+
+
+
+
+<pre class="example">use v5.10;
+unlink $file;
+unlink @files;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-2" class="outline-3">
+<h3 id="sec-1-2"><span class="section-number-3">1.2</span> mv</h3>
+<div class="outline-text-3" id="text-1-2">
+
+
+
+
+
+<pre class="example">rename $old_name, $new_name;
+</pre>
+
+
+<p>
+The <b>rename</b> does not move files between file systems. For that, you
+can use:
+</p>
+
+
+
+<pre class="example">use File::Copy qw(move);
+move $old_name, $new_name;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-3" class="outline-3">
+<h3 id="sec-1-3"><span class="section-number-3">1.3</span> cp</h3>
+<div class="outline-text-3" id="text-1-3">
+
+
+<p>
+There is no cp equivalent in core perl, so use <a href="#File-Copy">File::Copy</a>
+</p>
+
+
+<pre class="example">use File::Copy qw(copy);
+copy $old_file, $new_file;
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-1-4" class="outline-3">
+<h3 id="sec-1-4"><span class="section-number-3">1.4</span> mkdir</h3>
+<div class="outline-text-3" id="text-1-4">
+
+
+<p>
+Identical to the UNIX command
+</p>
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Reading and writing files</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+</div>
+
+<div id="outline-container-2-1" class="outline-3">
+<h3 id="sec-2-1"><span class="section-number-3">2.1</span> Shorthand for reading from a file</h3>
+<div class="outline-text-3" id="text-2-1">
+
+
+<p>
+Special construct: (&lt;&gt;) reads from STDIN one line at a time.
+</p>
+
+
+
+<pre class="example">while (&lt;&gt;) {
+    print if substr($_, 0, 7) eq '#+BEGIN'
+}
+</pre>
+
+
+
+
+<pre class="example">cat files.org | grep_begin.pl
+</pre>
+
+
+<p>
+If you give your programme command line arguments, they are added to
+the program level default variable <b>@ARGV</b>. This while loop will treat
+them as filenames and pass all lines to $_;
+</p>
+
+
+
+<pre class="example">grep_begin.pl files.org 
+</pre>
+
+
+
+<p>
+You can call this behaviour from command line, too, but it is usually
+done with regular expressions:
+</p>
+
+
+
+
+<pre class="example">perl -ne "print if /for/" *pl
+</pre>
+
+
+<p>
+FOr more perl command line options see: perldoc perlrun
+</p>
+
+
+
+<pre class="example">perl -ne "print if /^\#\+BEGIN/" files.org
+</pre>
+
+
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2-2" class="outline-3">
+<h3 id="sec-2-2"><span class="section-number-3">2.2</span> Opening a file</h3>
+<div class="outline-text-3" id="text-2-2">
+
+
+<p>
+See: 'perldoc -f open' and 'perldoc perlopentut'
+</p>
+<p>
+A file handle is pointer to a file in a file system. It is held in a
+scalar variable.
+</p>
+<p>
+You should always use the modern, three argument mode of open with
+autodie:
+</p>
+
+
+
+<pre class="example">use v5.10;
+use strict; use warnings;
+use autodie;
+
+{ # code block to automatically close the filehandle in the end
+    open my $F, "&lt;", "input.txt";
+    while (&lt;$F&gt;) {
+        print;
+    }
+}
+</pre>
+
+
+
+<p>
+You can close the filehandle manually, too.
+</p>
+<p>
+Without autodie, you'll have to test the success yourself and print
+the error message ($!):
+</p>
+
+
+
+<pre class="example">use strict; use warnings;
+open my $fh, "&lt;", "input.txt" or die "cannot open &lt; input.txt: $!";
+while (&lt;&gt;) {
+    print;
+}
+close $f;
+</pre>
+
+
+
+
+<p>
+You can also test if the file exist before opening it:
+</p>
+
+
+
+<pre class="example">use v5.10;
+use strict; use warnings;
+
+my $file = 'input.txt';
+say "File $file does not exist" and exit unless -e $file;
+say "File $file is not readable" and exit unless -r $file;
+
+open my $fh, "&lt;", "input.txt" or die "cannot open &lt; input.txt: $!";
+while (&lt;&gt;) {
+    print;
+}
+close $f;
+</pre>
+
+
+
+<p>
+Read more about file tests in 'perldoc -f -x'.
+</p>
+<p>
+A complete example reading from a file, writing the results into a file
+and comments in a log:
+</p>
+
+
+
+<pre class="example">use v5.10;
+use strict; use warnings;
+use autodie;
+
+my $file = shift; # read the first argument;
+open my $IN,  "&lt;",  $file;
+open my $OUT, "&gt;",  "$file.out";
+open my $LOG, "&gt;&gt;", "$file.log";
+
+while (&lt;$IN&gt;) {
+    # modify the line and print it to $out
+    chomp;
+    say $OUT scalar reverse;    
+}
+
+say $LOG scalar localtime. "\tran programme $0";
+</pre>
+
+
+
+<p>
+Run the programme like this.
+</p>
+
+
+
+<pre class="example">open_multiple.pl grep_begin.pl
+</pre>
+
+
+<p>
+There is no printed output!
+</p>
+
+
+</div>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Running programmes from perl</h2>
+<div class="outline-text-2" id="text-3">
+
+
+<p>
+Perl has backtics operator for running external programmes and
+capturing the output. Perl can be used instead of shell scripts to
+automate running of programmes.
+</p>
+<p>
+Say you have created a programme:
+</p>
+
+
+
+<pre class="example">echo "perl -lne 'print scalar reverse'" &gt; rev.sh;
+chmod 755 rev.sh
+</pre>
+
+
+<p>
+And you want to run it on all .pl files  in the directory:
+</p>
+
+
+
+<pre class="example">use v5.10;
+@ls = split "\n", `ls *pl`;
+say "files: ", "@ls";
+
+for my $plfile (@ls) {
+   say `rev.sh &lt; $plfile`;
+}
+
+</pre>
+
+
+<pre class="example">
+files: all_reverse.pl cds_in_embl.pl files.pl grep_begin.pl open_modern.pl open_multiple.pl open_older.pl
+
+
+
+
+
+
+
+</pre>
+
+
+<p>
+The above programme will plenty of output. Try it on command line!
+</p>
+<p>
+There are many ways to open compressed files and stream their contents
+into a programme. This is the simplest that does not use any external
+modules and works in UNIX environments:
+</p>
+
+
+
+<pre class="example">use autodie;
+my $file = 'seqs.fa.gz';
+open my $FH, "zcat $file|";
+while (&lt;$FH&gt;) {
+  # do something
+} 
+</pre>
+
+
+
+
+<p>
+By default perl  follows UNIX command line conventions to read files
+line by line. This is controlled by a global variable $/. It can be
+redefined to read multiple lines.
+</p>
+
+
+
+<pre class="example">{ # code block limits the extend of local declaration of a global variable
+  local $/ = "\/\/\n";
+  open my $SEQ, '&lt;', shift;
+  while (&lt;$SEQ&gt;) {
+    my $seq = $_; 
+    my ($ac) = $seq =~ /AC +(\w+)/;  
+    say "$.: ", $ac if $seq =~ /FT +CDS/;
+  }
+}
+</pre>
+
+
+
+<p>
+For every line or block read, perl increases its internal counter $.
+</p>
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-03-20 11:05:01 AST</p>
+<p class="author">Author: Heikki Lehvaslaiho</p>
+<p class="creator">Org version 7.8.03 with Emacs version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

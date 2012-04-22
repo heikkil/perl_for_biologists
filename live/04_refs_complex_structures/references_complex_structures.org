@@ -1,0 +1,171 @@
+#+TITLE:  References and Complex Data structures
+
+* References
+
+** What are references?
+
+References allow you to have a "pointer" to something else, typically
+a complex structure. Reference is stored in a scalar variable.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle references.pl
+use v5.10;
+my $a = 'value';
+say $a;
+my $a_ref = \$a; # read \ as "reference to"
+
+# dereferencing is done by repeating the type of the original
+# variable
+say ${$a_ref};   # "evaluate in scalar context"
+say $$a_ref;     # shorter syntax
+
+# how do you know what kind is the referred value?
+my @a; my $array_ref = \@a;
+my %a; my $hash_ref = \%a;
+
+say ref $a_ref;
+say ref $array_ref;
+say ref $hash_ref;
+#+END_SRC
+
+#+RESULTS:
+: value
+: value
+: value
+: SCALAR
+: ARRAY
+: HASH
+
+Refrences can be created to values without intermediate
+variables. These are known as *anonymous data structures*. Use square
+bracket around the list to mark referring.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl 
+  $a = \'a';
+  print ref $a , "\n"; 
+  $az = ['a' .. 'z'];
+  print ref $az; 
+#+END_SRC
+
+#+RESULTS:
+: SCALAR
+: ARRAY
+
+** Array references
+
+By passing an array reference to a subroutine, you can keep arrays
+intact. 
+
+Benefit: You need not duplicate large data structures.
+Possible catch: Modifying the referenced value inside the subroutine
+changes the original!
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle count_elements.pl
+  use v5.10;
+  my @list1 = qw( 3 5 7);
+  my @list2 = qw( 9 2 4 5);
+  
+  sub count_arrays {
+      my @counts;
+      for (@_) {
+          push @counts, scalar @$_;
+          #pop @$_;
+      }
+      return @counts;
+  }
+  
+  say join " ", count_arrays (\@list1, \@list2);
+#  say join " ", count_arrays (\@list1, \@list2); # unexpected side effect
+#+END_SRC
+
+#+RESULTS:
+: 2 3
+: 1 2
+
+** Hash References
+
+References to hashes work exactly the same way as to arrays. The
+references anonymous references use curly brackets.
+
+
+Example how to code for chess board:
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle hashref_chessboard.pl
+  use v5.10;
+  use Data::Dumper;
+  my $board;                      # scalar variable
+  my $piece = {color => 'white',  # hash reference
+               piece => 'pawn'};
+  
+  # place the pawn
+  $board->[0]->[1] = $piece;  # using the deference arrow
+  # same as:
+  $board[0][1] = $piece;  # autovivification
+  
+  print Dumper $board;
+  
+  # look up a location
+  my $p = $board[0][1];
+  print Dumper $p;
+  say $p->{piece};
+  say $board[0]->[1]->{piece};
+  say $board[0][1]{color};
+  say $board[0][0] || 'no piece on this location';
+  if (my $loc = $board[0][1] )  {
+     say $loc->{piece}, ", ", $loc->{color};
+  } else {
+     say 'no piece on this location';
+  }
+
+#+END_SRC
+
+#+RESULTS:
+#+begin_example
+$VAR1 = [
+          [
+            undef,
+            {
+              'piece' => 'pawn',
+              'color' => 'white'
+            }
+          ]
+        ];
+$VAR1 = {
+          'piece' => 'pawn',
+          'color' => 'white'
+        };
+pawn
+pawn
+white
+no piece on this location
+pawn, white
+#+end_example
+
+** Other references
+
+
+Modern perls (>=v5.14) know of other references, too. Only code
+references have been used for a long time.
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle ref_greet.pl
+  use v5.10;
+  sub greet {
+      my $greeting = "Hello!";
+      say $greeting;
+  }
+  my $g = \&greet;
+  $g->();
+
+  my $g2 = sub {$n = shift; say "Hello, $n"};
+  $g2->('you');
+#+END_SRC
+
+#+RESULTS:
+: Hello!
+: Hello, you
+

@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Regular Expressions</title>
+<meta http-equiv="Content-Type" content="text/html;charset=iso-8859-1"/>
+<meta name="title" content="Regular Expressions"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-03-25T10:08+0300"/>
+<meta name="author" content="Heikki Lehvaslaiho"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Regular Expressions</h1>
+
+<ul>
+<li>perldoc:
+<ul>
+<li>perlrequick         Perl regular expressions quick start
+</li>
+<li>perlretut           Perl regular expressions tutorial
+</li>
+<li>perlre              Perl regular expressions, the rest of the story
+</li>
+<li>perlrebackslash     Perl regular expression backslash sequences
+</li>
+<li>perlrecharclass     Perl regular expression character classes
+</li>
+<li>perlreref           Perl regular expressions quick reference
+</li>
+</ul>
+
+</li>
+</ul>
+
+
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Types of regexps</a></li>
+<li><a href="#sec-2">2 Basics of regexp patterns</a></li>
+<li><a href="#sec-3">3 Regexp character classes</a></li>
+<li><a href="#sec-4">4 Regexp modifiers</a></li>
+<li><a href="#sec-5">5 Internal matching</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Types of regexps</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+Regular expressions are patterns that match strings and allow retrieving
+information and modifying them. The three categories of regexps are
+<b>match</b>, <b>substitute</b> and <b>transliterate</b>. They operate on $_;
+</p>
+
+
+
+<pre class="example">use v5.10;
+$_ = "AUCAGAUCGCAU";
+say if /AUC/;  # match
+s/U/T/g;       # substitute
+tr/A-Z/a-z/;   # transliterate
+say;
+</pre>
+
+
+<pre class="example">
+AUCAGAUCGCAU
+atcagatcgcat
+</pre>
+
+
+<p>
+Matching to arbitrary strings is done using positive (\=~) and
+negative (\!~) regular expression binding operators.
+</p>
+<p>
+Parenthesis inside a matching regexp export the matching string. The
+first match is exported to variable $1, the second to $2 and so on.
+</p>
+
+
+
+<pre class="example">use v5.10;
+my $name = 'Heikki Lehvaslaiho';
+$name_rx = '[^ ]+';   # any number of non-spaces
+
+# at one go
+my ($first_name) = $name =~ /($name_rx)/;
+# match first the assignment
+$name =~ /([^ ]+)/;
+$first_name = $1 if $1;
+say "$name =&gt; $first_name";
+</pre>
+
+
+<pre class="example">
+Heikki Lehvaslaiho =&gt; Heikki
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Basics of regexp patterns</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+
+
+
+<pre class="example">/even/;      # literal
+/^even/;     # literal, beginning of the line
+/even$/;     # literal end of the line
+/eve+n/;     # + means one or more e
+/eve*n/;     # * means zero or more e
+/eve?n/;     # ? means zero or one e
+/eve{2,4}n/; # {; two to four times
+/e(ve)+n/    # group for export, eveven
+/0|1|2|3|4|5|6|7|8|9/ # alteration
+/[0123456789]/ # character class
+/[0-9]+/       # range, in ASCII
+/\d+/          # digits
+/e[ve]+n/      # character class, inclusive
+/e[^ve]+n/     # character class, exclusive
+/e.*n/         #
+</pre>
+
+
+
+<p>
+see: REGex TESTER <a href="http://www.regextester.com/">http://www.regextester.com/</a>
+</p>
+<p>
+Regexps always match as early as possible and extend as far as
+possible (greedy).
+</p>
+
+
+
+<pre class="example">use v5.10;
+sub show_match ($$) {
+   my $s = shift;
+   my $rx = shift;
+   $s =~ /$rx/;
+   say "|$1|";
+}
+
+show_match "One two three ", '([te].*[te])';
+
+</pre>
+
+
+<pre class="example">
+|e two three|
+</pre>
+
+
+<p>
+Add ? to the cardinality character to revert to lazy (non-greedy) matching.
+</p>
+</div>
+
+</div>
+
+<div id="outline-container-3" class="outline-2">
+<h2 id="sec-3"><span class="section-number-2">3</span> Regexp character classes</h2>
+<div class="outline-text-2" id="text-3">
+
+
+
+<ul>
+<li>\d matches a digit, not just [0-9] but also digits from non-roman
+   scripts
+</li>
+<li>\s matches a whitespace character, the set [\ \t\r\n\f] and others
+</li>
+<li>\w matches a word character (alphanumeric or _), not just
+  [0-9a-zA-Z<sub>]</sub> but also digits and characters from non-roman scripts
+</li>
+<li>\D is a negated \d; it represents any other character than a digit,
+  or [<sup>\d]</sup>
+</li>
+<li>\S is a negated \s; it represents any non-whitespace character [<sup>\s]</sup>
+</li>
+<li>\W is a negated \w; it represents any non-word character [<sup>\w]</sup>
+</li>
+<li>The period '.' matches any character but "\n" (unless the modifier
+  "//s" is in effect, as explained below).
+</li>
+</ul>
+
+
+
+
+
+
+<pre class="example">use v5.10;
+sub show_match ($$) {
+   my $s = shift;
+   my $rx = shift;
+   $s =~ /$rx/;
+   say "|$1|$2|";
+}
+
+show_match "  One  two three, 1 22 333", '(\d+\W+)(\w+)$';
+
+</pre>
+
+
+<pre class="example">
+|22 |333|
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-4" class="outline-2">
+<h2 id="sec-4"><span class="section-number-2">4</span> Regexp modifiers</h2>
+<div class="outline-text-2" id="text-4">
+
+
+<p>
+See 'perldoc perlre
+</p>
+<ul>
+<li>m   Treat string as multiple lines. "^" and "$" match internal lines
+</li>
+<li>s   Treat string as single line. "." matches even newline
+</li>
+<li>i   Do case-insensitive pattern matching.
+</li>
+<li>x   Permitting whitespace and comments.
+</li>
+<li>g   Global (repeated) matching
+</li>
+</ul>
+
+
+<p>
+and more Unicode-related modifiers.
+</p>
+
+
+
+<pre class="example">use v5.10;
+sub show_match ($$) {
+   my $s = shift;
+   my $rx = shift;
+
+   while ($s =~ /$rx/gi) {
+     say pos $s, ": |$1|";
+   }
+}
+
+show_match "One two three, 1 22 333", '(\w.{3})';
+
+</pre>
+
+
+<pre class="example">
+4: |One |
+8: |two |
+12: |thre|
+16: |e, 1|
+21: |22 3|
+</pre>
+
+
+</div>
+
+</div>
+
+<div id="outline-container-5" class="outline-2">
+<h2 id="sec-5"><span class="section-number-2">5</span> Internal matching</h2>
+<div class="outline-text-2" id="text-5">
+
+
+<p>
+Use \1, \2, \3 etc to match groups within regexps. The parenthesis are
+counted from the open.
+</p>
+
+<p>
+These are the various ways you can run perl regular expression on the
+command line:
+</p>
+
+
+
+<pre class="example">perl -ne 'print if /((\w)\2){3}/' /usr/share/dict/words
+cat /usr/share/dict/words | perl -ne 'print if /((\w)\2){3}/'
+grep -P '/((\w)\2){3}/' /usr/share/dict/words
+</pre>
+
+
+
+
+<pre class="example">use v5.10;
+#use autodie;
+sub show_matches ($) {
+    my $rx = shift;
+    open my $F, "&lt;", "/usr/share/dict/words";
+    while (&lt;$F&gt;) {
+        print if /$rx/i;
+    }
+}
+
+show_matches '((\w)\2){3}';
+say;
+show_matches '((\w(\w))\3){3}';
+say;
+show_matches '(.(.))(.\2){4}';
+</pre>
+
+
+
+<pre class="example">bookkeeper
+bookkeeper's
+bookkeepers
+bookkeeping
+bookkeeping's
+
+McConnell
+McConnell's
+Mississippi
+Mississippi's
+Mississippian
+Mississippians
+barrenness
+barrenness's
+noncommittally
+rottenness
+suddenness
+suddenness's
+sullenness
+sullenness's
+
+Guadalajara
+Guadalajara's
+divisibility
+divisibility's
+indivisibility
+indivisibility's
+</pre>
+
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-03-25T10:08+0300</p>
+<p class="author">Author: Heikki Lehvaslaiho</p>
+<p class="creator">Org version 7.8.06 with Emacs version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

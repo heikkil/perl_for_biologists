@@ -1,0 +1,290 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+               "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<title>Sequence storage</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8"/>
+<meta name="title" content="Sequence storage"/>
+<meta name="generator" content="Org-mode"/>
+<meta name="generated" content="2012-03-20 08:53:07 AST"/>
+<meta name="author" content="Heikki Lehvaslaiho"/>
+<meta name="description" content=""/>
+<meta name="keywords" content=""/>
+<style type="text/css">
+ <!--/*--><![CDATA[/*><!--*/
+  html { font-family: Times, serif; font-size: 12pt; }
+  .title  { text-align: center; }
+  .todo   { color: red; }
+  .done   { color: green; }
+  .tag    { background-color: #add8e6; font-weight:normal }
+  .target { }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .right  {margin-left:auto; margin-right:0px;  text-align:right;}
+  .left   {margin-left:0px;  margin-right:auto; text-align:left;}
+  .center {margin-left:auto; margin-right:auto; text-align:center;}
+  p.verse { margin-left: 3% }
+  pre {
+	border: 1pt solid #AEBDCC;
+	background-color: #F3F5F7;
+	padding: 5pt;
+	font-family: courier, monospace;
+        font-size: 90%;
+        overflow:auto;
+  }
+  table { border-collapse: collapse; }
+  td, th { vertical-align: top;  }
+  th.right  { text-align:center;  }
+  th.left   { text-align:center;   }
+  th.center { text-align:center; }
+  td.right  { text-align:right;  }
+  td.left   { text-align:left;   }
+  td.center { text-align:center; }
+  dt { font-weight: bold; }
+  div.figure { padding: 0.5em; }
+  div.figure p { text-align: center; }
+  div.inlinetask {
+    padding:10px;
+    border:2px solid gray;
+    margin:10px;
+    background: #ffffcc;
+  }
+  textarea { overflow-x: auto; }
+  .linenr { font-size:smaller }
+  .code-highlighted {background-color:#ffff00;}
+  .org-info-js_info-navigation { border-style:none; }
+  #org-info-js_console-label { font-size:10px; font-weight:bold;
+                               white-space:nowrap; }
+  .org-info-js_search-highlight {background-color:#ffff00; color:#000000;
+                                 font-weight:bold; }
+  /*]]>*/-->
+</style>
+<script type="text/javascript">
+<!--/*--><![CDATA[/*><!--*/
+ function CodeHighlightOn(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(null != target) {
+     elem.cacheClassElem = elem.className;
+     elem.cacheClassTarget = target.className;
+     target.className = "code-highlighted";
+     elem.className   = "code-highlighted";
+   }
+ }
+ function CodeHighlightOff(elem, id)
+ {
+   var target = document.getElementById(id);
+   if(elem.cacheClassElem)
+     elem.className = elem.cacheClassElem;
+   if(elem.cacheClassTarget)
+     target.className = elem.cacheClassTarget;
+ }
+/*]]>*///-->
+</script>
+
+</head>
+<body>
+
+<div id="preamble">
+
+</div>
+
+<div id="content">
+<h1 class="title">Sequence storage</h1>
+
+
+<div id="table-of-contents">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents">
+<ul>
+<li><a href="#sec-1">1 Task</a></li>
+<li><a href="#sec-2">2 Sample solution</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-1" class="outline-2">
+<h2 id="sec-1"><span class="section-number-2">1</span> Task</h2>
+<div class="outline-text-2" id="text-1">
+
+
+<p>
+In this array of strings each string holds three fields: id, descr
+and seq.
+</p>
+<p>
+my @seqs =
+("Q4X180\tPutative lipase atg15\tMKSSRKRTKRR",
+"A7A179\tSterol 3-beta-glucosyltransferase\tMPITQIISASD",
+"Q8S929\tCysteine protease ATG4a\tMKALCDRFVPQ"
+)
+</p>
+<p>
+Process the array into a hash reference so that this statement prints
+out the description:
+</p>
+<p>
+say $seqs-&gt;{A7A179}-&gt;{descr};
+</p>
+
+</div>
+
+</div>
+
+<div id="outline-container-2" class="outline-2">
+<h2 id="sec-2"><span class="section-number-2">2</span> Sample solution</h2>
+<div class="outline-text-2" id="text-2">
+
+
+
+
+
+<pre class="example">use v5.10;
+use strict;
+use warnings;
+use Data::Dumper; # Data::Printer 
+my $DEBUG = 1;
+
+my @seqs =
+    ("Q4X180\tPutative lipase atg15\tMKSSRKRTKRR",
+     "A7A179\tSterol 3-beta-glucosyltransferase\tMPITQIISASD",
+     "Q8S929\tCysteine protease ATG4a\tMKALCDRFVPQ");
+
+# create the data stucture to hold sequence information
+my $seqs;
+for (@seqs) {
+    my ($id, $descr, $seq) = split "\t";
+    say "($id, $descr, $seq)" if $DEBUG;
+
+    # building first a hash and adding a reference 
+    # to that hash into out data structure ($seqs)
+
+    my %this_seq;
+    $this_seq{id} = $id;
+    $this_seq{descr} = $descr;
+    $this_seq{seq} = $seq;
+    print Dumper \%this_seq;
+    $seqs-&gt;{$id} = \%this_seq;
+    print Dumper $seqs;
+
+    # doing the same thing at one go
+    #$seqs-&gt;{$id}-&gt;{descr} = $descr;
+    #$seqs-&gt;{$id}-&gt;{seq} = $seq;
+
+    print Dumper $seqs;
+}
+
+# call information from the data structure
+say $seqs-&gt;{A7A179}-&gt;{descr};
+</pre>
+
+
+
+<pre class="example">(Q4X180, Putative lipase atg15, MKSSRKRTKRR)
+$VAR1 = {
+          'id' =&gt; 'Q4X180',
+          'seq' =&gt; 'MKSSRKRTKRR',
+          'descr' =&gt; 'Putative lipase atg15'
+        };
+$VAR1 = {
+          'Q4X180' =&gt; {
+                        'id' =&gt; 'Q4X180',
+                        'seq' =&gt; 'MKSSRKRTKRR',
+                        'descr' =&gt; 'Putative lipase atg15'
+                      }
+        };
+$VAR1 = {
+          'Q4X180' =&gt; {
+                        'id' =&gt; 'Q4X180',
+                        'seq' =&gt; 'MKSSRKRTKRR',
+                        'descr' =&gt; 'Putative lipase atg15'
+                      }
+        };
+(A7A179, Sterol 3-beta-glucosyltransferase, MPITQIISASD)
+$VAR1 = {
+          'id' =&gt; 'A7A179',
+          'seq' =&gt; 'MPITQIISASD',
+          'descr' =&gt; 'Sterol 3-beta-glucosyltransferase'
+        };
+$VAR1 = {
+          'A7A179' =&gt; {
+                        'id' =&gt; 'A7A179',
+                        'seq' =&gt; 'MPITQIISASD',
+                        'descr' =&gt; 'Sterol 3-beta-glucosyltransferase'
+                      },
+          'Q4X180' =&gt; {
+                        'id' =&gt; 'Q4X180',
+                        'seq' =&gt; 'MKSSRKRTKRR',
+                        'descr' =&gt; 'Putative lipase atg15'
+                      }
+        };
+$VAR1 = {
+          'A7A179' =&gt; {
+                        'id' =&gt; 'A7A179',
+                        'seq' =&gt; 'MPITQIISASD',
+                        'descr' =&gt; 'Sterol 3-beta-glucosyltransferase'
+                      },
+          'Q4X180' =&gt; {
+                        'id' =&gt; 'Q4X180',
+                        'seq' =&gt; 'MKSSRKRTKRR',
+                        'descr' =&gt; 'Putative lipase atg15'
+                      }
+        };
+(Q8S929, Cysteine protease ATG4a, MKALCDRFVPQ)
+$VAR1 = {
+          'id' =&gt; 'Q8S929',
+          'seq' =&gt; 'MKALCDRFVPQ',
+          'descr' =&gt; 'Cysteine protease ATG4a'
+        };
+$VAR1 = {
+          'A7A179' =&gt; {
+                        'id' =&gt; 'A7A179',
+                        'seq' =&gt; 'MPITQIISASD',
+                        'descr' =&gt; 'Sterol 3-beta-glucosyltransferase'
+                      },
+          'Q4X180' =&gt; {
+                        'id' =&gt; 'Q4X180',
+                        'seq' =&gt; 'MKSSRKRTKRR',
+                        'descr' =&gt; 'Putative lipase atg15'
+                      },
+          'Q8S929' =&gt; {
+                        'id' =&gt; 'Q8S929',
+                        'seq' =&gt; 'MKALCDRFVPQ',
+                        'descr' =&gt; 'Cysteine protease ATG4a'
+                      }
+        };
+$VAR1 = {
+          'A7A179' =&gt; {
+                        'id' =&gt; 'A7A179',
+                        'seq' =&gt; 'MPITQIISASD',
+                        'descr' =&gt; 'Sterol 3-beta-glucosyltransferase'
+                      },
+          'Q4X180' =&gt; {
+                        'id' =&gt; 'Q4X180',
+                        'seq' =&gt; 'MKSSRKRTKRR',
+                        'descr' =&gt; 'Putative lipase atg15'
+                      },
+          'Q8S929' =&gt; {
+                        'id' =&gt; 'Q8S929',
+                        'seq' =&gt; 'MKALCDRFVPQ',
+                        'descr' =&gt; 'Cysteine protease ATG4a'
+                      }
+        };
+Sterol 3-beta-glucosyltransferase
+</pre>
+
+
+</div>
+</div>
+</div>
+
+<div id="postamble">
+<p class="date">Date: 2012-03-20 08:53:07 AST</p>
+<p class="author">Author: Heikki Lehvaslaiho</p>
+<p class="creator">Org version 7.8.03 with Emacs version 24</p>
+<a href="http://validator.w3.org/check?uri=referer">Validate XHTML 1.0</a>
+
+</div>
+</body>
+</html>

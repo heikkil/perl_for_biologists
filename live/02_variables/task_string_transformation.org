@@ -1,0 +1,28 @@
+#+TITLE:  String manipulation
+
+* Task
+
+Write a perl script that prints out lines showing how you modify
+string "jeddah" in a variable into "Jidda" one change at the time.
+
+* Sample solution
+
+This solution shows several functions to modify strings.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+begin_src perl :tangle task_string_manipulation.pl
+  my $s = "jeddah";
+  print "$s\n";
+  chop $s;
+  print "$s\n";
+  $s = ucfirst $s;
+  print "$s\n";
+  substr $s, 1, 1, 'i';
+  print "$s\n";
+#+end_src
+
+#+RESULTS:
+: jeddah
+: jedda
+: Jedda
+: Jidda

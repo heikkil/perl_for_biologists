@@ -1,0 +1,60 @@
+#+TITLE: Getting started with perl
+
+* Notes URL
+
+http://baloo-dev.cbrc.kaust.edu.sa/live/
+
+* The perl programme structure
+
+
+Computer programmes are composed of statements. In perl, every
+statement is ended by the semicolon ';' character.
+
+#+BEGIN_SRC perl :results output :exports both
+  #!/usr/bin/env perl
+  print "Hello!\n";
+#+END_SRC
+
+#+RESULTS:
+: Hello!
+
+The execution is one statement at the time from the beginning of the
+file. Comments in perl are after a hash '#' character. 
+
+You should always use defensive programmings style. it means that you
+should protect your programmes from your own and other people's errors.
+
+Best way to protect yourself from your own errors: Use the two standard
+pragmas (compiler instructions):
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle hello.pl
+  use strict;
+  use warnings;
+  print "Hello\n";
+#+END_SRC
+
+#+RESULTS:
+: Hello
+
+Also, you can install a package (Modern::Perl) that does it (and other
+beneficial things, like defines the function *say*) for you.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle hello_modern.pl
+  use Modern::Perl;
+  say "Hello";
+#+END_SRC
+
+#+RESULTS:
+: Hello
+
+The way how scripts are turned into executables depends on the
+operating system. Unix sets the execute permissions:
+
+#+BEGIN_SRC sh
+  perl hello.pl
+  chmod 755 hello.pl
+  ./hello.pl
+#+END_SRC
+

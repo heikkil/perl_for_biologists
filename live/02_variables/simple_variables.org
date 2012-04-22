@@ -1,0 +1,416 @@
+#+TITLE: Simple variables
+
+* Variables: simple values
+
+** What are variables
+
+Variables are easy to spot: They all start with a special
+character. Simple variables are stored in *scalar* variables starting
+with the "$" character.
+
+Perl is *context sensitive* language. One aspect of this is that there
+is only one variable type for strings, numbers and boolean values.
+
+Be sure to understand the difference between variable and value!
+
+The "=" is not "equals" but is the assignment operator.
+
+#+HEADERS: :results output :exports both 
+#+BEGIN_SRC perl
+  $a = 'a';
+  print $a;
+#+END_SRC
+
+#+RESULTS:
+: a
+
+String 'a' is stored in variable $a.
+
+#+HEADERS: :results output :exports both
+#+BEGIN_SRC perl 
+  $a = 2;
+  print $a;
+#+END_SRC
+
+#+RESULTS:
+: 2
+
+** Numbers
+
+If we use a numerical operator on a value, the *numerical value* is
+extracted from a it. Numerical operators can be applied on string values.
+
+#+HEADERS: :results output :exports both
+#+BEGIN_SRC perl
+  $a = '2a';
+  print $a + $a;
+#+END_SRC
+
+#+RESULTS:
+: 4
+
+Certain rules apply, so do not try to misuse this feature!
+
+Numbers have a few special formats in perl:
+
+#+HEADERS: :results output :exports both
+#+BEGIN_SRC perl
+  $a = 2_000_000_000_000;
+  print $a * $a;
+#+END_SRC
+
+#+RESULTS:
+: 4e+24
+
+** Strings
+
+Single-quoted strings are *verbatim*, double quotes allow
+*interpolation* of special characters and variables.
+
+The special characters has to be *escaped* with a backslash "\"
+character.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle interpolation.pl
+  print "\tThis is a 'line' \\ \n";
+  print '\tThis is a \'line\' \\ \n';
+#+END_SRC
+
+#+RESULTS:
+: 	This is a 'line' \ 
+: \tThis is a 'line' \ \n
+
+The quote-like operator makes it possible to write without escaping
+all the time. Any delimiter can be used -- as long as it does not
+appear in the string.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle quote_operator.pl
+  my $time = 5;
+  print qq("We'll finish at $time o'clock", I say.);
+#+END_SRC
+
+#+RESULTS:
+: "We'll finish at 5 o'clock", I say.
+
+** Operators
+
+Normal precedence. Changeable with parenthesis. This table and all the
+gory details are in the *perlop* man page.
+
+#+HEADERS: :RESULTS OUTPUT :EXPORTS BOTH :SHEBANG "#!/USR/BIN/ENV PERL"
+#+BEGIN_SRC sh
+  perldoc perlop
+#+END_SRC
+
+| Operator precedence     |
+|-------------------------|
+| List operators (left)   |
+| ->                      |
+| ++ --                   |
+| **                      |
+| ! ~ \ and unary + and - |
+| =~ !~                   |
+| * / % x                 |
+| + - .                   |
+| << >>                   |
+| named unary operators   |
+| < > <= >= lt gt le ge   |
+| == != <=> eq ne cmp ~~  |
+| &                       |
+| \                       |
+| &&                      |
+| \/\/                    |
+| ..  ...                 |
+| ?:                      |
+| = += -= *= etc.         |
+| , =>                    |
+| list operators (right)  |
+| not                     |
+| and                     |
+| or xor                  |
+
+** Boolean values
+
+Truth is a everything except:
+
+- zero
+- empty string
+- undefined value
+- empty list
+
+** Comparing values
+
+Since scalar can hold both strings and numbers, comparison operators
+have to be different.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle comparing_values.pl
+  print "Is a same as b? ", 'a' eq 'b', "\n";
+  print "Is a same as a? ", 'a' eq 'a', "\n";
+  print "Is 2 same as 3? ", 2 == 3, "\n";
+  print "Is 2 not same as 3? ", 2 != 3, "\n";
+  print "Is 2 same as 2? ", 2 == 2, "\n";
+
+  print "Is a smaller than as b? ", 'a' lt 'b', "\n";
+  print "Is 2 smaller than 3? ", 2 < 3, "\n";
+
+#+END_SRC
+
+#+RESULTS:
+: Is a same as b? 
+: Is a same as a? 1
+: Is 2 same as 3? 
+: Is 2 not same as 3? 1
+: Is 2 same as 2? 1
+: Is a smaller than as b? 1
+: Is 2 smaller than 3? 1
+
+As you can see, true is most commonly represented by 1 and false by an
+empty string.
+
+** Boolean operators
+
+Logical operators *and*, *or* and *not* are easier to use in symbolic
+forms which also have higher precedence. Use parenths when needed!
+
+| *Verbose* | *Symbolic* |
+|-----------+------------|
+| and       | &&         |
+| or        | \vert\vert |
+| not       | !          |
+|-----------+------------|
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle boolean_operators.pl
+  print 6<7 && 1<2, "\n";
+  print 6<7 && 1>2, "\n";
+  print 6>7 || 1<2, "\n";
+
+  print 0 || 3, "\n";
+
+  print 6<7, "\n";
+  print !(6>7), "\n";
+  print 0 || 2, "\n";
+#+END_SRC
+
+#+RESULTS:
+: 1
+: 
+: 1
+: 3
+: 1
+: 1
+: 2
+
+Boolean operators are usually used in conditional statements (*if*)
+where their usage is clearer. More of them later...
+
+** String operators
+
+Concatenation operator, ".".
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle string_concatenation.pl
+  print "Two times ". "three is ". 2*3 . "\n";
+#+END_SRC
+
+#+RESULTS:
+: Two times three is 6
+
+Repetition operator, "x".
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle string_repetition.pl
+  print "<>" x 30, "\n";
+#+END_SRC
+
+#+RESULTS:
+: <><><><><><><><><><><><><><><><><><><><><><><><><><><><><><>
+
+Range operator, ".."
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle number_range.pl
+  print 1..9;
+#+END_SRC
+
+#+RESULTS:
+: 123456789
+
+** Special versions of assigning
+
+Operating and assigning at once: in-place operators
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :results output :tangle inplace_operator.pl
+  $a = $a + $b;  # common need
+  $a += $b;      # a shorter and faster way
+  $a ||= 'def';  # assigning a default value 
+#+END_SRC
+
+
+Multiple assignments
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle multiple_assignment.pl
+  $d = $c = $b = 2;
+  print "$d = $c = $b";
+  $b = 4 + ($a = 2);  # not recommended
+  # do the assignments separately
+  $a = 2;
+  $b = 4 + $a;
+#+END_SRC
+
+#+RESULTS:
+: 2 = 2 = 2
+
+** Scoping 
+
+All variable so far have been *global*, i.e. visible everywhere in
+the programme. Variables typically have different values in
+different parts of the programme. 
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle var_global.pl
+  $state = 'outside';
+  {
+      $state = 'inside';
+      print "In : $state", "\n" 
+  }
+  print "Out: $state", "\n" 
+#+END_SRC
+
+#+RESULTS:
+: In : inside
+: Out: inside
+
+*Lexical variables* solve this problem by limiting the visibility to
+a block. This is done using keyword *my* before the variable. 
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle var_lexical.pl
+  $state = 'outside';
+  {
+      my $state = 'inside';
+      print "In : $state", "\n" 
+  }
+  print "Out: $state", "\n" 
+#+END_SRC
+
+#+RESULTS:
+: In : inside
+: Out: outside
+
+Now you can see the benefits of limiting visibility of variables. The
+*use strict* pragma forces you to declare all variables. Using 'my' at
+top level makes the code available in all blocks under it -- in effct
+global within the file.
+
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle var_lexical_strict.pl
+  use strict;
+  my $state = 'outside'; # will not compile without 'my'
+  print "Out : $state", "\n";
+  {
+      my $state = 'inside';
+      print "In : $state", "\n"; 
+  }
+  print "Out: $state", "\n";
+#+END_SRC
+
+#+RESULTS:
+: Out : outside
+: In : inside
+: Out: outside
+
+** Variable names
+
+1. Sigil
+2. First character: letter or underscore
+3. Then: numbers, letters or underscores x 251
+
+*Case sensitive!*
+
+** Variable interpolation
+
+Same rules apply as for special characters: Only double quoted strings
+are interpolated.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle variable_interpolation.pl
+  my $aa = '1';
+  print "This is $aa\n";
+  print "This is ${aa}st\n"; # just like in BASH
+  $b = "${aa}st";
+  $b = $aa. "st";  # identical to above line
+#+END_SRC
+
+#+RESULTS:
+: This is 1
+: This is 1st
+
+** Some string functions
+
+See 'perldoc perlfunc'
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle string_functions.pl
+  my $name = 'heikki';
+  print ucfirst($name), " is ", length($name), " characters long\n";
+  # more: uc(), lc()
+  # see: perldoc -f substr
+  print substr($name, 3, 2), " are the two consonants in the middle of $name\n";
+  # substr can be used to do inplace modifications of strings, too
+  substr $name, 0, 1, uc(substr $name, 0, 1);
+  print "$name\n";
+#+END_SRC
+
+#+RESULTS:
+: Heikki is 6 characters long
+: kk are the two consonants in the middle of heikki
+: Heikki
+
+** Some numeric functions
+
+Only basic numerical functions are part of core Perl.
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle yes
+  print abs(-2), "\n";
+  my $res = sqrt(2);
+  print int($res), " <-- $res\n";
+  # $res = sqrt(-2); but see CPAN for Math::Complex
+  print "rand: ", int(rand(10)), "\n";  # perldoc -f rand
+  # see perldoc -f log
+#+END_SRC
+
+#+RESULTS:
+: 2
+: 1 <-- 1.4142135623731
+: rand: 3.01132209672691
+
+** Special variables
+
+| *Symbol*  | *Description*          |
+|-----------+------------------------|
+| $_        | the default scalar     |
+| @_        | the default array      |
+| @ARGV     | command line arguments |
+| <STDIN>   | reading from input     |
+|-----------+------------------------|
+
+#+HEADERS: :results output :exports both :shebang "#!/usr/bin/env perl"
+#+BEGIN_SRC perl :tangle stdin.pl
+  print "Give your grade (1-10): ";
+  $grade = <STDIN>;
+  chomp $grade;   # remove the new line at the end of the string 
+  print "\nGrade is $grade\n";
+  # test input and process
+#+END_SRC
+
+#+RESULTS:
+: Give your grade (1-10): 
+: Grade was 
