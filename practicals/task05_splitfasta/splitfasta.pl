@@ -5,7 +5,7 @@ use Getopt::Long;
 use autodie;
 
 use constant PROGRAMME_NAME => 'splitfasta.pl';
-use constant VERSION => '0.5';
+use constant VERSION => '0.6';
 
 my ($OUTPUT, $SEGMENT_LENGTH, $OVERLAP_LENGTH) = (undef, 10000, 1000);
 GetOptions(
@@ -13,8 +13,8 @@ GetOptions(
 				 exit(1); },
     'h|help|?'           => sub{ exec('perldoc',$0); exit 0 },
     'o|output'           => \$OUTPUT,
-    's|segmentlength:i'  => \$SEGMENT_LENGTH,
-    'l|overlaplength:i'  => \$OVERLAP_LENGTH
+    's|segment_length:i'  => \$SEGMENT_LENGTH,
+    'l|overlap_length:i'  => \$OVERLAP_LENGTH
 );
 
 
@@ -91,6 +91,7 @@ while (<$IN>) {
     }
 }
 # print out last residues from previous seq
+# but only if there is more than the leght of the overlap
 print OUT ">$id-", $seqcounter++, " start=$start end=",
     ($start+length($seq)-1), "\n$seq\n" if length($seq) > $OVERLAP_LENGTH;
 
@@ -126,6 +127,7 @@ a number of overlapping sequences.
     }
   }
   create a new sequence and print rest of the residues
+    if the sequence is longer that overlap length
 
 
 =head1 INSTALLING
@@ -169,6 +171,7 @@ The length of the overlap between subsequent sequences. Defaults to 1,000.
   0.3.0, 28 Feb 2007, more documentation public version
   0.4.0,  1 Oct 2011, modernize
   0.5.0, 27 Oct 2011, more code comments
+  0.6.0, 23 Apr 2012, print last frament only if it is longer than overlap
 
 =head1 TODO
 
@@ -188,6 +191,6 @@ Heikki Lehvaslaiho, heikki lehvaslaiho gmail com
 
 =head1 CONTRIBUTORS
 
-no contributors, yet
+Martin Senger, detected the bug fixed in v0.6
 
 =cut
