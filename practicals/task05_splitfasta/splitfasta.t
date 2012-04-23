@@ -20,5 +20,5 @@ ok `./splitfasta.pl --segment 10 --overlap 5 test.fa` =~ tr/>/>/ == 7,
     'overlap 5';
 ok `./splitfasta.pl --segment 10 --overlap 9 test.fa` =~ tr/>/>/ == 31,
     'overlap 9';
-ok `./splitfasta.pl --segmentlength 3 --overlaplength 2 test.fa`
+ok `./splitfasta.pl --segment 3 --overlap 2 test.fa`
     =~ tr/>/>/ == 38, 'length 3, overlap 2';
