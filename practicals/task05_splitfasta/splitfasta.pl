@@ -91,7 +91,9 @@ while (<$IN>) {
     }
 }
 # print out last residues from previous seq
-print OUT ">$id-", $seqcounter++, " start=$start\n$seq\n" if $seq;
+print OUT ">$id-", $seqcounter++, " start=$start end=",
+    ($start+length($seq)-1), "\n$seq\n" if length($seq) > $OVERLAP_LENGTH;
+
 
 
 
