@@ -52,7 +52,7 @@ while (<$IN>) {
 
 	# read in the ID to $id
         $header = $_;
-        ($id) = $header =~ /(\w+)/;
+        ($id) = $header =~ /^>\s*(\S+)/;
 	# reset the $seq to empty
         $seq = '';
 	# $seqcounter is reset to 0
