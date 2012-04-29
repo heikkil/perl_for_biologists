@@ -48,7 +48,7 @@ while (<$IN>) {
 	# last residues from previous input seq
 	# but only if we are really a new sequence
         print OUT ">$id-", $seqcounter++, " start=$start end=",
-	    length($seq), "\n$seq\n" if $seq and length($seq) > $start;
+	    length($seq), " overlap=$OVERLAP_LENGTH\n$seq\n" if $seq and length($seq) > $start;
 
 	# read in the ID to $id
         $header = $_;
@@ -75,8 +75,8 @@ while (<$IN>) {
 	# print out a new FASTA sequence
 	# name is "$id-$seqcounter"
         print OUT ">$id-", $seqcounter++,
-	    " overlap=$OVERLAP_LENGTH start=$start end=".
-	    ($start+$SEGMENT_LENGTH-1). "\n".
+	    " start=$start end=".
+	    ($start+$SEGMENT_LENGTH-1). " overlap=$OVERLAP_LENGTH\n".
 	    "$seqment\n";
 
         # deal with overlap, if defined
@@ -95,7 +95,7 @@ while (<$IN>) {
 # print out last residues from previous seq
 # but only if there is more than the lenght of the overlap
 print OUT ">$id-", $seqcounter++, " start=$start end=",
-    ($start+length($seq)-1), "\n$seq\n" if length($seq) > $OVERLAP_LENGTH;
+    ($start+length($seq)-1), " overlap=$OVERLAP_LENGTH\n$seq\n" if length($seq) > $OVERLAP_LENGTH;
 
 
 
