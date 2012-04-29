@@ -37,7 +37,7 @@ my $seq = "";   # sequence residues
 my $header;     # contents of the header line
 my $id;         # seq id from the $header
 my $seqcounter; # segment count
-my $start;      # pointer to the original seq loc
+my $start = 0;  # pointer to the original seq loc
 
 while (<$IN>) {
     chomp;
@@ -46,8 +46,9 @@ while (<$IN>) {
 
         # print out to new output sequence the
 	# last residues from previous input seq
+	# but only if we are really a new sequence
         print OUT ">$id-", $seqcounter++, " start=$start end=",
-	    length($seq), "\n$seq\n" if $seq;
+	    length($seq), "\n$seq\n" if $seq and length($seq) > $start;
 
 	# read in the ID to $id
         $header = $_;
