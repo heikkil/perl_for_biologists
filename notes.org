@@ -435,3 +435,7 @@ http://perl-tutorial.org/
 * Parallel::Forkmanager
 
 http://perltalks.celogeek.com/slides/2012/01/parallel-forkmanager-slide.html
+* Off-line perl environment
+http://qa.celogeek.com/programming/perl/workoffline
+
+cpanm CPAN::Mini Perldoc::Server
