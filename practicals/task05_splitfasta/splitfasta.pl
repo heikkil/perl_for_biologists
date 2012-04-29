@@ -5,14 +5,14 @@ use Getopt::Long;
 use autodie;
 
 use constant PROGRAMME_NAME => 'splitfasta.pl';
-use constant VERSION => '0.6';
+use constant VERSION => '0.7';
 
 my ($OUTPUT, $SEGMENT_LENGTH, $OVERLAP_LENGTH) = (undef, 10000, 1000);
 GetOptions(
-    'v|version'          => sub{ print PROGRAMME_NAME, ", version ", VERSION, "\n";
+    'v|version'           => sub{ print PROGRAMME_NAME, ", version ", VERSION, "\n";
 				 exit(1); },
-    'h|help|?'           => sub{ exec('perldoc',$0); exit 0 },
-    'o|output'           => \$OUTPUT,
+    'h|help|?'            => sub{ exec('perldoc',$0); exit 0 },
+    'o|output'            => \$OUTPUT,
     's|segment_length:i'  => \$SEGMENT_LENGTH,
     'l|overlap_length:i'  => \$OVERLAP_LENGTH
 );
@@ -174,6 +174,7 @@ The length of the overlap between subsequent sequences. Defaults to 1,000.
   0.4.0,  1 Oct 2011, modernize
   0.5.0, 27 Oct 2011, more code comments
   0.6.0, 23 Apr 2012, print last frament only if it is longer than overlap
+  0.7.0, 29 Apr 2012, better detection of shorter than seqment length seqs
 
 =head1 TODO
 
@@ -193,6 +194,6 @@ Heikki Lehvaslaiho, heikki lehvaslaiho gmail com
 
 =head1 CONTRIBUTORS
 
-Martin Senger, detected the bug fixed in v0.6
+Martin Senger, detected the bugs fixed in v0.6 and v0.7
 
 =cut
