@@ -46,7 +46,8 @@ while (<$IN>) {
 
         # print out to new output sequence the
 	# last residues from previous input seq
-        print OUT ">$id-", $seqcounter++, " start=$start\n$seq\n" if $seq;
+        print OUT ">$id-", $seqcounter++, " start=$start end=",
+	    length($seq), "\n$seq\n" if $seq;
 
 	# read in the ID to $id
         $header = $_;
@@ -91,7 +92,7 @@ while (<$IN>) {
     }
 }
 # print out last residues from previous seq
-# but only if there is more than the leght of the overlap
+# but only if there is more than the lenght of the overlap
 print OUT ">$id-", $seqcounter++, " start=$start end=",
     ($start+length($seq)-1), "\n$seq\n" if length($seq) > $OVERLAP_LENGTH;
 
