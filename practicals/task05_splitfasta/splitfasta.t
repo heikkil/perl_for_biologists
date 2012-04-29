@@ -5,7 +5,7 @@
 #   prove -vl splitfasta.t
 #
 
-use Test::Simple tests => 6;
+use Test::Simple tests => 7;
 
 print "# I'm testing ", `./splitfasta.pl -v`, "\n";
 
@@ -22,3 +22,5 @@ ok `./splitfasta.pl --segment 10 --overlap 9 test.fa` =~ tr/>/>/ == 31,
     'overlap 9';
 ok `./splitfasta.pl --segment 3 --overlap 2 test.fa`
     =~ tr/>/>/ == 38, 'length 3, overlap 2';
+ok `./splitfasta.pl --segment 5 --overlap 4 test.fa`
+    =~ tr/>/>/ == 36, 'length 5, overlap 1';
