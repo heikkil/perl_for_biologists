@@ -439,3 +439,9 @@ http://perltalks.celogeek.com/slides/2012/01/parallel-forkmanager-slide.html
 http://qa.celogeek.com/programming/perl/workoffline
 
 cpanm CPAN::Mini Perldoc::Server
+* Perl one liners
+http://www.catonmat.net/blog/introduction-to-perl-one-liners/
+http://www.catonmat.net/blog/perl-book/
+* Perl 1.16 released 2012--5-20
+
+The preferred method to check for this remains "tainted" in Scalar::Util.
