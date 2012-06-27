@@ -280,6 +280,10 @@ if ($opt_v) { # from Getopt::Std
 }
 #+END_SRC
 
+* Converting an existing module
+
+- Dist::Zooky 
+- Check also: http://paste.scsys.co.uk/201334
 
 * dzil has minting profiles
 
