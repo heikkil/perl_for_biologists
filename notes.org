@@ -445,3 +445,25 @@ http://www.catonmat.net/blog/perl-book/
 * Perl 1.16 released 2012--5-20
 
 The preferred method to check for this remains "tainted" in Scalar::Util.
+* perl docs as ebook
+
+http://perlybook.org/
+
+App-iTan 
+
+* PerTalk - Command line in style
+http://sck.to/Ro
+ http://qa.celogeek.com/programming/perl/talks/slides/command-line-tools-in-style
+ source: git clone https://github.com/hakimel/reveal.js.git
+
+Syntax highlighting with language autodetection.
+http://softwaremaniacs.org/soft/highlight/
+
+# Automatics code syntax highlighting
+http://softwaremaniacs.org/soft/highlight/
+
+zoom.js https://github.com/hakimel/zoom.js
+
+Mycobacterium_bovis_BCG_Pasteur_1173P2_uid58781/
+Mycobacterium_tuberculosis_H37Rv_uid57777/
+Corynebacterium_glutamicum_ATCC_13032_uid57905/
