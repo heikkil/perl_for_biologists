@@ -1302,6 +1302,7 @@ Text in B<bold> I<italic>
 - *CGI & CGI::Pretty* provide an interface to the CGI Environment
   - *CGI::Application*
 - *DBI* provides a unified interface to relational databases
+- *DBIx::Class* - Object-relational mapper.
 - *DateTime* for date interfaces, also DateTime::Format::DateManip
 
 ** Some Modules (II)
