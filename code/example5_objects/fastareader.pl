@@ -14,22 +14,26 @@ use Mo qw'build';
 use autodie;
 
 has infile => ();
+has fh => ();
 
-my $F;
 sub BUILD {
     my $self = shift;
+    my $F;
     open $F, "<", $self->infile;
+    $self->fh($F);
 }
 
 sub next_line {
     my $self = shift;
+    my $F = $self->fh;
     while (<$F>) {
-	return $_;
+        return $_;
     }
 }
 
 sub next_seq {
     my $self = shift;
+    my $F = $self->fh;
     local $/ = "\n>";
     while (<$F>) {
 #	return "<|$_|>";
